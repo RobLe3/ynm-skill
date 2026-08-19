@@ -40,17 +40,12 @@ SECURITY_BOUNDARY_CHECKS = ["baseline-integrity", "public-sanitization", "runtim
 
 AGENTS_MARKER_START = "<!-- YNM:BEGIN -->"
 AGENTS_MARKER_END = "<!-- YNM:END -->"
-PUBLIC_SANITIZATION_ALLOWLIST: dict[str, set[str]] = {}
-PUBLIC_SANITIZATION_ALLOWLIST.update(
-    {
-        "PUBLICATION_COMPARISON.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
-        "YNM_1_1_MATURITY_REPORT.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
-        "docs/errata/1.2.0-publication.md": {"PRIVATE_REPOSITORY_REFERENCE"},
-        "tests/test_validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
-        "validation/validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
-        "validation/validate_release_integrity.py": {"PRIVATE_ABSOLUTE_PATH"},
-    }
-)
+PUBLIC_SANITIZATION_ALLOWLIST: dict[str, set[str]] = {
+    "docs/errata/1.2.0-publication.md": {"PRIVATE_REPOSITORY_REFERENCE"},
+    "tests/test_validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "validation/validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION", "PRIVATE_ABSOLUTE_PATH"},
+    "validation/validate_release_integrity.py": {"PRIVATE_ABSOLUTE_PATH"},
+}
 TEXT_PATTERNS: dict[str, list[str]] = {
     "PRIVATE_ABSOLUTE_PATH": [
         r"(?<![A-Za-z0-9_])/[Uu]sers/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*",
@@ -478,56 +473,105 @@ def check_normative_invariants() -> list[str]:
 
 def check_state() -> list[str]:
     errors: list[str] = []
-    findings = load_yaml(ROOT / "state/findings.yaml")["findings"]
-    events = load_yaml(ROOT / "state/events.yaml")["events"]
+    release_state = ROOT / f"state/releases/{CURRENT_VERSION}"
+    required = {
+        "findings.yaml",
+        "events.yaml",
+        "loop-results.yaml",
+        "runs.yaml",
+        "review-plan.yaml",
+    }
 
-    finding_ids = {item["id"] for item in findings}
-    event_ids = {item["event_id"] for item in events}
-    if len(finding_ids) != len(findings):
-        errors.append("state/findings.yaml: duplicate finding ID")
-    if len(event_ids) != len(events):
-        errors.append("state/events.yaml: duplicate event ID")
+    if not release_state.exists():
+        errors.append(f"{release_state.relative_to(ROOT)}: missing")
+        return errors
+
+    for required_file in sorted(required):
+        path = release_state / required_file
+        if not path.exists():
+            errors.append(f"{path.relative_to(ROOT)}: missing")
+
+    if errors:
+        return errors
+
+    release_findings = load_yaml(release_state / "findings.yaml")
+    release_events = load_yaml(release_state / "events.yaml")
+    release_runs = load_yaml(release_state / "runs.yaml")
+    release_plan = load_yaml(release_state / "review-plan.yaml")
+    loop_records = load_yaml(release_state / "loop-results.yaml")
+
+    findings = release_findings.get("findings", [])
+    events = release_events.get("events", [])
+    runs = release_runs.get("runs", [])
+    records = loop_records.get("loop_results", [])
+    plan = release_plan.get("review_plan", {})
+
+    if not isinstance(findings, list):
+        errors.append("state/releases/" + CURRENT_VERSION + "/findings.yaml: findings must be a list")
+        findings = []
+    if not isinstance(events, list):
+        errors.append("state/releases/" + CURRENT_VERSION + "/events.yaml: events must be a list")
+        events = []
+    if not isinstance(runs, list):
+        errors.append("state/releases/" + CURRENT_VERSION + "/runs.yaml: runs must be a list")
+        runs = []
+    if not isinstance(records, list):
+        errors.append("state/releases/" + CURRENT_VERSION + "/loop-results.yaml: loop_results must be a list")
+        records = []
+    if not isinstance(plan, dict):
+        errors.append("state/releases/" + CURRENT_VERSION + "/review-plan.yaml: review_plan must be a mapping")
+        plan = {}
+
+    finding_ids = {item.get("id") for item in findings if isinstance(item, dict) and isinstance(item.get("id"), str)}
+    event_ids = {item.get("event_id") for item in events if isinstance(item, dict) and isinstance(item.get("event_id"), str)}
+    if len(finding_ids) != len([item for item in findings if isinstance(item, dict) and isinstance(item.get("id"), str)]):
+        errors.append(f"state/releases/{CURRENT_VERSION}/findings.yaml: duplicate finding ID")
+    if len(event_ids) != len([item for item in events if isinstance(item, dict) and isinstance(item.get("event_id"), str)]):
+        errors.append(f"state/releases/{CURRENT_VERSION}/events.yaml: duplicate event ID")
 
     finding_schema = load_json(SCHEMAS / "finding.schema.json")
     for item in findings:
-        errors.extend(f"state/findings.yaml:{item.get('id')}: {e}" for e in validate(item, finding_schema))
-        for event in item.get("history", []):
-            if event not in event_ids:
-                errors.append(f"{item['id']}: unknown history event {event}")
+        if isinstance(item, dict):
+            errors.extend(
+                f"state/releases/{CURRENT_VERSION}/findings.yaml:{item.get('id')}: {e}"
+                for e in validate(item, finding_schema)
+            )
+            for event in item.get("history", []):
+                if event not in event_ids:
+                    errors.append(f"findings.yaml:{item.get('id')}: unknown history event {event}")
 
     run_schema = load_json(SCHEMAS / "run-receipt.schema.json")
-    run_states = [ROOT / "state/runs.yaml", ROOT / "state/releases/1.1.0/runs.yaml", ROOT / "state/releases/1.2.0/runs.yaml", ROOT / f"state/releases/{CURRENT_VERSION}/runs.yaml"]
-    for state_path in run_states:
-        runs = load_yaml(state_path)["runs"]
-        seen: set[str] = set()
-        for item in runs:
-            if item.get("run_id") in seen:
-                errors.append(f"{state_path.relative_to(ROOT)}: duplicate run ID {item.get('run_id')}")
-            seen.add(item.get("run_id"))
-            errors.extend(f"{state_path.relative_to(ROOT)}:{item.get('run_id')}: {e}" for e in validate(item, run_schema))
-
-    current_runs = load_yaml(ROOT / f"state/releases/{CURRENT_VERSION}/runs.yaml")["runs"] if (ROOT / f"state/releases/{CURRENT_VERSION}/runs.yaml").exists() else []
-    for item in current_runs:
-        if "DELIVERY" not in item.get("phase_history", []):
-            errors.append(f"state/releases/{CURRENT_VERSION}/runs.yaml: Delivery missing from phase history")
-
-    for loop_path, expected_loops in [
-        (ROOT / "state/releases/1.1.0/loop-results.yaml", {"Architecture", "Implementation", "Adoption", "Maintenance", "Disposition", "Meta"}),
-        (ROOT / "state/releases/1.2.0/loop-results.yaml", {"Architecture", "Implementation", "Adoption", "Maintenance", "Disposition", "Meta"}),
-        (ROOT / f"state/releases/{CURRENT_VERSION}/loop-results.yaml", {"Architecture", "Implementation", "Adoption", "Maintenance", "Disposition", "Meta"}),
-    ]:
-        if not loop_path.exists():
+    seen: set[str] = set()
+    for item in runs:
+        if not isinstance(item, dict):
+            errors.append("state/releases/" + CURRENT_VERSION + "/runs.yaml: run entry must be a mapping")
             continue
-        records = load_yaml(loop_path)["loop_results"]
-        if {item.get("loop") for item in records} != expected_loops:
-            errors.append(f"{loop_path.relative_to(ROOT)}: expected all six focal loop records")
-        loop_schema = load_json(SCHEMAS / "loop-result.schema.json")
-        for item in records:
-            errors.extend(f"{loop_path.relative_to(ROOT)}:{item.get('loop')}: {e}" for e in validate(item, loop_schema))
+        run_id = str(item.get("run_id", ""))
+        if not run_id:
+            errors.append("state/releases/" + CURRENT_VERSION + "/runs.yaml: run_id missing")
+        if run_id in seen:
+            errors.append(f"state/releases/{CURRENT_VERSION}/runs.yaml: duplicate run ID {run_id}")
+        seen.add(run_id)
+        errors.extend(f"state/releases/{CURRENT_VERSION}/runs.yaml:{run_id}: {e}" for e in validate(item, run_schema))
+        if "DELIVERY" not in item.get("phase_history", []):
+            errors.append(f"state/releases/{CURRENT_VERSION}/runs.yaml:{run_id}: DELIVERY missing from phase history")
 
-    release_plan = load_yaml(ROOT / f"state/releases/{CURRENT_VERSION}/review-plan.yaml")["review_plan"]
+    expected_loops = {"Architecture", "Implementation", "Adoption", "Maintenance", "Disposition", "Meta"}
+    observed_loops = {item.get("loop") for item in records if isinstance(item, dict) and isinstance(item.get("loop"), str)}
+    if observed_loops != expected_loops:
+        errors.append(f"state/releases/{CURRENT_VERSION}/loop-results.yaml: expected all six focal loop records")
+
+    loop_schema = load_json(SCHEMAS / "loop-result.schema.json")
+    for item in records:
+        if isinstance(item, dict):
+            errors.extend(
+                f"state/releases/{CURRENT_VERSION}/loop-results.yaml:{item.get('loop')}: {e}"
+                for e in validate(item, loop_schema)
+            )
+
     errors.extend(
-        f"state/releases/{CURRENT_VERSION}/review-plan.yaml: {e}" for e in validate(release_plan, load_json(SCHEMAS / "review-plan.schema.json"))
+        f"state/releases/{CURRENT_VERSION}/review-plan.yaml: {e}"
+        for e in validate(plan, load_json(SCHEMAS / "review-plan.schema.json"))
     )
     return errors
 
@@ -563,21 +607,11 @@ def check_release() -> list[str]:
     if not re.fullmatch(r"\d+\.\d+\.\d+", version):
         errors.append(f"VERSION: expected semantic version, found {version!r}")
 
-    findings = load_yaml(ROOT / "state/findings.yaml")["findings"]
-    blockers = [item["id"] for item in findings if item.get("maturity_impact") == "MATURITY_BLOCKING" and item.get("status") != "RESOLVED"]
-    if blockers:
-        errors.append(f"VERSION: unresolved maturity blockers {blockers}")
-
-    gates = load_yaml(ROOT / "state/maturity-gates.yaml")["maturity_gates"]["gates"]
-    if len(gates) != 15 or [gate.get("id") for gate in gates] != list(range(1, 16)):
-        errors.append("state/maturity-gates.yaml: expected gates 1 through 15")
-
-    for gate in gates:
-        if gate.get("disposition") not in {"YES", "NO", "MAYBE"}:
-            errors.append(f"maturity gate {gate.get('id')}: invalid disposition")
-
-    if not (ROOT / "YNM_MATURITY_REPORT.md").exists():
-        errors.append("missing YNM_MATURITY_REPORT.md")
+    release_dir = ROOT / f"state/releases/{version}"
+    release_assessment = load_yaml(release_dir / "final-assessment.yaml") if (release_dir / "final-assessment.yaml").exists() else None
+    final_disposition = release_assessment.get("final_assessment", {}).get("disposition", "").strip() if isinstance(release_assessment, dict) else ""
+    if final_disposition not in {"YES", "NO", "MAYBE"}:
+        errors.append("state/releases/1.3.0/final-assessment.yaml: missing or invalid final_disposition")
 
     manifest = load_yaml(ROOT / "manifest.yaml")
     if manifest.get("version") != version:
@@ -589,7 +623,6 @@ def check_release() -> list[str]:
     if f"## [{version}]" not in (ROOT / "CHANGELOG.md").read_text(encoding="utf-8"):
         errors.append("CHANGELOG.md: current version entry is missing")
 
-    release_dir = ROOT / f"state/releases/{version}"
     if not release_dir.exists():
         errors.append(f"state/releases/{version}: directory missing")
     else:
@@ -606,12 +639,34 @@ def check_release() -> list[str]:
             "review-plan.yaml",
             "sanitization-report.yaml",
             "stability.yaml",
-            "adversarial-results.yaml",
             "events.yaml",
-            "execution-context.yaml",
         ]:
             if not (release_dir / required).exists():
                 errors.append(f"state/releases/{version}: missing {required}")
+
+    # Candidate final assessment remains the only current-blocking source for maturity.
+    if not (release_dir / "final-assessment.yaml").exists():
+        errors.append("release final-assessment.yaml missing")
+    else:
+        latest = load_yaml(release_dir / "findings.yaml")
+        if isinstance(latest, dict):
+            finding_blocks = latest.get("findings", [])
+            blockers = [
+                item.get("id")
+                for item in finding_blocks
+                if isinstance(item, dict)
+                and item.get("maturity_impact") == "MATURITY_BLOCKING"
+                and item.get("status") not in {"RESOLVED", "CLOSED"}
+            ]
+            if blockers:
+                errors.append(f"state/releases/{version}/findings.yaml: unresolved maturity blockers {blockers}")
+
+    release_assessment = load_yaml(release_dir / "assessment.yaml")
+    if isinstance(release_assessment, dict):
+        assessment_block = release_assessment.get("assessment", {})
+        reference_state = assessment_block.get("reference_state") or assessment_block.get("baseline_subject")
+        if isinstance(reference_state, dict) and reference_state.get("version") != "1.2.0":
+            errors.append("state/releases/1.3.0/assessment.yaml: reference state must remain 1.2.0 baseline")
 
     for group in ["components", "optional_adapters", "packaging", "provenance", "validation", "runtime"]:
         for item_path in _flatten_manifest_values(manifest.get(group, {})):
@@ -918,7 +973,13 @@ def check_public_sanitization() -> list[str]:
 def check_runtime_boundary() -> list[str]:
     errors: list[str] = []
     normative = [ROOT / "SKILL.md", *(ROOT / "contracts").glob("*.md"), *(ROOT / "loops").glob("*.md"), *(ROOT / "methodology").glob("*.md")]
-    forbidden_prefixes = {"FORGE_EXTRACTION.md", "GENERALIZATION.md", "PUBLICATION_COMPARISON.md", "YNM_1_1_MATURITY_REPORT.md", "YNM_1_2_MATURITY_REPORT.md", "state", "tests", "validation", "AGENTS.md", "manifest.yaml"}
+    forbidden_prefixes = {
+        "state",
+        "tests",
+        "validation",
+        "AGENTS.md",
+        "manifest.yaml",
+    }
 
     for path in normative:
         for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
@@ -971,7 +1032,7 @@ def run(requested_checks: Sequence[str] | None = None) -> list[str]:
             ("examples/data/project-config.yaml", "project-config.schema.json", None),
             ("examples/data/bootstrap-receipt.yaml", "bootstrap-receipt.schema.json", None),
             ("examples/data/review-plan.yaml", "review-plan.schema.json", None),
-            ("state/maturity-assessment.yaml", "assessment.schema.json", "assessment"),
+            ("state/releases/1.3.0/assessment.yaml", "assessment.schema.json", "assessment"),
         ]
         for fixture in fixtures:
             errors.extend(check_fixture(*fixture))

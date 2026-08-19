@@ -3,14 +3,10 @@ baseline_subject:
   tag: "v1.2.0"
   commit: "0ba563437857c4e25caaf371d0b49805038d9e80"
   tree: "1febb28fa27f6010edadda49922661a2139aaf2e"
-captured_at: '2026-08-19T16:49:00Z'
+captured_at: "2026-08-19T16:49:00Z"
 files:
-  state/releases/1.1.0/adversarial-results.yaml: 20a750c4a52ade775713afe48936ca26c3262656a9389bc5f0279420cf4405c0
-  state/releases/1.1.0/assessment.yaml: eb29bcab9ef2673c502ddd6f6c626ebdc364ae93d30cc5174652475ebf8341ad
-  state/releases/1.1.0/baseline-hashes.yaml: 4f9ae2284595d91e59b47f46aa29c6e0dbcca7fc6186d9aecb6b23f37ad1e07e
-  state/releases/1.1.0/final-assessment.yaml: be640f1a910c59a9af8bfb316486650b013b94c6d460b7cc57f8451efe4ddbb1
-  state/releases/1.1.0/findings.yaml: 16f71bed01d8295394e14b857e529102875e847dd65398d0ad13051abcd5e47d
-  state/releases/1.1.0/loop-results.yaml: 11a40a1671da382d58168bd28794102c2e169643f90221c899ed51ed0db156bb
-  state/releases/1.1.0/runs.yaml: a32a3830b1276b11e1f8e3b285efcc72744d653ac96012c2a6e70f965331dce4
-  state/releases/1.1.0/sanitization-report.yaml: 1f4104dc8802f00512afe7d9c1ad1ec2f1b78b89428ebe5406d6201e5d34a5ac
-  YNM_1_1_MATURITY_REPORT.md: a4af129e4bf0d5fb5b00ce02e14aa47c5ac1175e002ca6ae02e371f55ec2d87c
+  state/releases/1.2.0/assessment.yaml: 2ef56379048d86e3f19ba019846764f6b8616c2c6b047e502202c6f1638926d7
+  state/releases/1.2.0/baseline-hashes.yaml: 1857dab3b2b313c58311cc79fbac64cdb98a49d9543e7d18bcd8935151298ae9
+  state/releases/1.2.0/final-assessment.yaml: aa2f8537c299219b78a399b04451cc1d560c5ea6934dba4a12628b76f1d2600d
+  state/releases/1.2.0/findings.yaml: b5b183d07ce15fa853bd96f76dba351d17915ac66fc28b793a2d3dabd3968300
+  state/releases/1.2.0/sanitization-report.yaml: 8f049eed33991e265e6f298c69a55b46df85a2babe195de7f7c9a6f168113f46

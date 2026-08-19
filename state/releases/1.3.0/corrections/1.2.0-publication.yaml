@@ -4,7 +4,7 @@ original_records:
   - state/releases/1.2.0/baseline-hashes.yaml
   - state/releases/1.2.0/final-assessment.yaml
   - state/releases/1.2.0/assessment.yaml
-  - YNM_MATURITY_REPORT.md
+  - v1.2.0:YNM_MATURITY_REPORT.md
 
 evidence:
   - proposition: The recorded verification basis is an ancestor of v1.2.0.
@@ -22,7 +22,7 @@ original_record:
   - state/releases/1.2.0/baseline-hashes.yaml
   - state/releases/1.2.0/final-assessment.yaml
   - state/releases/1.2.0/assessment.yaml
-  - YNM_MATURITY_REPORT.md
+  - v1.2.0:YNM_MATURITY_REPORT.md
 disposition: "MAYBE"
 resolution_notes: |
   The correction introduces only new candidate artifacts and does not rewrite historical 1.2.0 files.

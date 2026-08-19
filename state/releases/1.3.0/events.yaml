@@ -1,5 +1,5 @@
 events:
-- event_id: YNM-1.2-E001
+- event_id: YNM-1.3-E001
   type: NEW_FINDING
   finding_ids:
   - YNM-LIFE-001
@@ -7,19 +7,19 @@ events:
   - YNM-ADOPT-002
   - YNM-PUB-002
   phase: ANALYSIS
-- event_id: YNM-1.2-E002
+- event_id: YNM-1.3-E002
   type: RESOLUTION
   finding_ids:
   - YNM-LIFE-001
   - YNM-LIFE-002
   phase: ITERATION
-- event_id: YNM-1.2-E003
+- event_id: YNM-1.3-E003
   type: RESOLUTION
   finding_ids:
   - YNM-ADOPT-002
   - YNM-PUB-002
   phase: ITERATION
-- event_id: YNM-1.2-E004
+- event_id: YNM-1.3-E004
   type: REVALIDATION
   finding_ids:
   - YNM-VAL-001
@@ -34,7 +34,7 @@ events:
 - event_id: YNM-1.3-E006
   type: RELEASE_INTEGRITY
   finding_ids:
-  - YNM-PKG-002
+  - YNM-PKG-001
   phase: DELIVERY
   result: release integrity checks executed; historical timestamp anomaly was isolated
     in correction record

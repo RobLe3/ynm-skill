@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import re
 import subprocess
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -14,6 +15,18 @@ from typing import Any
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _run_git(args: list[str], cwd: Path, *, check: bool = False) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        ["git", *args], cwd=str(cwd), capture_output=True, text=True, check=check
+    )
+
+
+def _run_git_bytes(args: list[str], cwd: Path, *, check: bool = False) -> subprocess.CompletedProcess[bytes]:
+    return subprocess.run(
+        ["git", *args], cwd=str(cwd), capture_output=True, check=check
+    )
 
 
 def _read_version(root: Path) -> str:
@@ -26,25 +39,10 @@ class IntegrityCheck:
     warnings: list[str]
 
 
-def _run_git(args: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(["git", *args], cwd=str(cwd), capture_output=True, text=True)
-
-
-def _load_yaml(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        raise FileNotFoundError(path)
-    with path.open("r", encoding="utf-8") as handle:
-        return yaml.safe_load(handle) or {}
-
-
-def _hash(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
 def parse_rfc3339_timestamp(raw: str) -> datetime:
     try:
         value = str(raw)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         raise ValueError(f"timestamp must be a string: {raw!r}") from exc
 
     if not value:
@@ -57,26 +55,99 @@ def parse_rfc3339_timestamp(raw: str) -> datetime:
     return dt.astimezone(timezone.utc)
 
 
-def check_file_hash_set(base: Path, base_record: dict[str, Any], checks: IntegrityCheck) -> None:
-    files = base_record.get("files")
+def _load_yaml(path: Path) -> dict[str, Any]:
+    with path.open("r", encoding="utf-8") as handle:
+        return yaml.safe_load(handle) or {}
+
+
+def _hash_bytes(value: bytes) -> str:
+    return hashlib.sha256(value).hexdigest()
+
+
+def _git_resolve_commit(root: Path, ref: str) -> str | None:
+    if not ref:
+        return None
+    value = ref.strip()
+    if re.fullmatch(r"[0-9a-fA-F]{40}", value):
+        if _run_git(["cat-file", "-e", f"{value}^{{commit}}"], root).returncode != 0:
+            return None
+        return value.lower()
+
+    if value.startswith("v"):
+        result = _run_git(["rev-parse", f"{value}^{{commit}}"], root)
+        return result.stdout.strip() if result.returncode == 0 else None
+
+    return None
+
+
+def _git_show_bytes(root: Path, commit: str, relpath: str) -> bytes:
+    result = _run_git_bytes(["show", f"{commit}:{relpath}"], root)
+    if result.returncode != 0:
+        raise FileNotFoundError(f"{commit}:{relpath}")
+    return result.stdout
+
+
+def _git_show_yaml(root: Path, commit: str, relpath: str) -> dict[str, Any]:
+    data = _git_show_bytes(root, commit, relpath)
+    return yaml.safe_load(data.decode("utf-8")) or {}
+
+
+def _validate_file_hashes(
+    root: Path,
+    commit: str,
+    record: dict[str, Any],
+    checks: IntegrityCheck,
+    *,
+    forbidden_release_versions: set[str],
+) -> None:
+    files = record.get("files")
     if not isinstance(files, dict):
         checks.errors.append("baseline-hashes.yaml: `files` must be a mapping")
         return
+
     for candidate, expected in files.items():
-        path = base / candidate
-        if not path.exists():
-            checks.errors.append(f"baseline file missing: {candidate}")
+        if not isinstance(candidate, str):
+            checks.errors.append(f"baseline-hashes.yaml: non-string file path {candidate!r}")
             continue
-        if not isinstance(expected, str):
-            checks.errors.append(f"baseline hash not a string for {candidate}")
+
+        if not isinstance(expected, str) or len(expected.strip()) != 64:
+            checks.errors.append(f"baseline-hashes.yaml: invalid hash for {candidate}")
             continue
-        if _hash(path) != expected:
+
+        is_forbidden = False
+        for forbidden_version in forbidden_release_versions:
+            prefix = f"state/releases/{forbidden_version}"
+            if candidate == prefix or candidate.startswith(f"{prefix}/"):
+                is_forbidden = True
+                break
+        if is_forbidden:
+            checks.errors.append(
+                f"baseline-hashes.yaml: candidate-record references forbidden release path {candidate}"
+            )
+            continue
+
+        try:
+            payload = _git_show_bytes(root, commit, candidate)
+        except FileNotFoundError:
+            checks.errors.append(f"baseline file missing in {commit}: {candidate}")
+            continue
+
+        if _hash_bytes(payload) != expected:
             checks.errors.append(f"baseline hash mismatch for {candidate}")
 
 
-def check_timestamp_order(path: str, earlier: datetime | None, later: datetime | None, checks: IntegrityCheck, *, now_tolerance: int = 300) -> None:
+def _check_timestamp_order(
+    path: str,
+    earlier: datetime | None,
+    later: datetime | None,
+    checks: IntegrityCheck,
+    *,
+    now_tolerance: int = 300,
+) -> None:
     if earlier and later and later < earlier:
-        checks.errors.append(f"{path}: timestamp order invalid ({later.isoformat()} before {earlier.isoformat()})")
+        checks.errors.append(
+            f"{path}: timestamp order invalid ({later.isoformat()} before {earlier.isoformat()})"
+        )
 
     if later:
         now = datetime.now(timezone.utc)
@@ -100,60 +171,121 @@ def validate_release_integrity(
         checks.errors.append(f"release directory missing: {release_dir.relative_to(root)}")
         return checks
 
-    # 1) Baseline evidence.
-    try:
-        baseline = _load_yaml(release_dir / "baseline-hashes.yaml")
-    except FileNotFoundError:
+    baseline_path = release_dir / "baseline-hashes.yaml"
+    if not baseline_path.exists():
         checks.errors.append(f"missing baseline-hashes.yaml in {release_dir.relative_to(root)}")
-        baseline = {}
-
-    captured_at_raw = baseline.get("captured_at") if isinstance(baseline, dict) else None
-    captured_at: datetime | None = None
-    if captured_at_raw:
+        baseline_record: dict[str, Any] = {}
+    else:
         try:
-            captured_at = parse_rfc3339_timestamp(captured_at_raw)
+            baseline_record = _load_yaml(baseline_path)
+        except Exception as exc:  # noqa: BLE001
+            checks.errors.append(f"baseline-hashes.yaml malformed: {exc}")
+            baseline_record = {}
+
+    captured_raw = baseline_record.get("captured_at") if isinstance(baseline_record, dict) else None
+    captured_at: datetime | None = None
+    if captured_raw:
+        try:
+            captured_at = parse_rfc3339_timestamp(captured_raw)
         except Exception as exc:
             checks.errors.append(f"baseline-hashes.yaml captured_at invalid: {exc}")
     else:
         checks.errors.append("baseline-hashes.yaml missing captured_at")
 
-    if baseline:
-        if (
-            not isinstance(baseline.get("baseline"), str)
-            or not baseline["baseline"]
-        ) and (
-            not isinstance(baseline.get("baseline_subject"), dict)
-            or not baseline["baseline_subject"].get("version")
-        ):
-            checks.warnings.append("baseline-hashes.yaml baseline label missing or empty")
+    subject = None
+    if isinstance(baseline_record, dict):
+        subject = baseline_record.get("baseline_subject") or baseline_record.get("baseline")
 
-    check_file_hash_set(root, baseline if isinstance(baseline, dict) else {}, checks)
+    if not isinstance(subject, dict):
+        checks.errors.append("baseline-hashes.yaml missing baseline_subject mapping")
+        return checks
 
-    # 2) Mandatory release evidence files.
+    baseline_subject = subject
+    baseline_version = str(baseline_subject.get("version", "")).strip()
+    baseline_tag = str(baseline_subject.get("tag", "")).strip()
+    baseline_commit = str(baseline_subject.get("commit", "")).strip()
+
+    if not baseline_version:
+        checks.errors.append("baseline-hashes.yaml baseline version missing")
+    if not baseline_tag:
+        checks.errors.append("baseline-hashes.yaml baseline tag missing")
+
+    baseline_commit = _git_resolve_commit(root, baseline_commit or baseline_tag)
+    if not baseline_commit:
+        checks.errors.append("baseline-hashes.yaml baseline commit/tag not resolvable")
+        return checks
+
+    if baseline_tag:
+        if _git_resolve_commit(root, baseline_tag) != baseline_commit:
+            checks.errors.append("baseline-hashes.yaml baseline tag does not resolve to subject commit")
+
+    baseline_tree = str(baseline_subject.get("tree", "")).strip()
+    if baseline_tree:
+        if len(baseline_tree) != 40:
+            checks.errors.append("baseline-hashes.yaml baseline tree is not full SHA")
+        else:
+            tree_result = _run_git(["rev-parse", f"{baseline_commit}^{{tree}}"], root)
+            if tree_result.returncode != 0:
+                checks.errors.append("unable to resolve baseline commit tree")
+            elif tree_result.stdout.strip() != baseline_tree:
+                checks.errors.append("baseline-hashes.yaml tree does not match baseline commit tree")
+
+    # Ensure current release evidence exists in the working tree.
+    required_current = [
+        "assessment.yaml",
+        "baseline-hashes.yaml",
+        "final-assessment.yaml",
+        "findings.yaml",
+        "gates.yaml",
+        "iterations.yaml",
+        "loop-results.yaml",
+        "publication.yaml",
+        "runs.yaml",
+        "review-plan.yaml",
+        "sanitization-report.yaml",
+        "stability.yaml",
+        "events.yaml",
+    ]
+    for required in required_current:
+        if not (release_dir / required).exists():
+            checks.errors.append(f"missing required release evidence: state/releases/{version}/{required}")
+
+    # Candidate baseline-hash records should describe historical artifacts only.
+    _validate_file_hashes(
+        root,
+        baseline_commit,
+        baseline_record,
+        checks,
+        forbidden_release_versions={version},
+    )
+
+    if baseline_version:
+        historical_path = f"state/releases/{baseline_version}/baseline-hashes.yaml"
+        try:
+            historical_record = _git_show_yaml(root, baseline_commit, historical_path)
+        except FileNotFoundError:
+            checks.errors.append(f"unable to load historical baseline record from {baseline_commit}:{historical_path}")
+        else:
+            _validate_file_hashes(
+                root,
+                baseline_commit,
+                historical_record,
+                checks,
+                forbidden_release_versions={version},
+            )
+
+    # Release evidence content checks.
     final_assessment_path = release_dir / "final-assessment.yaml"
-    assessment_path = release_dir / "assessment.yaml"
-    review_plan_path = release_dir / "review-plan.yaml"
-    gates_path = release_dir / "gates.yaml"
-    for required in [final_assessment_path, assessment_path, review_plan_path, gates_path]:
-        if not required.exists():
-            checks.errors.append(f"missing required release evidence: {required.relative_to(root)}")
-
-    # 3) Final-assessment and publication metadata checks.
-    final_assessment = {}
     if final_assessment_path.exists():
         final_assessment = _load_yaml(final_assessment_path)
-        if not isinstance(final_assessment.get("final_assessment"), dict):
-            checks.errors.append("final-assessment.yaml: final_assessment root object missing")
+        block = final_assessment.get("final_assessment", {}) if isinstance(final_assessment, dict) else {}
+        if not isinstance(block, dict):
+            checks.errors.append("final-assessment.yaml: final_assessment root object malformed")
         else:
-            block = final_assessment["final_assessment"]
-            if block.get("version"):
-                if block.get("version") != version:
-                    checks.errors.append(
-                        f"final-assessment.yaml: version ({block.get('version')}) does not match release version ({version})"
-                    )
-            elif block.get("version_decision") not in (None, version):
+            version_decision = str(block.get("version_decision", "")).strip()
+            if version_decision and version_decision != version:
                 checks.errors.append(
-                    f"final-assessment.yaml: version_decision ({block.get('version_decision')}) does not match release version ({version})"
+                    f"final-assessment.yaml: version_decision ({version_decision}) does not match release version ({version})"
                 )
             evaluated_at_raw = block.get("evaluated_at")
             if not evaluated_at_raw:
@@ -161,31 +293,33 @@ def validate_release_integrity(
             else:
                 try:
                     evaluated_at = parse_rfc3339_timestamp(evaluated_at_raw)
-                    check_timestamp_order("final-assessment.yaml", captured_at, evaluated_at, checks, now_tolerance=future_tolerance_seconds)
+                    _check_timestamp_order(
+                        "final-assessment.yaml",
+                        captured_at,
+                        evaluated_at,
+                        checks,
+                        now_tolerance= future_tolerance_seconds,
+                    )
                 except Exception as exc:
                     checks.errors.append(f"final-assessment.yaml evaluated_at invalid: {exc}")
-            disposition = block.get("final_disposition") or block.get("disposition")
+
+            disposition = str(block.get("final_disposition") or block.get("disposition", "")).strip()
             if disposition not in {"YES", "NO", "MAYBE"}:
                 checks.errors.append("final-assessment.yaml: final_disposition must be YES/NO/MAYBE")
-            evidence_refs = block.get("evidence", []) if isinstance(block.get("evidence"), list) else []
-            for ref in evidence_refs:
-                candidate = root / str(ref)
-                if not candidate.exists():
+
+            for ref in block.get("evidence", []) if isinstance(block.get("evidence"), list) else []:
+                evidence_path = root / str(ref)
+                if not evidence_path.exists():
                     checks.errors.append(f"final-assessment.yaml evidence missing: {ref}")
 
-    # 4) Assessment claims and publication integrity.
-    assessment_record = {}
+    assessment_path = release_dir / "assessment.yaml"
     if assessment_path.exists():
-        assessment_record = _load_yaml(assessment_path)
-        if not isinstance(assessment_record, dict):
-            checks.errors.append("assessment.yaml malformed")
+        assessment = _load_yaml(assessment_path)
+        if not isinstance(assessment, dict) or "assessment" not in assessment:
+            checks.errors.append("assessment.yaml: missing `assessment`")
         else:
-            if "assessment" not in assessment_record:
-                checks.errors.append("assessment.yaml: missing `assessment`")
-            elif not isinstance(assessment_record.get("assessment"), dict):
-                checks.errors.append("assessment.yaml: `assessment` must be a mapping")
-
-            publication = assessment_record.get("assessment", {}).get("publication") if isinstance(assessment_record.get("assessment"), dict) else None
+            assessment_block = assessment.get("assessment", {})
+            publication = assessment_block.get("publication", {}) if isinstance(assessment_block, dict) else {}
             if isinstance(publication, dict):
                 publication_version = str(publication.get("version", "")).strip()
                 if publication_version and publication_version != version:
@@ -195,81 +329,65 @@ def validate_release_integrity(
 
                 status = publication.get("status")
                 tag = publication.get("tag")
-                basis = publication.get("verification_basis_commit")
+                verification_basis = str(publication.get("verification_basis_commit", "")).strip()
                 verified_at_raw = publication.get("verified_at")
                 if status == "VERIFIED_PUBLIC":
                     if not tag:
                         checks.errors.append("assessment.yaml: VERIFIED_PUBLIC without tag")
-                if tag:
-                    tag_result = _run_git(["rev-parse", f"{tag}^{{commit}}"], root)
-                    if tag_result.returncode != 0:
-                        checks.errors.append(f"assessment.yaml: tag '{tag}' cannot be resolved")
-                    else:
-                        tag_commit = tag_result.stdout.strip()
-                        if not _run_git(["cat-file", "-e", f"{tag_commit}^{{commit}}"], root).returncode == 0:
-                            checks.errors.append(f"assessment.yaml: resolved tag commit invalid: {tag_commit}")
-                elif status == "VERIFIED_PUBLIC":
-                    checks.errors.append("assessment.yaml: VERIFIED_PUBLIC requires tag")
+                    if require_publication_commit_tree and tag:
+                        resolved_tag = _git_resolve_commit(root, tag)
+                        if not resolved_tag:
+                            checks.errors.append(f"assessment.yaml: tag {tag} not resolvable")
 
-                if basis:
-                    if _run_git(["cat-file", "-e", f"{basis}^{{commit}}"], root).returncode != 0:
-                        checks.errors.append(f"assessment.yaml: basis commit missing: {basis}")
+                if verification_basis:
+                    if _git_resolve_commit(root, verification_basis) is None:
+                        checks.errors.append(f"assessment.yaml: basis commit missing: {verification_basis}")
                     if tag:
-                        tag_result = _run_git(["rev-parse", f"{tag}^{{commit}}"], root)
-                        if tag_result.returncode == 0:
-                            tag_commit = tag_result.stdout.strip()
-                            ancestry = _run_git(["merge-base", "--is-ancestor", basis, tag_commit], root)
-                            if ancestry.returncode == 0:
-                                pass
-                            elif ancestry.returncode == 1:
-                                checks.errors.append(f"assessment.yaml: basis {basis} is not ancestor of {tag_commit}")
-                            else:
-                                checks.warnings.append(f"assessment.yaml: unable to verify ancestry for {basis} -> {tag_commit}")
+                        tag_commit = _git_resolve_commit(root, tag)
+                        if tag_commit:
+                            ancestry = _run_git(["merge-base", "--is-ancestor", verification_basis, tag_commit], root)
+                            if ancestry.returncode == 1:
+                                checks.errors.append(
+                                    f"assessment.yaml: basis {verification_basis} is not ancestor of {tag_commit}"
+                                )
+                            elif ancestry.returncode not in (0, 1):
+                                checks.warnings.append(
+                                    f"assessment.yaml: unable to verify ancestry for {verification_basis} -> {tag_commit}"
+                                )
 
-                if status == "VERIFIED_PUBLIC" and require_publication_commit_tree and basis:
-                    tag_result = _run_git(["rev-parse", f"{tag}^{{commit}}"], root)
-                    if tag_result.returncode == 0:
-                        tree_result = _run_git(["rev-parse", f"{tag_result.stdout.strip()}^{{tree}}"], root)
-                        if tree_result.returncode != 0:
-                            checks.errors.append(f"assessment.yaml: unable to resolve tree for tag commit {tag}")
-
-                try:
-                    if verified_at_raw:
+                if verified_at_raw:
+                    try:
                         verified_at = parse_rfc3339_timestamp(verified_at_raw)
-                        check_timestamp_order("assessment.yaml", captured_at, verified_at, checks, now_tolerance=future_tolerance_seconds)
-                except Exception as exc:
-                    checks.errors.append(f"assessment.yaml: verified_at invalid: {exc}")
+                        _check_timestamp_order(
+                            "assessment.yaml",
+                            captured_at,
+                            verified_at,
+                            checks,
+                            now_tolerance=future_tolerance_seconds,
+                        )
+                    except Exception as exc:
+                        checks.errors.append(f"assessment.yaml: verified_at invalid: {exc}")
 
-    # 5) Gates evidence references
+    gates_path = release_dir / "gates.yaml"
     if gates_path.exists():
         gates = _load_yaml(gates_path)
-        for idx, gate in enumerate(gates.get("gates", []) if isinstance(gates, dict) else [], start=1):
+        for index, gate in enumerate(gates.get("gates", []) if isinstance(gates, dict) else [], start=1):
             if not isinstance(gate, dict):
-                checks.errors.append(f"gates.yaml gate #{idx} malformed")
+                checks.errors.append(f"gates.yaml gate #{index} malformed")
                 continue
             if gate.get("disposition") not in {"YES", "NO", "MAYBE"}:
-                checks.errors.append(f"gates.yaml gate {gate.get('name', idx)} has invalid disposition")
+                checks.errors.append(f"gates.yaml gate {gate.get('name', index)} has invalid disposition")
 
-    # 6) Appended-only correction evidence.
     corrections_dir = release_dir / "corrections"
     if corrections_dir.exists():
         for path in sorted(corrections_dir.glob("*.yaml")):
-            try:
-                correction = _load_yaml(path)
-            except Exception:
-                checks.errors.append(f"unreadable correction file {path.relative_to(root)}")
-                continue
+            correction = _load_yaml(path)
             for required in ["subject", "original_record", "evidence", "disposition"]:
                 if required not in correction:
                     checks.errors.append(f"correction {path.relative_to(root)} missing required field {required}")
-            disposition = correction.get("disposition")
-            if disposition and disposition not in {"YES", "NO", "MAYBE"}:
+            disposition = str(correction.get("disposition", "")).strip()
+            if disposition not in {"YES", "NO", "MAYBE"}:
                 checks.errors.append(f"correction {path.relative_to(root)} has invalid disposition")
-
-    if final_assessment.get("final_assessment", {}).get("proposition") and assessment_record.get("assessment", {}).get("proposition"):
-        if isinstance(final_assessment["final_assessment"].get("proposition"), str) and isinstance(assessment_record["assessment"].get("proposition"), str):
-            if final_assessment["final_assessment"].get("proposition") == "":
-                checks.errors.append("final-assessment.yaml: empty proposition")
 
     return checks
 

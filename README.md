@@ -228,9 +228,9 @@ The CI checks `skills-ref` against a pinned reference revision (currently `69ef3
 |---|---|---|
 | Runtime / normative | `SKILL.md`, `contracts/`, `loops/`, `methodology/` | Defines YNM behavior |
 | Optional runtime support | `schemas/`, `scripts/`, `examples/`, `agents/` | Validation, tooling, examples, adapters |
-| Validation and history | `validation/`, `tests/`, `state/`, maturity reports | Evidence for claims and longitudinal record |
+| Validation and history | `validation/`, `tests/`, `state/` | Evidence for current candidate claims and reproducible checks |
 | Packaging and contribution | `README.md`, `manifest.yaml`, `VERSION`, `CHANGELOG.md`, `VERSIONING.md`, `CONTRIBUTING.md`, `SECURITY.md` | Distribution and project policy |
-| Provenance | `FORGE_EXTRACTION.md`, `GENERALIZATION.md`, `PUBLICATION_COMPARISON.md` | Historical analysis; not required for runtime |
+| Provenance | Git history and tags | Historical evidence retained in immutable tags, not copied into HEAD |
 
 ## What YNM is not
 
@@ -254,11 +254,10 @@ Use [Extension Model](methodology/extension-model.md) for additional loops. Exte
 **Current version:** `1.3.0`
 **Candidate status:** release candidate
 
-- Production-maturity disposition for 1.2.x baseline is recorded in `YNM_1_2_MATURITY_REPORT.md`.
 - Candidate release evidence is in `state/releases/1.3.0`.
-- Deterministic local tests: **41 PASS**.
+- Deterministic local tests: **42 PASS**.
 - Workflow includes schema, lifecycle, security-boundary, package, and release-integrity validations.
-- Historical 1.0.0 and 1.1.0 maturity evidence is integrity-checked.
+- Historical 1.0.0 through 1.2.0 maturity evidence is integrity-checked.
 - Manifested package validation uses the pinned Agent Skills reference implementation.
 - `YNM-VAL-001` remains **MAYBE**: no independent third-party implementation has yet demonstrated compatible YNM records.
 
@@ -279,4 +278,4 @@ Useful external evidence includes: alternate runtimes/models, manual execution, 
 
 YNM is licensed under the [Apache License 2.0](LICENSE). See [CONTRIBUTING.md](CONTRIBUTING.md) for semantic and sanitization requirements and [SECURITY.md](SECURITY.md) for private reporting of ownership-boundary, mutation, secret-exposure, or validation issues.
 
-Forge is retained as analytical provenance only. Runtime YNM is independently executed from the provided contracts and methodology, not from prior project history.
+Historical development notes were not removed from Git history and remain discoverable through tags, while current HEAD stays focused on the active public methodology and candidate evidence.

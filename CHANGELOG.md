@@ -12,11 +12,12 @@ All notable YNM changes are recorded here. Historical maturity evidence remains 
 - Security-boundary hardening for project integration, including path normalization, symlink checks, ownership parsing, and rollback reporting.
 - Deterministic packaging workflow, manifest-driven packaging tests, and release-integrity checks.
 - Release-candidate correction record for unresolved 1.2 publication timestamp causality.
+- Removed historical development and self-review artifacts from current HEAD; historical evidence remains available via Git history and immutable tags.
 
 ### Preserved
 
 - YES/NO/MAYBE semantics, focal-loop ownership, read-only defaults, capability and authority separation.
-- Project integration behavior and complete 1.0.0 and 1.1.0 maturity history.
+- Project integration behavior and complete 1.0.0–1.2.0 maturity history.
 
 ### [1.2.0] - 2026-08-19
 
@@ -34,4 +35,4 @@ All notable YNM changes are recorded here. Historical maturity evidence remains 
 
 ### [1.0.0] - 2026-08-19
 
-- First production-mature YNM methodology. See `YNM_MATURITY_REPORT.md` for the frozen assessment and limitations.
+- First production-mature YNM methodology. Historical maturity evidence remains available through the 1.0.0 release artifacts and immutable Git tags.

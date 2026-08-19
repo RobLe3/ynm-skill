@@ -1,20 +1,23 @@
 final_assessment:
-  assessment_id: YNM-LIFECYCLE-CANDIDATE-20260819-164900
-  assessment_revision: 1
-  proposition: "YNM, with explicit ANL\u2192ITER\u2192DELIVERY sequencing, stronger\
-    \ persistence outcome reporting, package integrity checks, and a protected project-surface\
-    \ boundary, remains coherent and release-candidate ready."
-  disposition: 'YES'
-  disposition_reason: Lifecycle and delivery behavior remains explicit with bounded
-    reruns and failure-mode visibility. Project integration now rejects unsafe paths,
-    symlink escapes, and foreign ownership conflicts before writes; package validation
-    remains deterministic; release integrity is validated with warnings tracked and
-    historical evidence preserved.
+  proposition: YNM 1.3.0 candidate adds explicit Analysis → Iteration → Delivery sequencing, deterministic package inclusion, and git-object-based release integrity while preserving core semantics.
+  disposition: "YES"
+  final_disposition: "YES"
+  disposition_reason: The candidate produces explicit, bounded delivery outcomes with managed uncertainty and historical cleanup without weakening safety boundaries.
   maturity_blockers: []
   remaining_maybe_findings:
-  - YNM-VAL-001
+    - YNM-VAL-001
   converged: true
-  stability_pass: 'YES'
+  stability_pass: "YES"
   version_decision: 1.3.0
+  assessed_at: "2026-08-19T16:55:00Z"
+  evaluated_at: "2026-08-19T16:55:00Z"
+  assessment_id: YNM-LIFECYCLE-CANDIDATE-20260819-164900
+  assessment_revision: 1
+  evidence:
+    - state/releases/1.3.0/assessment.yaml
+    - state/releases/1.3.0/findings.yaml
+    - state/releases/1.3.0/gates.yaml
+    - state/releases/1.3.0/runs.yaml
+    - state/releases/1.3.0/stability.yaml
+    - state/releases/1.3.0/sanitization-report.yaml
   publication_authorization: AUTHORIZED
-  evaluated_at: '2026-08-19T16:49:00Z'

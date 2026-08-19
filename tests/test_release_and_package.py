@@ -72,6 +72,29 @@ class PackageBuildTests(unittest.TestCase):
             skill_manifest = (package / "manifest.yaml").read_text(encoding="utf-8")
             self.assertIn("name: ynm", skill_manifest)
 
+
+    def test_packaged_tree_excludes_development_and_historical_sections(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            package = self.build_skill_package.build_package(Path(tmp), ROOT / "manifest.yaml", overwrite=True)
+            forbidden_paths = [
+                package / ".github",
+                package / "tests",
+                package / "validation",
+                package / "state/releases",
+                package / "state/events.yaml",
+                package / "state/runs.yaml",
+                package / "state/maturity-assessment.yaml",
+                package / "FORGE_EXTRACTION.md",
+                package / "GENERALIZATION.md",
+                package / "PUBLICATION_COMPARISON.md",
+                package / "YNM_MATURITY_REPORT.md",
+                package / "YNM_1_1_MATURITY_REPORT.md",
+                package / "YNM_1_2_MATURITY_REPORT.md",
+                package / "state/final-assessment.yaml",
+            ]
+            for item in forbidden_paths:
+                self.assertFalse(item.exists(), f"forbidden item present in package: {item.relative_to(package)}")
+
     def test_cli_build_runs(self):
         result = subprocess.run(
             [sys.executable, str(ROOT / "scripts/build_skill_package.py"), "--output-dir", "dist-cli", "--overwrite"],
