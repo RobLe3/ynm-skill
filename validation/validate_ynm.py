@@ -46,6 +46,7 @@ PUBLIC_SANITIZATION_ALLOWLIST.update(
         "PUBLICATION_COMPARISON.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
         "YNM_1_1_MATURITY_REPORT.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
         "docs/errata/1.2.0-publication.md": {"PRIVATE_REPOSITORY_REFERENCE"},
+        "tests/test_validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
         "validation/validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
         "validation/validate_release_integrity.py": {"PRIVATE_ABSOLUTE_PATH"},
     }
@@ -145,7 +146,7 @@ def _run_patterns(path: Path, data: str, *, check_id: str, patterns: list[str]) 
             except ValueError:
                 rel_path = str(path)
             finding = {
-                "path": rel_path,
+                "path": rel_path.replace("\\", "/"),
                 "check": check_id,
                 "pattern": regex,
                 "excerpt": data[start:end].replace("\n", "\\n"),
@@ -155,7 +156,9 @@ def _run_patterns(path: Path, data: str, *, check_id: str, patterns: list[str]) 
 
 
 def _is_allowed_violation(path: Path, finding: dict[str, Any]) -> bool:
-    allowed_checks = PUBLIC_SANITIZATION_ALLOWLIST.get(str(path.relative_to(ROOT)), set())
+    rel_path = path.relative_to(ROOT)
+    normalized_path = rel_path.as_posix()
+    allowed_checks = PUBLIC_SANITIZATION_ALLOWLIST.get(normalized_path, set())
     if finding["check"] in allowed_checks:
         return True
     return False
@@ -898,7 +901,7 @@ def check_public_sanitization() -> list[str]:
         "scope": "ALL_TRACKED_TEXT",
         "files_scanned": len(text_files),
         "files_excluded_as_binary": len(binary_files),
-        "excluded_paths": sorted(str(path.relative_to(ROOT)) for path in binary_files),
+        "excluded_paths": sorted((path.relative_to(ROOT).as_posix()) for path in binary_files),
         "checks": checks,
         "result": "PASS" if not findings else "FAIL",
         "findings": sorted(findings, key=lambda item: (item["path"], item["check"], item["pattern"]),),

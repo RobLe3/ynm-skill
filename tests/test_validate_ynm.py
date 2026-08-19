@@ -2,7 +2,7 @@ import sys
 import subprocess
 import tempfile
 import unittest
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT))
 
 from validation.validate_ynm import (
     TEXT_PATTERNS,
+    _is_allowed_violation,
     _run_patterns,
     _tracked_text_files,
     check_baseline_integrity,
@@ -98,6 +99,24 @@ class YNMValidationTests(unittest.TestCase):
                 sample.unlink()
             if sample.parent.exists():
                 sample.parent.rmdir()
+
+    def test_sanitization_path_keys_handle_windows_style_paths(self):
+        class FakePath:
+            def relative_to(self, _root: Path):
+                return PureWindowsPath("validation\\validate_ynm.py")
+
+        finding = {"check": "PROVIDER_SPECIFIC_CORE_ASSUMPTION"}
+        self.assertTrue(_is_allowed_violation(FakePath(), finding))
+
+    def test_run_patterns_normalizes_finding_paths(self):
+        text = 'provider = "gpt-5.3-codex-spark"\n'
+        path = ROOT / "validation/validate_ynm.py"
+        findings = _run_patterns(path, text, check_id="PROVIDER_SPECIFIC_CORE_ASSUMPTION", patterns=TEXT_PATTERNS["PROVIDER_SPECIFIC_CORE_ASSUMPTION"])
+        self.assertTrue(findings)
+        for finding in findings:
+            self.assertNotEqual(finding["path"], "")
+            self.assertNotIn("\\", finding["path"])
+        self.assertTrue(any(finding["path"].startswith("validation/") for finding in findings))
 
     def test_tracked_text_scanning_tolerates_binary(self):
         with tempfile.TemporaryDirectory() as tmp:
