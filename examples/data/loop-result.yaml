@@ -1,0 +1,12 @@
+loop: Architecture
+execution_status: PARTIAL
+scope: persistence subsystem
+started_at: "2026-08-19T09:50:00Z"
+completed_at: "2026-08-19T10:10:00Z"
+finding_ids: [YNM-ARCH-0042]
+evidence_summary: Architecture and source evidence were inspected; deployment evidence was unavailable.
+limitations: [No deployment configuration access]
+reviewed_scope: [architecture record, source entry points]
+unreviewed_scope: [deployment configuration]
+continuation_scope: Inspect deployment configuration when access becomes available.
+

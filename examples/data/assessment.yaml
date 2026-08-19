@@ -1,0 +1,15 @@
+id: ASSESS-PERSIST-1
+revision: 1
+proposition: The implementation conforms to the declared single-path persistence architecture.
+scope: persistence subsystem at project revision abc123
+assessment_mode: conformance
+reference_state: ADR-12 revision 7
+evaluation_method: Trace every production persistence entry point and compare it with ADR-12.
+acceptance_conditions:
+  - No production path bypasses the declared adapter.
+  - Migration-only paths are explicitly gated.
+required_evidence: [architecture record, entry-point inventory, configuration, focused tests]
+evaluator: architecture-review role
+independence_requirement: SEPARATE_ROLE
+frozen_at: "2026-08-19T09:50:00Z"
+

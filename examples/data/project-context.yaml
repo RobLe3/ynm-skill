@@ -1,0 +1,16 @@
+schema_version: ynm-project-context.v1
+managed_by: ynm
+project:
+  name: sample-service
+  root: .
+  purpose: Demonstrate project integration records.
+documentation_roles:
+  - role: project_entry
+    artifacts: [README.md]
+    status: CONFIRMED
+  - role: architecture_source
+    artifacts: []
+    status: UNKNOWN
+ynm_state_location: .ynm
+persistence_mode: PERSISTENT
+discovered_at: "2026-08-19T16:00:00Z"

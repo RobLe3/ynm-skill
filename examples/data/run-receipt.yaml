@@ -1,0 +1,36 @@
+schema_version: ynm-run-receipt.v2
+run_id: YNM-EXAMPLE-1
+generation: 1
+project_state: abc123
+execution_context: EXAMPLE-CONTEXT-1
+execution_strategy: CONSTRAINED
+loops_requested: [Architecture]
+loops_executed: [Architecture]
+stage_reached: FOCAL_REVIEW
+execution_status: PARTIAL
+terminal_outcome: PARTIAL_REVIEW
+halt_reason: Required deployment evidence was unavailable.
+reviewed_scope: [architecture record, persistence source]
+unreviewed_scope: [deployment configuration]
+evidence_added: 2
+findings_created: [YNM-ARCH-0042]
+findings_updated: []
+dispositions_changed: []
+unresolved_dependencies: [deployment configuration access]
+continuation_scope: deployment configuration
+next_revisit_condition: Deployment evidence becomes available.
+persistence_status: EMITTED_STATELESS
+phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+review_plan_revision: 1
+iteration_count: 1
+converged: false
+stop_reason: EVIDENCE_LIMIT
+unresolved_findings: [YNM-ARCH-0042]
+material_changes: []
+findings_reopened: []
+findings_resolved: []
+required_human_decisions: []
+delivery:
+  human_artifact: concise partial review
+  machine_state: emitted stateless
+  authorization_status: NOT_REQUESTED

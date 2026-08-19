@@ -1,0 +1,53 @@
+findings:
+  - id: YNM-INT-001
+    proposition: YNM can initialize persistent project state without capturing project documentation or exceeding explicit write authority.
+    source_loop: Architecture
+    initial_disposition: "NO"
+    final_disposition: "YES"
+    maturity_impact: MATURITY_BLOCKING
+    status: RESOLVED
+    evidence:
+      - methodology/project-integration.md
+      - contracts/project-integration.md
+      - scripts/project_integration.py
+      - tests/test_validate_ynm.py
+    resolution: Added a distinct integration method, ownership rules, dry-run default, explicit apply gate, bounded AGENTS section, and idempotence tests.
+  - id: YNM-PUB-001
+    proposition: A public user can identify, install, verify, and invoke YNM without depending on Forge research or private project context.
+    source_loop: Adoption
+    initial_disposition: "NO"
+    final_disposition: "YES"
+    maturity_impact: MATURITY_BLOCKING
+    status: RESOLVED
+    evidence:
+      - manifest.yaml
+      - README.md
+      - methodology/publication-readiness.md
+      - examples/publication-package.md
+      - validation/validate_ynm.py
+    resolution: Added an explicit runtime boundary, provider-neutral install path, capability labels, sanitization, and deterministic verification.
+  - id: YNM-MNT-001
+    proposition: Version, manifest, documentation, schemas, and project-integration behavior can be checked for release drift.
+    source_loop: Maintenance
+    initial_disposition: "NO"
+    final_disposition: "YES"
+    maturity_impact: MATURITY_BLOCKING
+    status: RESOLVED
+    evidence:
+      - CHANGELOG.md
+      - VERSIONING.md
+      - validation/validate_ynm.py
+      - tests/test_validate_ynm.py
+    resolution: Extended release, baseline-integrity, schema, sanitization, and behavioral validation.
+  - id: YNM-VAL-001
+    proposition: An independent third party can implement YNM and exchange compatible records using only the published contracts.
+    source_loop: Adoption
+    initial_disposition: "MAYBE"
+    final_disposition: "MAYBE"
+    disposition_reason: No independent third-party implementation was available during this assessment.
+    maturity_impact: NON_BLOCKING
+    status: OPEN
+    revisit_condition: An independent implementation performs generic and specialist review and exchanges schema-compatible records.
+    evidence:
+      - state/findings.yaml
+      - manifest.yaml

@@ -1,0 +1,19 @@
+id: YNM-ARCH-0042
+title: Second persistence path may contradict the declared architecture
+proposition: The implementation conforms to the declared single-path persistence architecture.
+source_loop: Architecture
+scope: persistence subsystem at project revision abc123
+observation: The architecture record declares one path while implementation inspection reveals two.
+evidence: [EV-ADR-12, EV-CODE-77]
+interpretation: The additional path may be drift or a bounded migration path.
+assessment_reference: ASSESS-PERSIST-1
+proposed_disposition: "MAYBE"
+disposition: "MAYBE"
+disposition_reason: CONFLICTING_EVIDENCE
+action_recommendation: Determine whether the second path is migration-only.
+authorization_status: NOT_REQUESTED
+created_at: "2026-08-19T10:00:00Z"
+updated_at: "2026-08-19T10:00:00Z"
+revisit_conditions: [Establish whether the migration flag guards every second-path entry point.]
+status: OPEN
+history: [EVENT-1]

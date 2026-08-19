@@ -1,0 +1,18 @@
+id: YNM-PLAN-EXAMPLE-1
+revision: 1
+objective: Review persistence architecture conformance.
+requested_scope: Entire persistence subsystem
+effective_scope: Architecture record and available source entry points
+project_context: EXAMPLE-PROJECT-1
+execution_context: EXAMPLE-CONTEXT-1
+available_evidence: [architecture record, source entry points]
+unavailable_evidence: [deployment configuration]
+applicable_loops: [Architecture]
+excluded_loops: [Adoption]
+dependencies: [deployment configuration access]
+authority_constraints: [read-only review]
+persistence_mode: STATELESS
+assessments: [EXAMPLE-ASSESSMENT-1]
+iteration_policy:
+  max_immediate_iterations: 2
+created_at: "2026-08-19T18:00:00Z"

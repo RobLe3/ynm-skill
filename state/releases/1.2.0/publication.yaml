@@ -1,0 +1,12 @@
+publication:
+  owner: RobLe3
+  repository: ynm-skill
+  url: https://github.com/RobLe3/ynm-skill
+  visibility: PUBLIC
+  branch: main
+  version: 1.2.0
+  tag: v1.2.0
+  release: YNM 1.2.0
+  status: READY_FOR_PUBLICATION
+  license: Apache-2.0
+  publication_is_third_party_validation: false

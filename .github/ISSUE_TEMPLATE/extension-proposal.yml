@@ -1,0 +1,19 @@
+name: Feature or extension proposal
+description: Propose a reusable method, focal loop, contract change, or optional capability.
+title: "[Proposal] "
+body:
+  - type: markdown
+    attributes:
+      value: A project finding is not automatically a YNM defect. Explain the generalized problem and sanitize project evidence.
+  - type: textarea
+    id: proposition
+    attributes: {label: Generalized proposition and supporting evidence}
+    validations: {required: true}
+  - type: textarea
+    id: impact
+    attributes: {label: Smallest reusable change and contract compatibility impact}
+    validations: {required: true}
+  - type: textarea
+    id: validation
+    attributes: {label: Proposed targeted and regression validation}
+    validations: {required: true}

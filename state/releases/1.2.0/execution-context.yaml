@@ -1,0 +1,19 @@
+execution_context:
+  id: YNM-1.2-EXECUTION
+  observed_at: "2026-08-19T18:00:00Z"
+  capability_basis:
+    environment_declarations: [filesystem read/write, shell, web, GitHub CLI]
+    observed: [schema validation, Python tests, GitHub authentication, repository lookup]
+  effective_context_capacity: Complete YNM repository with progressive file inspection
+  state_access: AVAILABLE
+  tools:
+    file_read: AVAILABLE
+    file_write: AVAILABLE
+    shell: AVAILABLE
+    test_execution: AVAILABLE
+    git: AVAILABLE
+    github: AVAILABLE
+  limits:
+    independent_evaluator: UNAVAILABLE
+  unknowns: [independent third-party implementation behavior]
+  strategy: STANDARD

@@ -1,0 +1,47 @@
+findings:
+  - id: YNM-LIFE-001
+    proposition: YNM has one explicit invocation lifecycle that coordinates existing responsibilities without becoming another focal loop.
+    source_loop: Architecture
+    initial_disposition: "NO"
+    final_disposition: "YES"
+    maturity_impact: MATURITY_BLOCKING
+    status: RESOLVED
+    evidence: [methodology/execution-lifecycle.md, methodology/core.md, loops/meta.md]
+    resolution: Added a macro lifecycle whose phases coordinate but do not own specialist judgment or disposition.
+  - id: YNM-LIFE-002
+    proposition: Every terminal path can produce a reconstructable Delivery and Run Receipt without invalidating historical receipts.
+    source_loop: Implementation
+    initial_disposition: "NO"
+    final_disposition: "YES"
+    maturity_impact: MATURITY_BLOCKING
+    status: RESOLVED
+    evidence: [contracts/loop-result.md, schemas/run-receipt.schema.json, scripts/execution_lifecycle.py, tests/test_validate_ynm.py]
+    resolution: Added backward-compatible v2 receipt fields and terminal-path tests.
+  - id: YNM-ADOPT-002
+    proposition: A new public reader can understand and invoke the lifecycle without reconstructing Meta internals or knowing Forge.
+    source_loop: Adoption
+    initial_disposition: "NO"
+    final_disposition: "YES"
+    maturity_impact: MATURITY_BLOCKING
+    status: RESOLVED
+    evidence: [README.md, SKILL.md, AGENTS.md]
+    resolution: Rebuilt public onboarding around disposition semantics, lifecycle, quick start, focal loops, integration, evaluation, and limitations.
+  - id: YNM-PUB-002
+    proposition: The complete public repository is sanitized for initial publication.
+    source_loop: Maintenance
+    initial_disposition: "MAYBE"
+    final_disposition: "YES"
+    maturity_impact: MATURITY_BLOCKING
+    status: RESOLVED
+    evidence: [FORGE_EXTRACTION.md, .gitignore, validation/validate_ynm.py, state/releases/1.2.0/sanitization-report.yaml]
+    resolution: Removed local provenance paths, excluded caches and local databases, and passed public-surface scanning.
+  - id: YNM-VAL-001
+    proposition: An independent third party can implement YNM and exchange compatible records using only the published contracts.
+    source_loop: Adoption
+    initial_disposition: "MAYBE"
+    final_disposition: "MAYBE"
+    disposition_reason: Public availability enables evaluation but no independent implementation evidence exists yet.
+    maturity_impact: NON_BLOCKING
+    status: OPEN
+    revisit_condition: An independent implementation performs generic and specialist review and exchanges compatible records.
+    evidence: [state/releases/1.1.0/findings.yaml, README.md]

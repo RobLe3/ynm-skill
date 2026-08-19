@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ynm.example/schemas/execution-context.schema.json",
+  "type": "object",
+  "required": ["id", "observed_at", "capability_basis", "effective_context_capacity", "state_access", "tools", "limits", "unknowns", "strategy"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "observed_at": {"type": "string", "minLength": 1},
+    "capability_basis": {"type": ["array", "object"]},
+    "effective_context_capacity": {"type": ["string", "object"]},
+    "state_access": {"$ref": "ynm-defs.schema.json#/$defs/capabilityState"},
+    "tools": {"type": "object"},
+    "limits": {"type": "object"},
+    "unknowns": {"type": "array"},
+    "strategy": {"$ref": "ynm-defs.schema.json#/$defs/executionStrategy"}
+  },
+  "additionalProperties": true
+}

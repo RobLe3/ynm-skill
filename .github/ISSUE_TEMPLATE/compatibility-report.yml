@@ -1,0 +1,19 @@
+name: Capability or compatibility report
+description: Report behavior in a human, AI, tool, or runtime environment.
+title: "[Compatibility] "
+body:
+  - type: markdown
+    attributes:
+      value: Describe capabilities rather than assuming model or product labels prove them. Redact private evidence.
+  - type: input
+    id: version
+    attributes: {label: YNM version}
+    validations: {required: true}
+  - type: textarea
+    id: context
+    attributes: {label: Executor, tools, project type, and relevant limitations}
+    validations: {required: true}
+  - type: textarea
+    id: result
+    attributes: {label: Invocation, observed result, and evidence}
+    validations: {required: true}

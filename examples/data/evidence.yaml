@@ -1,0 +1,13 @@
+id: EV-CODE-77
+epistemic_type: OBSERVATION
+kind: source_code
+locator: src/persistence/migration_adapter.example:41-67
+content: A second persistence entry point is guarded by the migration-only configuration flag.
+captured_at: "2026-08-19T10:00:00Z"
+availability: AVAILABLE
+provenance:
+  collector: architecture-review role
+  method: read-only source inspection
+project_revision: abc123
+parent_evidence: []
+

@@ -1,0 +1,18 @@
+managed_by: ynm
+schema_version: ynm-project-config.v1
+ynm:
+  persistence: true
+  state_location: .ynm
+review:
+  default_mode: read_only
+loops:
+  architecture: auto
+  implementation: auto
+  adoption: auto
+  maintenance: auto
+  disposition: auto
+scope:
+  include: []
+  exclude: []
+authority:
+  mutation_requires_explicit_authorization: true

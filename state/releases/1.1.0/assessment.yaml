@@ -1,0 +1,26 @@
+assessment:
+  assessment_id: YNM-INTEGRATION-PUBLICATION-2026-08-19
+  revision: 1
+  proposition: The addition of project bootstrap, default documentation integration, and publication packaging preserves or improves YNM production maturity without weakening its core invariants.
+  subject: YNM 1.1.0 candidate
+  scope: Project Integration, publication packaging, affected core instructions, and regression of the YNM 1.0.0 baseline.
+  reference_state: YNM 1.0.0 artifacts identified by state/releases/1.1.0/baseline-hashes.yaml
+  evaluation_method:
+    - focal-loop review of the changed surface
+    - contract and schema validation
+    - bootstrap mutation-boundary and idempotence tests
+    - publication sanitization and package-boundary checks
+    - 61-scenario adversarial review
+    - no-redesign stability pass
+  acceptance_conditions:
+    - no change to YES, NO, or MAYBE semantics
+    - no change to historical 1.0.0 assessment evidence
+    - loading and default review remain read-only
+    - initialization writes only under explicit authorization
+    - existing project documentation is reused and preserved
+    - stateless operation remains first-class
+    - installable runtime has no provenance dependency
+    - manifest, version, examples, schemas, and links agree
+    - no maturity-blocking finding remains
+    - stability pass finds no regression
+  frozen_at: "2026-08-19T16:00:00Z"

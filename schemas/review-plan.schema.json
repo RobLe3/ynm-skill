@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ynm.example/schemas/review-plan.schema.json",
+  "type": "object",
+  "required": ["id", "revision", "objective", "requested_scope", "effective_scope", "project_context", "execution_context", "available_evidence", "unavailable_evidence", "applicable_loops", "excluded_loops", "dependencies", "authority_constraints", "persistence_mode", "assessments", "iteration_policy", "created_at"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "revision": {"type": "integer", "minimum": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "requested_scope": {"type": ["string", "array", "object"]},
+    "effective_scope": {"type": ["string", "array", "object"]},
+    "project_context": {"type": ["string", "object"]},
+    "execution_context": {"type": ["string", "object"]},
+    "available_evidence": {"type": "array"},
+    "unavailable_evidence": {"type": "array"},
+    "applicable_loops": {"type": "array"},
+    "excluded_loops": {"type": "array"},
+    "dependencies": {"type": "array"},
+    "authority_constraints": {"type": "array"},
+    "persistence_mode": {"enum": ["STATELESS", "PERSISTENT"]},
+    "assessments": {"type": "array"},
+    "iteration_policy": {"type": "object", "properties": {"max_immediate_iterations": {"type": "integer", "minimum": 1}}, "additionalProperties": true},
+    "change_reason": {"type": "string"},
+    "created_at": {"type": "string", "minLength": 1}
+  },
+  "allOf": [{"if": {"properties": {"revision": {"minimum": 2}}}, "then": {"required": ["change_reason"]}}],
+  "additionalProperties": true
+}

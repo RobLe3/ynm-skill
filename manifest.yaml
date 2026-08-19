@@ -1,0 +1,53 @@
+name: ynm
+version: 1.2.0
+description: Project-agnostic iterative review with evidence-backed YES, NO, or MAYBE dispositions and mandatory delivery.
+license: Apache-2.0
+entrypoint:
+  skill: SKILL.md
+components:
+  normative:
+    - SKILL.md
+    - loops
+    - contracts
+    - methodology
+  schemas:
+    - schemas
+  scripts:
+    - scripts/project_integration.py
+    - scripts/execution_lifecycle.py
+  examples:
+    - examples/software-project.md
+    - examples/project-bootstrap.md
+    - examples/existing-project-integration.md
+    - examples/publication-package.md
+optional_adapters:
+  - agents/openai.yaml
+packaging:
+  - README.md
+  - LICENSE
+  - NOTICE
+  - VERSION
+  - CHANGELOG.md
+  - VERSIONING.md
+  - CONTRIBUTING.md
+  - SECURITY.md
+  - AGENTS.md
+  - .github/ISSUE_TEMPLATE
+provenance:
+  - FORGE_EXTRACTION.md
+  - GENERALIZATION.md
+  - PUBLICATION_COMPARISON.md
+validation:
+  - validation
+  - tests
+  - YNM_MATURITY_REPORT.md
+  - YNM_1_1_MATURITY_REPORT.md
+  - YNM_1_2_MATURITY_REPORT.md
+  - state/releases/1.1.0
+  - state/releases/1.2.0
+compatibility:
+  human_execution: SUPPORTED_BY_DESIGN
+  ai_execution: VALIDATED
+  stateless: VALIDATED
+  persistent: VALIDATED
+  independent_third_party_implementation: NOT_VALIDATED

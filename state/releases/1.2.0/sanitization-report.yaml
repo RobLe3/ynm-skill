@@ -1,0 +1,14 @@
+report_id: YNM-1.2-PUBLIC-SANITIZATION
+execution_status: COMPLETED
+checked:
+  - credentials tokens secrets and private keys
+  - private repository URLs and absolute paths
+  - personal data not required for repository attribution
+  - project-specific findings constants and implementation details
+  - identifying references to the heterogeneous source project
+  - provider assumptions in core requirements
+  - unlicensed copied content indicators
+  - binaries temporary files caches and local databases
+result: PASS
+excluded_from_public_history: [ruvector.db, Python caches, temporary files]
+provenance_action: Local absolute paths and unrelated workspace details were removed from the public Forge analysis.

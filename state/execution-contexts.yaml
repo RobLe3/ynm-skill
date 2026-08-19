@@ -1,0 +1,34 @@
+execution_contexts:
+  - id: YNM-EXEC-2026-08-19-01
+    observed_at: "2026-08-19T14:50:00Z"
+    executor_family: general reasoning and coding agent
+    capability_basis:
+      environment_declarations: [filesystem, shell, search, web, shared_memory]
+      observed_success: [complete_file_inventory, cross_document_search, structured_editing, validation_execution]
+    effective_context_capacity: PARTITION_REQUIRED_FOR_FULL_SELF_REVIEW
+    capabilities:
+      long_horizon_reasoning: AVAILABLE
+      cross_document_synthesis: AVAILABLE
+      contradiction_detection: AVAILABLE
+      structured_output: AVAILABLE
+      file_access: AVAILABLE
+      file_mutation: AVAILABLE
+      search: AVAILABLE
+      code_analysis: AVAILABLE
+      parallel_execution: LIMITED
+      persistent_state: AVAILABLE
+      independent_evaluator: UNAVAILABLE
+    tools:
+      shell: AVAILABLE
+      file_search: AVAILABLE
+      validation_execution: AVAILABLE
+      version_control_for_ynm: UNAVAILABLE
+      web: AVAILABLE
+    limits:
+      exact_context_capacity: UNKNOWN
+      execution_budget: BOUNDED
+      independent_subagent: UNAVAILABLE
+    strategy: STANDARD
+    capability_scope_fit: REQUIRES_PARTITION
+    partitions: [semantics_and_contracts, loops_and_orchestration, usability_and_release, adversarial_and_stability]
+

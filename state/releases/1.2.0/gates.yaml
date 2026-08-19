@@ -1,0 +1,9 @@
+gates:
+  - {name: semantic coherence, disposition: "YES", evidence: [contracts/disposition.md, methodology/execution-lifecycle.md]}
+  - {name: lifecycle responsibility coherence, disposition: "YES", evidence: [methodology/core.md, loops/meta.md, loops/disposition.md]}
+  - {name: terminal-state safety, disposition: "YES", evidence: [contracts/loop-result.md, tests/test_validate_ynm.py]}
+  - {name: backward compatibility, disposition: "YES", evidence: [schemas/run-receipt.schema.json, state/releases/1.2.0/baseline-hashes.yaml]}
+  - {name: public sanitization, disposition: "YES", evidence: [state/releases/1.2.0/sanitization-report.yaml]}
+  - {name: runtime provenance separation, disposition: "YES", evidence: [manifest.yaml, validation/validate_ynm.py]}
+  - {name: stability, disposition: "YES", evidence: [state/releases/1.2.0/stability.yaml]}
+  - {name: production maturity, disposition: "YES", evidence: [state/releases/1.2.0/final-assessment.yaml]}

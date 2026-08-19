@@ -1,0 +1,23 @@
+name: Methodology defect
+description: Report a contradiction, unsafe boundary, or reproducible YNM behavior defect.
+title: "[Defect] "
+body:
+  - type: markdown
+    attributes:
+      value: Do not include credentials, personal data, or unnecessary private project content.
+  - type: input
+    id: version
+    attributes: {label: YNM version}
+    validations: {required: true}
+  - type: input
+    id: invocation
+    attributes: {label: Invocation and relevant loop}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Expected behavior, observed behavior, and sanitized evidence}
+    validations: {required: true}
+  - type: dropdown
+    id: persistence
+    attributes: {label: Persistence mode, options: [Stateless, Persistent, Unknown]}
+    validations: {required: true}

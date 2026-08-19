@@ -1,0 +1,52 @@
+harmonization:
+  baseline_digest: d4d94ac97563c126deb63ddc871eb26850d9ea198020761b12fadf243955a108
+  concepts:
+    - concept: YES / NO / MAYBE
+      canonical_definition: contracts/disposition.md
+      baseline_definitions: [SKILL.md, README.md, contracts/disposition.md, GENERALIZATION.md]
+      contradiction: none found; YAML serialization could corrupt YES/NO types
+      affected_artifacts: [contracts/finding.md, schemas/ynm-defs.schema.json, examples/data/finding.yaml]
+      compatibility: Values remain exactly YES, NO, MAYBE; YAML serialization quotes them.
+    - concept: proposition and finding
+      canonical_definition: contracts/finding.md
+      baseline_definitions: [contracts/finding.md, contracts/disposition.md, methodology/lifecycle.md]
+      contradiction: lifecycle omitted explicit proposition and complete transition guards
+      affected_artifacts: [methodology/lifecycle.md, schemas/finding.schema.json]
+      compatibility: Existing stable finding IDs and event types remain valid.
+    - concept: evidence
+      canonical_definition: contracts/evidence.md
+      baseline_definitions: [contracts/evidence.md, contracts/assessment.md, methodology/evaluation-integrity.md]
+      contradiction: none; machine validation absent
+      affected_artifacts: [schemas/evidence.schema.json, examples/data/evidence.yaml]
+      compatibility: Existing optional provenance fields remain optional.
+    - concept: execution and terminality
+      canonical_definition: contracts/loop-result.md
+      baseline_definitions: [contracts/loop-result.md, loops/meta.md, methodology/convergence.md]
+      contradiction: Meta control flow did not cover every terminal path
+      affected_artifacts: [loops/meta.md, schemas/loop-result.schema.json, schemas/run-receipt.schema.json]
+      compatibility: Existing four execution statuses and six terminal outcomes are unchanged.
+    - concept: authorization
+      canonical_definition: contracts/authorization.md
+      baseline_definitions: [contracts/authorization.md, SKILL.md, methodology/responsibility-model.md]
+      contradiction: none found
+      affected_artifacts: [schemas/ynm-defs.schema.json]
+      compatibility: Existing four authorization statuses are unchanged.
+    - concept: responsibility
+      canonical_definition: methodology/responsibility-model.md
+      baseline_definitions: [loops/, methodology/responsibility-model.md]
+      contradiction: no direct contradiction; no single canonical matrix existed
+      affected_artifacts: [methodology/responsibility-model.md, methodology/core.md]
+      compatibility: Loop names and domain boundaries remain unchanged.
+    - concept: core versus optional
+      canonical_definition: methodology/core.md
+      baseline_definitions: [SKILL.md, methodology/evaluation-integrity.md, methodology/capability-adaptation.md]
+      contradiction: conditional and optional mechanisms were not centrally classified
+      affected_artifacts: [methodology/core.md, README.md, SKILL.md]
+      compatibility: Existing optional profiles remain available and semantically unchanged.
+    - concept: capability adaptation
+      canonical_definition: methodology/capability-adaptation.md
+      baseline_definitions: [contracts/execution-context.md, methodology/project-discovery.md, loops/meta.md]
+      contradiction: none found
+      affected_artifacts: [schemas/execution-context.schema.json, contracts/loop-result.md]
+      compatibility: Strategy and assurance profile dimensions remain separate.
+

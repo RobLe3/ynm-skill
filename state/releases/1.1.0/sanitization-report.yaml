@@ -1,0 +1,14 @@
+report_id: YNM-1.1-SANITIZATION
+execution_status: COMPLETED
+checked:
+  - private absolute paths
+  - credentials and tokens
+  - personal data
+  - provider assumptions in normative material
+  - project-specific names and constants
+  - Forge terminology in runtime material
+  - provenance dependencies in the installable boundary
+result: PASS
+exceptions:
+  - Forge references remain in explicitly classified provenance artifacts.
+  - Provider names may appear in optional adapter metadata and comparative provenance, not core semantics.

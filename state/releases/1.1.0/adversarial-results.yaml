@@ -1,0 +1,19 @@
+assessment: YNM-INTEGRATION-PUBLICATION-2026-08-19
+scenario_range: 44-61
+result: PASS
+results:
+  - existing AGENTS.md preserved outside bounded section
+  - no-authorization initialization created no files
+  - equivalent state can be reused or configured
+  - repeated initialization was idempotent
+  - operation required neither Git nor AI-specific instructions
+  - project restrictions retained authority
+  - missing architecture was not fabricated
+  - stateless operation created no scaffold
+  - project findings remained separate from methodology changes
+  - installable runtime did not depend on provenance
+  - sanitization detected private-path and project-specific leakage classes
+  - manifest drift and unsupported claims were release failures
+  - adapter failures remained scoped
+  - MAYBE semantics remained canonical
+  - no release action was performed

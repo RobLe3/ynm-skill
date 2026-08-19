@@ -1,0 +1,23 @@
+maturity_gates:
+  assessment_id: YNM-MATURITY-2026-08-19
+  assessment_revision: 1
+  evaluated_at: "2026-08-19T15:35:00Z"
+  gates:
+    - {id: 1, name: Semantic Coherence, proposition: Core YNM semantics contain no unresolved critical contradiction., disposition: "YES", maturity_blocking: true, evidence: [contracts/disposition.md, methodology/core.md, validation/validate_ynm.py]}
+    - {id: 2, name: Contract Coherence, proposition: Core contracts use mutually compatible fields and semantics., disposition: "YES", maturity_blocking: true, evidence: [methodology/contract-map.md, schemas/, tests/test_validate_ynm.py]}
+    - {id: 3, name: Responsibility Coherence, proposition: Every built-in loop has explicit ownership and non-ownership., disposition: "YES", maturity_blocking: true, evidence: [methodology/responsibility-model.md, loops/, validation/validate_ynm.py]}
+    - {id: 4, name: Operational Completeness, proposition: Generic and specialist invocation are executable from public documentation., disposition: "YES", maturity_blocking: true, evidence: [README.md, SKILL.md]}
+    - {id: 5, name: Lifecycle Completeness, proposition: Finding transitions preserve identity and history through resolution reopening duplication and supersession., disposition: "YES", maturity_blocking: true, evidence: [methodology/lifecycle.md, contracts/finding.md, state/events.yaml]}
+    - {id: 6, name: Uncertainty Integrity, proposition: MAYBE preserves reason evidence gaps and revisit context without becoming dismissal., disposition: "YES", maturity_blocking: true, evidence: [contracts/disposition.md, contracts/finding.md, state/findings.yaml]}
+    - {id: 7, name: Authority Integrity, proposition: Disposition cannot silently grant action or mutation authority., disposition: "YES", maturity_blocking: true, evidence: [contracts/authorization.md, SKILL.md, methodology/responsibility-model.md]}
+    - {id: 8, name: Evaluation Integrity, proposition: Assessment criteria and evidence controls prevent favorable results through silent rule weakening., disposition: "YES", maturity_blocking: true, evidence: [state/maturity-assessment.yaml, contracts/assessment.md, methodology/evaluation-integrity.md]}
+    - {id: 9, name: Convergence Integrity, proposition: Convergence is distinct from executor budget evidence authority and execution failure., disposition: "YES", maturity_blocking: true, evidence: [methodology/convergence.md, loops/meta.md, contracts/loop-result.md]}
+    - {id: 10, name: Capability Portability, proposition: Workload adapts across constrained extended and human execution without changing truth standards., disposition: "YES", maturity_blocking: true, evidence: [methodology/capability-adaptation.md, contracts/execution-context.md, examples/documentation-project.md]}
+    - {id: 11, name: Implementation Portability, proposition: YNM can be implemented without Forge provider host language VCS database or orchestrator dependence., disposition: "YES", maturity_blocking: true, evidence: [methodology/core.md, README.md, schemas/, validation/validate_ynm.py]}
+    - {id: 12, name: Adversarial Validation, proposition: Required adversarial scenarios have coherent explicit outcomes and no open blocker., disposition: "YES", maturity_blocking: true, evidence: [state/adversarial-results.yaml, methodology/adversarial-validation.md]}
+    - {id: 13, name: Documentation Usability, proposition: A new human or machine reader can locate and execute the relevant methodology path., disposition: "YES", maturity_blocking: true, evidence: [README.md, SKILL.md, methodology/contract-map.md]}
+    - {id: 14, name: Maintenance Readiness, proposition: Canonical homes schemas validation version and append-only state constrain semantic drift., disposition: "YES", maturity_blocking: true, evidence: [methodology/contract-map.md, schemas/, validation/, state/]}
+    - {id: 15, name: Release Readiness, proposition: No known critical issue prevents responsible publication or use under documented limitations., disposition: "YES", maturity_blocking: true, evidence: [LICENSE, NOTICE, README.md, state/findings.yaml, YNM_MATURITY_REPORT.md]}
+  unresolved_maturity_blockers: []
+  remaining_maybe_findings: [YNM-VAL-001]
+

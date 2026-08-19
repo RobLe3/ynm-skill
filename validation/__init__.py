@@ -1,0 +1,1 @@
+"""YNM validation package."""

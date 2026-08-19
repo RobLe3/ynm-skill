@@ -1,0 +1,4 @@
+interface:
+  display_name: "YNM Review"
+  short_description: "Evidence-backed project review with YES, NO, or MAYBE findings"
+  default_prompt: "Review this project using YNM in read-only mode. Analyze responsible scope and capability, iterate only for expected information gain, preserve evidence and uncertainty, and always deliver a coverage-aware Run Receipt without changing YES/NO/MAYBE standards."

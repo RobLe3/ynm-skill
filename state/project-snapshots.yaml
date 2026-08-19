@@ -1,0 +1,14 @@
+project_snapshots:
+  - generation: 0
+    observed_at: "2026-08-19T14:50:00Z"
+    artifact_count: 31
+    manifest_digest_sha256: d4d94ac97563c126deb63ddc871eb26850d9ea198020761b12fadf243955a108
+    description: Frozen pre-maturation baseline.
+  - generation: 4
+    observed_at: "2026-08-19T15:20:00Z"
+    description: Canonical core, complete lifecycle, corrected Meta control flow, operational README, schemas, fixtures, validation, extension example, and persisted self-review state.
+  - generation: 6
+    observed_at: "2026-08-19T15:45:00Z"
+    artifact_count: 49
+    normative_manifest_digest_sha256: 55ff16fa8ce6d91e30702a21ff1d589690558e429faf6fdc651e4baba4748f00
+    description: Final no-redesign stability state after adversarial, schema, example, release, clean-room, and source-integrity validation.

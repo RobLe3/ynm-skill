@@ -1,0 +1,15 @@
+id: EXAMPLE-CONTEXT-1
+observed_at: "2026-08-19T09:45:00Z"
+capability_basis:
+  environment_declarations: [file read, file search]
+effective_context_capacity: One bounded subsystem with selective retrieval
+state_access: UNAVAILABLE
+tools:
+  file_read: AVAILABLE
+  file_search: AVAILABLE
+  test_execution: UNAVAILABLE
+limits:
+  execution_budget: bounded
+unknowns: [cross-project synthesis reliability]
+strategy: CONSTRAINED
+

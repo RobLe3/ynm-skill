@@ -1,0 +1,164 @@
+events:
+- event_id: YNM-EVENT-001
+  event_type: NEW_FINDING
+  at: '2026-08-19T14:51:00Z'
+  actor: Architecture
+  authority: reviewer
+  finding_id: YNM-ARCH-001
+- event_id: YNM-EVENT-002
+  event_type: NEW_FINDING
+  at: '2026-08-19T14:51:00Z'
+  actor: Implementation
+  authority: reviewer
+  finding_id: YNM-IMPL-001
+- event_id: YNM-EVENT-003
+  event_type: NEW_FINDING
+  at: '2026-08-19T14:51:00Z'
+  actor: Implementation
+  authority: reviewer
+  finding_id: YNM-IMPL-002
+- event_id: YNM-EVENT-004
+  event_type: NEW_FINDING
+  at: '2026-08-19T14:51:00Z'
+  actor: Adoption
+  authority: reviewer
+  finding_id: YNM-ADOPT-001
+- event_id: YNM-EVENT-005
+  event_type: NEW_FINDING
+  at: '2026-08-19T14:51:00Z'
+  actor: Maintenance
+  authority: reviewer
+  finding_id: YNM-MAINT-001
+- event_id: YNM-EVENT-006
+  event_type: NEW_FINDING
+  at: '2026-08-19T14:51:00Z'
+  actor: Meta
+  authority: reviewer
+  finding_id: YNM-META-001
+- event_id: YNM-EVENT-007
+  event_type: NEW_FINDING
+  at: '2026-08-19T15:05:00Z'
+  actor: Implementation
+  authority: reviewer
+  finding_id: YNM-IMPL-003
+- event_id: YNM-EVENT-101
+  event_type: RESOLUTION
+  at: '2026-08-19T15:20:00Z'
+  actor: Disposition
+  authority: maturation assessment reviewer
+  finding_id: YNM-ARCH-001
+  payload:
+    old_disposition: 'NO'
+    new_disposition: 'YES'
+    old_status: OPEN
+    new_status: RESOLVED
+    rationale: Controlled revision satisfied the recorded revisit condition.
+  evidence_ids:
+  - methodology/core.md
+  - methodology/contract-map.md
+  - methodology/responsibility-model.md
+- event_id: YNM-EVENT-102
+  event_type: RESOLUTION
+  at: '2026-08-19T15:20:00Z'
+  actor: Disposition
+  authority: maturation assessment reviewer
+  finding_id: YNM-IMPL-001
+  payload:
+    old_disposition: 'NO'
+    new_disposition: 'YES'
+    old_status: OPEN
+    new_status: RESOLVED
+    rationale: Controlled revision satisfied the recorded revisit condition.
+  evidence_ids:
+  - methodology/lifecycle.md
+  - validation/validate_ynm.py
+- event_id: YNM-EVENT-103
+  event_type: RESOLUTION
+  at: '2026-08-19T15:20:00Z'
+  actor: Disposition
+  authority: maturation assessment reviewer
+  finding_id: YNM-IMPL-002
+  payload:
+    old_disposition: 'NO'
+    new_disposition: 'YES'
+    old_status: OPEN
+    new_status: RESOLVED
+    rationale: Controlled revision satisfied the recorded revisit condition.
+  evidence_ids:
+  - schemas/
+  - examples/data/
+  - validation/validate_ynm.py
+  - tests/test_validate_ynm.py
+- event_id: YNM-EVENT-104
+  event_type: RESOLUTION
+  at: '2026-08-19T15:20:00Z'
+  actor: Disposition
+  authority: maturation assessment reviewer
+  finding_id: YNM-ADOPT-001
+  payload:
+    old_disposition: 'NO'
+    new_disposition: 'YES'
+    old_status: OPEN
+    new_status: RESOLVED
+    rationale: Controlled revision satisfied the recorded revisit condition.
+  evidence_ids:
+  - README.md
+  - SKILL.md
+- event_id: YNM-EVENT-105
+  event_type: RESOLUTION
+  at: '2026-08-19T15:20:00Z'
+  actor: Disposition
+  authority: maturation assessment reviewer
+  finding_id: YNM-MAINT-001
+  payload:
+    old_disposition: 'NO'
+    new_disposition: 'YES'
+    old_status: OPEN
+    new_status: RESOLVED
+    rationale: Controlled revision satisfied the recorded revisit condition.
+  evidence_ids:
+  - state/
+  - validation/
+  - YNM_MATURITY_REPORT.md pending final generation
+  - VERSION pending final disposition
+- event_id: YNM-EVENT-106
+  event_type: RESOLUTION
+  at: '2026-08-19T15:20:00Z'
+  actor: Disposition
+  authority: maturation assessment reviewer
+  finding_id: YNM-META-001
+  payload:
+    old_disposition: 'NO'
+    new_disposition: 'YES'
+    old_status: OPEN
+    new_status: RESOLVED
+    rationale: Controlled revision satisfied the recorded revisit condition.
+  evidence_ids:
+  - loops/meta.md
+  - validation/validate_ynm.py
+- event_id: YNM-EVENT-107
+  event_type: RESOLUTION
+  at: '2026-08-19T15:20:00Z'
+  actor: Disposition
+  authority: maturation assessment reviewer
+  finding_id: YNM-IMPL-003
+  payload:
+    old_disposition: 'NO'
+    new_disposition: 'YES'
+    old_status: OPEN
+    new_status: RESOLVED
+    rationale: Controlled revision satisfied the recorded revisit condition.
+  evidence_ids:
+  - contracts/finding.md
+  - examples/data/finding.yaml
+  - validation/validate_ynm.py
+- event_id: YNM-EVENT-201
+  event_type: NEW_FINDING
+  at: '2026-08-19T15:30:00Z'
+  actor: Adoption
+  authority: reviewer
+  finding_id: YNM-VAL-001
+  payload:
+    maturity_impact: NON_BLOCKING
+  evidence_ids:
+  - state/execution-contexts.yaml

@@ -1,0 +1,15 @@
+baseline: YNM 1.0.0
+captured_at: '2026-08-19T16:00:00Z'
+files:
+  state/adversarial-results.yaml: 7f027755b1dfaf262f3d8a18c788e3deaafade2e9b1c0505350f469ae4c80f36
+  state/events.yaml: 1b18a63bd2dbb45635ac552932e78c10490fb9733541b0cb99be3efb603d6ba9
+  state/execution-contexts.yaml: 90e21a6960dba8b0467d9fa4d39cf5f5466239b352b3f42402f18362fe984f17
+  state/final-assessment.yaml: 4877e0c6b3fba5f0606a2a542a50a978b6b797f49777e0496e2cc619bd8ca5e0
+  state/findings.yaml: f94f873749d7c4fb0a342f5fa78e56741af957aa383df3b717d40ed0f9326f16
+  state/harmonization.yaml: c8512483d96594ef945a6363b252e3f9f8b3137d3889960c5cc4d6b54c7cf24f
+  state/maturity-assessment.yaml: f635d5bf0c68ff0309461bdc2735cdefb803736b7983790d4d42211f4cfe1ecd
+  state/maturity-gates.yaml: 20a47f8a09db0751d02c4e1951aaa3fddf7c527a096fccc9ff21f2e5206bd7c3
+  state/project-snapshots.yaml: 80d7d3e7692d8caf334f784a3d9f7b9d24a555f8a02d718ce336053299de66c2
+  state/runs.yaml: a51c9dbc5c4ae83b665b961dd8f8c7cbd08b37dc1ba01e984086c6fc223a51d4
+report:
+  YNM_MATURITY_REPORT.md: 836964091f48d6a0b89ef45dbec2f5661adf1d613045496547adbd69dd882dd7

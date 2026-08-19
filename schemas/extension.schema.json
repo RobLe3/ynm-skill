@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ynm.example/schemas/extension.schema.json",
+  "type": "object",
+  "required": ["name", "purpose", "scope", "evidence", "responsibilities", "non_responsibilities", "owns", "observes", "may_recommend", "may_not_decide", "finding_types", "inputs", "outputs", "dependencies", "handoffs", "authority", "termination_criteria", "rerun_conditions", "failure_modes"],
+  "properties": {
+    "name": {"type": "string", "minLength": 1},
+    "purpose": {"type": "string", "minLength": 1},
+    "scope": {"type": ["string", "array"]},
+    "evidence": {"type": "array"},
+    "responsibilities": {"type": "array"},
+    "non_responsibilities": {"type": "array"},
+    "owns": {"type": "array"}, "observes": {"type": "array"},
+    "may_recommend": {"type": "array"}, "may_not_decide": {"type": "array"},
+    "finding_types": {"type": "array"}, "inputs": {"type": "array"}, "outputs": {"type": "array"},
+    "dependencies": {"type": "array"}, "handoffs": {"type": "array"},
+    "authority": {"type": "string"}, "termination_criteria": {"type": "string"},
+    "rerun_conditions": {"type": "array"}, "failure_modes": {"type": "array"}
+  },
+  "additionalProperties": true
+}

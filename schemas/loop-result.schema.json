@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ynm.example/schemas/loop-result.schema.json",
+  "type": "object",
+  "required": ["loop", "execution_status", "scope", "started_at", "completed_at", "finding_ids", "evidence_summary", "limitations"],
+  "properties": {
+    "loop": {"type": "string", "minLength": 1},
+    "execution_status": {"$ref": "ynm-defs.schema.json#/$defs/executionStatus"},
+    "scope": {"type": ["string", "object"]},
+    "started_at": {"type": "string", "minLength": 1},
+    "completed_at": {"type": "string", "minLength": 1},
+    "finding_ids": {"type": "array", "items": {"type": "string"}},
+    "evidence_summary": {"type": ["string", "array", "object"]},
+    "limitations": {"type": "array"},
+    "reviewed_scope": {"type": "array"},
+    "unreviewed_scope": {"type": "array"},
+    "continuation_scope": {"type": ["string", "array", "null"]}
+  },
+  "allOf": [{"if": {"properties": {"execution_status": {"const": "PARTIAL"}}}, "then": {"required": ["reviewed_scope", "unreviewed_scope", "continuation_scope"]}}],
+  "additionalProperties": true
+}

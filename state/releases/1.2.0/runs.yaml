@@ -1,0 +1,37 @@
+runs:
+  - schema_version: ynm-run-receipt.v2
+    run_id: YNM-1.2-MATURITY
+    generation: 1
+    project_state: YNM-1.2.0-RELEASE
+    execution_context: YNM-1.2-EXECUTION
+    execution_strategy: STANDARD
+    phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+    review_plan_revision: 1
+    iteration_count: 3
+    loops_requested: [Architecture, Implementation, Adoption, Maintenance, Disposition, Meta]
+    loops_executed: [Architecture, Implementation, Adoption, Maintenance, Disposition, Meta]
+    stage_reached: PUBLICATION_DELIVERY
+    execution_status: COMPLETED
+    terminal_outcome: CONVERGED_REVIEW
+    converged: true
+    halt_reason: Mandatory gates passed and another immediate revision had no expected information gain.
+    stop_reason: CONVERGED
+    reviewed_scope: [core semantics, invocation lifecycle, contracts, schemas, examples, bootstrap, publication, history, remote surface]
+    unreviewed_scope: [independent third-party implementation]
+    evidence_added: 27
+    findings_created: [YNM-LIFE-001, YNM-LIFE-002, YNM-ADOPT-002, YNM-PUB-002]
+    findings_updated: [YNM-VAL-001]
+    dispositions_changed: [YNM-LIFE-001, YNM-LIFE-002, YNM-ADOPT-002, YNM-PUB-002]
+    unresolved_findings: [YNM-VAL-001]
+    unresolved_dependencies: [independent third-party implementation]
+    material_changes: [canonical invocation lifecycle, Review Plan, v2 Run Receipt, public repository]
+    findings_reopened: []
+    findings_resolved: [YNM-LIFE-001, YNM-LIFE-002, YNM-ADOPT-002, YNM-PUB-002]
+    required_human_decisions: []
+    continuation_scope: independent compatibility evaluation
+    next_revisit_condition: Independent implementation evidence or a documented reconsideration trigger appears.
+    persistence_status: PERSISTED
+    delivery:
+      human_artifact: YNM_1_2_MATURITY_REPORT.md and final task response
+      machine_state: state/releases/1.2.0
+      authorization_status: AUTHORIZED

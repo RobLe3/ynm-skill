@@ -1,0 +1,20 @@
+schema_version: ynm-bootstrap-receipt.v1
+bootstrap_id: YNM-BOOT-EXAMPLE
+project: sample-service
+mode: INITIALIZE
+execution_status: COMPLETED
+discovered_artifacts: [README.md]
+reused_artifacts: [README.md]
+created_artifacts:
+  - .ynm/README.md
+  - .ynm/project.yaml
+  - .ynm/config.yaml
+  - .ynm/state/findings.yaml
+  - .ynm/state/events.jsonl
+updated_artifacts: []
+untouched_conflicting_artifacts: []
+ynm_state_location: .ynm
+persistence_mode: PERSISTENT
+mutation_authorization: AUTHORIZED
+unresolved_questions: []
+created_at: "2026-08-19T16:00:00Z"
