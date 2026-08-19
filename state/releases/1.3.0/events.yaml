@@ -1,0 +1,40 @@
+events:
+- event_id: YNM-1.2-E001
+  type: NEW_FINDING
+  finding_ids:
+  - YNM-LIFE-001
+  - YNM-LIFE-002
+  - YNM-ADOPT-002
+  - YNM-PUB-002
+  phase: ANALYSIS
+- event_id: YNM-1.2-E002
+  type: RESOLUTION
+  finding_ids:
+  - YNM-LIFE-001
+  - YNM-LIFE-002
+  phase: ITERATION
+- event_id: YNM-1.2-E003
+  type: RESOLUTION
+  finding_ids:
+  - YNM-ADOPT-002
+  - YNM-PUB-002
+  phase: ITERATION
+- event_id: YNM-1.2-E004
+  type: REVALIDATION
+  finding_ids:
+  - YNM-VAL-001
+  result: Candidate versioning and packaging records were introduced.
+  phase: DELIVERY
+- event_id: YNM-1.3-E005
+  type: PACKAGE_BUILD
+  finding_ids:
+  - YNM-PKG-001
+  phase: ITERATION
+  result: deterministic package build completed under manifest-only file selection
+- event_id: YNM-1.3-E006
+  type: RELEASE_INTEGRITY
+  finding_ids:
+  - YNM-PKG-002
+  phase: DELIVERY
+  result: release integrity checks executed; historical timestamp anomaly was isolated
+    in correction record

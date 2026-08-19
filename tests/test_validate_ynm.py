@@ -35,7 +35,7 @@ class YNMValidationTests(unittest.TestCase):
 
     def test_adversarial_scenario_count(self):
         lines = (ROOT / "methodology/adversarial-validation.md").read_text().splitlines()
-        self.assertEqual(len([line for line in lines if line.startswith("| ")][1:]), 78)
+        self.assertEqual(len([line for line in lines if line.startswith("| ")][1:]), 79)
 
     def test_schema_references_resolve(self):
         self.assertEqual(check_schema_references(), [])

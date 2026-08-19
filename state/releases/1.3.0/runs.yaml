@@ -1,0 +1,77 @@
+runs:
+- schema_version: ynm-run-receipt.v2
+  run_id: YNM-1.3-RELEASE-CANDIDATE
+  generation: 1
+  project_state: YNM-1.3.0-CANDIDATE
+  execution_context: YNM-1.3-EXECUTION
+  execution_strategy: STANDARD
+  phase_history:
+    - ANALYSIS
+    - ITERATION
+    - DELIVERY
+    - TERMINATED
+  review_plan_revision: 2
+  iteration_count: 4
+  loops_requested:
+    - Architecture
+    - Implementation
+    - Adoption
+    - Maintenance
+    - Disposition
+    - Meta
+  loops_executed:
+    - Architecture
+    - Implementation
+    - Adoption
+    - Maintenance
+    - Disposition
+    - Meta
+  stage_reached: PACKAGE_CANDIDATE_DELIVERY
+  execution_status: COMPLETED
+  terminal_outcome: CONVERGED_REVIEW
+  converged: true
+  halt_reason: Candidate package and release checks reached completion.
+  stop_reason: CONVERGED
+  reviewed_scope:
+    - runtime contracts
+    - package determinism
+    - project integration hardening
+    - release integrity checks
+  unreviewed_scope:
+    - independent implementation evidence
+    - additional executor families
+  evidence_added: 31
+  findings_created:
+    - YNM-PKG-001
+    - YNM-PKG-002
+  findings_updated:
+    - YNM-VAL-001
+    - YNM-PKG-003
+  dispositions_changed:
+    - YNM-PKG-001
+    - YNM-PKG-002
+  unresolved_findings:
+    - YNM-VAL-001
+    - YNM-PKG-003
+  unresolved_dependencies:
+    - independent evaluator for candidate package
+  material_changes:
+    - candidate version bump
+    - release correction
+    - package build and validation
+  findings_reopened: []
+  findings_resolved:
+    - YNM-PKG-001
+    - YNM-PKG-002
+  required_human_decisions:
+    - independent evaluator review
+  continuation_scope: Release-candidate to CI and independent evaluator loop
+  next_revisit_condition: Evidence from independent execution or additional release-boundary defects.
+  persistence_status: PERSISTENT
+  delivery:
+    human_artifact: state/releases/1.3.0/final-assessment.yaml
+    machine_state: state/releases/1.3.0
+    authorization_status: AUTHORIZED
+    persistence_attempted: true
+    persistence_outcome: SUCCEEDED
+    continuation_scope: independent evaluator loop

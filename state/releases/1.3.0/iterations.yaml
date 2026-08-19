@@ -1,0 +1,39 @@
+iterations:
+- iteration: 1
+  reason: Initial focal review of the lifecycle change
+  evidence_delta: Baseline comparison exposed implicit lifecycle and receipt gaps.
+  findings_opened:
+  - YNM-LIFE-001
+  - YNM-LIFE-002
+  - YNM-ADOPT-002
+  - YNM-PUB-002
+  findings_resolved:
+  - YNM-LIFE-001
+  - YNM-LIFE-002
+  expected_next_gain: Public onboarding and sanitization evidence
+- iteration: 2
+  reason: Adoption and publication review after lifecycle contracts stabilized
+  evidence_delta: New README, repository guidance, sanitization rules, and publication
+    fixtures
+  findings_opened: []
+  findings_resolved:
+  - YNM-ADOPT-002
+  - YNM-PUB-002
+  expected_next_gain: Regression and no-redesign stability evidence
+- iteration: 3
+  reason: Add release integrity and package determinism evidence for 1.3.0 candidate
+  evidence_delta: Complete regression, adversarial, package-boundary, and baseline-integrity
+    results
+  findings_opened: []
+  findings_resolved: []
+  expected_next_gain: Independent CI execution and candidate publication checks
+- iteration: 4
+  reason: Stability and sanitization adjustments for 1.3.0
+  evidence_delta: Versioning/manifest changes, release correction record, and package
+    CI workflow
+  findings_opened:
+  - YNM-PKG-001
+  - YNM-VAL-002
+  findings_resolved:
+  - YNM-PKG-001
+  expected_next_gain: none unless independent evaluator reports incompatibility

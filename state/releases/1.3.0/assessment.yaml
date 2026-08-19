@@ -1,0 +1,28 @@
+assessment:
+  assessment_id: YNM-LIFECYCLE-CANDIDATE-20260819-164900
+  revision: 1
+  proposition: The explicit Analysis to Iteration to Delivery lifecycle and execution
+    hardening for YNM 1.3.0 improves observable security boundaries, version validation,
+    packaging integrity, and release evidence cohesion without weakening semantics,
+    role separation, or uncertainty preservation.
+  subject: YNM 1.3.0 candidate
+  scope: Canonical lifecycle behavior, project integration security hardening, schema
+    and package validation, release integrity, and publication candidate readiness.
+  reference_state: state/releases/1.2.0/baseline-hashes.yaml
+  evaluation_method:
+  - project discovery, lifecycle transition, and boundary tests
+  - project integration security tests and adversarial examples
+  - Draft 2020-12 schema and reference validation
+  - deterministic package build and package manifest check
+  - release integrity and sanitization checks
+  - GitHub workflow and no-redesign stability evidence
+  acceptance_conditions:
+  - version 1.3.0 state artifacts are complete and validated
+  - all terminal paths and requested path-constraints reach Delivery
+  - every immediate rerun is justified by information gain or explicit policy
+  - path traversal, symlink, and ownership boundaries remain enforced and rollback-visible
+  - v2 receipts and run evidence are preserved across iterations
+  - packaging metadata reflects the same behavior as runtime contract surface
+  - security and sanitization checks remain project-neutral and non-invasive
+  - public availability does not convert YNM-VAL-001 to implementation proof
+  frozen_at: '2026-08-19T16:29:00Z'

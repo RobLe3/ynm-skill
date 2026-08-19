@@ -1,15 +1,69 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ynm.example/schemas/project-config.schema.json",
+  "$id": "urn:ynm:schemas:project-config.schema.json",
   "type": "object",
-  "required": ["schema_version", "ynm", "review", "authority"],
+  "required": [
+    "schema_version",
+    "ynm",
+    "review",
+    "authority"
+  ],
   "properties": {
-    "schema_version": {"const": "ynm-project-config.v1"},
-    "ynm": {"type": "object", "required": ["persistence", "state_location"], "properties": {"persistence": {"type": "boolean"}, "state_location": {"type": "string", "minLength": 1}}},
-    "review": {"type": "object", "required": ["default_mode"], "properties": {"default_mode": {"const": "read_only"}, "max_immediate_iterations": {"type": "integer", "minimum": 1}}},
-    "loops": {"type": "object"},
-    "scope": {"type": "object"},
-    "authority": {"type": "object", "required": ["mutation_requires_explicit_authorization"], "properties": {"mutation_requires_explicit_authorization": {"const": true}}}
+    "schema_version": {
+      "const": "ynm-project-config.v1"
+    },
+    "ynm": {
+      "type": "object",
+      "required": [
+        "persistence",
+        "state_location"
+      ],
+      "properties": {
+        "persistence": {
+          "type": "boolean"
+        },
+        "state_location": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "default_mode"
+      ],
+      "properties": {
+        "default_mode": {
+          "const": "read_only"
+        },
+        "max_immediate_iterations": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "loops": {
+      "type": "object"
+    },
+    "scope": {
+      "type": "object"
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "mutation_requires_explicit_authorization"
+      ],
+      "properties": {
+        "mutation_requires_explicit_authorization": {
+          "const": true
+        }
+      }
+    },
+    "managed_by": {
+      "type": "string",
+      "const": "ynm"
+    }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

@@ -82,5 +82,6 @@ Use these scenarios to test an implementation of YNM. Passing means the stated b
 | Push succeeds but public README links fail | Keep publication verification incomplete and correct the remote surface before final Delivery. |
 | Public repository lacks a clear invocation | Open an Adoption finding and withhold completion until a new user can start a review. |
 | Publication is claimed as third-party validation | Reject the claim and preserve `YNM-VAL-001` as MAYBE pending independent evidence. |
+| Version drift after candidate update | Track version changes through all version-bearing artifacts and refuse publication until boundaries are reconciled. |
 
 Also challenge whether each loop can state its purpose and non-ownership in one sentence, whether manual execution is possible, whether another store can reproduce all events, whether every started run has a coverage-aware receipt, whether exhaustion is distinguished from convergence, and whether any model, provider, repository host, or hidden tool is required. A failure requires contract or boundary refinement, not an exception hidden in one implementation.

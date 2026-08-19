@@ -1,0 +1,149 @@
+cases:
+  - id: TRIG-001
+    scenario: Explicit general review request.
+    prompt: "Review this project using YNM."
+    expectation:
+      expected_activation: true
+      classification: explicit
+    expected_class: positive
+    reason: explicit project review invocation
+  - id: TRIG-002
+    scenario: Explicit architecture proposition.
+    prompt: "YNM: Architecture Loop"
+    expectation:
+      expected_activation: true
+      classification: specialist
+      loop: Architecture
+    expected_class: positive
+    reason: explicit specialist loop
+  - id: TRIG-003
+    scenario: Explicit implementation proposition.
+    prompt: "YNM: Implementation Loop"
+    expectation:
+      expected_activation: true
+      classification: specialist
+      loop: Implementation
+    expected_class: positive
+  - id: TRIG-004
+    scenario: Explicit adoption proposition.
+    prompt: "YNM: Adoption Loop"
+    expectation:
+      expected_activation: true
+      classification: specialist
+      loop: Adoption
+    expected_class: positive
+  - id: TRIG-005
+    scenario: Explicit maintenance proposition.
+    prompt: "YNM: Maintenance Loop"
+    expectation:
+      expected_activation: true
+      classification: specialist
+      loop: Maintenance
+    expected_class: positive
+  - id: TRIG-006
+    scenario: Explicit disposition proposition.
+    prompt: "YNM: Disposition Loop"
+    expectation:
+      expected_activation: true
+      classification: specialist
+      loop: Disposition
+    expected_class: positive
+  - id: TRIG-007
+    scenario: Explicit meta review request.
+    prompt: "YNM: Meta Loop"
+    expectation:
+      expected_activation: true
+      classification: specialist
+      loop: Meta
+    expected_class: positive
+  - id: TRIG-008
+    scenario: Bootstrap request.
+    prompt: "Initialize YNM project integration and persistent state."
+    expectation:
+      expected_activation: true
+      classification: setup
+    expected_class: positive
+  - id: TRIG-009
+    scenario: Initialization with scope.
+    prompt: "Initialize YNM project integration with review profile standard."
+    expectation:
+      expected_activation: true
+      classification: setup
+    expected_class: positive
+  - id: TRIG-010
+    scenario: Read-only launch.
+    prompt: "YNM: Load this repository"
+    expectation:
+      expected_activation: true
+      classification: setup
+    expected_class: positive
+  - id: TRIG-011
+    scenario: Generic explanation request.
+    prompt: "Could you explain how YNM works in simple terms?"
+    expectation:
+      expected_activation: true
+      classification: contextual
+    expected_class: contextual
+  - id: TRIG-012
+    scenario: Spelling correction request.
+    prompt: "Correct this sentence: "
+    expectation:
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+  - id: TRIG-013
+    scenario: General summarization request.
+    prompt: "Summarize the README for me."
+    expectation:
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+  - id: TRIG-014
+    scenario: Isolated code generation.
+    prompt: "Write a Python function to reverse a list."
+    expectation:
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+  - id: TRIG-015
+    scenario: General translation request.
+    prompt: "Translate this paragraph to Spanish: YNM is a review framework."
+    expectation:
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+  - id: TRIG-016
+    scenario: Brainstorming request.
+    prompt: "Give me ideas for a better name for this utility project."
+    expectation:
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+  - id: TRIG-017
+    scenario: Ordinary use of the word maybe.
+    prompt: "Maybe this looks okay, can you think about styling?"
+    expectation:
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+  - id: TRIG-018
+    scenario: Generic code review request without method context.
+    prompt: "Can you do a code review of this function?"
+    expectation:
+      expected_activation: true
+      classification: contextual
+    expected_class: contextual
+  - id: TRIG-019
+    scenario: Isolated maintenance check.
+    prompt: "What files should I delete before publishing this repo?"
+    expectation:
+      expected_activation: true
+      classification: contextual
+    expected_class: contextual
+  - id: TRIG-020
+    scenario: Near miss invocation.
+    prompt: "I think we may need YNM if we have time."
+    expectation:
+      expected_activation: true
+      classification: contextual
+    expected_class: contextual

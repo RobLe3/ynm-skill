@@ -1,0 +1,120 @@
+findings:
+- id: YNM-LIFE-001
+  proposition: YNM has one explicit invocation lifecycle that coordinates existing
+    responsibilities without becoming another focal loop.
+  source_loop: Architecture
+  initial_disposition: 'NO'
+  final_disposition: 'YES'
+  maturity_impact: MATURITY_BLOCKING
+  status: RESOLVED
+  evidence:
+  - methodology/execution-lifecycle.md
+  - methodology/core.md
+  - loops/meta.md
+  resolution: Added a macro lifecycle whose phases coordinate but do not own specialist
+    judgment or disposition.
+- id: YNM-LIFE-002
+  proposition: Every terminal path can produce a reconstructable Delivery and Run
+    Receipt without invalidating historical receipts.
+  source_loop: Implementation
+  initial_disposition: 'NO'
+  final_disposition: 'YES'
+  maturity_impact: MATURITY_BLOCKING
+  status: RESOLVED
+  evidence:
+  - contracts/loop-result.md
+  - schemas/run-receipt.schema.json
+  - scripts/execution_lifecycle.py
+  - tests/test_validate_ynm.py
+  resolution: Added backward-compatible v2 receipt fields and terminal-path tests.
+- id: YNM-ADOPT-002
+  proposition: A new public reader can understand and invoke the lifecycle without
+    reconstructing Meta internals or knowing Forge.
+  source_loop: Adoption
+  initial_disposition: 'NO'
+  final_disposition: 'YES'
+  maturity_impact: MATURITY_BLOCKING
+  status: RESOLVED
+  evidence:
+  - README.md
+  - SKILL.md
+  - AGENTS.md
+  resolution: Rebuilt public onboarding around disposition semantics, lifecycle, quick
+    start, focal loops, integration, evaluation, and limitations.
+- id: YNM-PUB-002
+  proposition: The complete public repository is sanitized for initial publication.
+  source_loop: Maintenance
+  initial_disposition: MAYBE
+  final_disposition: 'YES'
+  maturity_impact: MATURITY_BLOCKING
+  status: RESOLVED
+  evidence:
+  - FORGE_EXTRACTION.md
+  - .gitignore
+  - validation/validate_ynm.py
+  - state/releases/1.2.0/sanitization-report.yaml
+  resolution: Removed local provenance paths, excluded caches and local databases,
+    and passed public-surface scanning.
+- id: YNM-VAL-001
+  proposition: An independent third party can implement YNM and exchange compatible
+    records using only the published contracts.
+  source_loop: Adoption
+  initial_disposition: MAYBE
+  final_disposition: MAYBE
+  disposition_reason: Public availability enables evaluation but no independent implementation
+    evidence exists yet.
+  maturity_impact: NON_BLOCKING
+  status: OPEN
+  revisit_condition: An independent implementation performs generic and specialist
+    review and exchanges compatible records.
+  evidence:
+  - state/releases/1.1.0/findings.yaml
+  - README.md
+- id: YNM-PKG-001
+  proposition: YNM can build and validate a deterministic package with declared manifest
+    paths and detect missing or drifted artifacts.
+  source_loop: Implementation
+  initial_disposition: 'NO'
+  final_disposition: 'YES'
+  maturity_impact: MATURITY_BLOCKING
+  status: RESOLVED
+  evidence:
+  - scripts/build_skill_package.py
+  - tests/test_release_and_package.py
+  - validation/validate_release_integrity.py
+  resolution: Added manifest-first package builder and deterministic signature check
+    for release validation.
+- id: YNM-PKG-002
+  proposition: Release integrity evidence can be validated independently and 1.2 publication
+    timestamp anomalies are tracked as unresolved historical correction evidence.
+  source_loop: Maintenance
+  initial_disposition: MAYBE
+  final_disposition: 'YES'
+  maturity_impact: MATURITY_BLOCKING
+  status: RESOLVED
+  disposition_reason: A correction artifact and errata preserve the unresolved causality
+    for historical timestamps while preventing current-state claims from depending
+    on them.
+  evidence:
+  - validation/validate_release_integrity.py
+  - state/releases/1.3.0/corrections/1.2.0-publication.yaml
+  - docs/errata/1.2.0-publication.md
+  resolution: Added release-integrity checks, correction filing, and explicit causality
+    limits in 1.3 release evidence.
+- id: YNM-PKG-003
+  proposition: YNM publication readiness still excludes direct claims of independent
+    third-party validation.
+  source_loop: Adoption
+  initial_disposition: 'YES'
+  final_disposition: 'YES'
+  maturity_impact: NON_BLOCKING
+  status: OPEN
+  disposition_reason: Public package and docs describe this as a candidate for independent
+    evaluation; no external evaluator has reported against it.
+  evidence:
+  - README.md
+  - AGENTS.md
+  - CHANGELOG.md
+  - state/releases/1.2.0/final-assessment.yaml
+  resolution: Preserved explicit MAYBE/limitations around YNM-VAL-001 in all candidate-level
+    documentation.

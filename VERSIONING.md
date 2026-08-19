@@ -8,7 +8,9 @@ YNM uses Semantic Versioning for its public contracts and operational behavior.
 
 ## Current candidate
 
-`1.2.0` adds a backward-compatible invocation lifecycle and lifecycle-aware records without changing core review semantics. Existing receipts remain valid; new v2 receipts make Analysis, Iteration, mandatory Delivery, scope, convergence, and stop reasons explicit.
+`1.3.0` is a backwards-compatible release-candidate set of hardening and packaging work. It adds explicit iteration-stop reasons, stricter project-integration security boundaries, release-integrity evidence, and package-construction determinism.
+
+The existing core semantics, run-receipt contract shape, and focal-loop ownership model are preserved.
 
 ## Historical baseline
 

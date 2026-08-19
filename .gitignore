@@ -12,3 +12,10 @@ __pycache__/
 .cache/
 dist/
 build/
+
+dist-cli/
+ruvector.db
+state/*.tmp
+*.log
+.venv/
+*.egg-info/

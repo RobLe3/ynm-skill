@@ -1,0 +1,28 @@
+baseline: YNM 1.2.0
+captured_at: '2026-08-19T16:49:00Z'
+files:
+  YNM_1_2_MATURITY_REPORT.md: cea79d8e83e83ce0440557a22be7b3bf9a6fb82b8279898440f82115e9ab827f
+  docs/errata/1.2.0-publication.md: 36f70f3aeadd4e9f8b88feb0acd1ded926ba60b9374e7c3c6b9f46baa80639fa
+  state/releases/1.2.0/adversarial-results.yaml: 45307c2aef0ed496c1e9402625aae4c234532e7f0da6f7895db7282b70bc5dfb
+  state/releases/1.2.0/assessment.yaml: 2ef56379048d86e3f19ba019846764f6b8616c2c6b047e502202c6f1638926d7
+  state/releases/1.2.0/baseline-hashes.yaml: 1857dab3b2b313c58311cc79fbac64cdb98a49d9543e7d18bcd8935151298ae9
+  state/releases/1.2.0/final-assessment.yaml: aa2f8537c299219b78a399b04451cc1d560c5ea6934dba4a12628b76f1d2600d
+  state/releases/1.2.0/findings.yaml: b5b183d07ce15fa853bd96f76dba351d17915ac66fc28b793a2d3dabd3968300
+  state/releases/1.2.0/loop-results.yaml: e43877049fb02e90cc8b7e905ce1b5d50433a155ea367603defde6cbe76bf028
+  state/releases/1.2.0/runs.yaml: cd79e973ba389566790bfc0b4d68664ab7b31644435fbc75c7e74847259b6110
+  state/releases/1.2.0/sanitization-report.yaml: 8f049eed33991e265e6f298c69a55b46df85a2babe195de7f7c9a6f168113f46
+  state/releases/1.3.0/adversarial-results.yaml: 5429fd9a344cc065f3845329d39ec5e4686ef31bbe341bb8ad59b5bdea361ccf
+  state/releases/1.3.0/assessment.yaml: 158e99785433ebc8a2c23d055daf65407309557f9ea02d7368adc2ab67d4fcf5
+  state/releases/1.3.0/corrections/1.2.0-publication.yaml: f5299e2ce5e5619f2f9f7829cf548a8c2fcdea445e2f5ae83bbfc0e66d308ef2
+  state/releases/1.3.0/events.yaml: 741a61d2d5675d9cfe309bec527d452305c4ef6625eb3808dd402638072bac77
+  state/releases/1.3.0/execution-context.yaml: 5bbc6b16a82ce56c8f5f440e12d73cf57368c29a352a5feea8c689f0aeaf5e08
+  state/releases/1.3.0/final-assessment.yaml: 792fa934e6127cc8d769a6baf268453423487340c94024efe6332bdefa252903
+  state/releases/1.3.0/findings.yaml: fa7585d9555aafa659d953f2d6ae944040a68e60790fd35e336a36aa6718a5eb
+  state/releases/1.3.0/gates.yaml: d638592dd23bb04db06e9567100b404e32e10883bfe60c134f257b8a62ccd18e
+  state/releases/1.3.0/iterations.yaml: bc142b4333c7361a1ebf99bf9d0f9ad98039eaa9b8c044b30eedb810354ff9bf
+  state/releases/1.3.0/loop-results.yaml: 9083059663d669cffe09ee154e765f022d5e711f9605e2f85cecabd6927ca8b0
+  state/releases/1.3.0/publication.yaml: 2fc56dd65ec2751a595bd5e0b8b1298d847843c1896329966ebae331bf57b4b9
+  state/releases/1.3.0/review-plan.yaml: e4ee623743764f4afb7ce02d938567fb3aba96bd8d9af66e61ef8ddee37053f0
+  state/releases/1.3.0/runs.yaml: 1994517f2e43445eb3b4ec70642c6244bd91d817a26efe992fa0f0cfe998105f
+  state/releases/1.3.0/sanitization-report.yaml: 7f75e7159abe17982661b7a91b52e5fdaf231161ca64c5d1d2ef921c5998d730
+  state/releases/1.3.0/stability.yaml: 2de9fd25c7133bf1b33e393a5d07c9a7a6c1d0b1407d885cb7f7409f16114428

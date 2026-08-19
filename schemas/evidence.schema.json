@@ -1,20 +1,69 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ynm.example/schemas/evidence.schema.json",
+  "$id": "urn:ynm:schemas:evidence.schema.json",
   "type": "object",
-  "required": ["id", "epistemic_type", "kind", "locator", "content", "captured_at", "availability", "provenance"],
+  "required": [
+    "id",
+    "epistemic_type",
+    "kind",
+    "locator",
+    "content",
+    "captured_at",
+    "availability",
+    "provenance"
+  ],
   "properties": {
-    "id": {"type": "string", "minLength": 1},
-    "epistemic_type": {"$ref": "ynm-defs.schema.json#/$defs/epistemicType"},
-    "kind": {"type": "string", "minLength": 1},
-    "locator": {"type": "string", "minLength": 1},
-    "content": {"type": "string", "minLength": 1},
-    "captured_at": {"type": "string", "minLength": 1},
-    "availability": {"enum": ["AVAILABLE", "UNAVAILABLE", "PARTIAL"]},
-    "provenance": {"type": ["string", "object"]},
-    "method": {"type": ["string", "object"]},
-    "project_revision": {"type": "string"},
-    "parent_evidence": {"type": "array", "items": {"type": "string"}}
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "epistemic_type": {
+      "$ref": "ynm-defs.schema.json#/$defs/epistemicType"
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "locator": {
+      "type": "string",
+      "minLength": 1
+    },
+    "content": {
+      "type": "string",
+      "minLength": 1
+    },
+    "captured_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "availability": {
+      "enum": [
+        "AVAILABLE",
+        "UNAVAILABLE",
+        "PARTIAL"
+      ]
+    },
+    "provenance": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "method": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "project_revision": {
+      "type": "string"
+    },
+    "parent_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

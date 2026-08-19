@@ -1,20 +1,98 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ynm.example/schemas/project-context.schema.json",
+  "$id": "urn:ynm:schemas:project-context.schema.json",
   "type": "object",
-  "required": ["schema_version", "project", "documentation_roles", "ynm_state_location", "persistence_mode", "discovered_at"],
+  "required": [
+    "schema_version",
+    "project",
+    "documentation_roles",
+    "ynm_state_location",
+    "persistence_mode",
+    "discovered_at"
+  ],
   "properties": {
-    "schema_version": {"const": "ynm-project-context.v1"},
+    "schema_version": {
+      "const": "ynm-project-context.v1"
+    },
+    "managed_by": {
+      "type": "string",
+      "const": "ynm"
+    },
     "project": {
       "type": "object",
-      "required": ["name", "root"],
-      "properties": {"name": {"type": "string", "minLength": 1}, "root": {"type": "string", "minLength": 1}, "purpose": {"type": "string"}, "project_type": {"type": "string"}},
+      "required": [
+        "name",
+        "root"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "project_type": {
+          "type": "string"
+        }
+      },
       "additionalProperties": true
     },
-    "documentation_roles": {"type": "array", "items": {"type": "object", "required": ["role", "artifacts", "status"], "properties": {"role": {"type": "string", "minLength": 1}, "artifacts": {"type": "array", "items": {"type": "string"}}, "status": {"enum": ["CONFIRMED", "CANDIDATE", "UNKNOWN"]}}}},
-    "ynm_state_location": {"type": "string", "minLength": 1},
-    "persistence_mode": {"enum": ["STATELESS", "PERSISTENT"]},
-    "discovered_at": {"type": "string", "minLength": 1}
+    "documentation_roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "artifacts",
+          "status"
+        ],
+        "properties": {
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "type": ["string", "object"]
+            }
+          },
+          "status": {
+            "enum": [
+              "CONFIRMED",
+              "CANDIDATE",
+              "UNKNOWN"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "ynm_state_location": {
+      "type": "string",
+      "minLength": 1
+    },
+    "persistence_mode": {
+      "enum": [
+        "STATELESS",
+        "PERSISTENT"
+      ]
+    },
+    "discovered_at": {
+      "type": "string",
+      "minLength": 1
+    }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

@@ -1,0 +1,20 @@
+report_id: YNM-1.3-PUBLIC-SANITIZATION
+execution_status: COMPLETED
+checked:
+- credentials tokens secrets and private keys
+- private repository URLs and absolute paths
+- personal data not required for repository attribution
+- project-specific findings constants and implementation details
+- identifying references to the heterogeneous source project
+- provider assumptions in core requirements
+- unlicensed copied content indicators
+- binaries temporary files caches and local databases
+- release correction files
+- candidate workflow metadata
+result: PASS
+excluded_from_public_history:
+- ruvector.db
+- Python caches
+- temporary files
+provenance_action: Historical 1.2 publication-time drift is documented as pending
+  causality; no candidate disclosure risk introduced.
