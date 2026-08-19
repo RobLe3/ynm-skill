@@ -16,6 +16,10 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def _read_version(root: Path) -> str:
+    return (root / "VERSION").read_text(encoding="utf-8").strip()
+
+
 @dataclass
 class IntegrityCheck:
     errors: list[str]
@@ -114,7 +118,13 @@ def validate_release_integrity(
         checks.errors.append("baseline-hashes.yaml missing captured_at")
 
     if baseline:
-        if not isinstance(baseline.get("baseline"), str) or not baseline["baseline"]:
+        if (
+            not isinstance(baseline.get("baseline"), str)
+            or not baseline["baseline"]
+        ) and (
+            not isinstance(baseline.get("baseline_subject"), dict)
+            or not baseline["baseline_subject"].get("version")
+        ):
             checks.warnings.append("baseline-hashes.yaml baseline label missing or empty")
 
     check_file_hash_set(root, baseline if isinstance(baseline, dict) else {}, checks)
@@ -274,7 +284,7 @@ def run(version: str, root: Path | None = None, future_tolerance_seconds: int = 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--release", default="1.2.0", help="release version directory under state/releases")
+    parser.add_argument("--release", default=None, help="release version directory under state/releases")
     parser.add_argument("--root", default=str(ROOT), help="repository root")
     parser.add_argument("--tolerance", type=int, default=300, help="future-timestamp tolerance seconds")
     parser.add_argument("--strict", action="store_true", help="fail on warnings")
@@ -285,7 +295,8 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    messages = run(args.release, root=Path(args.root), future_tolerance_seconds=args.tolerance)
+    release = args.release or _read_version(Path(args.root))
+    messages = run(release, root=Path(args.root), future_tolerance_seconds=args.tolerance)
 
     if messages:
         print("YNM release-integrity validation issues:")

@@ -28,6 +28,14 @@ class ReleaseIntegrityTests(unittest.TestCase):
         self.assertFalse(checks.errors)
         self.assertIsInstance(checks, object)
 
+    def test_release_integrity_default_uses_repo_version(self):
+        result = subprocess.run(
+            [sys.executable, str(ROOT / "validation/validate_release_integrity.py")],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
     def test_release_integrity_flags_missing_directory(self):
         result = validate_release_integrity("9.9.9", root=ROOT)
         self.assertTrue(result.errors)

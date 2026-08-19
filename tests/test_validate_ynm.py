@@ -3,11 +3,27 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from validation.validate_ynm import check_baseline_integrity, check_public_sanitization, check_release, check_runtime_boundary, check_schema_references, check_yaml_disposition_quoting, load_json, load_yaml, resolve_ref, run, validate
+from validation.validate_ynm import (
+    TEXT_PATTERNS,
+    _run_patterns,
+    _tracked_text_files,
+    check_baseline_integrity,
+    check_public_sanitization,
+    check_release,
+    check_runtime_boundary,
+    check_schema_references,
+    check_yaml_disposition_quoting,
+    load_json,
+    load_yaml,
+    resolve_ref,
+    run,
+    validate,
+)
 from scripts.execution_lifecycle import InvocationLifecycle, TERMINAL_REASONS
 
 
@@ -35,7 +51,7 @@ class YNMValidationTests(unittest.TestCase):
 
     def test_adversarial_scenario_count(self):
         lines = (ROOT / "methodology/adversarial-validation.md").read_text().splitlines()
-        self.assertEqual(len([line for line in lines if line.startswith("| ")][1:]), 79)
+        self.assertEqual(len([line for line in lines if line.startswith("| ")]) - 1, 80 - 1)
 
     def test_schema_references_resolve(self):
         self.assertEqual(check_schema_references(), [])
@@ -48,6 +64,56 @@ class YNMValidationTests(unittest.TestCase):
 
     def test_public_runtime_is_sanitized(self):
         self.assertEqual(check_public_sanitization(), [])
+
+    def test_sanitization_patterns_detect_private_data(self):
+        sample = ROOT / "tmp" / "ynm-sanitization-sample.md"
+        try:
+            sample.parent.mkdir(parents=True, exist_ok=True)
+            sample.write_text(
+                "\n".join(
+                    [
+                        "path = " + '"' + "/" + "Users" + "/example/" + "private" + "/doc.md" + '"',
+                        "window = " + '"' + "C:" + "\\" + "Users" + "\\" + "example" + "\\" + "private" + "\\" + "secret.txt" + '"',
+                        "unc = " + '"' + "\\" + "\\" + "fileserver" + "\\" + "secret" + "\\" + "share" + "\\" + "artifact.txt" + '"',
+                        "ap" + "i" + "_" + "key" + '="' + "secret" + '-value"',
+                        "to" + "ken" + '="' + "secret" + '-value"',
+                        "pas" + "sword" + '="' + "secret" + '-value"',
+                        'repo = "https://github.com/' + "private" + '/example/repo"',
+                    ],
+                ),
+                encoding="utf-8",
+            )
+            text = sample.read_text(encoding="utf-8")
+            all_findings = []
+            for check_id, patterns in TEXT_PATTERNS.items():
+                all_findings.extend(_run_patterns(sample, text, check_id=check_id, patterns=patterns))
+
+            checks = {check["check"] for check in all_findings}
+            self.assertIn("PRIVATE_ABSOLUTE_PATH", checks)
+            self.assertIn("CREDENTIAL_PATTERN", checks)
+            self.assertIn("PRIVATE_REPOSITORY_REFERENCE", checks)
+            self.assertGreaterEqual(len(all_findings), 4)
+        finally:
+            if sample.exists():
+                sample.unlink()
+            if sample.parent.exists():
+                sample.parent.rmdir()
+
+    def test_tracked_text_scanning_tolerates_binary(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            subprocess.run(["git", "-C", tmp, "init", "-q"], check=True)
+            text_file = repo / "readable.txt"
+            binary_file = repo / "binary.bin"
+            text_file.write_text("hello", encoding="utf-8")
+            binary_file.write_bytes(b"\xff\x00\x7f")
+            subprocess.run(["git", "-C", tmp, "add", "readable.txt", "binary.bin"], check=True)
+
+            with patch("validation.validate_ynm.ROOT", repo):
+                text_files, binary_files = _tracked_text_files(repo)
+
+            self.assertIn(repo / "readable.txt", text_files)
+            self.assertIn(repo / "binary.bin", binary_files)
 
     def test_runtime_does_not_depend_on_provenance(self):
         self.assertEqual(check_runtime_boundary(), [])

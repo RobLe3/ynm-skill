@@ -1,45 +1,22 @@
 gates:
-- name: semantic coherence
-  disposition: 'YES'
-  evidence:
-  - contracts/disposition.md
-  - methodology/execution-lifecycle.md
-- name: lifecycle responsibility coherence
-  disposition: 'YES'
-  evidence:
-  - methodology/core.md
-  - loops/meta.md
-  - loops/disposition.md
-- name: terminal-state safety
-  disposition: 'YES'
-  evidence:
-  - contracts/loop-result.md
-  - tests/test_validate_ynm.py
-- name: backward compatibility
-  disposition: 'YES'
-  evidence:
-  - schemas/run-receipt.schema.json
-  - state/releases/1.2.0/baseline-hashes.yaml
-- name: public sanitization
-  disposition: 'YES'
-  evidence:
-  - state/releases/1.2.0/sanitization-report.yaml
-- name: runtime provenance separation
-  disposition: 'YES'
-  evidence:
-  - manifest.yaml
-  - validation/validate_ynm.py
-- name: stability
-  disposition: 'YES'
-  evidence:
-  - state/releases/1.2.0/stability.yaml
-- name: production maturity
-  disposition: 'YES'
-  evidence:
-  - state/releases/1.2.0/final-assessment.yaml
-- name: package and release candidate integrity
-  disposition: 'YES'
-  evidence:
-  - state/releases/1.3.0
-  - validation/validate_release_integrity.py
-  - tests/test_release_and_package.py
+  - name: 1.3.0 candidate public sanitization
+    disposition: 'YES'
+    evidence:
+      - state/releases/1.3.0/sanitization-report.yaml
+      - validation/validate_ynm.py
+  - name: 1.3.0 candidate lifecycle and boundary stability
+    disposition: 'YES'
+    evidence:
+      - state/releases/1.3.0/stability.yaml
+      - tests/test_validate_ynm.py
+  - name: 1.2.x baseline maturity evidence preserved
+    disposition: 'YES'
+    evidence:
+      - state/releases/1.2.0/final-assessment.yaml
+      - YNM_1_2_MATURITY_REPORT.md
+  - name: 1.3.0 release-candidate readiness
+    disposition: 'YES'
+    evidence:
+      - state/releases/1.3.0/final-assessment.yaml
+      - state/releases/1.3.0/runs.yaml
+      - state/releases/1.3.0/assessment.yaml

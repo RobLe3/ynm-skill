@@ -3,9 +3,13 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
+from datetime import datetime, timezone
 import re
+import subprocess
 import sys
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -20,6 +24,186 @@ from referencing.jsonschema import Resource
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = ROOT / "schemas"
 CURRENT_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+DEFAULT_CHECKS = [
+    "schema",
+    "links",
+    "normative-invariants",
+    "state",
+    "yaml-disposition-quoting",
+    "release",
+    "version-consistency",
+    "baseline-integrity",
+    "public-sanitization",
+    "runtime-boundary",
+]
+SECURITY_BOUNDARY_CHECKS = ["baseline-integrity", "public-sanitization", "runtime-boundary"]
+
+AGENTS_MARKER_START = "<!-- YNM:BEGIN -->"
+AGENTS_MARKER_END = "<!-- YNM:END -->"
+PUBLIC_SANITIZATION_ALLOWLIST: dict[str, set[str]] = {}
+PUBLIC_SANITIZATION_ALLOWLIST.update(
+    {
+        "PUBLICATION_COMPARISON.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+        "YNM_1_1_MATURITY_REPORT.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+        "docs/errata/1.2.0-publication.md": {"PRIVATE_REPOSITORY_REFERENCE"},
+        "validation/validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+        "validation/validate_release_integrity.py": {"PRIVATE_ABSOLUTE_PATH"},
+    }
+)
+TEXT_PATTERNS: dict[str, list[str]] = {
+    "PRIVATE_ABSOLUTE_PATH": [
+        r"(?<![A-Za-z0-9_])/[Uu]sers/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*",
+        r"(?<![A-Za-z0-9_])/(?:home|private|tmp|var|opt|mnt)/[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+",
+        r"(?<![A-Za-z0-9_])(?:[A-Za-z]:\\[Uu]sers\\[A-Za-z0-9_.-]+\\[A-Za-z0-9_.-]+(?:\\[A-Za-z0-9_.-]+)*)",
+        r"(?<![A-Za-z0-9_])(\\\\[A-Za-z0-9_.-]+\\[A-Za-z0-9_.-]+(?:\\[A-Za-z0-9_.-]+)+)",
+    ],
+    "CREDENTIAL_PATTERN": [
+        r"(?i)(?:api[_-]?key|secret|token|password|credential)\s*[:=]\s*['\"][^'\"]+['\"]",
+    ],
+    "PRIVATE_REPOSITORY_REFERENCE": [
+        r"(?i)(?:https?://)?(?:www\.)?(?:github\.com|gitlab\.com|bitbucket\.org)\S*(?:private|internal|corp|secret)[^\s]*",
+    ],
+    "PERSONAL_DATA_PATTERN": [
+        r"(?i)\b(?:john\.|jane\.)\S+",
+    ],
+    "PROVIDER_SPECIFIC_CORE_ASSUMPTION": [
+        r"\b(?:gpt-5\.3-codex-spark|Claude|Gemini|Qwen|Llama|Spark)\b",
+    ],
+}
+
+
+def parse_rfc3339_timestamp(raw: str) -> datetime:
+    """Parse RFC3339/Zulu timestamp text.
+
+    Returns a timezone-aware datetime in UTC.
+    """
+
+    try:
+        value = str(raw)
+    except Exception as exc:
+        raise ValueError(f"timestamp must be a string: {raw!r}") from exc
+
+    if not value:
+        raise ValueError("timestamp is empty")
+    if value.endswith("Z"):
+        value = value[:-1] + "+00:00"
+    dt = datetime.fromisoformat(value)
+    if dt.tzinfo is None:
+        raise ValueError("timezone missing")
+    return dt.astimezone(timezone.utc)
+
+
+
+def _run_git(args: list[str], root: Path) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(["git", *args], cwd=str(root), capture_output=True, text=True)
+
+
+def _run_git_bytes(args: list[str], root: Path) -> subprocess.CompletedProcess[bytes]:
+    return subprocess.run(["git", *args], cwd=str(root), capture_output=True)
+
+
+def _tracked_text_files(root: Path) -> tuple[list[Path], list[Path]]:
+    """Return tracked text files and tracked binary files from git.
+
+    Using ``git ls-files`` keeps the scope aligned with repository intent and
+    avoids missing ignored files that should not be part of public claims.
+    """
+
+    result = _run_git(["ls-files", "-z"], root)
+    if result.returncode != 0:
+        raise ValidationError(f"unable to list git files: {result.stderr.strip()}")
+
+    text_files: list[Path] = []
+    binary_files: list[Path] = []
+    for raw in result.stdout.split("\x00"):
+        if not raw:
+            continue
+        path = root / raw
+        if not path.exists() or not path.is_file():
+            continue
+        try:
+            path.read_bytes().decode("utf-8")
+        except UnicodeDecodeError:
+            binary_files.append(path)
+            continue
+        except Exception:
+            binary_files.append(path)
+            continue
+        text_files.append(path)
+    return sorted(text_files), sorted(binary_files)
+
+
+def _run_patterns(path: Path, data: str, *, check_id: str, patterns: list[str]) -> list[dict[str, Any]]:
+    findings: list[dict[str, Any]] = []
+    for regex in patterns:
+        compiled = re.compile(regex)
+        for match in compiled.finditer(data):
+            start = max(match.start() - 30, 0)
+            end = min(match.end() + 30, len(data))
+            try:
+                rel_path = str(path.relative_to(ROOT))
+            except ValueError:
+                rel_path = str(path)
+            finding = {
+                "path": rel_path,
+                "check": check_id,
+                "pattern": regex,
+                "excerpt": data[start:end].replace("\n", "\\n"),
+            }
+            findings.append(finding)
+    return findings
+
+
+def _is_allowed_violation(path: Path, finding: dict[str, Any]) -> bool:
+    allowed_checks = PUBLIC_SANITIZATION_ALLOWLIST.get(str(path.relative_to(ROOT)), set())
+    if finding["check"] in allowed_checks:
+        return True
+    return False
+
+
+def _public_sanitization_report_path(root: Path, version: str | None = None) -> Path:
+    release = (version or CURRENT_VERSION).strip()
+    return root / "state" / "releases" / release / "sanitization-report.yaml"
+
+
+def _compare_sanitization_report(root: Path, report: dict[str, Any], *, findings: list[dict[str, Any]]) -> list[str]:
+    errors: list[str] = []
+    path = _public_sanitization_report_path(root)
+    if not path.exists():
+        return [f"missing public sanitization report: {path.relative_to(root)}"]
+
+    data = load_yaml(path)
+    if data is None:
+        return [f"invalid sanitization report: {path.relative_to(root)}"]
+
+    for key in ["scope", "files_scanned", "files_excluded_as_binary", "result", "checks"]:
+        if key not in data:
+            errors.append(f"sanitization report missing {key}: {path.relative_to(root)}")
+    if data.get("files_scanned") != report["files_scanned"]:
+        errors.append("sanitization report files_scanned mismatch")
+    if data.get("files_excluded_as_binary") != report["files_excluded_as_binary"]:
+        errors.append("sanitization report excluded-binary count mismatch")
+    if data.get("result") not in {"PASS", "FAIL"}:
+        errors.append("sanitization report result must be PASS or FAIL")
+    expected_checks = {entry["id"] for entry in report["checks"]}
+    actual_checks = {entry.get("id") for entry in data.get("checks", []) if isinstance(entry, dict)}
+    if expected_checks != actual_checks:
+        errors.append("sanitization report checks mismatch")
+
+    report_findings = data.get("findings") or []
+    if not isinstance(report_findings, list):
+        errors.append("sanitization report findings must be a list")
+    else:
+        if len(report_findings) != len(findings):
+            errors.append("sanitization report finding count mismatch")
+        for observed, expected in zip(
+            sorted(report_findings, key=lambda item: (item.get("path"), item.get("check"))),
+            sorted(findings, key=lambda item: (item.get("path"), item.get("check"))),
+        ):
+            if observed.get("path") != expected.get("path") or observed.get("check") != expected.get("check"):
+                errors.append("sanitization report findings differ")
+                break
+    return errors
 
 
 class ValidationError(Exception):
@@ -441,53 +625,289 @@ def check_release() -> list[str]:
 
 def check_baseline_integrity() -> list[str]:
     errors: list[str] = []
-    baseline = load_yaml(ROOT / "state/releases/1.1.0/baseline-hashes.yaml")
-    entries = {**baseline["files"], **baseline["report"]}
-    for name, expected in entries.items():
-        path = ROOT / name
-        if not path.exists():
-            errors.append(f"1.1.0 baseline artifact missing: {name}")
-        elif hashlib.sha256(path.read_bytes()).hexdigest() != expected:
-            errors.append(f"1.1.0 baseline artifact changed: {name}")
 
-    release_baseline_path = ROOT / f"state/releases/{CURRENT_VERSION}/baseline-hashes.yaml"
-    if release_baseline_path.exists():
-        release_baseline = load_yaml(release_baseline_path)
-        for name, expected in release_baseline.get("files", {}).items():
-            path = ROOT / name
-            if not path.exists():
-                errors.append(f"{CURRENT_VERSION} baseline artifact missing: {name}")
-            elif hashlib.sha256(path.read_bytes()).hexdigest() != expected:
-                errors.append(f"{CURRENT_VERSION} baseline artifact changed: {name}")
+    version_re = re.compile(r"state/releases/([0-9]+\.[0-9]+\.[0-9]+)/")
+
+    def _hash_from_bytes(data: bytes) -> str:
+        return hashlib.sha256(data).hexdigest()
+
+    def _load_bytes_from_commit(commit: str, relpath: str) -> bytes | None:
+        result = _run_git_bytes(["show", f"{commit}:{relpath}"], ROOT)
+        if result.returncode != 0:
+            return None
+        return result.stdout
+
+    def _load_yaml_from_commit(commit: str, relpath: str) -> Any:
+        result = _run_git_bytes(["show", f"{commit}:{relpath}"], ROOT)
+        if result.returncode != 0:
+            return None
+        return yaml.safe_load(result.stdout.decode("utf-8"))
+
+    def _coerce_legacy_subject(label: str, subject_data: Any) -> dict[str, Any] | None:
+        if isinstance(subject_data, dict):
+            return dict(subject_data)
+        if isinstance(subject_data, str):
+            match = re.match(r"YNM\s+(\d+\.\d+\.\d+)", subject_data)
+            if not match:
+                errors.append(f"{label}: baseline label is not in expected form: {subject_data!r}")
+                return None
+            return {"version": match.group(1)}
+        errors.append(f"{label}: baseline subject must be a mapping or legacy string")
+        return None
+
+    def _resolve_commit(
+        tag_or_sha: str | None,
+        *,
+        label: str,
+        expected_tag: str | None = None,
+        required: bool = True,
+    ) -> str | None:
+        if not tag_or_sha:
+            return None
+        sha = tag_or_sha.strip()
+        if re.fullmatch(r"[0-9a-fA-F]{40}", sha):
+            if _run_git(["cat-file", "-e", f"{sha}^{{commit}}"], ROOT).returncode != 0:
+                if required:
+                    errors.append(f"{label}: baseline commit {sha!r} is not a valid git commit")
+                return None
+            return sha
+        if sha.startswith("v"):
+            result = _run_git(["rev-parse", f"{sha}^{{commit}}"], ROOT)
+            if result.returncode != 0:
+                if required:
+                    errors.append(f"{label} baseline tag not resolvable: {sha}")
+                return None
+            resolved_commit = result.stdout.strip()
+            if expected_tag and expected_tag != sha:
+                if required:
+                    errors.append(f"{label} baseline tag {sha!r} != expected {expected_tag!r}")
+            return resolved_commit
+        errors.append(f"{label}: baseline commit/tree metadata must be full commit SHA or tag")
+        return None
+
+    def _validate_subject(
+        label: str,
+        subject: dict[str, Any],
+        *,
+        expected_version: str | None = None,
+        expected_tag: str | None = None,
+        strict_version_subject: bool = True,
+    ) -> tuple[str | None, str | None, str | None, str | None]:
+        version = str(subject.get("version", "")).strip() or None
+        tag = str(subject.get("tag", "")).strip() or None
+        commit = str(subject.get("commit", "")).strip() or None
+        tree = str(subject.get("tree", "")).strip() or None
+
+        if expected_version and version and version != expected_version:
+            errors.append(f"{label} baseline version {version!r} != expected {expected_version!r}")
+        if not version and strict_version_subject:
+            errors.append(f"{label} baseline version missing")
+
+        resolved_commit = _resolve_commit(commit, label=label, expected_tag=expected_tag, required=strict_version_subject)
+        if not resolved_commit and tag:
+            resolved_commit = _resolve_commit(tag, label=label, expected_tag=expected_tag, required=strict_version_subject)
+
+        if strict_version_subject:
+            if not commit:
+                errors.append(f"{label} baseline subject commit must be provided as full SHA")
+            elif len(commit) != 40:
+                errors.append(f"{label} baseline subject commit must be a full SHA")
+
+            if not tag:
+                errors.append(f"{label} baseline tag missing")
+            elif expected_tag and tag != expected_tag:
+                errors.append(f"{label} baseline tag {tag!r} != expected {expected_tag!r}")
+
+            if not tree:
+                errors.append(f"{label} baseline subject tree must be provided as full SHA")
+            elif len(tree) != 40:
+                errors.append(f"{label} baseline subject tree must be a full SHA")
+
+        if expected_tag and tag and tag != expected_tag:
+            # already added above in strict mode, but keep the deterministic message for non-strict callers.
+            pass
+
+        if resolved_commit and tree:
+            tree_result = _run_git(["rev-parse", f"{resolved_commit}^{{tree}}"], ROOT)
+            if tree_result.returncode != 0:
+                errors.append(f"{label} baseline commit tree not resolvable: {resolved_commit}")
+            else:
+                resolved_tree = tree_result.stdout.strip()
+                if tree and tree != resolved_tree:
+                    errors.append(f"{label} baseline subject tree does not match commit tree")
+
+        return resolved_commit, tree, version, tag
+
+    def _validate_hashes(record_label: str, record: dict[str, Any], *, base_commit: str) -> None:
+        files = record.get("files")
+        if not isinstance(files, dict):
+            return
+
+        for path_text, expected in files.items():
+            if not isinstance(path_text, str):
+                continue
+
+            match = version_re.match(path_text)
+            if path_text.startswith("YNM_"):
+                pass
+            elif path_text == f"state/releases/{CURRENT_VERSION}/baseline-hashes.yaml":
+                errors.append(f"{record_label}: baseline artifact path must not reference current release artifacts: {path_text}")
+                continue
+            elif not match:
+                errors.append(f"{record_label}: non-baseline artifact referenced in files: {path_text}")
+                continue
+            if match and match.group(1) == CURRENT_VERSION:
+                errors.append(f"{record_label}: baseline artifact path must not reference current release artifacts: {path_text}")
+                continue
+
+            expected_str = str(expected)
+            if not isinstance(expected, str) or len(expected_str) != 64:
+                errors.append(f"{record_label}: invalid baseline hash format for {path_text}")
+                continue
+
+            committed_bytes = _load_bytes_from_commit(base_commit, path_text)
+            if committed_bytes is None:
+                errors.append(f"{record_label}: baseline artifact missing in {base_commit}: {path_text}")
+                continue
+
+            actual_hash = _hash_from_bytes(committed_bytes)
+            if expected_str != actual_hash:
+                errors.append(f"{record_label}: baseline hash mismatch for {path_text}")
+
+    candidate_baseline_path = ROOT / f"state/releases/{CURRENT_VERSION}/baseline-hashes.yaml"
+    if not candidate_baseline_path.exists():
+        return [f"missing candidate baseline-hashes record: state/releases/{CURRENT_VERSION}/baseline-hashes.yaml"]
+
+    try:
+        candidate_record = load_yaml(candidate_baseline_path)
+    except Exception as exc:  # noqa: BLE001
+        return [f"candidate baseline-hashes.yaml is malformed: {exc}"]
+
+    if not isinstance(candidate_record, dict):
+        return ["candidate baseline-hashes.yaml is not a mapping"]
+
+    captured_at = candidate_record.get("captured_at")
+    if captured_at is not None:
+        try:
+            parse_rfc3339_timestamp(str(captured_at))
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"candidate baseline-hashes.yaml captured_at invalid: {exc}")
+    else:
+        errors.append("candidate baseline-hashes.yaml: captured_at missing")
+
+    candidate_subject = _coerce_legacy_subject(
+        f"state/releases/{CURRENT_VERSION}/baseline-hashes.yaml",
+        candidate_record.get("baseline_subject") or candidate_record.get("baseline"),
+    )
+    if not candidate_subject:
+        errors.append(f"state/releases/{CURRENT_VERSION}/baseline-hashes.yaml missing baseline_subject")
+        return errors
+
+    candidate_subject.setdefault("version", "1.2.0")
+    candidate_subject.setdefault("tag", "v1.2.0")
+    candidate_subject.setdefault("commit", "")
+    candidate_subject.setdefault("tree", "")
+
+    candidate_version = str(candidate_subject.get("version", "1.2.0")).strip()
+    candidate_tag = f"v{candidate_version}" if candidate_version and not str(candidate_subject.get("tag", "")).startswith("v") else str(candidate_subject.get("tag", "")).strip()
+
+    candidate_commit, candidate_tree, candidate_subject_version, _candidate_tag = _validate_subject(
+        f"state/releases/{CURRENT_VERSION}/baseline-hashes.yaml",
+        candidate_subject,
+        expected_version=candidate_version,
+        expected_tag=candidate_tag,
+        strict_version_subject=True,
+    )
+    if not candidate_commit:
+        return errors
+
+    historical_version = candidate_subject_version or candidate_version
+    historical_release_path = f"state/releases/{historical_version}/baseline-hashes.yaml"
+    historical_record = _load_yaml_from_commit(candidate_commit, historical_release_path)
+    if not isinstance(historical_record, dict):
+        errors.append(f"unable to load historical record {historical_release_path} from {candidate_commit}")
+        return errors
+
+    historical_subject = _coerce_legacy_subject(
+        historical_release_path,
+        historical_record.get("baseline_subject") or historical_record.get("baseline"),
+    )
+    if historical_subject:
+        historical_subject.setdefault("version", historical_version)
+        historical_subject.setdefault("tag", f"v{historical_subject.get('version', '')}")
+        historical_subject.setdefault("commit", "")
+        historical_subject.setdefault("tree", "")
+
+        # Some historical records pre-date immutable full subject metadata.
+        # Validate what is available, but do not fail solely because vX.Y.Z tagging
+        # was not captured in that historical format.
+        _validate_subject(
+            historical_release_path,
+            historical_subject,
+            expected_version=historical_subject.get("version"),
+            expected_tag=historical_subject.get("tag"),
+            strict_version_subject=False,
+        )
+
+    _validate_hashes(
+        f"state/releases/{CURRENT_VERSION}/baseline-hashes.yaml",
+        candidate_record,
+        base_commit=candidate_commit,
+    )
+    _validate_hashes(
+        historical_release_path,
+        historical_record,
+        base_commit=candidate_commit,
+    )
+
+    if candidate_tree:
+        expected_tree_result = _run_git(["rev-parse", f"{candidate_commit}^{{tree}}"], ROOT)
+        if expected_tree_result.returncode == 0 and candidate_tree != expected_tree_result.stdout.strip():
+            errors.append(
+                f"state/releases/{CURRENT_VERSION}/baseline-hashes.yaml: baseline subject tree does not match {candidate_commit}"
+            )
+
     return errors
+
 
 
 def check_public_sanitization() -> list[str]:
     errors: list[str] = []
-    runtime = [
-        ROOT / "SKILL.md",
-        *(ROOT / "contracts").glob("*.md"),
-        *(ROOT / "loops").glob("*.md"),
-        *(ROOT / "methodology").glob("*.md"),
-        *(ROOT / "schemas").glob("*.json"),
-        *(ROOT / "examples").glob("*.md"),
-        *(ROOT / "scripts").glob("*.py"),
-        ROOT / "README.md",
+    text_files, binary_files = _tracked_text_files(ROOT)
+    checks = [
+        {"id": "PRIVATE_ABSOLUTE_PATH"},
+        {"id": "CREDENTIAL_PATTERN"},
+        {"id": "PRIVATE_REPOSITORY_REFERENCE"},
+        {"id": "PERSONAL_DATA_PATTERN"},
+        {"id": "PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
     ]
-    absolute = re.compile(r"/Users/[^\s`'\"]+")
-    secret = re.compile(r"(?i)(?:api[_-]?key|token|password)\s*[:=]\s*['\"][^'\"]+['\"]")
-    for path in runtime:
-        text = path.read_text(encoding="utf-8")
-        if absolute.search(text):
-            errors.append(f"{path.relative_to(ROOT)}: private absolute path in runtime surface")
-        if secret.search(text):
-            errors.append(f"{path.relative_to(ROOT)}: possible secret in runtime surface")
-        if path != ROOT / "validation" / "validate_ynm.py" and re.search(r"\bBlender\b|\bClaude\b|iicp\.network", text, re.I):
-            errors.append(f"{path.relative_to(ROOT)}: project/provider-specific assumption in runtime surface")
 
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    if re.search(r"/Users/|roble/development", readme, re.I):
-        errors.append("README.md: private or personal reference in public onboarding")
+    findings: list[dict[str, Any]] = []
+    for path in text_files:
+        text = path.read_text(encoding="utf-8")
+        for check in checks:
+            for finding in _run_patterns(path, text, check_id=check["id"], patterns=TEXT_PATTERNS[check["id"]]):
+                if not _is_allowed_violation(path, finding):
+                    findings.append(finding)
+
+    for finding in sorted(findings, key=lambda item: (item["path"], item["check"])):
+        errors.append(f"{finding['path']}: {finding['check']} violation")
+
+    report = {
+        "schema_version": "ynm-public-sanitization.v1",
+        "scope": "ALL_TRACKED_TEXT",
+        "files_scanned": len(text_files),
+        "files_excluded_as_binary": len(binary_files),
+        "excluded_paths": sorted(str(path.relative_to(ROOT)) for path in binary_files),
+        "checks": checks,
+        "result": "PASS" if not findings else "FAIL",
+        "findings": sorted(findings, key=lambda item: (item["path"], item["check"], item["pattern"]),),
+    }
+    errors.extend(_compare_sanitization_report(ROOT, report, findings=findings))
+
+    if findings:
+        for path in sorted({finding["path"] for finding in findings}):
+            errors.append(f"sanitization finding: {path}")
 
     return errors
 
@@ -528,45 +948,80 @@ def check_version_consistency() -> list[str]:
     return []
 
 
-def run() -> list[str]:
+def run(requested_checks: Sequence[str] | None = None) -> list[str]:
     errors: list[str] = []
-    errors.extend(check_schema_files())
-    fixtures = [
-        ("examples/data/evidence.yaml", "evidence.schema.json", None),
-        ("examples/data/assessment.yaml", "assessment.schema.json", None),
-        ("examples/data/finding.yaml", "finding.schema.json", None),
-        ("examples/data/loop-result.yaml", "loop-result.schema.json", None),
-        ("examples/data/run-receipt.yaml", "run-receipt.schema.json", None),
-        ("examples/data/execution-context.yaml", "execution-context.schema.json", None),
-        ("examples/data/security-extension.yaml", "extension.schema.json", None),
-        ("examples/data/project-context.yaml", "project-context.schema.json", None),
-        ("examples/data/project-config.yaml", "project-config.schema.json", None),
-        ("examples/data/bootstrap-receipt.yaml", "bootstrap-receipt.schema.json", None),
-        ("examples/data/review-plan.yaml", "review-plan.schema.json", None),
-        ("state/maturity-assessment.yaml", "assessment.schema.json", "assessment"),
-    ]
-    for fixture in fixtures:
-        errors.extend(check_fixture(*fixture))
 
-    errors.extend(check_links())
-    errors.extend(check_normative_invariants())
-    errors.extend(check_state())
-    errors.extend(check_yaml_disposition_quoting())
-    errors.extend(check_release())
-    errors.extend(check_version_consistency())
-    errors.extend(check_baseline_integrity())
-    errors.extend(check_public_sanitization())
-    errors.extend(check_runtime_boundary())
+    checks = list(requested_checks) if requested_checks else DEFAULT_CHECKS
+    normalized: list[str] = sorted(set(checks))
 
-    scenarios = [line for line in (ROOT / "methodology/adversarial-validation.md").read_text(encoding="utf-8").splitlines() if line.startswith("| ")]
-    if len(scenarios) != 80:
-        errors.append(f"adversarial scenario count: expected 80, found {len(scenarios)}")
+    if "schema" in normalized:
+        errors.extend(check_schema_files())
+        fixtures = [
+            ("examples/data/evidence.yaml", "evidence.schema.json", None),
+            ("examples/data/assessment.yaml", "assessment.schema.json", None),
+            ("examples/data/finding.yaml", "finding.schema.json", None),
+            ("examples/data/loop-result.yaml", "loop-result.schema.json", None),
+            ("examples/data/run-receipt.yaml", "run-receipt.schema.json", None),
+            ("examples/data/execution-context.yaml", "execution-context.schema.json", None),
+            ("examples/data/security-extension.yaml", "extension.schema.json", None),
+            ("examples/data/project-context.yaml", "project-context.schema.json", None),
+            ("examples/data/project-config.yaml", "project-config.schema.json", None),
+            ("examples/data/bootstrap-receipt.yaml", "bootstrap-receipt.schema.json", None),
+            ("examples/data/review-plan.yaml", "review-plan.schema.json", None),
+            ("state/maturity-assessment.yaml", "assessment.schema.json", "assessment"),
+        ]
+        for fixture in fixtures:
+            errors.extend(check_fixture(*fixture))
+
+    if "links" in normalized:
+        errors.extend(check_links())
+    if "normative-invariants" in normalized:
+        errors.extend(check_normative_invariants())
+    if "state" in normalized:
+        errors.extend(check_state())
+    if "yaml-disposition-quoting" in normalized:
+        errors.extend(check_yaml_disposition_quoting())
+    if "release" in normalized:
+        errors.extend(check_release())
+    if "version-consistency" in normalized:
+        errors.extend(check_version_consistency())
+    if "baseline-integrity" in normalized:
+        errors.extend(check_baseline_integrity())
+    if "public-sanitization" in normalized:
+        errors.extend(check_public_sanitization())
+    if "runtime-boundary" in normalized:
+        errors.extend(check_runtime_boundary())
+
+    if "release" in normalized or "version-consistency" in normalized:
+        scenarios = [line for line in (ROOT / "methodology/adversarial-validation.md").read_text(encoding="utf-8").splitlines() if line.startswith("| ")]
+        if len(scenarios) != 80:
+            errors.append(f"adversarial scenario count: expected 80, found {len(scenarios)}")
 
     return errors
 
 
 def main() -> int:
-    errors = run()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--check",
+        action="append",
+        choices=DEFAULT_CHECKS + ["security-boundary", "all"],
+        help="Run a single validation check (repeatable).",
+    )
+    args = parser.parse_args()
+
+    requested = args.check
+    if requested:
+        if "all" in requested:
+            checks_to_run = DEFAULT_CHECKS
+        elif "security-boundary" in requested:
+            checks_to_run = SECURITY_BOUNDARY_CHECKS
+        else:
+            checks_to_run = sorted(set(requested))
+    else:
+        checks_to_run = DEFAULT_CHECKS
+
+    errors = run(checks_to_run)
     if errors:
         print("YNM validation failed:")
         for error in errors:

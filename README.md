@@ -95,13 +95,13 @@ An optional bounded section may be added to `AGENTS.md`; existing content outsid
 Read-only discovery:
 
 ```text
-python3 scripts/project_integration.py /path/to/project
+python scripts/project_integration.py /path/to/project
 ```
 
 Authorized initialization:
 
 ```text
-python3 scripts/project_integration.py /path/to/project --initialize --apply
+python scripts/project_integration.py /path/to/project --initialize --apply
 ```
 
 See [Project Integration](methodology/project-integration.md) for ownership, idempotence, removal, and project-native placement rules.
@@ -118,20 +118,35 @@ Execution adapts to demonstrated capability rather than provider or model size. 
 
 The installable entrypoint is [`SKILL.md`](SKILL.md). A minimal runtime installation contains the entrypoint and the contracts, loops, and methodology it references. Schemas, scripts, examples, and runtime adapters provide optional capabilities. The [manifest](manifest.yaml) classifies each component.
 
-Provider-neutral installation:
+### Source checkout (development/audit)
 
 ```text
 git clone https://github.com/RobLe3/ynm-skill.git
 cd ynm-skill
 ```
 
-Expose the repository or `SKILL.md` to the chosen runtime according to that runtime's skill-loading instructions. `agents/openai.yaml` is an optional adapter, not a core dependency.
+Load the repository contents into the runtime according to that runtime's loading instructions. `agents/openai.yaml` is an optional adapter, not a core dependency.
+
+### Agent Skills runtime install
+
+Clone into an `ynm` directory for agent runtimes:
+
+```text
+git clone https://github.com/RobLe3/ynm-skill.git /path/to/skills/ynm
+```
+
+Or install from the built package:
+
+```text
+python scripts/build_skill_package.py --output-dir dist --overwrite
+ls dist/ynm
+```
 
 Verify the repository:
 
 ```text
-python3 validation/validate_ynm.py
-python3 -m unittest discover -s tests -v
+python validation/validate_ynm.py
+python -m unittest discover -s tests -v
 ```
 
 ## Repository structure

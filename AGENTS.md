@@ -9,8 +9,8 @@ This repository contains the YNM review methodology and its public validation hi
 Run before release or after a contract change:
 
 ```text
-python3 validation/validate_ynm.py
-python3 -m unittest discover -s tests -v
+python validation/validate_ynm.py
+python -m unittest discover -s tests -v
 ```
 
 ## Mutation and history
