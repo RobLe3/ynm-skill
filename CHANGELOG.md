@@ -2,7 +2,7 @@
 
 All notable YNM changes are recorded here. Historical maturity evidence remains in its original assessment artifacts.
 
-## [1.3.0] - 2026-08-19
+## [1.3.0] - Unreleased
 
 ### Added
 
@@ -18,6 +18,10 @@ All notable YNM changes are recorded here. Historical maturity evidence remains 
 
 - YES/NO/MAYBE semantics, focal-loop ownership, read-only defaults, capability and authority separation.
 - Project integration behavior and complete 1.0.0–1.2.0 maturity history.
+
+### Removed
+
+- Clarified public candidate status and publication readiness versus publication authority.
 
 ### [1.2.0] - 2026-08-19
 
@@ -35,4 +39,5 @@ All notable YNM changes are recorded here. Historical maturity evidence remains 
 
 ### [1.0.0] - 2026-08-19
 
-- First production-mature YNM methodology. Historical maturity evidence remains available through the 1.0.0 release artifacts and immutable Git tags.
+- First maintainer-assessed YNM maturity milestone. Historical maturity evidence remains
+  available through the 1.0.0 release artifacts and immutable Git tags.

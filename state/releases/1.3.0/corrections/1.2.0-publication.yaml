@@ -43,7 +43,7 @@ analysis:
 
 publication:
   status: candidate-correction-only
-  publication_authorization: AUTHORIZED
+  publication_authorization: REQUIRES_HUMAN
   independent_validation_available: false
   independent_implementation_available: false
 

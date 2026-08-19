@@ -35,6 +35,7 @@ DEFAULT_CHECKS = [
     "baseline-integrity",
     "public-sanitization",
     "runtime-boundary",
+    "workflow-invariants",
 ]
 SECURITY_BOUNDARY_CHECKS = ["baseline-integrity", "public-sanitization", "runtime-boundary"]
 
@@ -45,6 +46,15 @@ PUBLIC_SANITIZATION_ALLOWLIST: dict[str, set[str]] = {
     "tests/test_validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
     "validation/validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION", "PRIVATE_ABSOLUTE_PATH"},
     "validation/validate_release_integrity.py": {"PRIVATE_ABSOLUTE_PATH"},
+}
+WORKFLOW_PATH = ROOT / ".github" / "workflows" / "ynm-ci.yml"
+ALLOWED_CAPABILITY_LABELS = {
+    "VALIDATED",
+    "SUPPORTED_BY_DESIGN",
+    "PARTIALLY_VALIDATED",
+    "NOT_VALIDATED",
+    "KNOWN_LIMITATION",
+    "MAINTAINER_VALIDATED",
 }
 TEXT_PATTERNS: dict[str, list[str]] = {
     "PRIVATE_ABSOLUTE_PATH": [
@@ -202,6 +212,53 @@ def _compare_sanitization_report(root: Path, report: dict[str, Any], *, findings
                 errors.append("sanitization report findings differ")
                 break
     return errors
+
+
+def generate_sanitization_report(root: Path = ROOT) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    text_files, binary_files = _tracked_text_files(root)
+    checks = [
+        {"id": "PRIVATE_ABSOLUTE_PATH"},
+        {"id": "CREDENTIAL_PATTERN"},
+        {"id": "PRIVATE_REPOSITORY_REFERENCE"},
+        {"id": "PERSONAL_DATA_PATTERN"},
+        {"id": "PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    ]
+
+    findings: list[dict[str, Any]] = []
+    for path in text_files:
+        text = path.read_text(encoding="utf-8")
+        for check in checks:
+            for finding in _run_patterns(path, text, check_id=check["id"], patterns=TEXT_PATTERNS[check["id"]]):
+                if not _is_allowed_violation(path, finding):
+                    findings.append(finding)
+
+    findings = sorted(findings, key=lambda item: (item["path"], item["check"], item["pattern"]))
+    return (
+        {
+            "schema_version": "ynm-public-sanitization.v1",
+            "scope": "ALL_TRACKED_TEXT",
+            "files_scanned": len(text_files),
+            "files_excluded_as_binary": len(binary_files),
+            "excluded_paths": sorted((path.relative_to(root).as_posix()) for path in binary_files),
+            "checks": checks,
+            "result": "PASS" if not findings else "FAIL",
+            "findings": findings,
+        },
+        findings,
+    )
+
+
+def write_sanitization_report(root: Path, version: str, report: dict[str, Any], *, dry_run: bool = False) -> Path:
+    path = _public_sanitization_report_path(root, version)
+    if dry_run:
+        print(f"NOT_WRITING: {path}")
+        return path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        yaml.safe_dump(report, sort_keys=False, default_flow_style=False),
+        encoding="utf-8",
+    )
+    return path
 
 
 class ValidationError(Exception):
@@ -431,7 +488,14 @@ def check_fixture(path: str, schema: str, unwrap: str | None = None) -> list[str
 
 def check_links() -> list[str]:
     errors: list[str] = []
+    excluded_prefixes = {"dist", "dist-cli", ".tmp", ".venv"}
     for path in ROOT.rglob("*.md"):
+        relative = path.relative_to(ROOT).as_posix()
+        if not relative:
+            continue
+        if relative.split("/", maxsplit=1)[0] in excluded_prefixes:
+            continue
+
         for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
             if target.startswith(("http://", "https://", "mailto:", "#")):
                 continue
@@ -668,12 +732,29 @@ def check_release() -> list[str]:
         if isinstance(reference_state, dict) and reference_state.get("version") != "1.2.0":
             errors.append("state/releases/1.3.0/assessment.yaml: reference state must remain 1.2.0 baseline")
 
-    for group in ["components", "optional_adapters", "packaging", "provenance", "validation", "runtime"]:
-        for item_path in _flatten_manifest_values(manifest.get(group, {})):
+    package_component = manifest.get("package", {})
+    package_entries = package_component.get("include") if isinstance(package_component, dict) else None
+    if isinstance(package_entries, list):
+        for item_path in package_entries:
+            if not isinstance(item_path, str) or not item_path.strip():
+                errors.append("manifest.yaml: package.include must be a list of paths")
+                break
             if not (ROOT / item_path).exists():
                 errors.append(f"manifest.yaml: missing path {item_path}")
+    else:
+        errors.append("manifest.yaml: package.include must be a non-empty list")
 
-    labels = {"VALIDATED", "SUPPORTED_BY_DESIGN", "PARTIALLY_VALIDATED", "NOT_VALIDATED", "KNOWN_LIMITATION"}
+    for item_path in _flatten_manifest_values(manifest.get("optional_adapters", {})):
+        if not (ROOT / item_path).exists():
+            errors.append(f"manifest.yaml: missing optional adapter path {item_path}")
+
+    for item_path in _flatten_manifest_values(manifest.get("package", {})):
+        if item_path == "include":
+            continue
+        if not (ROOT / item_path).exists():
+            errors.append(f"manifest.yaml: missing manifest package metadata path {item_path}")
+
+    labels = ALLOWED_CAPABILITY_LABELS
     for name, label in manifest.get("compatibility", {}).items():
         if label not in labels:
             errors.append(f"manifest.yaml: invalid capability label for {name}: {label}")
@@ -931,41 +1012,115 @@ def check_baseline_integrity() -> list[str]:
 
 def check_public_sanitization() -> list[str]:
     errors: list[str] = []
-    text_files, binary_files = _tracked_text_files(ROOT)
-    checks = [
-        {"id": "PRIVATE_ABSOLUTE_PATH"},
-        {"id": "CREDENTIAL_PATTERN"},
-        {"id": "PRIVATE_REPOSITORY_REFERENCE"},
-        {"id": "PERSONAL_DATA_PATTERN"},
-        {"id": "PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
-    ]
-
-    findings: list[dict[str, Any]] = []
-    for path in text_files:
-        text = path.read_text(encoding="utf-8")
-        for check in checks:
-            for finding in _run_patterns(path, text, check_id=check["id"], patterns=TEXT_PATTERNS[check["id"]]):
-                if not _is_allowed_violation(path, finding):
-                    findings.append(finding)
+    report, findings = generate_sanitization_report(ROOT)
 
     for finding in sorted(findings, key=lambda item: (item["path"], item["check"])):
         errors.append(f"{finding['path']}: {finding['check']} violation")
-
-    report = {
-        "schema_version": "ynm-public-sanitization.v1",
-        "scope": "ALL_TRACKED_TEXT",
-        "files_scanned": len(text_files),
-        "files_excluded_as_binary": len(binary_files),
-        "excluded_paths": sorted((path.relative_to(ROOT).as_posix()) for path in binary_files),
-        "checks": checks,
-        "result": "PASS" if not findings else "FAIL",
-        "findings": sorted(findings, key=lambda item: (item["path"], item["check"], item["pattern"]),),
-    }
     errors.extend(_compare_sanitization_report(ROOT, report, findings=findings))
 
     if findings:
         for path in sorted({finding["path"] for finding in findings}):
             errors.append(f"sanitization finding: {path}")
+
+    return errors
+
+
+def check_workflow_invariants() -> list[str]:
+    errors: list[str] = []
+
+    if not WORKFLOW_PATH.exists():
+        return ["workflow invariant check: workflow file missing"]
+
+    try:
+        workflow = load_yaml(WORKFLOW_PATH)
+    except Exception as exc:  # noqa: BLE001
+        return [f"workflow invariant check: failed to parse workflow: {exc}"]
+
+    if not isinstance(workflow, dict):
+        return ["workflow invariant check: workflow is not a mapping"]
+
+    on_entry = workflow.get("on")
+    if on_entry is None and True in workflow:
+        on_entry = workflow.get(True)
+    if not isinstance(on_entry, dict):
+        errors.append("workflow invariant: on block missing")
+        return errors
+
+    push = on_entry.get("push")
+    if not isinstance(push, dict):
+        errors.append("workflow invariant: push event missing")
+    else:
+        branches = push.get("branches")
+        tags = push.get("tags")
+        if branches != ["main"]:
+            errors.append(f"workflow invariant: push.branches must be ['main'], found {branches}")
+        if tags != ["v*"]:
+            errors.append(f"workflow invariant: push.tags must be ['v*'], found {tags}")
+
+    if "pull_request" not in on_entry:
+        errors.append("workflow invariant: pull_request trigger missing")
+    if "workflow_dispatch" not in on_entry:
+        errors.append("workflow invariant: workflow_dispatch trigger missing")
+
+    concurrency = workflow.get("concurrency")
+    if not isinstance(concurrency, dict):
+        errors.append("workflow invariant: concurrency block missing")
+    else:
+        group = str(concurrency.get("group", ""))
+        if "github.event_name" not in group:
+            errors.append("workflow invariant: concurrency group does not include github.event_name")
+        if not concurrency.get("cancel-in-progress"):
+            errors.append("workflow invariant: concurrency.cancel-in-progress must be true")
+
+    jobs = workflow.get("jobs")
+    if not isinstance(jobs, dict):
+        errors.append("workflow invariant: jobs block missing")
+        return errors
+
+    if "release-integrity-tag" not in jobs:
+        errors.append("workflow invariant: release-integrity-tag job missing")
+
+    actions = [line for line in WORKFLOW_PATH.read_text(encoding="utf-8").splitlines() if "uses:" in line]
+    if "@" not in "".join(actions):
+        errors.append("workflow invariant: unable to detect action references")
+
+    for line in actions:
+        if "actions/checkout@" in line and not re.search(r"@([0-9a-f]{40})", line):
+            errors.append("workflow invariant: checkout action must use full commit SHA")
+        if "actions/setup-python@" in line and not re.search(r"@([0-9a-f]{40})", line):
+            errors.append("workflow invariant: setup-python action must use full commit SHA")
+
+    for job in jobs.values():
+        if not isinstance(job, dict):
+            continue
+        for step in job.get("steps", []) or []:
+            if not isinstance(step, dict):
+                continue
+            uses = step.get("uses", "")
+            if isinstance(uses, str) and uses.startswith("actions/checkout@"):
+                with_credentials = False
+                for key, value in step.items():
+                    if (
+                        key == "with"
+                        and isinstance(value, dict)
+                        and value.get("persist-credentials") in {False, "false", 0}
+                    ):
+                        with_credentials = True
+                if not with_credentials:
+                    errors.append("workflow invariant: checkout steps must set persist-credentials: false")
+
+    if isinstance(jobs.get("release-integrity-tag"), dict):
+        if "if" not in jobs["release-integrity-tag"]:
+            errors.append("workflow invariant: release-integrity-tag job missing tag-condition guard")
+        elif str(jobs["release-integrity-tag"]["if"]) != "github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')":
+            errors.append("workflow invariant: release-integrity-tag job condition is not tag-guarded correctly")
+        needs = jobs["release-integrity-tag"].get("needs")
+        if not isinstance(needs, list):
+            errors.append("workflow invariant: release-integrity-tag job requires explicit needs")
+        else:
+            missing_needs = sorted(set(["validate", "package", "security"]) - set(needs))
+            if missing_needs:
+                errors.append(f"workflow invariant: release-integrity-tag job missing needs {missing_needs}")
 
     return errors
 
@@ -1055,6 +1210,8 @@ def run(requested_checks: Sequence[str] | None = None) -> list[str]:
         errors.extend(check_public_sanitization())
     if "runtime-boundary" in normalized:
         errors.extend(check_runtime_boundary())
+    if "workflow-invariants" in normalized:
+        errors.extend(check_workflow_invariants())
 
     if "release" in normalized or "version-consistency" in normalized:
         scenarios = [line for line in (ROOT / "methodology/adversarial-validation.md").read_text(encoding="utf-8").splitlines() if line.startswith("| ")]
@@ -1069,8 +1226,13 @@ def main() -> int:
     parser.add_argument(
         "--check",
         action="append",
-        choices=DEFAULT_CHECKS + ["security-boundary", "all"],
+        choices=DEFAULT_CHECKS + ["security-boundary", "all", "workflow-invariants"],
         help="Run a single validation check (repeatable).",
+    )
+    parser.add_argument(
+        "--refresh-sanitization-report",
+        action="store_true",
+        help="Refresh state/releases/<VERSION>/sanitization-report.yaml from tracked text files",
     )
     args = parser.parse_args()
 
@@ -1084,8 +1246,24 @@ def main() -> int:
             checks_to_run = sorted(set(requested))
     else:
         checks_to_run = DEFAULT_CHECKS
+    if "workflow-invariants" not in checks_to_run and args.refresh_sanitization_report:
+        if "public-sanitization" not in checks_to_run:
+            checks_to_run.append("public-sanitization")
+
+    refresh_report = None
+    refresh_findings = None
+    if args.refresh_sanitization_report:
+        refresh_report, refresh_findings = generate_sanitization_report(ROOT)
+        write_sanitization_report(ROOT, CURRENT_VERSION, refresh_report, dry_run=False)
+        if "public-sanitization" not in checks_to_run:
+            checks_to_run = sorted(set(checks_to_run) | {"public-sanitization"})
+        if args.check is None:
+            print("Refreshed public sanitization report")
 
     errors = run(checks_to_run)
+    if args.refresh_sanitization_report and refresh_report is not None:
+        if refresh_findings is not None:
+            errors.extend(_compare_sanitization_report(ROOT, refresh_report, findings=refresh_findings))
     if errors:
         print("YNM validation failed:")
         for error in errors:

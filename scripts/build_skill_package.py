@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import shutil
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -25,60 +24,58 @@ def load_manifest(manifest_path: Path) -> dict[str, Any]:
     return yaml.safe_load(manifest_path.read_text(encoding="utf-8")) or {}
 
 
-def _normalize_candidate(candidate: str, manifest_root: Path, seen: set[str]) -> list[Path]:
-    if ".." in candidate or candidate.startswith(("/", "\\")):
-        raise PackageError(f"manifest path escapes repository: {candidate}")
+def _normalize_candidate(candidate: str, manifest_root: Path) -> Path:
+    if not isinstance(candidate, str) or not candidate.strip():
+        raise PackageError("manifest package include entries must be non-empty strings")
 
-    base = Path(candidate)
-    if base.is_absolute():
+    candidate = candidate.strip()
+    if candidate.startswith(("/", "\\")):
         raise PackageError(f"absolute manifest path not allowed: {candidate}")
+    if ".." in Path(candidate).parts:
+        raise PackageError(f"path traversal is not allowed: {candidate}")
 
-    source = (manifest_root / base).resolve()
+    source = (manifest_root / candidate).resolve()
     try:
         source.relative_to(manifest_root)
     except ValueError as exc:
-        raise PackageError(f"manifest path outside repo: {candidate}") from exc
-
-    if candidate in seen:
-        return []
-    seen.add(candidate)
+        raise PackageError(f"manifest path outside repository: {candidate}") from exc
 
     if not source.exists():
         raise PackageError(f"required manifest path not found: {candidate}")
-
-    if source.is_file():
-        return [source]
-    return sorted(path for path in source.rglob("*") if path.is_file())
+    return source
 
 
-def collect_manifest_paths(manifest: dict[str, Any], root: Path) -> list[Path]:
+def _collect_package_paths(manifest: dict[str, Any], root: Path) -> list[Path]:
+    package = manifest.get("package", {})
+    if not isinstance(package, dict):
+        raise PackageError("manifest.package is required for package inclusion")
+
+    includes = package.get("include")
+    if not isinstance(includes, list) or not includes:
+        raise PackageError("manifest.package.include must be a non-empty list")
+
     paths: list[Path] = []
-    seen: set[str] = set()
-    for group in ["components", "optional_adapters", "packaging", "provenance", "validation", "runtime"]:
-        group_value = manifest.get(group)
-        if group_value is None:
+    seen: set[Path] = set()
+    for candidate in includes:
+        if not isinstance(candidate, str):
+            raise PackageError(f"manifest.package.include entry must be a string: {candidate!r}")
+        source = _normalize_candidate(candidate, root)
+        if source in seen:
             continue
-        if isinstance(group_value, dict):
-            candidates = [value for value in group_value.values()]
-        elif isinstance(group_value, list):
-            candidates = group_value
-        else:
-            continue
-        for candidate in candidates:
-            if isinstance(candidate, str):
-                paths.extend(_normalize_candidate(candidate, root, seen))
-            elif isinstance(candidate, list):
-                for nested in candidate:
-                    if isinstance(nested, str):
-                        paths.extend(_normalize_candidate(nested, root, seen))
-            else:
-                raise PackageError(f"unsupported manifest path entry type: {candidate!r}")
+        seen.add(source)
 
-    # Always include the manifest itself for reproducibility and discovery.
+        if source.is_file():
+            paths.append(source)
+        else:
+            for path in sorted(source.rglob("*")):
+                if path.is_file():
+                    paths.append(path)
+
+    # Always include manifest itself if it is not already included.
     manifest_file = root / "manifest.yaml"
-    if manifest_file not in paths:
+    if manifest_file not in seen:
         paths.append(manifest_file)
-    return paths
+    return sorted(set(paths), key=lambda path: str(path))
 
 
 def relative_posix(path: Path, root: Path) -> str:
@@ -101,7 +98,7 @@ def build_package(output_dir: Path, manifest_path: Path, *, overwrite: bool = Fa
                 item.unlink()
     package_root.mkdir(parents=True, exist_ok=True)
 
-    entries = collect_manifest_paths(manifest, source_root)
+    entries = _collect_package_paths(manifest, source_root)
 
     copied: list[str] = []
     for source in entries:
@@ -115,6 +112,7 @@ def build_package(output_dir: Path, manifest_path: Path, *, overwrite: bool = Fa
         "manifest_version": manifest.get("version"),
         "name": manifest.get("name"),
         "copied_files": sorted(copied),
+        "package_fields": sorted(relative_posix(path, source_root) for path in _collect_package_paths(manifest, source_root)),
     }
     (package_root / "package-manifest.yaml").write_text(
         yaml.safe_dump(copy_report, sort_keys=False, default_flow_style=False),

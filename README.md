@@ -27,7 +27,7 @@ Ordinary approaches help in different ways, but they typically leave gaps:
 
 YNM adds the missing layer: explicit propositions, preserved uncertainty, and explicit terminal outcomes.
 
-YNM was refined through use on real, heterogeneous engineering work with multiple technologies, audiences, and maturity levels. That experience showed one-pass judgments are often insufficient and that architecture, implementation, adoption, and maintenance progress at different speeds.
+YNM was refined through practical engineering work across multiple technologies, audiences, and maturity levels. That experience showed one-pass judgments are often insufficient and that architecture, implementation, adoption, and maintenance can progress at different speeds.
 
 YNM does not replace tests, domain checks, or domain expertise. It coordinates review, evidence, and uncertainty so subsequent decisions can be made intentionally.
 
@@ -220,7 +220,9 @@ skills-ref validate dist/ynm
 skills-ref read-properties dist/ynm
 ```
 
-The CI checks `skills-ref` against a pinned reference revision (currently `69ef37e9424c0a7ea9dd2293b559e43ec8176379`) so format and reference conformance are reproducible. It confirms Agent Skills format conformance only; it is **not** independent interoperability validation.
+The CI checks `skills-ref` against a pinned reference revision so format and reference
+conformance are reproducible. It confirms Agent Skills format conformance only; it is
+**not** independent interoperability validation.
 
 ## Repository structure
 
@@ -255,13 +257,29 @@ Use [Extension Model](methodology/extension-model.md) for additional loops. Exte
 **Candidate status:** release candidate
 
 - Candidate release evidence is in `state/releases/1.3.0`.
-- Deterministic local tests: **42 PASS**.
+- Deterministic local tests: **PASS**.
 - Workflow includes schema, lifecycle, security-boundary, package, and release-integrity validations.
 - Historical 1.0.0 through 1.2.0 maturity evidence is integrity-checked.
 - Manifested package validation uses the pinned Agent Skills reference implementation.
 - `YNM-VAL-001` remains **MAYBE**: no independent third-party implementation has yet demonstrated compatible YNM records.
 
-YNM uses the Python `jsonschema` Draft 2020-12 validator for its declared schemas, together with YNM-specific checks for cross-file lifecycle consistency, release integrity, sanitization, and runtime boundaries. Passing these validations does **not** mean independent implementation or interoperability validation is complete.
+YNM uses the Python `jsonschema` Draft 2020-12 validator for its declared schemas, together with YNM-specific checks for cross-file lifecycle consistency, release integrity, sanitization, and runtime boundaries.
+
+Passing these checks means the repository and candidate evidence are internally consistent. It is not proof of independent implementation compatibility.
+
+## Core method vs optional tooling
+
+YNM can be used without a Python runtime for manual interpretation:
+
+- Core methodology: read and follow `SKILL.md`, contracts, and methodology.
+
+Optional helpers are available when you want local validation:
+
+- Python >= 3.10
+- `PyYAML >= 6,<7`
+- Validation dependencies listed in `pyproject.toml`
+
+If you are only using the method and runtime package, these helper dependencies are optional.
 
 ## Evaluate YNM independently
 

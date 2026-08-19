@@ -20,4 +20,5 @@ final_assessment:
     - state/releases/1.3.0/runs.yaml
     - state/releases/1.3.0/stability.yaml
     - state/releases/1.3.0/sanitization-report.yaml
-  publication_authorization: AUTHORIZED
+  publication_readiness: "YES"
+  publication_authorization: REQUIRES_HUMAN

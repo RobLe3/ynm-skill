@@ -392,8 +392,18 @@ def validate_release_integrity(
     return checks
 
 
-def run(version: str, root: Path | None = None, future_tolerance_seconds: int = 300) -> list[str]:
-    result = validate_release_integrity(version, root=root, future_tolerance_seconds=future_tolerance_seconds)
+def run(
+    version: str,
+    root: Path | None = None,
+    future_tolerance_seconds: int = 300,
+    require_publication_commit_tree: bool = False,
+) -> list[str]:
+    result = validate_release_integrity(
+        version,
+        root=root,
+        future_tolerance_seconds=future_tolerance_seconds,
+        require_publication_commit_tree=require_publication_commit_tree,
+    )
     messages: list[str] = []
     messages.extend(f"{issue}" for issue in result.errors)
     messages.extend(f"warning: {issue}" for issue in result.warnings)
@@ -414,7 +424,12 @@ def main() -> int:
     args = parser.parse_args()
 
     release = args.release or _read_version(Path(args.root))
-    messages = run(release, root=Path(args.root), future_tolerance_seconds=args.tolerance)
+    messages = run(
+        release,
+        root=Path(args.root),
+        future_tolerance_seconds=args.tolerance,
+        require_publication_commit_tree=args.require_publication_tree,
+    )
 
     if messages:
         print("YNM release-integrity validation issues:")

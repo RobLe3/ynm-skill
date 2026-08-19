@@ -1,50 +1,39 @@
 name: ynm
-version: 1.3.0
 description: Project-agnostic iterative review with evidence-backed YES, NO, or MAYBE dispositions and mandatory delivery.
 license: Apache-2.0
+version: 1.3.0
 entrypoint:
   skill: SKILL.md
 
-components:
-  normative:
+package:
+  include:
     - SKILL.md
-    - loops
+    - README.md
+    - LICENSE
+    - NOTICE
+    - VERSION
+    - manifest.yaml
     - contracts
+    - loops
     - methodology
-  schemas:
     - schemas
-  scripts:
     - scripts/project_integration.py
     - scripts/execution_lifecycle.py
-    - scripts/build_skill_package.py
-  examples:
     - examples/software-project.md
-    - examples/project-bootstrap.md
-    - examples/existing-project-integration.md
-    - examples/publication-package.md
     - examples/documentation-project.md
     - examples/research-project.md
-    - examples/security-extension.md
-    - examples/data
-
-optional_adapters:
-  - agents/openai.yaml
-
-packaging:
-  - README.md
-  - LICENSE
-  - NOTICE
-  - VERSION
-  - CHANGELOG.md
-  - VERSIONING.md
-  - CONTRIBUTING.md
-  - SECURITY.md
-  - VALIDATION.md
-  - AGENTS.md
+    - examples/project-bootstrap.md
+    - examples/existing-project-integration.md
+    - agents/openai.yaml
 
 compatibility:
   human_execution: SUPPORTED_BY_DESIGN
-  ai_execution: VALIDATED
-  stateless: VALIDATED
-  persistent: VALIDATED
+  ai_execution: MAINTAINER_VALIDATED
+  stateless: MAINTAINER_VALIDATED
+  persistent: MAINTAINER_VALIDATED
   independent_third_party_implementation: NOT_VALIDATED
+
+metadata:
+  version: "1.3.0"
+  repository: "https://github.com/RobLe3/ynm-skill"
+  license: "Apache-2.0"

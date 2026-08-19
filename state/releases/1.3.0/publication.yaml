@@ -7,6 +7,8 @@ publication:
   version: 1.3.0
   release: YNM 1.3.0
   status: CANDIDATE
+  publication_readiness: "YES"
+  publication_authorization: REQUIRES_HUMAN
   license: Apache-2.0
   publication_is_third_party_validation: false
   verification_basis: local-evidence-state

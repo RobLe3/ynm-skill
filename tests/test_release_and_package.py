@@ -64,6 +64,23 @@ class PackageBuildTests(unittest.TestCase):
             second = self.build_skill_package.build_package(Path(tmp) / "second", ROOT / "manifest.yaml", overwrite=True)
             second_sig = self.build_skill_package.deterministic_signature(second)
 
+            first_inventory = sorted(
+                f.relative_to(first).as_posix()
+                for f in first.rglob("*")
+                if f.is_file()
+            )
+            second_inventory = sorted(
+                f.relative_to(second).as_posix()
+                for f in second.rglob("*")
+                if f.is_file()
+            )
+            self.assertEqual(first_inventory, second_inventory)
+
+            for relative in first_inventory:
+                self.assertEqual(
+                    (first / relative).read_bytes(),
+                    (second / relative).read_bytes(),
+                )
             self.assertEqual(first_sig, second_sig)
 
     def test_skills_ref_validate_references_generated(self):
@@ -77,10 +94,17 @@ class PackageBuildTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             package = self.build_skill_package.build_package(Path(tmp), ROOT / "manifest.yaml", overwrite=True)
             forbidden_paths = [
+                package / "AGENTS.md",
                 package / ".github",
+                package / "CHANGELOG.md",
+                package / "CONTRIBUTING.md",
+                package / "SECURITY.md",
+                package / "VALIDATION.md",
+                package / "VERSIONING.md",
+                package / "build_skill_package.py",
+                package / "state",
                 package / "tests",
                 package / "validation",
-                package / "state/releases",
                 package / "state/events.yaml",
                 package / "state/runs.yaml",
                 package / "state/maturity-assessment.yaml",

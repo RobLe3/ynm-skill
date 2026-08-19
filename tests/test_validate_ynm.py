@@ -5,10 +5,13 @@ import unittest
 from pathlib import Path, PureWindowsPath
 from unittest.mock import patch
 
+import validation.validate_ynm as validator
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from validation.validate_ynm import (
+    _public_sanitization_report_path,
     TEXT_PATTERNS,
     _is_allowed_violation,
     _run_patterns,
@@ -23,8 +26,11 @@ from validation.validate_ynm import (
     load_yaml,
     resolve_ref,
     run,
+    write_sanitization_report,
+    check_workflow_invariants,
     validate,
 )
+from scripts.project_integration import classify_roles
 from scripts.execution_lifecycle import InvocationLifecycle, TERMINAL_REASONS
 
 
@@ -136,6 +142,41 @@ class YNMValidationTests(unittest.TestCase):
 
     def test_runtime_does_not_depend_on_provenance(self):
         self.assertEqual(check_runtime_boundary(), [])
+
+    def test_workflow_invariants_are_sane(self):
+        self.assertEqual(check_workflow_invariants(), [])
+
+    def test_discovery_classification_requires_confirmation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            project = Path(tmp) / "project"
+            project.mkdir()
+            (project / "README.md").write_text("# Project\n", encoding="utf-8")
+            roles = classify_roles(project)
+            by_role = {entry["role"]: entry for entry in roles}
+            self.assertIn("project_entry", by_role)
+            self.assertEqual(by_role["project_entry"]["status"], "CANDIDATE")
+
+    def test_default_validation_is_read_only_for_sanitization_report(self):
+        report_path = _public_sanitization_report_path(ROOT)
+        original = report_path.read_text(encoding="utf-8")
+        with patch.object(sys, "argv", ["validate_ynm.py"]):
+            with patch("validation.validate_ynm.write_sanitization_report") as write_mock:
+                validation_result = validator.main()
+        self.assertEqual(validation_result, 0)
+        write_mock.assert_not_called()
+        self.assertEqual(report_path.read_text(encoding="utf-8"), original)
+
+    def test_refresh_sanitization_flag_writes_report(self):
+        with patch("validation.validate_ynm.run", return_value=[]):
+            with patch.object(sys, "argv", ["validate_ynm.py", "--refresh-sanitization-report"]):
+                with patch("validation.validate_ynm.generate_sanitization_report", wraps=validator.generate_sanitization_report) as generate_mock:
+                    with patch("validation.validate_ynm.write_sanitization_report") as write_mock:
+                        validator.main()
+        generate_mock.assert_called_once_with(ROOT)
+        write_mock.assert_called_once()
+        called_with = write_mock.call_args.kwargs
+        self.assertIn("dry_run", called_with)
+        self.assertFalse(called_with["dry_run"])
 
     def run_bootstrap(self, project: Path, *args: str):
         return subprocess.run(

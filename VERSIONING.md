@@ -14,6 +14,8 @@ The existing core semantics, run-receipt contract shape, and focal-loop ownershi
 
 ## Historical baseline
 
-`1.0.0` is the immutable production-maturity baseline. Its frozen assessment, findings, receipts, gates, and final disposition are not retroactively evaluated against 1.1.0 requirements.
+`1.0.0` is the immutable historical maintainer-assessed baseline. Its frozen assessment,
+findings, receipts, gates, and final disposition are not retroactively evaluated against
+`1.1.0` or later revision criteria.
 
-`1.1.0` is the immutable Project Integration and publication-readiness baseline. Its report and release state are protected by the 1.2.0 baseline hashes.
+`1.1.0` is the immutable Project Integration and publication-readiness baseline. Its report and release state are preserved in immutable release evidence.

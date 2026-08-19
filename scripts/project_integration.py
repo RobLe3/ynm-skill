@@ -181,6 +181,25 @@ def parse_ynm_owned_yaml(path: Path) -> bool:
     return is_ynm_owned_document(load_structured_text(path))
 
 
+def _file_confirms_role(role: str, path: Path) -> bool:
+    content = _read_text(path)
+    if not content:
+        return False
+
+    marker = re.search(rf"^#\s*YNM_ROLE:\s*{re.escape(role)}\s*$", content, re.IGNORECASE | re.MULTILINE)
+    if marker:
+        return True
+
+    if path.suffix in {".yml", ".yaml"}:
+        document = load_structured_text(path)
+        if isinstance(document, dict):
+            if document.get("managed_by") == "ynm" and document.get(role):
+                return True
+            if document.get("ynm_role") == role:
+                return True
+    return False
+
+
 def parse_marked_agents_section(text: str) -> str:
     return f"{BEGIN_MARKER}\n{text.rstrip()}\n{END_MARKER}"
 
@@ -258,7 +277,7 @@ def classify_roles(project_root: Path) -> list[dict[str, Any]]:
                 status = "CANDIDATE"
             else:
                 evidence = ["candidate file match"]
-                status = "CONFIRMED"
+                status = "CONFIRMED" if _file_confirms_role(role, path) else "CANDIDATE"
             artifacts.append({"path": candidate, "status": status, "evidence": evidence})
             role_status = "CONFIRMED" if status == "CONFIRMED" else "CANDIDATE"
 
