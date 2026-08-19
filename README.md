@@ -170,7 +170,7 @@ An additional focal loop declares purpose, scope, evidence, responsibilities, no
 **Current version:** 1.3.0
 
 - Production-maturity disposition for 1.2.x baseline: recorded in `YNM_1_2_MATURITY_REPORT.md`. Release-candidate state is in `state/releases/1.3.0/final-assessment.yaml` and `state/releases/1.3.0/runs.yaml`.
-- Final local validation: 36 deterministic unit tests, executable lifecycle/package/release security scenarios, and 79 adversarial scenarios with explicit expected outcomes.
+- Final local validation: 41 deterministic unit tests, executable lifecycle/package/release security scenarios, and adversarial scenario coverage with explicit expected outcomes.
 - Historical 1.0.0 and 1.1.0 maturity evidence is integrity-checked.
 - Generic, specialist, stateless, persistent, project-bootstrap, lifecycle, and repository validation paths are locally exercised.
 - The bundled validator implements the JSON Schema features used by YNM fixtures, not every Draft 2020-12 feature.
