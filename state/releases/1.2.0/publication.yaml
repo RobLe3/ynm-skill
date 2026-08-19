@@ -7,6 +7,19 @@ publication:
   version: 1.2.0
   tag: v1.2.0
   release: YNM 1.2.0
-  status: READY_FOR_PUBLICATION
+  status: VERIFIED_PUBLIC
+  lifecycle_commit: 4358da6f36fadd2c0e95fbf021074c9b8842dbce
+  verification_basis_commit: 22cc4e16f721e799e755da1abc96b9da98f4d9da
+  verified_at: "2026-08-19T19:15:00Z"
+  verification:
+    repository_public: PASS
+    default_branch_main: PASS
+    clean_clone_validation: PASS
+    readme_reachable: PASS
+    skill_reachable: PASS
+    manifest_reachable: PASS
+    license_detected_apache_2_0: PASS
+    issue_templates_present: PASS
+    private_path_scan: PASS
   license: Apache-2.0
   publication_is_third_party_validation: false
