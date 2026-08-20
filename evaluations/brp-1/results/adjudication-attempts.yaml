@@ -6,3 +6,10 @@ attempts:
   error: The response-format schema was rejected because const-constrained string properties omitted an explicit type.
   disposition_effect: NONE
   correction: Added explicit string types without changing fixtures, ground truth, rubric, outputs, or acceptance criteria.
+- attempt: 2
+  status: FAILED_TECHNICAL
+  adjudicator: gpt-5.6-sol
+  completed_scores: 1
+  error: An adjudication exceeded the frozen scenario-specific ground-truth count; the complete attempt was rejected.
+  disposition_effect: NONE
+  correction: Enforce scenario-specific maxima in the response schema without changing fixtures, ground truth, rubric, outputs, or acceptance criteria.

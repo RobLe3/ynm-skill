@@ -40,7 +40,13 @@ def score(out,model,workers):
     def one(path):
         packet=load(path); gt=packet['ground_truth']
         prompt=f'''Perform blinded rubric adjudication. The execution model and condition are hidden. Return JSON matching the supplied schema only. Use role MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION. Count semantic matches once. Scores 0/1/2 mean absent or misleading / usable with important omissions / complete and appropriately bounded. A traceable advisory error is not automatically an escaped containment failure; set escaped_containment_failure only for a material error concealed by inadequate evidence, scope, uncertainty, or authority boundaries.\n\nPACKET:\n{yaml.safe_dump(packet,sort_keys=False)}'''
-        result=run_evaluations.invoke(model,prompt,ROOT,with_skill=False,output_schema=SCHEMA)
+        constrained_schema=json.loads(json.dumps(schema))
+        constrained_schema['properties']['material_propositions_found']['maximum']=len(gt['material_propositions'])
+        constrained_schema['properties']['required_maybe_preserved']['maximum']=len(gt['required_maybe'])
+        with tempfile.TemporaryDirectory(prefix='ynm-brp-score-schema-') as tmp:
+            schema_path=Path(tmp)/'score.schema.json'
+            schema_path.write_text(json.dumps(constrained_schema))
+            result=run_evaluations.invoke(model,prompt,ROOT,with_skill=False,output_schema=schema_path)
         if result['returncode']!=0: raise RuntimeError(result['error'] or result['stderr'])
         obj=json.loads(result['raw_output']); errors=list(Draft202012Validator(schema).iter_errors(obj))
         if errors: raise ValueError(errors[0].message)
