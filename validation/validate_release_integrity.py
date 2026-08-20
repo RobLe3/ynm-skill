@@ -446,8 +446,8 @@ def validate_release_integrity(
                     checks.errors.append("publication.yaml version does not match tagged release")
                 if publication.get("publication_readiness") != "YES":
                     checks.errors.append("publication.yaml is not ready for publication")
-                if publication.get("status") != "READY_FOR_TAG":
-                    checks.errors.append("publication.yaml status must be READY_FOR_TAG before tagging")
+                if publication.get("status") not in {"READY_FOR_TAG", "PUBLISHED"}:
+                    checks.errors.append("publication.yaml status must be READY_FOR_TAG or PUBLISHED")
                 if publication.get("publication_authorization") != "AUTHORIZED_BY_HUMAN":
                     checks.errors.append("publication.yaml requires explicit human publication authorization")
 

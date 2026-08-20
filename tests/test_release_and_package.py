@@ -51,9 +51,9 @@ class ReleaseIntegrityTests(unittest.TestCase):
             require_tagged_subject=True,
             tag_ref=f"v{version}",
         )
-        self.assertFalse(any("READY_FOR_TAG" in item for item in checks.errors))
+        self.assertFalse(any("READY_FOR_TAG or PUBLISHED" in item for item in checks.errors))
         self.assertFalse(any("human publication authorization" in item for item in checks.errors))
-        self.assertTrue(any("does not resolve to a commit" in item for item in checks.errors))
+        self.assertFalse(checks.errors, checks.errors)
 
     def test_simulated_human_finalized_tag_subject_passes(self):
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
@@ -62,6 +62,7 @@ class ReleaseIntegrityTests(unittest.TestCase):
             subprocess.run(["git", "clone", "--quiet", "--no-hardlinks", str(ROOT), str(clone)], check=True)
             subprocess.run(["git", "-C", str(clone), "config", "user.name", "YNM Test"], check=True)
             subprocess.run(["git", "-C", str(clone), "config", "user.email", "ynm-test@example.invalid"], check=True)
+            subprocess.run(["git", "-C", str(clone), "tag", "-d", f"v{version}"], check=False, capture_output=True)
             publication_path = clone / f"state/releases/{version}/publication.yaml"
             document = yaml.safe_load(publication_path.read_text(encoding="utf-8"))
             document["publication"]["status"] = "READY_FOR_TAG"
