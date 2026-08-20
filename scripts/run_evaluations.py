@@ -244,9 +244,13 @@ def run_trigger_suite(models: list[str], repetitions: int, output_root: Path, ob
                 write_result(output_root, case["id"], "YNM", repetition, model, result)
 
 
-def run_benchmark(models: list[str], output_root: Path, workers: int = 6) -> None:
-    scenarios = yaml.safe_load((ROOT / "evaluations/scenarios.yaml").read_text(encoding="utf-8"))["scenarios"]
-    jobs = [(model, scenario, condition, with_skill) for model in models for scenario in scenarios for condition, with_skill in (("CONTROL", False), ("YNM", True))]
+def run_benchmark(
+    models: list[str], output_root: Path, workers: int = 6, *,
+    scenarios_path: Path | None = None, treatment_label: str = "YNM",
+) -> None:
+    scenario_source = scenarios_path or (ROOT / "evaluations/scenarios.yaml")
+    scenarios = yaml.safe_load(scenario_source.read_text(encoding="utf-8"))["scenarios"]
+    jobs = [(model, scenario, condition, with_skill) for model in models for scenario in scenarios for condition, with_skill in (("CONTROL", False), (treatment_label, True))]
     def execute(job: tuple) -> tuple:
         model, scenario, condition, with_skill = job
         fixture = ROOT / scenario["fixture"]
@@ -272,6 +276,8 @@ def main() -> int:
     parser.add_argument("--repetitions", type=int, default=5)
     parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "evaluations/results")
+    parser.add_argument("--scenarios", type=Path, default=ROOT / "evaluations/scenarios.yaml")
+    parser.add_argument("--treatment-label", default="YNM")
     args = parser.parse_args()
     models = args.models or list(DEFAULT_MODELS)
     if args.repetitions < 1:
@@ -290,7 +296,10 @@ def main() -> int:
     if args.run_triggers:
         run_trigger_suite(models, args.repetitions, args.output_dir, observability_mode, args.workers)
     if args.run_benchmark:
-        run_benchmark(models, args.output_dir, args.workers)
+        run_benchmark(
+            models, args.output_dir, args.workers,
+            scenarios_path=args.scenarios, treatment_label=args.treatment_label,
+        )
     if not args.run_triggers and not args.run_benchmark and not args.smoke_observability:
         parser.error("select --probe, --smoke-observability, --run-triggers, or --run-benchmark")
     return 0

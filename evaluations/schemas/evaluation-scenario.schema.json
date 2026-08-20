@@ -13,11 +13,13 @@
         "type": "object",
         "required": ["id", "kind", "prompt", "expected_behavior"],
         "properties": {
-          "id": {"type": "string", "pattern": "^(?:TRIG|YNM-EVAL)-[0-9]{3}$"},
+          "id": {"type": "string", "pattern": "^(?:TRIG|YNM-EVAL|YNM-140-HOLD)-[0-9]{3}$"},
           "kind": {"enum": ["TRIGGER", "BENCHMARK"]},
           "prompt": {"type": "string", "minLength": 1},
           "fixture": {"type": "string", "minLength": 1},
           "expected_behavior": {"type": "string", "minLength": 1},
+          "expected_level": {"enum": ["YNM-0", "YNM-1", "YNM-2", "YNM-3"]},
+          "expected_retrieval": {"enum": ["DIRECT", "AST", "DIFF", "COVERAGE", "SEMANTIC", "NONE"]},
           "expected_activation": {"type": "boolean"},
           "ground_truth": {
             "type": "object",

@@ -11,6 +11,14 @@ from validation import validate_ynm
 
 
 class EvaluationHarnessTests(unittest.TestCase):
+    def test_14_holdout_is_frozen_and_collision_free(self):
+        protocol = yaml.safe_load((run_evaluations.ROOT / "evaluations/1.4/protocol.yaml").read_text(encoding="utf-8"))
+        holdout = yaml.safe_load((run_evaluations.ROOT / "evaluations/1.4/holdout.yaml").read_text(encoding="utf-8"))["scenarios"]
+        self.assertEqual(len(holdout), protocol["holdout_scenarios"])
+        self.assertEqual(len({row["id"] for row in holdout}), len(holdout))
+        self.assertTrue(all(row["id"].startswith("YNM-140-HOLD-") for row in holdout))
+        self.assertEqual({row["expected_level"] for row in holdout}, {"YNM-0", "YNM-1", "YNM-2", "YNM-3"})
+
     def test_repository_evaluation_artifacts_validate(self):
         self.assertEqual(validate_ynm.check_evaluation_artifacts(), [])
 

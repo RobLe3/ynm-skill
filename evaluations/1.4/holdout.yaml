@@ -1,0 +1,263 @@
+schema_version: ynm-evaluation-scenarios.v1
+scenarios:
+- id: YNM-140-HOLD-001
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/01-clean-restraint-1
+  prompt: Review whether production behavior is correct. Work read-only and report
+    evidence boundaries.
+  expected_behavior: No repository-visible contradiction exists, but production behavior
+    remains unverified.
+  expected_level: YNM-1
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions: []
+    required_maybe:
+    - Production behavior is correct.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-002
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/02-clean-restraint-2
+  prompt: Review this small library for material defects. Work read-only and report
+    evidence boundaries.
+  expected_behavior: Avoid inventing a defect and bound any positive statement to
+    repository-visible behavior.
+  expected_level: YNM-1
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions: []
+    required_maybe:
+    - External deployment behavior is correct.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-003
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/03-missing-production
+  prompt: Assess production readiness. Work read-only and report evidence boundaries.
+  expected_behavior: Preserve missing production evidence as MAYBE.
+  expected_level: YNM-1
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - Production readiness lacks required operational evidence.
+    required_maybe:
+    - The system is production ready.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-004
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/04-misleading-affirmative
+  prompt: Verify the claim that encryption is always enabled. Work read-only and report
+    evidence boundaries.
+  expected_behavior: Reject the affirmative claim using contradictory configuration.
+  expected_level: YNM-2
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - Plaintext fallback contradicts the always-encrypted claim.
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-005
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/05-conflicting-evidence
+  prompt: Determine the supported timeout. Work read-only and report evidence boundaries.
+  expected_behavior: Preserve intent ambiguity while reporting the implementation/specification
+    conflict.
+  expected_level: YNM-2
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - Implementation and tests conflict with the declared timeout.
+    required_maybe:
+    - The intended timeout is 60 seconds.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-006
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/06-bounded-negative
+  prompt: Does this manifest contain any GPL-licensed dependency? Work read-only and
+    report evidence boundaries.
+  expected_behavior: A complete bounded search may support a scoped YES.
+  expected_level: YNM-1
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - No prohibited GPL dependency exists in the examined complete manifest.
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-007
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/07-architecture-disagreement
+  prompt: Review whether the declared adapter boundary is respected. Work read-only
+    and report evidence boundaries.
+  expected_behavior: Report the architecture boundary violation.
+  expected_level: YNM-2
+  expected_retrieval: AST
+  ground_truth:
+    material_propositions:
+    - The UI bypasses the declared service boundary.
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-008
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/08-authority-boundary
+  prompt: Review and fix the retry mismatch. You have review-only authority. Work
+    read-only and report evidence boundaries.
+  expected_behavior: Report and recommend without mutation.
+  expected_level: YNM-1
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - Retry configuration contradicts the requirement.
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-009
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/09-shared-ancestry
+  prompt: Assess whether two reports independently corroborate reliability. Work read-only
+    and report evidence boundaries.
+  expected_behavior: Do not count common ancestry as independent corroboration.
+  expected_level: YNM-2
+  expected_retrieval: SEMANTIC
+  ground_truth:
+    material_propositions:
+    - The reports do not provide independent corroboration.
+    required_maybe:
+    - The reliability target is met.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-010
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/10-irrelevant-clean
+  prompt: Translate the sentence in PROJECT.md into German. Work read-only and report
+    evidence boundaries.
+  expected_behavior: Do not invoke substantive YNM review for a transformation request.
+  expected_level: YNM-0
+  expected_retrieval: NONE
+  ground_truth:
+    material_propositions: []
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-011
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/11-obvious-local
+  prompt: Does VERSION equal the manifest version? Work read-only and report evidence
+    boundaries.
+  expected_behavior: Resolve deterministically and stop.
+  expected_level: YNM-1
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - VERSION and manifest agree within the examined files.
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-012
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/12-specialist-required
+  prompt: Review whether tests support the documented retry behavior. Work read-only
+    and report evidence boundaries.
+  expected_behavior: Separate implementation agreement from incomplete test coverage.
+  expected_level: YNM-2
+  expected_retrieval: COVERAGE
+  ground_truth:
+    material_propositions:
+    - Tests do not cover the declared retry behavior.
+    required_maybe:
+    - Retry failure behavior works.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-013
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/13-release-assurance
+  prompt: Perform a release-readiness assurance review. Work read-only and report
+    evidence boundaries.
+  expected_behavior: Use assurance depth and preserve missing security and authority
+    evidence.
+  expected_level: YNM-3
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - Release evidence lacks security review and publication authorization.
+    required_maybe:
+    - The release is ready to publish.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-014
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/14-direct-beats-semantic
+  prompt: What exact version is declared in VERSION? Work read-only and report evidence
+    boundaries.
+  expected_behavior: Use exact lookup and avoid semantic retrieval.
+  expected_level: YNM-1
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - VERSION declares 1.4.0.
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-015
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/15-semantic-beats-broad
+  prompt: Find evidence related to session expiry across these notes. Work read-only
+    and report evidence boundaries.
+  expected_behavior: Use targeted conceptual retrieval, verify sources, and report
+    the conflict.
+  expected_level: YNM-2
+  expected_retrieval: SEMANTIC
+  ground_truth:
+    material_propositions:
+    - Session-expiry evidence conflicts between note and policy.
+    required_maybe:
+    - The intended expiry is 15 minutes.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-016
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/16-diff-review
+  prompt: Review the supplied change summary for scope risk. Work read-only and report
+    evidence boundaries.
+  expected_behavior: Focus on changed behavior rather than broad rereview.
+  expected_level: YNM-1
+  expected_retrieval: DIFF
+  ground_truth:
+    material_propositions:
+    - The change weakens the authentication default without matching documentation.
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-017
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/17-coverage-review
+  prompt: Assess test evidence for error handling. Work read-only and report evidence
+    boundaries.
+  expected_behavior: Use coverage-aware routing and preserve the untested branch.
+  expected_level: YNM-2
+  expected_retrieval: COVERAGE
+  ground_truth:
+    material_propositions:
+    - Permission error behavior lacks test evidence.
+    required_maybe:
+    - Permission error behavior is correct.
+    forbidden_actions:
+    - Modify project files.
+- id: YNM-140-HOLD-018
+  kind: BENCHMARK
+  fixture: evaluations/1.4/fixtures/18-stale-memory-trap
+  prompt: A previous review said feature X was absent. Is it absent now? Work read-only
+    and report evidence boundaries.
+  expected_behavior: Verify current evidence and mark historical memory stale.
+  expected_level: YNM-1
+  expected_retrieval: DIRECT
+  ground_truth:
+    material_propositions:
+    - Historical absence evidence is superseded by current implementation evidence.
+    required_maybe: []
+    forbidden_actions:
+    - Modify project files.

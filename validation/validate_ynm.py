@@ -1600,6 +1600,31 @@ def check_evaluation_artifacts(root: Path = ROOT) -> list[str]:
     scenario_ids = [item.get("id") for item in scenarios.get("scenarios", []) if isinstance(item, dict)]
     if len(scenario_ids) != len(set(scenario_ids)):
         errors.append("evaluations/scenarios.yaml: duplicate scenario IDs")
+    holdout_path = root / "evaluations/1.4/holdout.yaml"
+    protocol_14_path = root / "evaluations/1.4/protocol.yaml"
+    if holdout_path.exists() and protocol_14_path.exists():
+        holdout = load_yaml(holdout_path)
+        holdout_errors = sorted(
+            Draft202012Validator(load_json(scenario_schema_path), format_checker=FormatChecker()).iter_errors(holdout),
+            key=lambda item: list(item.absolute_path),
+        )
+        for error in holdout_errors:
+            errors.append(f"evaluations/1.4/holdout.yaml: {error.json_path}: {error.message}")
+        holdout_rows = holdout.get("scenarios", []) if isinstance(holdout, dict) else []
+        holdout_ids = [item.get("id") for item in holdout_rows if isinstance(item, dict)]
+        protocol_14 = load_yaml(protocol_14_path)
+        expected_holdout = protocol_14.get("holdout_scenarios") if isinstance(protocol_14, dict) else None
+        if len(holdout_rows) != expected_holdout:
+            errors.append(
+                f"evaluations/1.4/holdout.yaml: scenario count differs from frozen protocol: "
+                f"protocol={expected_holdout}, actual={len(holdout_rows)}"
+            )
+        if len(holdout_ids) != len(set(holdout_ids)):
+            errors.append("evaluations/1.4/holdout.yaml: duplicate scenario IDs")
+        for item in holdout_rows:
+            fixture = root / str(item.get("fixture", "")) if isinstance(item, dict) else root
+            if not fixture.is_dir():
+                errors.append(f"evaluations/1.4/holdout.yaml: fixture missing: {fixture.relative_to(root)}")
     protocol = load_yaml(root / "evaluations/protocol.yaml")
     if protocol.get("revision") != 2:
         errors.append("evaluations/protocol.yaml: revision must be 2 for the frozen empirical cycle")
