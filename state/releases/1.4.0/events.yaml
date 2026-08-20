@@ -7,3 +7,7 @@ events:
   event_type: EMPIRICAL_EVALUATION_COMPLETED
   timestamp: '2026-08-20T00:00:00Z'
   summary: Completed frozen trigger, historical regression, and 18-scenario holdout execution and blinded adjudication; release criteria were not met.
+- event_id: YNM-1.4-E003
+  event_type: BOUNDED_ASSESSMENT_FROZEN
+  timestamp: '2026-08-20T12:21:19Z'
+  summary: Frozen YNM-BRP-1 as a new bounded usability proposition without changing prior 1.4 empirical dispositions.

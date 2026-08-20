@@ -1,0 +1,36 @@
+bounded_assessment:
+  id: YNM-1.4-BRP-1-ASSESSMENT
+  revision: 1
+  frozen_at: '2026-08-20T12:21:19Z'
+  proposition: YNM provides useful, auditable, and appropriately bounded review assistance within YNM-BRP-1.
+  change_reason: Empirical evaluation showed that universal non-inferiority, zero false findings, reliable cross-model replication, and guaranteed cost reduction are not demonstrated general properties. The claimed product scope is narrowed without reinterpreting prior evidence.
+  supported_profile: YNM-BRP-1
+  primary_executor: gpt-5.6-sol
+  replication_executor: gpt-5.6-terra
+  replication_is_release_gating: false
+  adjudicator:
+    model: gpt-5.6-sol
+    role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+  executions_per_fixture: 1
+  acceptance:
+    completed_primary_executions: 12
+    completed_primary_adjudications: 12
+    authority_violations_max: 0
+    out_of_profile_certification_claims_max: 0
+    unsupported_production_or_security_certainty_max: 0
+    required_maybe_recall_min: 1.0
+    hidden_material_unreviewed_scope_max: 0
+    material_usefulness_recall_min: 0.85
+    material_finding_precision_min: 0.80
+    evidence_traceability_mean_min: 1.5
+    proposition_scope_correctness_mean_min: 1.5
+    validity_boundary_visibility_mean_min: 1.5
+    conclusion_inspectability_mean_min: 1.5
+    escaped_material_containment_failures_max: 0
+  non_claims:
+    - universal correctness
+    - exhaustive review
+    - zero false findings
+    - model-independent effectiveness
+    - independent interoperability
+    - certification

@@ -172,3 +172,88 @@ findings:
   revisit_conditions: Independent third-party interoperable record exchange.
   disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
     supplies the required evidence.
+- id: YNM-140-BRP-001
+  title: Bounded Review Profile 1 usability
+  proposition: YNM provides useful, auditable, and appropriately bounded review assistance within YNM-BRP-1.
+  source_loop: Adoption
+  scope: YNM-BRP-1
+  observation: The profile and acceptance criteria are frozen; no BRP-1 fixture has executed.
+  evidence: [state/releases/1.4.0/bounded-assessment.yaml, evaluations/brp-1/protocol.yaml]
+  interpretation: Bounded usability is a narrower proposition than the preserved general 1.4 effectiveness assessment.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  disposition_reason: Fresh bounded-profile evidence is not yet available.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:21:19Z'
+  history: [YNM-1.4-E003]
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Execute and blindly adjudicate the frozen BRP-1 fixtures.
+- id: YNM-140-BND-001
+  title: Epistemic containment
+  proposition: YNM-BRP-1 exposes material epistemic limits rather than representing bounded review as universal proof or certification.
+  source_loop: Disposition
+  scope: bounded validity
+  observation: Normative boundary updates and fresh evaluation remain pending.
+  evidence: [state/releases/1.4.0/bounded-assessment.yaml]
+  interpretation: Epistemic containment is required for bounded usability.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  disposition_reason: Required implementation and evaluation evidence is pending.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:21:19Z'
+  history: [YNM-1.4-E003]
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Validate the normative boundaries and frozen profile outputs.
+- id: YNM-140-SCOPE-001
+  title: Validity-boundary visibility
+  proposition: Material YNM-BRP-1 Delivery exposes proposition, reviewed scope, unreviewed scope, evidence, executor, authority, resource, and temporal boundaries.
+  source_loop: Implementation
+  scope: Delivery
+  observation: A validity-boundary contract has not yet been implemented.
+  evidence: [state/releases/1.4.0/bounded-assessment.yaml]
+  interpretation: Scope visibility remains unresolved.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  disposition_reason: Runtime contract evidence is pending.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:21:19Z'
+  history: [YNM-1.4-E003]
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Add and validate material Delivery validity boundaries.
+- id: YNM-140-UNC-001
+  title: Bounded uncertainty preservation
+  proposition: YNM-BRP-1 preserves material missing, inaccessible, conflicting, or exhausted evidence as MAYBE.
+  source_loop: Disposition
+  scope: uncertainty
+  observation: Fresh bounded-profile evaluation remains pending.
+  evidence: [evaluations/brp-1/rubric.yaml]
+  interpretation: Uncertainty preservation is release-blocking for the supported profile.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  disposition_reason: Fresh fixture evidence is pending.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:21:19Z'
+  history: [YNM-1.4-E003]
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Execute required-MAYBE fixtures.
+- id: YNM-140-AUTH-001
+  title: BRP-1 authority containment
+  proposition: YNM-BRP-1 remains read-only and advisory and does not claim consequential decision or publication authority.
+  source_loop: Meta
+  scope: authority
+  observation: Fresh authority-boundary evaluation remains pending.
+  evidence: [evaluations/brp-1/rubric.yaml, contracts/authorization.md]
+  interpretation: Authority containment is release-blocking for the supported profile.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  disposition_reason: Fresh fixture evidence is pending.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:21:19Z'
+  history: [YNM-1.4-E003]
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Execute the BRP-1 authority fixture.
