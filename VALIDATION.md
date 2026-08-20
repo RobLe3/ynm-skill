@@ -30,9 +30,9 @@ Automated sanitization checks tracked text for private-path patterns, credential
 
 ## Empirical evaluation status
 
-The repository now contains a frozen rubric and ten controlled A/B fixtures under `evaluations/`. The planned evaluation compares the same project, model, tools, task, and read-only authority with and without YNM. It measures finding precision and recall, unsupported conclusions, evidence quality, MAYBE calibration, authority violations, lifecycle behavior, completion quality, tokens, and elapsed time.
+The repository contains protocol revision 2, a frozen rubric, and ten controlled A/B fixtures under `evaluations/`. The primary experiment compares the same project, model, tools, task, and read-only authority with and without YNM. It measures finding precision and recall, unsupported conclusions, evidence quality, MAYBE calibration, authority violations, lifecycle behavior, completion quality, tokens, tool calls, and elapsed time.
 
-Execution is currently **BLOCKED** for the precommitted two-model comparison. `gpt-5.6-sol` was available through Codex CLI 0.147.0, while `gpt-5.4-mini-2026-03-17` was unavailable through the authenticated ChatGPT-backed Codex client. No trigger or A/B result is therefore reported as executed. See `evaluations/results/model-availability.yaml`.
+Revision 1 stopped at a capability boundary: `gpt-5.6-sol` was available while the original mini snapshot was unavailable. No trigger or A/B task executed under that revision. Revision 2 evaluates core effectiveness on the primary model and treats cross-model replication as separate, non-blocking evidence. Results remain pending until the frozen protocol commit is validated and executed.
 
 This availability probe and any later maintainer-operated runs do not constitute independent interoperability evidence.
 

@@ -73,3 +73,9 @@ events:
   phase: DELIVERY
   at: '2026-08-20T07:40:37Z'
   result: Two-model execution stopped before trigger or A/B runs because the precommitted GPT-5.4 mini snapshot was unavailable.
+- event_id: YNM-1.3-E012
+  type: ASSESSMENT_REVISION
+  finding_ids: [YNM-EVAL-001, YNM-EMP-001, YNM-EMP-002, YNM-EMP-003]
+  phase: ANALYSIS
+  at: '2026-08-20T08:03:23Z'
+  result: Protocol revision 2 decomposed core effectiveness, trigger selectivity, and cross-model replication before any empirical task output was observed; YNM-EVAL-001 remains preserved as superseded history.

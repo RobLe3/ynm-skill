@@ -13,6 +13,7 @@ All notable YNM changes are recorded here. Historical release and maturity evide
 - Deterministic packaging workflow, manifest-driven packaging tests, and release-integrity checks.
 - Release-candidate correction record for unresolved 1.2 publication timestamp causality.
 - Frozen trigger and ten-task A/B evaluation fixtures for measuring review effectiveness without changing the runtime package.
+- Decomposed the unexecuted empirical gate into primary effectiveness, trigger selectivity, and non-blocking cross-model replication before observing outcomes.
 - Current-candidate evidence-locator validation and a project-native self-bootstrap receipt.
 
 ### Changed

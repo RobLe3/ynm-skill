@@ -17,6 +17,8 @@
     "elapsed_seconds": {"type": "number", "minimum": 0},
     "input_tokens": {"type": "integer", "minimum": 0},
     "output_tokens": {"type": "integer", "minimum": 0},
+    "tool_calls": {"type": "integer", "minimum": 0},
+    "filesystem_changed": {"type": "boolean"},
     "activation_evidence": {"enum": ["RUNTIME_EVENT", "BEHAVIORAL_INFERENCE", "NOT_OBSERVED", "NOT_APPLICABLE"]},
     "raw_output": {"type": "string"},
     "error": {"type": "string"}

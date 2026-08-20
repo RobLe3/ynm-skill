@@ -52,3 +52,9 @@ iterations:
   findings_opened: []
   findings_resolved: []
   expected_next_gain: none until the required second model becomes available or the assessment is explicitly revised
+- iteration: 7
+  reason: Pre-execution empirical protocol revision
+  evidence_delta: The original two-model gate was decomposed before any benchmark outcome was observed, and blinded decision criteria were frozen.
+  findings_opened: [YNM-EMP-001, YNM-EMP-002, YNM-EMP-003]
+  findings_resolved: []
+  expected_next_gain: Controlled primary trigger and A/B execution, with replication when capability permits.

@@ -1581,7 +1581,8 @@ def check_evaluation_artifacts(root: Path = ROOT) -> list[str]:
     schema_root = root / "evaluations/schemas"
     scenario_schema_path = schema_root / "evaluation-scenario.schema.json"
     result_schema_path = schema_root / "evaluation-result.schema.json"
-    for path in (scenario_schema_path, result_schema_path):
+    score_schema_path = schema_root / "evaluation-score.schema.json"
+    for path in (scenario_schema_path, result_schema_path, score_schema_path):
         if not path.exists():
             errors.append(f"{path.relative_to(root)}: evaluation schema missing")
             continue
@@ -1599,11 +1600,31 @@ def check_evaluation_artifacts(root: Path = ROOT) -> list[str]:
     scenario_ids = [item.get("id") for item in scenarios.get("scenarios", []) if isinstance(item, dict)]
     if len(scenario_ids) != len(set(scenario_ids)):
         errors.append("evaluations/scenarios.yaml: duplicate scenario IDs")
+    protocol = load_yaml(root / "evaluations/protocol.yaml")
+    if protocol.get("revision") != 2:
+        errors.append("evaluations/protocol.yaml: revision must be 2 for the frozen empirical cycle")
+    if protocol.get("primary_executor") != "gpt-5.6-sol":
+        errors.append("evaluations/protocol.yaml: primary executor drift")
+    expected_candidates = ["gpt-5.4-mini-2026-03-17", "gpt-5.6-terra", "gpt-5.6-luna", "gpt-5.4"]
+    if protocol.get("replication_candidates") != expected_candidates:
+        errors.append("evaluations/protocol.yaml: replication candidate order drift")
+    findings = load_yaml(root / "state/releases/1.3.0/findings.yaml").get("findings", [])
+    finding_ids = [item.get("id") for item in findings if isinstance(item, dict)]
+    collisions = set(finding_ids) & set(scenario_ids)
+    allowed_historical_collisions = {"YNM-EVAL-001"}
+    unexpected = sorted(collisions - allowed_historical_collisions)
+    if unexpected:
+        errors.append(f"evaluation identifier collision across finding and scenario types: {', '.join(unexpected)}")
     for result_path in sorted((root / "evaluations/results/records").glob("*.yaml")) if (root / "evaluations/results/records").exists() else []:
         result = load_yaml(result_path)
         result_errors = sorted(Draft202012Validator(load_json(result_schema_path), format_checker=FormatChecker()).iter_errors(result), key=lambda item: list(item.absolute_path))
         for error in result_errors:
             errors.append(f"{result_path.relative_to(root)}: {error.json_path}: {error.message}")
+    for score_path in sorted((root / "evaluations/results/blinded/scores").glob("*.yaml")) if (root / "evaluations/results/blinded/scores").exists() else []:
+        score = load_yaml(score_path)
+        score_errors = sorted(Draft202012Validator(load_json(score_schema_path), format_checker=FormatChecker()).iter_errors(score), key=lambda item: list(item.absolute_path))
+        for error in score_errors:
+            errors.append(f"{score_path.relative_to(root)}: {error.json_path}: {error.message}")
     return errors
 
 
