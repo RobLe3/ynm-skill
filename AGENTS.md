@@ -9,14 +9,15 @@ This repository contains the YNM review methodology and its public validation hi
 Run before release or after a contract change:
 
 ```text
-python3 validation/validate_ynm.py
-python3 -m unittest discover -s tests -v
+python validation/validate_ynm.py
+python -m unittest discover -s tests -v
 ```
 
 ## Mutation and history
 
 - Review remains read-only unless a requested class of write is explicit.
-- Do not edit historical 1.0.0 or 1.1.0 maturity reports or release-state files.
+- Do not edit historical 1.0.0 through 1.2.0 evidence in mutable working-tree state;
+  these baselines remain available through tags and immutable Git history.
 - Add a new release-state directory and baseline hashes for each maturation change.
 - Do not commit local databases, caches, credentials, private paths, or project-identifying evidence.
 

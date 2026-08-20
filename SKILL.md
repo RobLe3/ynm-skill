@@ -1,6 +1,11 @@
 ---
 name: ynm
 description: Review a project through independent architecture, implementation, adoption, maintenance, disposition, and orchestration loops using evidence-backed YES, NO, or MAYBE dispositions. Use for project reviews, longitudinal finding management, read-only audits, specialist focal reviews, convergence checks, or explicitly authorized remediation across software and non-software projects.
+license: Apache-2.0
+compatibility: Core review is text-only. Optional Python helper scripts require Python 3.10+ and PyYAML 6.x.
+metadata:
+  version: "1.3.0"
+  repository: "https://github.com/RobLe3/ynm-skill"
 ---
 
 # YNM Review

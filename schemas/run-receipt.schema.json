@@ -1,31 +1,171 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ynm.example/schemas/run-receipt.schema.json",
+  "$id": "urn:ynm:schemas:run-receipt.schema.json",
   "type": "object",
-  "required": ["run_id", "generation", "project_state", "execution_context", "execution_strategy", "loops_requested", "loops_executed", "stage_reached", "execution_status", "terminal_outcome", "halt_reason", "reviewed_scope", "unreviewed_scope", "evidence_added", "findings_created", "findings_updated", "dispositions_changed", "unresolved_dependencies", "continuation_scope", "next_revisit_condition", "persistence_status"],
+  "required": [
+    "run_id",
+    "generation",
+    "project_state",
+    "execution_context",
+    "execution_strategy",
+    "loops_requested",
+    "loops_executed",
+    "stage_reached",
+    "execution_status",
+    "terminal_outcome",
+    "halt_reason",
+    "reviewed_scope",
+    "unreviewed_scope",
+    "evidence_added",
+    "findings_created",
+    "findings_updated",
+    "dispositions_changed",
+    "unresolved_dependencies",
+    "continuation_scope",
+    "next_revisit_condition",
+    "persistence_status"
+  ],
   "properties": {
-    "run_id": {"type": "string", "minLength": 1},
-    "generation": {"type": "integer", "minimum": 0},
-    "execution_status": {"$ref": "ynm-defs.schema.json#/$defs/executionStatus"},
-    "terminal_outcome": {"$ref": "ynm-defs.schema.json#/$defs/terminalOutcome"},
-    "execution_strategy": {"$ref": "ynm-defs.schema.json#/$defs/executionStrategy"},
-    "schema_version": {"type": "string"},
-    "phase_history": {"type": "array", "items": {"$ref": "ynm-defs.schema.json#/$defs/invocationPhase"}},
-    "review_plan_revision": {"type": "integer", "minimum": 1},
-    "iteration_count": {"type": "integer", "minimum": 0},
-    "converged": {"type": "boolean"},
-    "stop_reason": {"type": "string"},
-    "unresolved_findings": {"type": "array"},
-    "material_changes": {"type": "array"},
-    "findings_reopened": {"type": "array"},
-    "findings_resolved": {"type": "array"},
-    "required_human_decisions": {"type": "array"},
-    "delivery": {"type": "object"},
-    "loops_requested": {"type": "array"}, "loops_executed": {"type": "array"},
-    "reviewed_scope": {"type": "array"}, "unreviewed_scope": {"type": "array"},
-    "findings_created": {"type": "array"}, "findings_updated": {"type": "array"},
-    "dispositions_changed": {"type": "array"}, "unresolved_dependencies": {"type": "array"}
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "execution_status": {
+      "$ref": "ynm-defs.schema.json#/$defs/executionStatus"
+    },
+    "terminal_outcome": {
+      "$ref": "ynm-defs.schema.json#/$defs/terminalOutcome"
+    },
+    "execution_strategy": {
+      "$ref": "ynm-defs.schema.json#/$defs/executionStrategy"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "phase_history": {
+      "type": "array",
+      "items": {
+        "$ref": "ynm-defs.schema.json#/$defs/invocationPhase"
+      }
+    },
+    "review_plan_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "iteration_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "converged": {
+      "type": "boolean"
+    },
+    "stop_reason": {
+      "type": "string"
+    },
+    "unresolved_findings": {
+      "type": "array"
+    },
+    "material_changes": {
+      "type": "array"
+    },
+    "findings_reopened": {
+      "type": "array"
+    },
+    "findings_resolved": {
+      "type": "array"
+    },
+    "required_human_decisions": {
+      "type": "array"
+    },
+    "delivery": {
+      "type": "object"
+    },
+    "loops_requested": {
+      "type": "array"
+    },
+    "loops_executed": {
+      "type": "array"
+    },
+    "reviewed_scope": {
+      "type": "array"
+    },
+    "unreviewed_scope": {
+      "type": "array"
+    },
+    "findings_created": {
+      "type": "array"
+    },
+    "findings_updated": {
+      "type": "array"
+    },
+    "dispositions_changed": {
+      "type": "array"
+    },
+    "unresolved_dependencies": {
+      "type": "array"
+    },
+    "continuation_scope": {
+      "type": [
+        "string",
+        "array",
+        "null"
+      ]
+    },
+    "evidence_added": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "execution_context": {
+      "type": "string"
+    },
+    "halt_reason": {
+      "type": "string"
+    },
+    "next_revisit_condition": {
+      "type": "string"
+    },
+    "persistence_status": {
+      "type": "string"
+    },
+    "project_state": {
+      "type": "string"
+    },
+    "stage_reached": {
+      "type": "string"
+    }
   },
-  "allOf": [{"if": {"required": ["schema_version"], "properties": {"schema_version": {"const": "ynm-run-receipt.v2"}}}, "then": {"required": ["phase_history", "review_plan_revision", "iteration_count", "converged", "stop_reason", "unresolved_findings", "material_changes", "findings_reopened", "findings_resolved", "required_human_decisions", "delivery"]}}],
-  "additionalProperties": true
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "schema_version"
+        ],
+        "properties": {
+          "schema_version": {
+            "const": "ynm-run-receipt.v2"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "phase_history",
+          "review_plan_revision",
+          "iteration_count",
+          "converged",
+          "stop_reason",
+          "unresolved_findings",
+          "material_changes",
+          "findings_reopened",
+          "findings_resolved",
+          "required_human_decisions",
+          "delivery"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": false
 }

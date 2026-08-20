@@ -2,12 +2,36 @@ import sys
 import subprocess
 import tempfile
 import unittest
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
+from unittest.mock import patch
+
+import validation.validate_ynm as validator
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from validation.validate_ynm import check_baseline_integrity, check_public_sanitization, check_release, check_runtime_boundary, check_schema_references, check_yaml_disposition_quoting, load_json, load_yaml, resolve_ref, run, validate
+from validation.validate_ynm import (
+    _public_sanitization_report_path,
+    TEXT_PATTERNS,
+    check_adversarial_scenarios,
+    _is_allowed_violation,
+    _run_patterns,
+    _tracked_text_files,
+    check_baseline_integrity,
+    check_public_sanitization,
+    check_release,
+    check_runtime_boundary,
+    check_schema_references,
+    check_yaml_disposition_quoting,
+    load_json,
+    load_yaml,
+    resolve_ref,
+    run,
+    write_sanitization_report,
+    check_workflow_invariants,
+    validate,
+)
+from scripts.project_integration import classify_roles
 from scripts.execution_lifecycle import InvocationLifecycle, TERMINAL_REASONS
 
 
@@ -33,9 +57,11 @@ class YNMValidationTests(unittest.TestCase):
     def test_yaml_dispositions_are_quoted(self):
         self.assertEqual(check_yaml_disposition_quoting(), [])
 
-    def test_adversarial_scenario_count(self):
+    def test_adversarial_scenarios_are_valid(self):
         lines = (ROOT / "methodology/adversarial-validation.md").read_text().splitlines()
-        self.assertEqual(len([line for line in lines if line.startswith("| ")][1:]), 78)
+        rows = [line for line in lines if line.strip().startswith("|") and "|" in line]
+        self.assertGreaterEqual(len(rows), 3)
+        self.assertEqual(check_adversarial_scenarios(), [])
 
     def test_schema_references_resolve(self):
         self.assertEqual(check_schema_references(), [])
@@ -49,8 +75,111 @@ class YNMValidationTests(unittest.TestCase):
     def test_public_runtime_is_sanitized(self):
         self.assertEqual(check_public_sanitization(), [])
 
+    def test_sanitization_patterns_detect_private_data(self):
+        sample = ROOT / "tmp" / "ynm-sanitization-sample.md"
+        try:
+            sample.parent.mkdir(parents=True, exist_ok=True)
+            sample.write_text(
+                "\n".join(
+                    [
+                        "path = " + '"' + "/" + "Users" + "/example/" + "private" + "/doc.md" + '"',
+                        "window = " + '"' + "C:" + "\\" + "Users" + "\\" + "example" + "\\" + "private" + "\\" + "secret.txt" + '"',
+                        "unc = " + '"' + "\\" + "\\" + "fileserver" + "\\" + "secret" + "\\" + "share" + "\\" + "artifact.txt" + '"',
+                        "ap" + "i" + "_" + "key" + '="' + "secret" + '-value"',
+                        "to" + "ken" + '="' + "secret" + '-value"',
+                        "pas" + "sword" + '="' + "secret" + '-value"',
+                        'repo = "https://github.com/' + "private" + '/example/repo"',
+                    ],
+                ),
+                encoding="utf-8",
+            )
+            text = sample.read_text(encoding="utf-8")
+            all_findings = []
+            for check_id, patterns in TEXT_PATTERNS.items():
+                all_findings.extend(_run_patterns(sample, text, check_id=check_id, patterns=patterns))
+
+            checks = {check["check"] for check in all_findings}
+            self.assertIn("PRIVATE_ABSOLUTE_PATH", checks)
+            self.assertIn("CREDENTIAL_PATTERN", checks)
+            self.assertIn("PRIVATE_REPOSITORY_REFERENCE", checks)
+            self.assertGreaterEqual(len(all_findings), 4)
+        finally:
+            if sample.exists():
+                sample.unlink()
+            if sample.parent.exists():
+                sample.parent.rmdir()
+
+    def test_sanitization_path_keys_handle_windows_style_paths(self):
+        class FakePath:
+            def relative_to(self, _root: Path):
+                return PureWindowsPath("validation\\validate_ynm.py")
+
+        finding = {"check": "PROVIDER_SPECIFIC_CORE_ASSUMPTION"}
+        self.assertTrue(_is_allowed_violation(FakePath(), finding))
+
+    def test_run_patterns_normalizes_finding_paths(self):
+        text = 'provider = "gpt-5.3-codex-spark"\n'
+        path = ROOT / "validation/validate_ynm.py"
+        findings = _run_patterns(path, text, check_id="PROVIDER_SPECIFIC_CORE_ASSUMPTION", patterns=TEXT_PATTERNS["PROVIDER_SPECIFIC_CORE_ASSUMPTION"])
+        self.assertTrue(findings)
+        for finding in findings:
+            self.assertNotEqual(finding["path"], "")
+            self.assertNotIn("\\", finding["path"])
+        self.assertTrue(any(finding["path"].startswith("validation/") for finding in findings))
+
+    def test_tracked_text_scanning_tolerates_binary(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            subprocess.run(["git", "-C", tmp, "init", "-q"], check=True)
+            text_file = repo / "readable.txt"
+            binary_file = repo / "binary.bin"
+            text_file.write_text("hello", encoding="utf-8")
+            binary_file.write_bytes(b"\xff\x00\x7f")
+            subprocess.run(["git", "-C", tmp, "add", "readable.txt", "binary.bin"], check=True)
+
+            with patch("validation.validate_ynm.ROOT", repo):
+                text_files, binary_files = _tracked_text_files(repo)
+
+            self.assertIn(repo / "readable.txt", text_files)
+            self.assertIn(repo / "binary.bin", binary_files)
+
     def test_runtime_does_not_depend_on_provenance(self):
         self.assertEqual(check_runtime_boundary(), [])
+
+    def test_workflow_invariants_are_sane(self):
+        self.assertEqual(check_workflow_invariants(), [])
+
+    def test_discovery_classification_requires_confirmation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            project = Path(tmp) / "project"
+            project.mkdir()
+            (project / "README.md").write_text("# Project\n", encoding="utf-8")
+            roles = classify_roles(project)
+            by_role = {entry["role"]: entry for entry in roles}
+            self.assertIn("project_entry", by_role)
+            self.assertEqual(by_role["project_entry"]["status"], "CANDIDATE")
+
+    def test_default_validation_is_read_only_for_sanitization_report(self):
+        report_path = _public_sanitization_report_path(ROOT)
+        original = report_path.read_text(encoding="utf-8")
+        with patch.object(sys, "argv", ["validate_ynm.py"]):
+            with patch("validation.validate_ynm.write_sanitization_report") as write_mock:
+                validation_result = validator.main()
+        self.assertEqual(validation_result, 0)
+        write_mock.assert_not_called()
+        self.assertEqual(report_path.read_text(encoding="utf-8"), original)
+
+    def test_refresh_sanitization_flag_writes_report(self):
+        with patch("validation.validate_ynm.run", return_value=[]):
+            with patch.object(sys, "argv", ["validate_ynm.py", "--refresh-sanitization-report"]):
+                with patch("validation.validate_ynm.generate_sanitization_report", wraps=validator.generate_sanitization_report) as generate_mock:
+                    with patch("validation.validate_ynm.write_sanitization_report") as write_mock:
+                        validator.main()
+        generate_mock.assert_called_once_with(ROOT)
+        write_mock.assert_called_once()
+        called_with = write_mock.call_args.kwargs
+        self.assertIn("dry_run", called_with)
+        self.assertFalse(called_with["dry_run"])
 
     def run_bootstrap(self, project: Path, *args: str):
         return subprocess.run(

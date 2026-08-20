@@ -1,20 +1,94 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ynm.example/schemas/assessment.schema.json",
+  "$id": "urn:ynm:schemas:assessment.schema.json",
   "type": "object",
-  "required": ["id", "revision", "proposition", "scope", "assessment_mode", "evaluation_method", "acceptance_conditions", "required_evidence", "evaluator", "frozen_at"],
+  "required": [
+    "id",
+    "revision",
+    "proposition",
+    "scope",
+    "assessment_mode",
+    "evaluation_method",
+    "acceptance_conditions",
+    "required_evidence",
+    "evaluator",
+    "frozen_at"
+  ],
   "properties": {
-    "id": {"type": "string", "minLength": 1},
-    "revision": {"type": "integer", "minimum": 1},
-    "proposition": {"type": "string", "minLength": 1},
-    "scope": {"type": ["string", "object"]},
-    "assessment_mode": {"type": "string", "minLength": 1},
-    "evaluation_method": {"type": ["string", "array"]},
-    "acceptance_conditions": {"type": "array", "minItems": 1},
-    "required_evidence": {"type": "array"},
-    "evaluator": {"type": ["string", "object"]},
-    "independence_requirement": {"$ref": "ynm-defs.schema.json#/$defs/independence"},
-    "frozen_at": {"type": "string", "minLength": 1}
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "proposition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "assessment_mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evaluation_method": {
+      "type": [
+        "string",
+        "array"
+      ]
+    },
+    "acceptance_conditions": {
+      "type": "array",
+      "minItems": 1
+    },
+    "required_evidence": {
+      "type": "array"
+    },
+    "evaluation_dimensions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evaluator": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "independence_requirement": {
+      "$ref": "ynm-defs.schema.json#/$defs/independence"
+    },
+    "reference_state": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "comparison_policy": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "frozen_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "invariants": {
+      "type": "array"
+    }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

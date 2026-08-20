@@ -1,16 +1,84 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ynm.example/schemas/ynm-defs.schema.json",
+  "$id": "urn:ynm:schemas:ynm-defs.schema.json",
   "$defs": {
-    "disposition": {"enum": ["YES", "NO", "MAYBE"]},
-    "executionStatus": {"enum": ["COMPLETED", "PARTIAL", "BLOCKED", "NOT_APPLICABLE"]},
-    "terminalOutcome": {"enum": ["COMPLETED_REVIEW", "PARTIAL_REVIEW", "BLOCKED_REVIEW", "ESCALATED_REVIEW", "NOT_APPLICABLE_REVIEW", "CONVERGED_REVIEW"]},
-    "authorizationStatus": {"enum": ["NOT_REQUESTED", "REQUIRES_HUMAN", "AUTHORIZED", "DENIED"]},
-    "epistemicType": {"enum": ["OBSERVATION", "MEASUREMENT", "INFERENCE", "HYPOTHESIS"]},
-    "findingStatus": {"enum": ["OPEN", "RESOLVED", "DUPLICATE", "SUPERSEDED"]},
-    "executionStrategy": {"enum": ["CONSTRAINED", "STANDARD", "EXTENDED"]},
-    "capabilityState": {"enum": ["AVAILABLE", "UNAVAILABLE", "UNKNOWN"]},
-    "independence": {"enum": ["SAME_ACTOR", "SEPARATE_ROLE", "INDEPENDENT_ACTOR"]}
-    ,"invocationPhase": {"enum": ["ANALYSIS", "ITERATION", "DELIVERY", "TERMINATED"]}
+    "disposition": {
+      "enum": [
+        "YES",
+        "NO",
+        "MAYBE"
+      ]
+    },
+    "executionStatus": {
+      "enum": [
+        "COMPLETED",
+        "PARTIAL",
+        "BLOCKED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "terminalOutcome": {
+      "enum": [
+        "COMPLETED_REVIEW",
+        "PARTIAL_REVIEW",
+        "BLOCKED_REVIEW",
+        "ESCALATED_REVIEW",
+        "NOT_APPLICABLE_REVIEW",
+        "CONVERGED_REVIEW"
+      ]
+    },
+    "authorizationStatus": {
+      "enum": [
+        "NOT_REQUESTED",
+        "REQUIRES_HUMAN",
+        "AUTHORIZED",
+        "DENIED"
+      ]
+    },
+    "epistemicType": {
+      "enum": [
+        "OBSERVATION",
+        "MEASUREMENT",
+        "INFERENCE",
+        "HYPOTHESIS"
+      ]
+    },
+    "findingStatus": {
+      "enum": [
+        "OPEN",
+        "RESOLVED",
+        "DUPLICATE",
+        "SUPERSEDED"
+      ]
+    },
+    "executionStrategy": {
+      "enum": [
+        "CONSTRAINED",
+        "STANDARD",
+        "EXTENDED"
+      ]
+    },
+    "capabilityState": {
+      "enum": [
+        "AVAILABLE",
+        "UNAVAILABLE",
+        "UNKNOWN"
+      ]
+    },
+    "independence": {
+      "enum": [
+        "SAME_ACTOR",
+        "SEPARATE_ROLE",
+        "INDEPENDENT_ACTOR"
+      ]
+    },
+    "invocationPhase": {
+      "enum": [
+        "ANALYSIS",
+        "ITERATION",
+        "DELIVERY",
+        "TERMINATED"
+      ]
+    }
   }
 }

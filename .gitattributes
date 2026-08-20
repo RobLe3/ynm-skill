@@ -1,0 +1,29 @@
+* text=auto eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.ini text eol=lf
+*.env text eol=lf
+*.bat text eol=lf
+*.ps1 text eol=lf
+*.rst text eol=lf
+*.csv text eol=lf
+*.svg text eol=lf
+*.xml text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.whl binary
+*.egg binary
+*.pyc binary

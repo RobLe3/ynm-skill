@@ -1,0 +1,116 @@
+findings:
+- id: YNM-LIFE-001
+  title: Lifecycle transition contract
+  proposition: YNM 1.3.0 includes Analysis, Iteration, and Delivery as distinct but
+    bounded phases.
+  source_loop: Architecture
+  scope: lifecycle
+  observation: Reviewed the lifecycle contract, loop contracts, and run-receipt requirements
+    against the updated schema.
+  evidence:
+  - methodology/execution-lifecycle.md
+  - contracts/run-receipt.md
+  - scripts/execution_lifecycle.py
+  interpretation: The macro phases are explicit and separate from loop findings.
+  proposed_disposition: 'YES'
+  disposition: 'YES'
+  created_at: '2026-08-19T16:35:00Z'
+  updated_at: '2026-08-19T16:50:00Z'
+  history:
+  - YNM-1.3-E001
+  status: RESOLVED
+  maturity_impact: MATURITY_BLOCKING
+- id: YNM-LIFE-002
+  title: Delivery always emitted
+  proposition: Every terminal path emits a Delivery handoff with execution status
+    and reviewed/unreviewed scope.
+  source_loop: Implementation
+  scope: delivery
+  observation: Execution lifecycle and run-receipt fixtures include DELIVERY and TERMINATED
+    transitions with preserved continuation context.
+  evidence:
+  - scripts/execution_lifecycle.py
+  - schemas/run-receipt.schema.json
+  - tests/test_validate_ynm.py
+  - tests/fixtures/run_receipt.yaml
+  interpretation: Delivery is no longer optional and is validated in both deterministic
+    and unit tests.
+  proposed_disposition: 'YES'
+  disposition: 'YES'
+  disposition_reason: Delivery transitions are now exercised on every terminal reason
+    in unit tests.
+  created_at: '2026-08-19T16:40:00Z'
+  updated_at: '2026-08-19T16:50:00Z'
+  history:
+  - YNM-1.3-E002
+  status: RESOLVED
+  maturity_impact: MATURITY_BLOCKING
+- id: YNM-PUB-002
+  title: Remove historical references from current runtime and evidence set
+  source_loop: Maintenance
+  scope: publication hygiene
+  proposition: Current HEAD should only retain documents needed for use, contribution,
+    validation, tooling, and current candidate evidence.
+  observation: Historical self-review and Forge-era documents were removed from current
+    HEAD and are no longer required for runtime validation.
+  evidence:
+  - README.md
+  - CHANGELOG.md
+  - manifest.yaml
+  - AGENTS.md
+  - validation/validate_ynm.py
+  interpretation: The repository now separates current evidence from historical archives.
+  proposed_disposition: 'YES'
+  disposition: 'YES'
+  created_at: '2026-08-19T16:45:00Z'
+  updated_at: '2026-08-19T16:55:00Z'
+  history:
+  - YNM-1.3-E004
+  status: RESOLVED
+  maturity_impact: MATURITY_BLOCKING
+- id: YNM-VAL-001
+  title: Independent implementation validation remains pending
+  proposition: An independent third-party implementation can produce compatible YNM
+    findings, receipts, and lifecycle evidence.
+  source_loop: Adoption
+  scope: independent validation
+  observation: No additional independent implementation or interoperability report
+    was added in this candidate.
+  evidence:
+  - README.md
+  - CONTRIBUTING.md
+  - CHANGELOG.md
+  interpretation: Public checks cover candidate validity but not independent implementation.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  disposition_reason: Independent implementation and interoperability evidence remains
+    pending.
+  created_at: '2026-08-19T16:49:00Z'
+  updated_at: '2026-08-19T16:49:00Z'
+  history:
+  - YNM-1.3-E006
+  status: OPEN
+  maturity_impact: NON_BLOCKING
+  revisit_conditions: Independent third-party run with interoperable record exchange.
+- id: YNM-PKG-001
+  title: Package runtime boundary
+  proposition: Generated skill package contains only intended runtime and packaging
+    files and excludes historical validation and repository metadata.
+  source_loop: Implementation
+  scope: packaging
+  observation: Manifest and build script are used to select package files, with runtime
+    package tests verifying exclusions.
+  evidence:
+  - manifest.yaml
+  - scripts/build_skill_package.py
+  - tests/test_release_and_package.py
+  - .github/workflows/ynm-ci.yml
+  interpretation: Runtime boundary is explicit and reproducible from manifest.
+  proposed_disposition: 'YES'
+  disposition: 'YES'
+  created_at: '2026-08-19T16:40:00Z'
+  updated_at: '2026-08-19T16:50:00Z'
+  history:
+  - YNM-1.3-E005
+  status: RESOLVED
+  maturity_impact: MATURITY_BLOCKING

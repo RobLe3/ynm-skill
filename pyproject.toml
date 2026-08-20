@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ynm-skill"
+description = "Project-agnostic review methodology with evidence-backed YES/NO/MAYBE dispositions"
+readme = "README.md"
+version = "1.3.0"
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0.0,<7.0.0",
+  "jsonschema>=4.23.0,<5.0.0",
+  "referencing>=0.35.0,<1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2.2",
+  "setuptools>=68.0.0",
+]
+
+[tool.setuptools]
+packages = []
