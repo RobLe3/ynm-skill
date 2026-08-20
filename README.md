@@ -126,6 +126,20 @@ YNM is proposition-centered:
 
 `MAYBE` is not “low confidence.” It is a managed unresolved state that preserves why a decision is still pending.
 
+## Bounded validity
+
+YNM produces bounded evidence-backed judgments, not universal proofs. Every `YES`, `NO`, or `MAYBE` applies to an explicit proposition under the reviewed scope, available evidence, assessment criteria, executor capability, authority, resource limits, and evidence snapshot of that review.
+
+YNM cannot guarantee that every relevant fact has been discovered, decide arbitrary semantic properties of arbitrary software, or establish independent validation solely through self-review. Therefore:
+
+- convergence does not mean exhaustive truth;
+- missing material evidence remains `MAYBE`;
+- unreviewed scope remains unreviewed;
+- provider-neutral design does not imply equal effectiveness across every model or runtime; and
+- human or external validation remains necessary where consequence requires it.
+
+The initial supported operating profile, `YNM-BRP-1`, covers read-only, advisory project and repository reviews with explicit or decomposable propositions, traceable evidence, and visible reviewed and unreviewed scope. See [Epistemic Boundaries](methodology/epistemic-boundaries.md).
+
 ## Delivery and scope visibility
 
 A delivery output always includes:
@@ -137,6 +151,7 @@ A delivery output always includes:
 - execution status and stop reason
 - continuation/revisit conditions
 - remaining `MAYBE` items and unresolved dependencies
+- a validity boundary covering propositions, evidence snapshot and limitations, executor, authority, execution limits, and temporal reference
 
 Exhaustion (capability, context, budget, evidence, authorization, or failure) is recorded distinctly from convergence. A review may stop for limits and still produce a valid partial delivery.
 
@@ -239,13 +254,21 @@ conformance are reproducible. It confirms Agent Skills format conformance only; 
 YNM is not:
 
 - a universal project score
+- a universal correctness oracle or semantic program verifier
+- a guarantee of exhaustive issue discovery or zero false findings
+- proof that another review pass could discover nothing
+- proof of its own universal validity or cross-model equivalence
+- proof that repository evidence represents production
 - automatic permission to modify a repository
 - proof that unreviewed scope is correct
 - a replacement for tests, linters, domain checks, or product requirements
 - a guarantee to eliminate uncertainty
-- evidence of production-readiness certification by itself
+- independent security, safety, production, or compliance certification
+- autonomous authority to act on its findings
 - independent interoperability proof
 - tied to one provider, model, or runtime
+
+Provider-neutral means the contracts do not require a specific provider, model, or runtime. It is a design property, not a claim that all executors have demonstrated equal effectiveness.
 
 ## Extend YNM
 

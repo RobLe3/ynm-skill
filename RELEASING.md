@@ -9,3 +9,11 @@ The candidate pull request prepares a release; it does not authorize publication
 5. Publish a GitHub Release only after tag CI passes and a maintainer makes that separate decision.
 
 Historical tags are immutable. A correction to release evidence is appended in a later version rather than rewriting a published tag or its files.
+
+## Claims required for a bounded release
+
+Release decisions distinguish methodology usability, general effectiveness, and certification. A release may support a declared bounded profile without claiming universal effectiveness or certification.
+
+For `YNM-BRP-1`, require repository and package integrity, security-boundary tests, Agent Skills conformance, read-only authority behavior, bounded `YES` semantics, clean-project restraint, bounded-negative behavior, explicit `MAYBE` preservation, visible Delivery limitations, and honest documentation of empirical limits. Do not require or claim exhaustive review, universal semantic correctness, zero possible future findings, self-proof of independent validity, or model-independent parity.
+
+Release readiness does not grant publication authorization. YNM-BRP-1 remains advisory and cannot independently authorize security or safety certification, legal compliance, production release, destructive migration, publication, or autonomous mutation.

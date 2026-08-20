@@ -1,6 +1,6 @@
 # Convergence and Reruns
 
-Convergence means that further immediate iteration is unlikely to materially improve current knowledge. It does not mean certainty, zero findings, or project perfection. NO and MAYBE findings, future revisit conditions, and pending human decisions may remain.
+Convergence is a property of the current bounded review state, not a proof of global completeness. It means no immediately justified operation within the current scope, authority, evidence availability, and execution boundary has sufficient expected information value to warrant another pass. It does not mean that no possible future review could discover anything new. NO and MAYBE findings, future revisit conditions, and pending human decisions may remain.
 
 Methodological convergence is independent of executor exhaustion. Context, token, tool, time, or execution-budget limits produce PARTIAL or BLOCKED and preserve continuation scope. They do not prove that no justified review remains.
 
@@ -21,3 +21,5 @@ Material change means a change capable of altering a proposition, its scope, evi
 Bound immediate reruns by review generation, evidence fingerprints, duplicate detection, scope-change checks, and a default maximum of one rerun per loop per generation. A rerun identifies a material delta in evidence, project state, dependency state, human decision, scope, legitimately corrected method, or another explicit source of expected information gain. Exceed the default only when every pass identifies such a delta. When expected gain is effectively zero, converge, persist a future revisit trigger, or stop with MAYBE, a blocked result, or escalation.
 
 Iteration occurs inside the [Invocation Lifecycle](execution-lifecycle.md). An optional maximum immediate-iteration value is a safety ceiling only. Reaching it triggers Delivery and continuation or escalation; it cannot set convergence. A material change that invalidates Analysis re-enters Analysis only for the affected scope and creates a Review Plan revision.
+
+Prefer an evidence-driven stop over a prediction about future reasoning. If required evidence is absent and no available authorized operation can obtain it, record `MAYBE`, identify the missing evidence, and halt. See [Epistemic Boundaries](epistemic-boundaries.md).

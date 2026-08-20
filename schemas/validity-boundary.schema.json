@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ynm:schemas:validity-boundary.schema.json",
+  "type": "object",
+  "required": [
+    "propositions",
+    "reviewed_scope",
+    "unreviewed_scope",
+    "evidence_snapshot",
+    "evidence_limitations",
+    "executor_profile",
+    "authority",
+    "execution_limits",
+    "temporal_reference"
+  ],
+  "properties": {
+    "propositions": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "reviewed_scope": {"type": "array", "items": {"type": "string"}},
+    "unreviewed_scope": {"type": "array", "items": {"type": "string"}},
+    "evidence_snapshot": {"type": "string", "minLength": 1},
+    "evidence_limitations": {"type": "array", "items": {"type": "string"}},
+    "executor_profile": {"type": "string", "minLength": 1},
+    "authority": {"type": "string", "minLength": 1},
+    "execution_limits": {"type": "array", "items": {"type": "string"}},
+    "temporal_reference": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

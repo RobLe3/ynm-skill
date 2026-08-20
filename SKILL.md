@@ -22,6 +22,12 @@ Prefer deterministic exact lookup, verified cached evidence, and targeted struct
 
 Every invocation uses `ANALYSIS → ITERATION → DELIVERY` and then terminates. Analysis establishes what can responsibly be reviewed. Iteration executes focal review and repeats only when another pass has expected information gain. Delivery is mandatory on converged, partial, blocked, escalated, bounded, and inconclusive paths; it reports achieved coverage and preserves uncertainty without granting authority. Read [Invocation Lifecycle](methodology/execution-lifecycle.md) before a full review.
 
+## Respect the epistemic boundary
+
+YNM produces bounded judgments, not universal proofs. A disposition applies only to its explicit proposition, reviewed scope, evidence, assessment conditions, executor capability, authority, resource limits, and evidence snapshot. Convergence never proves exhaustive correctness. Missing material evidence remains `MAYBE`. Provider-neutral design does not imply identical effectiveness across executors.
+
+Read [Epistemic Boundaries](methodology/epistemic-boundaries.md) for consequential assurance, broad correctness claims, production or security claims, self-evaluation, or disputes about whether a review is complete. YNM-0 does not load that document unless the proposition requires it.
+
 ## Select the invocation
 
 - `Load YNM`: load the skill without creating project files or persistent state.

@@ -158,11 +158,18 @@ class InvocationLifecycle:
         persistence_authorized: bool,
         persistence_attempted: bool = False,
         persistence_outcome: str = "NOT_ATTEMPTED",
+        propositions: list[str] | None = None,
+        evidence_snapshot: str = "current review inputs",
+        evidence_limitations: list[str] | None = None,
+        executor_profile: str = "unspecified executor",
+        authority: str = "review only",
+        execution_limits: list[str] | None = None,
+        temporal_reference: str = "receipt creation time",
     ) -> dict[str, Any]:
         if self.phase != "DELIVERY":
             raise ValueError("a receipt requires Delivery")
         return {
-            "schema_version": "ynm-run-receipt.v2",
+            "schema_version": "ynm-run-receipt.v3",
             "phase_history": self.phase_history.copy(),
             "review_plan_revision": self.plan_revision,
             "iteration_count": self.iteration_count,
@@ -181,6 +188,17 @@ class InvocationLifecycle:
                 "authorization_status": "AUTHORIZED" if persistence_authorized else "NOT_REQUESTED",
                 "persistence_attempted": persistence_attempted,
                 "persistence_outcome": persistence_outcome,
+            },
+            "validity_boundary": {
+                "propositions": propositions or ["bounded review proposition"],
+                "reviewed_scope": reviewed_scope,
+                "unreviewed_scope": unreviewed_scope,
+                "evidence_snapshot": evidence_snapshot,
+                "evidence_limitations": evidence_limitations or [],
+                "executor_profile": executor_profile,
+                "authority": authority,
+                "execution_limits": execution_limits or [],
+                "temporal_reference": temporal_reference,
             },
         }
 
