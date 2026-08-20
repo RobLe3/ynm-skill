@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-011-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-011
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:45:47.431289Z'
+elapsed_seconds: 47.849
+input_tokens: 124791
+output_tokens: 1618
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Disposition: **MAYBE \u2014 unresolved.**\n\n[PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ states that both versions are `1.4.0`, supporting \u201Cyes\u201D indirectly.\
+  \ However:\n\n- The complete project tree contains only `PROJECT.md`.\n- No `VERSION`\
+  \ file or manifest exists to inspect directly.\n- The two values therefore come\
+  \ from one documentary assertion, not independent source artifacts.\n\nEvidence\
+  \ boundary: entire current workspace tree reviewed read-only; no runtime, repository\
+  \ history, external source, or absent artifact was evaluated. YNM-1/LIGHT converged\
+  \ at `MAYBE` because further local inspection cannot establish equality. No files\
+  \ were changed."
+error: Reading additional input from stdin...

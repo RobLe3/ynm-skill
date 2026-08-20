@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-005
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:19:08.697898Z'
+elapsed_seconds: 72.996
+input_tokens: 205254
+output_tokens: 2797
+tool_calls: 18
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Maintenance Loop result: **BLOCKED**\n\nThe supplied review root is empty\
+  \ and is not a Git repository. Therefore, maintenance health cannot be defensibly\
+  \ assessed.\n\n### Finding M-001\n\n- **Proposition:** The project is sustainable,\
+  \ internally consistent, and operationally healthy.\n- **Disposition:** **MAYBE\
+  \ \u2014 EVIDENCE_REQUIRED**\n- **Evidence:** Complete directory listing contained\
+  \ no artifacts; Git reported no repository.\n- **Missing:** Source, manifests, dependencies,\
+  \ tests, CI configuration, release/version history, maintenance records, and prior\
+  \ YNM state.\n- **Revisit condition:** Populate the workspace or provide the correct\
+  \ project root.\n\n### Run receipt\n\n```yaml\nschema_version: ynm-run-receipt.v2\n\
+  run_id: maintenance-20260820T112005Z\ngeneration: 1\nexecution_context: PORTABLE_READ_ONLY\n\
+  execution_strategy: YNM-2_SPECIALIZE_LIGHT\nloops_requested: [Maintenance]\nloops_executed:\
+  \ [Maintenance]\nphase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nstage_reached:\
+  \ DELIVERY\nexecution_status: BLOCKED\nterminal_outcome: BLOCKED_REVIEW\nhalt_reason:\
+  \ NO_PROJECT_EVIDENCE\nreviewed_scope:\n  - root directory inventory\n  - Git repository\
+  \ detection\nunreviewed_scope:\n  - dependency health\n  - validation health\n \
+  \ - configuration and manifest drift\n  - release hygiene\n  - recurring failures\n\
+  \  - compatibility and lifecycle obligations\nevidence_added: 2\nfindings_created:\
+  \ 1\nfindings_updated: 0\ndispositions_changed: 0\nunresolved_findings: [M-001]\n\
+  converged: false\nstop_reason: Required project artifacts are absent\ncontinuation_scope:\
+  \ Rerun the Maintenance Loop against a populated project root\nnext_revisit_condition:\
+  \ Project evidence becomes available\npersistence_status: STATELESS_NOT_AUTHORIZED\n\
+  ```\n\nNo files were changed."
+error: Reading additional input from stdin...

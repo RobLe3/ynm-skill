@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-8883f33f9ec8
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output makes no countable material findings or required MAYBE dispositions,
+  consistent with the empty ground truth. It clearly traces its translation to PROJECT.md
+  line 3, explicitly bounds the evidence used, and states that no files were modified,
+  respecting the read-only authority boundary. The response is complete and appropriately
+  bounded for the task.

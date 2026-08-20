@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-005
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:19:53.597997Z'
+elapsed_seconds: 61.308
+input_tokens: 196925
+output_tokens: 2478
+tool_calls: 28
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM Maintenance Loop: **BLOCKED**\n\nThe selected project root is empty\
+  \ and is not a Git repository. No source, manifests, dependencies, tests, release\
+  \ metadata, history, or maintenance records were available.\n\nFinding `MAINT-001`:\n\
+  \n- Proposition: \u201CThe project remains sustainable, internally consistent, and\
+  \ operationally healthy.\u201D\n- Disposition: **MAYBE**\n- Reason: `EVIDENCE_REQUIRED`\n\
+  - Revisit condition: project artifacts or repository history become available.\n\
+  \nRun receipt:\n\n```yaml\nschema_version: ynm-run-receipt.v2\nrun_id: ynm-maintenance-20260820-01\n\
+  generation: 0\nexecution_context: PORTABLE\nexecution_strategy: NORMAL\nloops_requested:\
+  \ [Maintenance]\nloops_executed: [Maintenance]\nstage_reached: DELIVERY\nexecution_status:\
+  \ BLOCKED\nterminal_outcome: BLOCKED_REVIEW\nhalt_reason: NO_PROJECT_EVIDENCE\n\
+  reviewed_scope: project-root inventory and Git detection\nunreviewed_scope: all\
+  \ maintenance signals\nfindings_created: [MAINT-001]\ndispositions_changed: 0\n\
+  converged: false\ncontinuation_scope: full Maintenance Loop\nnext_revisit_condition:\
+  \ populate or mount the intended project root\npersistence_status: STATELESS_READ_ONLY\n\
+  ```\n\nNo files were modified."
+error: Reading additional input from stdin...

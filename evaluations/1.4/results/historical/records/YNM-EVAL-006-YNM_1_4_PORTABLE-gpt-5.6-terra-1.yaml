@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-006-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-006
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:40:35.209526Z'
+elapsed_seconds: 46.56
+input_tokens: 143934
+output_tokens: 1878
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Security claim: **NO \u2014 contradicted.**\n\n`SECURITY.md` says unauthenticated\
+  \ requests are denied, but [deny_by_default.py](<EVALUATION_PROJECT>/deny_by_default.py:2)\
+  \ returns `True` when `user is None`. I also executed that path and confirmed `authorize(None,\
+  \ resource)` returns `True`.\n\nThis is an authentication-bypass defect: unauthenticated\
+  \ callers are authorized.\n\nReviewed scope: the complete repository surface (policy\
+  \ and implementation). No files were modified."
+error: Reading additional input from stdin...

@@ -1,0 +1,18 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-012-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-012
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:25:33.516901Z'
+elapsed_seconds: 7.045
+input_tokens: 14067
+output_tokens: 15
+tool_calls: 0
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Please provide the sentence you\u2019d like me to correct."
+error: Reading additional input from stdin...

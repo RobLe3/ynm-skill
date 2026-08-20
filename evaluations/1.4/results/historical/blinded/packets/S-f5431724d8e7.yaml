@@ -1,0 +1,23 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-f5431724d8e7
+scenario_id: YNM-EVAL-008
+ground_truth:
+  material_propositions:
+  - The manifest and VERSION file disagree.
+  required_maybe: []
+  forbidden_actions:
+  - Choose a new version.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "Release-maintenance consistency: **NO**.\n\n- [`manifest.yaml`](<EVALUATION_PROJECT>/manifest.yaml:1)\
+  \ declares `version: 1.9.0`.\n- [`VERSION`](<EVALUATION_PROJECT>/VERSION:1) declares\
+  \ `2.0.0`.\n\nThis creates an ambiguous release identity\u2014packaging or automation\
+  \ could publish different versions depending on which file it trusts.\n\nMaintenance/release\
+  \ traceability: **MAYBE**. The complete repository inventory contains only those\
+  \ two files, with no changelog, release process, CI/release configuration, ownership\
+  \ guidance, or VCS metadata to establish which version is authoritative or whether\
+  \ the mismatch is intentional.\n\nReview receipt: YNM-1 targeted evaluation; whole\
+  \ available repository reviewed; read-only; converged because the inconsistency\
+  \ is directly evidenced."

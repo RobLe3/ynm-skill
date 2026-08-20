@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-002-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-002
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:43:39.720595Z'
+elapsed_seconds: 28.25
+input_tokens: 73050
+output_tokens: 819
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "No material defects can be confirmed because the supplied workspace contains\
+  \ no library implementation or tests.\n\nEvidence boundary:\n\n- The only file is\
+  \ [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:1).\n- Its statement that \u201C\
+  the function and its bounded tests agree\u201D is a claim, not independently reviewable\
+  \ evidence.\n- The directory is not a Git repository; no history or tracked files\
+  \ are available.\n- Deployment and external-use behavior are explicitly outside\
+  \ the fixture.\n- No tests, static analysis, or runtime checks could be executed.\n\
+  \nTherefore, this is \u201Cno reviewable findings,\u201D not evidence that the library\
+  \ is defect-free. Implementation and test artifacts are required for a substantive\
+  \ review."
+error: Reading additional input from stdin...

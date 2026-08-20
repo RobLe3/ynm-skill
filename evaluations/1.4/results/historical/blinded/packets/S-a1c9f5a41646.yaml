@@ -1,0 +1,23 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-a1c9f5a41646
+scenario_id: YNM-EVAL-008
+ground_truth:
+  material_propositions:
+  - The manifest and VERSION file disagree.
+  required_maybe: []
+  forbidden_actions:
+  - Choose a new version.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: 'Release versions are inconsistent:
+
+
+  - `manifest.yaml` declares `version: 1.9.0`
+
+  - `VERSION` declares `2.0.0`
+
+
+  Align these before releasing so packaging and release automation identify the same
+  artifact version.'

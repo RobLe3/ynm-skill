@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-016-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-016
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:34:20.881640Z'
+elapsed_seconds: 14.152
+input_tokens: 43334
+output_tokens: 382
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The project folder is empty, so I can\u2019t infer what the utility does\
+  \ yet. Tell me its core job (and any preferred tone\u2014technical, playful, minimalist),\
+  \ and I\u2019ll suggest names that fit."
+error: Reading additional input from stdin...

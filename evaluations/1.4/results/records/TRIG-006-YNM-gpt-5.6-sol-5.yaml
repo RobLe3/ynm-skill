@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-006-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-006
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:20:40.133352Z'
+elapsed_seconds: 67.22
+input_tokens: 170846
+output_tokens: 2483
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Disposition Loop completed with `NOT_APPLICABLE`.\n\nThe workspace is\
+  \ empty and is not a Git repository. No findings, lifecycle events, prior YNM state,\
+  \ transition requests, or authority charter exist to reconcile. The loop appropriately\
+  \ created no disposition.\n\n```yaml\nschema_version: ynm-run-receipt.v2\nrun_id:\
+  \ ynm-20260820T112135Z-disposition\ngeneration: 1\nproject_state: empty_non_repository_workspace\n\
+  execution_context: PORTABLE_READ_ONLY\nexecution_strategy: YNM-1_LIGHT\nloops_requested:\
+  \ [Disposition]\nloops_executed: [Disposition]\nphase_history: [ANALYSIS, ITERATION,\
+  \ DELIVERY, TERMINATED]\nstage_reached: DELIVERY\nexecution_status: NOT_APPLICABLE\n\
+  terminal_outcome: NOT_APPLICABLE_REVIEW\nhalt_reason: NO_FINDING_LIFECYCLE_INPUTS\n\
+  reviewed_scope:\n  - workspace inventory\n  - repository status\n  - disposition\
+  \ inputs and prior state\nunreviewed_scope: []\nevidence_added: 2\nfindings_created:\
+  \ 0\nfindings_updated: 0\ndispositions_changed: 0\nunresolved_dependencies: []\n\
+  iteration_count: 1\nconverged: true\nstop_reason: No submitted transitions or findings\
+  \ require reconciliation\ncontinuation_scope: Provide canonical findings or lifecycle\
+  \ events\nnext_revisit_condition: New evidence, transition request, or prior YNM\
+  \ state arrives\nrequired_human_decisions: []\npersistence_status: STATELESS_NO_WRITE_REQUESTED\n\
+  delivery: No disposition action was applicable\n```\n\nNo files were modified."
+error: Reading additional input from stdin...

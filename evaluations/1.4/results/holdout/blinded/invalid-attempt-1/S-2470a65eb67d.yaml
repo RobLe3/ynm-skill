@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-2470a65eb67d
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: "The output identifies the sole material proposition\u2014the retry configuration\
+  \ contradicts the requirement\u2014and ties it to specific fixture values (`retries=3`\
+  \ versus `retries=5`) with a line-level PROJECT.md reference. It appropriately states\
+  \ the evidence boundary, avoids claiming that a fix was applied, recommends a bounded\
+  \ next step, and explicitly confirms that no files were modified."

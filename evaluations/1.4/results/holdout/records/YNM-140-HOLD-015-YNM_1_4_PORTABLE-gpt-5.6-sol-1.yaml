@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-015-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-015
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:46:45.002941Z'
+elapsed_seconds: 68.205
+input_tokens: 130015
+output_tokens: 2438
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "The notes contain a direct conflict; the effective session-expiry value\
+  \ is unresolved.\n\n- **YES:** The available note says expiry is **15 minutes**.\n\
+  - **YES:** The same note says policy specifies **10 minutes**.\n- **MAYBE \u2014\
+  \ conflicting evidence:** The actual/effective expiry cannot be established as either\
+  \ 15 or 10 minutes.\n\nEvidence: [PROJECT.md:3](<EVALUATION_PROJECT>/PROJECT.md:3)\n\
+  \nEvidence boundaries:\n\n- The complete workspace contains only `PROJECT.md`; the\
+  \ relevant-term search covered that entire file.\n- This is direct evidence of what\
+  \ the summary file says, but not independent evidence from the referenced session\
+  \ note or policy.\n- No configuration, implementation, tests, runtime observations,\
+  \ dates of applicability, or authority hierarchy are available.\n- Calling one value\
+  \ \u201Cpolicy\u201D does not by itself prove that it controls current behavior.\n\
+  - Resolution requires the underlying policy/session documents or an authoritative\
+  \ runtime/configuration source.\n\nYNM receipt: `YNM-1 EVALUATE`, LIGHT/read-only;\
+  \ execution `COMPLETED`; reviewed all available workspace files; unresolved dependency\
+  \ is authoritative expiry evidence; stopped because further searching within the\
+  \ bounded workspace cannot resolve the conflict. No files or persistent review state\
+  \ were written."
+error: Reading additional input from stdin...

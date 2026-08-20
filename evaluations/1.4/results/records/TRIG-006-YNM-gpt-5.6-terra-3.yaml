@@ -1,0 +1,62 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-006-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-006
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:30:53.504109Z'
+elapsed_seconds: 37.68
+input_tokens: 101688
+output_tokens: 1234
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'No finding lifecycle or YNM state is present to reconcile, so the Disposition
+  Loop is not applicable for this workspace.
+
+
+  Run receipt:
+
+
+  ```yaml
+
+  schema_version: ynm-run-receipt.v2
+
+  loops_requested: [Disposition]
+
+  loops_executed: [Disposition]
+
+  execution_status: NOT_APPLICABLE
+
+  terminal_outcome: NOT_APPLICABLE_REVIEW
+
+  stage_reached: DELIVERY
+
+  reviewed_scope: "Workspace inventory and available YNM finding/state records"
+
+  unreviewed_scope: "Any external or unprovided finding history"
+
+  findings_created: 0
+
+  findings_updated: 0
+
+  dispositions_changed: 0
+
+  halt_reason: "No project files, findings, lifecycle events, authority charter, or
+  prior YNM state available."
+
+  persistence_status: STATELESS
+
+  converged: true
+
+  next_revisit_condition: "A finding, proposed disposition, transition request, or
+  prior state becomes available."
+
+  ```
+
+
+  No files were changed.'
+error: Reading additional input from stdin...

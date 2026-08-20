@@ -1,0 +1,49 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-010-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-010
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:39:04.938064Z'
+elapsed_seconds: 168.75
+input_tokens: 256088
+output_tokens: 5148
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Review findings\n\n### Architecture \u2014 MAYBE\n\nThe available\
+  \ code conforms to the documented layering: [cli.py](<EVALUATION_PROJECT>/cli.py:1)\
+  \ calls the service, and [service.py](<EVALUATION_PROJECT>/service.py:1) alone imports\
+  \ storage, matching [ARCHITECTURE.md](<EVALUATION_PROJECT>/ARCHITECTURE.md:3).\n\
+  \nOverall coherence remains unresolved because `storage` is neither present nor\
+  \ described as an external dependency. There is no storage interface, dependency\
+  \ manifest, or architectural decision record establishing the intended arrangement.\n\
+  \n### Implementation \u2014 NO\n\nThe realized application cannot execute:\n\n-\
+  \ Importing `cli` fails with `ModuleNotFoundError: No module named 'storage'`.\n\
+  - `list_items()` therefore cannot fulfill its only observable behavior.\n- No tests\
+  \ or alternative implementation establish a working path.\n\nThe dependency-security\
+  \ requirement in [POLICY.md](<EVALUATION_PROJECT>/POLICY.md:3) is separately **MAYBE**:\
+  \ no deployment configuration or records are available to prove or contradict enforcement.\n\
+  \n### Adoption \u2014 NO\n\nThe sole onboarding instruction in [README.md](<EVALUATION_PROJECT>/README.md:3)\
+  \ directs users to run `python quickstart.py`, but `quickstart.py` does not exist.\
+  \ The command fails immediately, and there is no alternative installation, configuration,\
+  \ example, or troubleshooting path.\n\n### Maintenance \u2014 NO\n\nCurrent repository\
+  \ consistency is contradicted by:\n\n- Documentation referencing a missing entrypoint.\n\
+  - Production code referencing an unavailable storage module.\n- No manifest explaining\
+  \ whether `storage` is external.\n- A deployment policy whose validation evidence\
+  \ is unavailable.\n\nLongitudinal maintenance health remains **MAYBE** because this\
+  \ directory is not a Git repository and contains no release, issue, ownership, CI,\
+  \ or historical validation records.\n\n## Recommended order\n\n1. Restore or replace\
+  \ `quickstart.py` and make the documented command executable.\n2. Supply `storage.py`\
+  \ or declare and install the intended external dependency.\n3. Add a minimal executable\
+  \ test covering the CLI-to-storage path.\n4. Record the deployment vulnerability\
+  \ check in versioned configuration and retain auditable results.\n5. Update the\
+  \ architecture documentation with the storage contract and dependency ownership.\n\
+  \nReview receipt: YNM-2/NORMAL, read-only; all five project files reviewed. External\
+  \ deployment records, user feedback, dependencies, and project history were unavailable.\
+  \ The bounded repository review converged, with unresolved claims retained as MAYBE.\
+  \ No files were modified."
+error: Reading additional input from stdin...

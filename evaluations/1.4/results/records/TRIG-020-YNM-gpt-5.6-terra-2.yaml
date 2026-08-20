@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-020
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:35:28.631137Z'
+elapsed_seconds: 24.962
+input_tokens: 64402
+output_tokens: 697
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM routing is complete: a review isn\u2019t actionable yet.\n\nThe workspace\
+  \ contains no project files, documentation, or stated proposition to evaluate, so\
+  \ the defensible result is **MAYBE / blocked**\u2014not a finding about the project\
+  \ itself.\n\nProvide the repo or a specific question (for example, \u201Cis this\
+  \ ready to release?\u201D), and I can run a focused YNM-1 review."
+error: Reading additional input from stdin...

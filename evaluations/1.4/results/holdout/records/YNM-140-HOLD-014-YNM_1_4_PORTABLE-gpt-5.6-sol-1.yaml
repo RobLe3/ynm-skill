@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-014-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-014
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:46:29.060971Z'
+elapsed_seconds: 48.743
+input_tokens: 134972
+output_tokens: 1529
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "The exact version cannot be verified directly: **no `VERSION` file exists\
+  \ in the workspace**.\n\nThe only available evidence is [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3),\
+  \ which states: `VERSION contains 1.4.0.`\n\nDisposition: **MAYBE \u2014 1.4.0**.\
+  \ This is a secondary claim, not evidence from `VERSION` itself.\n\nEvidence boundary:\
+  \ recursively checked the current workspace; it contains only `PROJECT.md`, is not\
+  \ a Git repository, and no history or files outside the workspace were reviewed.\
+  \ No files were changed."
+error: Reading additional input from stdin...

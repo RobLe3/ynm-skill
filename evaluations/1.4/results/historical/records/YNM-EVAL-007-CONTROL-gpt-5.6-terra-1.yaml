@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-007-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-007
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:40:36.413939Z'
+elapsed_seconds: 19.09
+input_tokens: 57790
+output_tokens: 550
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'No. A new user cannot install or verify this project as provided.
+
+
+  The repository contains only [README.md](<EVALUATION_PROJECT>/README.md:1), which
+  says to run `python scripts/verify_install.py`, but:
+
+
+  - there are no installation instructions or dependency manifest;
+
+  - the referenced `scripts/verify_install.py` does not exist;
+
+  - no project source or package configuration is present.
+
+
+  At minimum, add install prerequisites/commands and the verification script (or correct
+  the documented command).'
+error: Reading additional input from stdin...

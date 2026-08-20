@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-001
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:16:41.422726Z'
+elapsed_seconds: 43.675
+input_tokens: 101997
+output_tokens: 1579
+tool_calls: 18
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM review result\n\n**Disposition: MAYBE \u2014 `INSUFFICIENT_CONTEXT`**\n\
+  \nThe workspace is empty: it contains no source code, documentation, configuration,\
+  \ tests, Git metadata, or hidden project files. Therefore, implementation correctness,\
+  \ architecture, security, and release readiness cannot be assessed.\n\n### Finding\
+  \ YNM-001\n\n- **Proposition:** The supplied workspace contains reviewable project\
+  \ artifacts.\n- **Disposition:** **NO**\n- **Evidence:** Complete directory inspection\
+  \ found zero entries beneath the review root.\n- **Scope:** `<EVALUATION_PROJECT>`\n\
+  - **Revisit condition:** Populate this directory or provide the correct project\
+  \ path.\n\n### Run receipt\n\n- **Execution:** YNM-1 EVALUATE, LIGHT, PORTABLE,\
+  \ read-only\n- **Requested scope:** Entire project\n- **Reviewed scope:** Entire\
+  \ available workspace\n- **Implementation and test loops:** BLOCKED\u2014no artifacts\n\
+  - **Converged:** No; evidence exhaustion is not project assurance\n- **Persistence:**\
+  \ None; no write authorization\n- **Stop reason:** No additional local evidence\
+  \ exists\n\nNo project files were changed."
+error: Reading additional input from stdin...

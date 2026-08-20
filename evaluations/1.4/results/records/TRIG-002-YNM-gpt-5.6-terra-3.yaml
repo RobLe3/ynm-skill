@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-002
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:28:49.912463Z'
+elapsed_seconds: 36.171
+input_tokens: 107640
+output_tokens: 1402
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Architecture Loop completed: **MAYBE \u2014 insufficient context**.\n\
+  \nThe workspace contains no project files, documentation, configuration, source\
+  \ code, or architectural decision records to evaluate. As a result, no claims about\
+  \ boundaries, dependencies, data flow, or conformity can be supported or contradicted.\n\
+  \nRun receipt:\n\n- Requested scope: architecture loop\n- Reviewed scope: visible\
+  \ workspace contents\n- Execution level: YNM-2, Architecture specialist (explicitly\
+  \ requested)\n- Loop status: BLOCKED\n- Finding: \u201CThe project\u2019s implemented\
+  \ architecture is coherent and conforms to declared architecture.\u201D\n- Disposition:\
+  \ MAYBE (`INSUFFICIENT_CONTEXT`)\n- Evidence: the workspace is empty (no repository\
+  \ or project artifacts discovered)\n- Convergence: reached for the available scope;\
+  \ further local inspection has no expected information gain\n- Needed to continue:\
+  \ project source plus any README, architecture documentation, ADRs, configuration,\
+  \ or diagrams."
+error: Reading additional input from stdin...

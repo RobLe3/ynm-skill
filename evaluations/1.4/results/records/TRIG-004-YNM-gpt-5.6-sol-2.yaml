@@ -1,0 +1,44 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-004
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:18:28.921356Z'
+elapsed_seconds: 68.565
+input_tokens: 147095
+output_tokens: 2710
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Adoption Loop\n\n**Disposition: NO \u2014 bounded local adoption\
+  \ path**\n\nA prospective adopter cannot begin using the project from the supplied\
+  \ review root. The directory is empty, contains no onboarding or project artifacts,\
+  \ and is not a Git repository.\n\n- `ADOPT-001 \u2014 NO`: No locally available\
+  \ path exists to understand, acquire, configure, or operate the project.\n- `ADOPT-002\
+  \ \u2014 MAYBE (EVIDENCE_REQUIRED)`: Adoption through an external distribution or\
+  \ documentation channel cannot be evaluated because no audience, product description,\
+  \ links, instructions, or user evidence were supplied.\n\nReviewed scope: complete\
+  \ local directory inventory and entry-point discovery.\n\nUnreviewed scope: external\
+  \ documentation, releases, package registries, runtime behavior, support history,\
+  \ migration, accessibility, and actual user attempts.\n\n```yaml\nrun_id: ynm-adoption-20260820T111914Z\n\
+  schema_version: ynm-run-receipt.v2\ngeneration: 1\nproject_state: \"empty directory;\
+  \ not a Git repository\"\nexecution_context: \"read-only, local, PORTABLE\"\nexecution_strategy:\
+  \ \"YNM-2 SPECIALIZE, LIGHT\"\nloops_requested: [Adoption]\nloops_executed: [Adoption]\n\
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nstage_reached: DELIVERY\n\
+  execution_status: COMPLETED\nterminal_outcome: CONVERGED_REVIEW\nhalt_reason: BOUNDED_DISPOSITION_REACHED\n\
+  review_plan_revision: 1\niteration_count: 1\nconverged: true\nstop_reason: \"Complete\
+  \ bounded search found no adoption artifacts\"\nreviewed_scope: \"local project\
+  \ root and all directory entries\"\nunreviewed_scope: \"all external or unavailable\
+  \ adoption channels\"\nevidence_added: 3\nfindings_created: 2\nfindings_updated:\
+  \ 0\ndispositions_changed: 0\nunresolved_findings: [ADOPT-002]\nunresolved_dependencies:\
+  \ [\"project identity, audience, and external resources\"]\nrequired_human_decisions:\
+  \ [\"provide or identify the intended project artifacts\"]\ncontinuation_scope:\
+  \ \"rerun after project files or authoritative external references exist\"\nnext_revisit_condition:\
+  \ \"user-facing artifacts or adoption evidence are supplied\"\npersistence_status:\
+  \ \"not persisted; no write authorization\"\ndelivery: \"One bounded NO and one\
+  \ evidence-limited MAYBE\"\n```\n\nNo project files or YNM state were modified."
+error: Reading additional input from stdin...

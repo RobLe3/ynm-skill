@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-106a08e3da84
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 1
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: 'The output correctly identifies and directly traces the missing operational
+  evidence to PROJECT.md and clearly bounds the reviewed scope. However, it converts
+  an absence of rollout, monitoring, and recovery evidence into a definitive NO on
+  production readiness. The required disposition was MAYBE: the evidence establishes
+  that production readiness is unproven, not that the system is affirmatively not
+  production ready. The review remained read-only and appropriately separated assessment
+  from deployment authorization.'

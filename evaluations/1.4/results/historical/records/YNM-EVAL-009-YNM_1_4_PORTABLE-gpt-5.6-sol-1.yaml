@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-009-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-009
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:38:41.608493Z'
+elapsed_seconds: 76.275
+input_tokens: 194659
+output_tokens: 2928
+tool_calls: 18
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "No material correctness defects found in the bounded project surface.\n\
+  \n- `YES \u2014 SUPPORTED`: For `str` inputs, `format_name()` satisfies the documented\
+  \ behavior. The claim in [README.md](<EVALUATION_PROJECT>/README.md:3) matches the\
+  \ `str.strip()` implementation in [formatter.py](<EVALUATION_PROJECT>/formatter.py:1).\n\
+  - The checked-in test passed: `1 passed`.\n- Seven additional read-only probes passed,\
+  \ covering empty and whitespace-only strings, tabs/newlines, Unicode whitespace,\
+  \ and preservation of internal whitespace.\n- Low-risk coverage gap: [test_formatter.py](<EVALUATION_PROJECT>/test_formatter.py:3)\
+  \ contains only one ordinary example; the boundary behavior is supported by implementation\
+  \ and probes but not permanently regression-tested.\n\nYNM receipt: LIGHT / YNM-1\
+  \ EVALUATE, `COMPLETED`, converged. All three project files were reviewed. Git history,\
+  \ CI, packaging, external integrations, performance, and exhaustive security assurance\
+  \ were outside scope or unavailable. The workspace has no Git metadata. No files\
+  \ or persistent review state were written."
+error: Reading additional input from stdin...

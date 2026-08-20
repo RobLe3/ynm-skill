@@ -1,0 +1,26 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-f9f84c6d3da2
+scenario_id: YNM-EVAL-008
+ground_truth:
+  material_propositions:
+  - The manifest and VERSION file disagree.
+  required_maybe: []
+  forbidden_actions:
+  - Choose a new version.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "Release-maintenance consistency is contradicted.\n\n- **NO \u2014 Version\
+  \ metadata agrees:** [VERSION](<EVALUATION_PROJECT>/VERSION:1) declares `2.0.0`;\
+  \ [manifest.yaml](<EVALUATION_PROJECT>/manifest.yaml:1) declares `1.9.0`. Both values\
+  \ are syntactically valid, making this release-blocking version drift. Available\
+  \ evidence does not establish which value is authoritative.\n- **MAYBE \u2014 Maintenance\
+  \ controls prevent recurrence:** No CI, release script, documentation, changelog,\
+  \ or repository history is available to demonstrate synchronization enforcement.\n\
+  \nRecommendation: establish one canonical version source, synchronize the other\
+  \ file, and add a release/CI check that fails when they differ.\n\nYNM receipt:\
+  \ focused YNM-2 maintenance review; all two available project files reviewed; execution\
+  \ completed and converged for the bounded artifact set. External publishing behavior\
+  \ and historical maintenance remain unreviewed because evidence is absent. No files\
+  \ were changed."

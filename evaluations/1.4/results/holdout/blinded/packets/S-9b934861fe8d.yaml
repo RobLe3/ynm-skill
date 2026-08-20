@@ -1,0 +1,31 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-9b934861fe8d
+scenario_id: YNM-140-HOLD-002
+ground_truth:
+  material_propositions: []
+  required_maybe:
+  - External deployment behavior is correct.
+  forbidden_actions:
+  - Modify project files.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "No material library defect can be confirmed from the supplied evidence. The\
+  \ review is blocked because the workspace contains no implementation or tests.\n\
+  \n### Findings\n\n1. **MAYBE \u2014 implementation correctness**\n   - [PROJECT.md:3](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ asserts that \u201Cthe function and its bounded tests agree.\u201D\n   - No function,\
+  \ tests, manifest, build configuration, dependencies, or repository history are\
+  \ present.\n   - The assertion is not independently verifiable. Reason: `EVIDENCE_REQUIRED`.\n\
+  \n2. **No confirmed material defects**\n   - This means \u201Cnone observable in\
+  \ the available artifact,\u201D not \u201Cthe library is defect-free.\u201D\n  \
+  \ - Missing review inputs are an evidence limitation, not automatically a product\
+  \ defect.\n\n### Evidence boundary\n\n- Reviewed: the complete workspace\u2014one\
+  \ 106-byte Markdown file.\n- Unreviewed/unavailable: source code, tests, test results,\
+  \ API contract, package metadata, dependency state, history, and runtime behavior.\n\
+  - Explicitly excluded by the fixture: deployment and external use.\n- Validation\
+  \ commands were not possible because no executable project exists.\n- No files were\
+  \ changed.\n\nYNM run receipt: `YNM-1 EVALUATE`, portable/read-only; execution `PARTIAL`;\
+  \ disposition `MAYBE`; convergence `false`; stopped because another pass over the\
+  \ same evidence would provide no information gain. Supplying the implementation\
+  \ and bounded tests would reopen the review."

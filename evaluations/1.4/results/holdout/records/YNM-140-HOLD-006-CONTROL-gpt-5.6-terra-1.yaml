@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-006-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-006
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:48:40.982865Z'
+elapsed_seconds: 20.97
+input_tokens: 57961
+output_tokens: 677
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'No GPL-licensed dependency is indicated.
+
+
+  Evidence: the only repository file is [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md),
+  which states the complete manifest contains:
+
+
+  - `alpha`: MIT
+
+  - `beta`: Apache-2.0
+
+
+  Boundary: no actual dependency manifest or lockfile is present, so this conclusion
+  relies solely on that fixture statement and cannot independently verify transitive
+  dependencies or package metadata.'
+error: Reading additional input from stdin...

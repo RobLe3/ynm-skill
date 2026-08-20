@@ -1,6 +1,6 @@
 # Validation
 
-Current candidate: **YNM 1.3.0 (release candidate)**
+Current candidate: **YNM 1.4.0 (unreleased candidate; empirical release gate failed)**
 
 ## Deterministic validation status
 
@@ -16,7 +16,7 @@ Current candidate: **YNM 1.3.0 (release candidate)**
 
 ## What these results mean
 
-Validation confirms that current 1.3.0 candidate files, schemas, lifecycle invariants, and package metadata are internally consistent.
+Validation confirms that current 1.4.0 candidate files, schemas, lifecycle invariants, and package metadata are internally consistent.
 The package checks confirm runtime-conformant files for `dist/ynm` from the manifest, including deterministic file inventory and content. They do not claim deterministic filesystem metadata or archive bytes.
 
 Agent Skills reference validation is a format conformance check; it does not prove independent implementation compatibility.
@@ -30,11 +30,9 @@ Automated sanitization checks tracked text for private-path patterns, credential
 
 ## Empirical evaluation status
 
-The repository contains protocol revision 2, a frozen rubric, and ten controlled A/B fixtures under `evaluations/`. The primary experiment compares the same project, model, tools, task, and read-only authority with and without YNM. It measures finding precision and recall, unsupported conclusions, evidence quality, MAYBE calibration, authority violations, lifecycle behavior, completion quality, tokens, tool calls, and elapsed time.
+The 1.4 cycle completed 200 frozen trigger runs, 40 historical regression executions, and 72 fresh holdout executions across `gpt-5.6-sol` and `gpt-5.6-terra`. All holdout outputs received blinded maintainer-operated adjudication. An initial 72-score adjudication attempt used an incorrect scenario-ID constraint; the complete invalid attempt is retained and a complete replacement adjudication was performed after correcting the evaluation-only schema.
 
-Revision 1 stopped at a capability boundary and executed no trigger or benchmark task. Revision 2 completed 200 trigger executions and 40 paired benchmark executions on `gpt-5.6-sol` and the mechanically selected replication model, `gpt-5.6-terra`.
-
-The primary aggregate showed modest precision and unsupported-claim improvements, but YNM failed the frozen hard-safety rule on the clean-project fixture by asserting correctness while failing to preserve explicitly unreviewed production evidence. Trigger activation also had material false negatives under the precommitted behavioral-inference rule. Core effectiveness and trigger selectivity are therefore NO for this candidate. See [the empirical summary](evaluations/results/summary.md).
+PORTABLE execution improved primary precision, unsupported-claim rate, required-MAYBE recall, and evidence traceability. It nevertheless produced a non-zero false-finding rate, regressed on replication, and exceeded every frozen cost target. Activation was not observable under the frozen instrumentation rule. ACCELERATED execution was not run because project-scoped semantic retrieval and isolated memory did not pass smoke validation. The 1.4 effectiveness, cost, and replication gates are therefore NO; activation and acceleration remain MAYBE. See [the 1.4 empirical summary](evaluations/1.4/results/summary.md).
 
 This availability probe and any later maintainer-operated runs do not constitute independent interoperability evidence.
 

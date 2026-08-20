@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-007
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:21:34.278481Z'
+elapsed_seconds: 69.841
+input_tokens: 174958
+output_tokens: 2863
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Meta Loop \u2014 Blocked\n\nThe Meta Loop cannot coordinate a\
+  \ project review because the selected [workspace root](<EVALUATION_PROJECT>) is\
+  \ empty and is not a Git repository.\n\n**Finding `META-001`**\n\n- Proposition:\
+  \ The review root contains sufficient project evidence or prior YNM state to define\
+  \ review scopes and dependencies.\n- Disposition: **NO \u2014 CONTRADICTED**\n-\
+  \ Evidence: A complete top-level inspection found zero entries; no project instructions,\
+  \ artifacts, documentation, history, or YNM state exist.\n- Failure origin: `EVIDENCE`\n\
+  - Revisit condition: Populate this workspace, point me to the intended project root,\
+  \ or provide a concrete proposition and its evidence.\n\n**Run Receipt**\n\n```yaml\n\
+  schema_version: ynm-run-receipt.v2\nrun_id: ynm-meta-20260820T112225Z\ngeneration:\
+  \ 1\nprofile: BASIC\nbudget: LIGHT\nexecution_strategy: CONSTRAINED\nproject_state:\
+  \ empty_directory; no_vcs\nloops_requested: [meta]\nloops_executed: [meta]\nphase_history:\
+  \ [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nstage_reached: DELIVERY\nexecution_status:\
+  \ BLOCKED\nterminal_outcome: BLOCKED_REVIEW\nhalt_reason: EVIDENCE_REQUIRED\nreviewed_scope:\
+  \ workspace inventory and coordination prerequisites\nunreviewed_scope: intended\
+  \ project and all focal review scopes\nevidence_added: 3\nfindings_created: [META-001]\n\
+  findings_updated: []\ndispositions_changed: []\nunresolved_dependencies:\n  - project\
+  \ artifacts or an alternate project root\ncontinuation_scope: rerun Meta Loop after\
+  \ project evidence is available\nnext_revisit_condition: material project evidence\
+  \ is supplied\niteration_count: 1\nconverged: false\nstop_reason: another pass has\
+  \ no expected information gain\npersistence_status: not requested; no state written\n\
+  authorization_status: NOT_REQUESTED\n```\n\nNo files were changed."
+error: Reading additional input from stdin...

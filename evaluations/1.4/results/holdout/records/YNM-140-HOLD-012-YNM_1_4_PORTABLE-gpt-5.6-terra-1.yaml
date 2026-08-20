@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-012-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-012
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:49:29.945546Z'
+elapsed_seconds: 35.859
+input_tokens: 85120
+output_tokens: 1369
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Finding: tests do not support the documented retry behavior\n\n**Disposition:\
+  \ NO** \u2014 within the available fixture, the documentation says retries allow\
+  \ **three attempts**, while tests cover only a request succeeding on its first attempt.\n\
+  \nThat test can establish the non-retry happy path only. It does not demonstrate:\n\
+  \n- a retry occurs after a failure;\n- retries stop after the third attempt;\n-\
+  \ a later attempt can succeed;\n- all attempts failing is handled as documented.\n\
+  \nEvidence reviewed: [`PROJECT.md`](<EVALUATION_PROJECT>/PROJECT.md:1).\n\nEvidence\
+  \ boundary: this workspace contains no source or test files, and it is not a Git\
+  \ repository. Therefore, the conclusion is limited to the fixture\u2019s explicit\
+  \ summary; I could not independently inspect test code, assertions, or execution\
+  \ results."
+error: Reading additional input from stdin...

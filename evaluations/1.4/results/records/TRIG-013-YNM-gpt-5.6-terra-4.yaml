@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-013-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-013
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:33:57.895735Z'
+elapsed_seconds: 14.338
+input_tokens: 43355
+output_tokens: 350
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "There\u2019s no README (or any files) in the current workspace to summarize.\
+  \ Please add or point me to the README."
+error: Reading additional input from stdin...

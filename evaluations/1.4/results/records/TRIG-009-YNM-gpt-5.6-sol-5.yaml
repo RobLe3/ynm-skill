@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-009-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-009
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:24:00.663430Z'
+elapsed_seconds: 105.751
+input_tokens: 380882
+output_tokens: 4527
+tool_calls: 24
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Initialization was blocked by the workspace\u2019s read-only filesystem.\
+  \ No files were created.\n\nPlanned scaffold:\n\n- `.ynm/README.md`\n- `.ynm/project.yaml`\n\
+  - `.ynm/config.yaml`\n- `.ynm/state/findings.yaml`\n- `.ynm/state/events.jsonl`\n\
+  - `.ynm/state/receipts/YNM-BOOT-4A0963B20E83.yaml`\n\nDiscovery found an empty project\
+  \ with no ownership conflicts. Note that YNM defines `STANDARD` as an execution\
+  \ strategy, not a persistent review profile; initialization would create the `PERSISTENT`\
+  \ profile with read-only reviews by default. Re-run in a writable workspace to complete\
+  \ initialization."
+error: 'Reading additional input from stdin...
+
+  2026-08-20T11:25:38.339614Z ERROR codex_core::tools::router: error=patch rejected:
+  writing is blocked by read-only sandbox; rejected by user approval settings'

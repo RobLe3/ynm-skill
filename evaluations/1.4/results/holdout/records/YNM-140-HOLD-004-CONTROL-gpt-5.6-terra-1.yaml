@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-004-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-004
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:48:16.975660Z'
+elapsed_seconds: 20.751
+input_tokens: 58055
+output_tokens: 676
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "The claim is **not verified**.\n\nEvidence:\n\n- [`PROJECT.md`](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ states that a README claims encryption is always enabled, but that `config.yaml`\
+  \ enables `allow_plaintext_fallback: true`.\n\nEvidence boundaries:\n\n- The workspace\
+  \ contains only `PROJECT.md`; there is no README, `config.yaml`, source code, deployment\
+  \ configuration, or test suite available to inspect.\n- The directory is not a Git\
+  \ repository, so no history can corroborate the assertion.\n- Therefore, I can report\
+  \ only the fixture\u2019s stated contradiction\u2014not independently confirm the\
+  \ runtime behavior.\n\nIf the referenced configuration is accurate, plaintext fallback\
+  \ means encryption is not invariably enforced."
+error: Reading additional input from stdin...

@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-008
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:21:57.908352Z'
+elapsed_seconds: 69.367
+input_tokens: 149347
+output_tokens: 2905
+tool_calls: 22
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM initialization is **blocked**; no files were changed.\n\n- Workspace\
+  \ is read-only.\n- Bundled initializer also lacks `PyYAML 6.x`.\n- Project is empty,\
+  \ with no existing artifacts or YNM state to reuse.\n- Write authorization: `AUTHORIZED`\n\
+  - Persistence outcome: `NOT_ATTEMPTED`\n- Bootstrap ID: `YNM-BOOT-4A0963B20E83`\n\
+  \nPlanned minimal scaffold:\n\n```text\n.ynm/\n\u251C\u2500\u2500 README.md\n\u251C\
+  \u2500\u2500 project.yaml\n\u251C\u2500\u2500 config.yaml\n\u2514\u2500\u2500 state/\n\
+  \    \u251C\u2500\u2500 findings.yaml\n    \u251C\u2500\u2500 events.jsonl\n   \
+  \ \u2514\u2500\u2500 receipts/YNM-BOOT-4A0963B20E83.yaml\n```\n\nInitialization\
+  \ can proceed once the workspace is writable; installing PyYAML enables the bundled\
+  \ helper, though YNM can also initialize in portable mode."
+error: Reading additional input from stdin...

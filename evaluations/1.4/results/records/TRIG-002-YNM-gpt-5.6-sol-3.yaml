@@ -1,0 +1,45 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-002
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:17:25.098158Z'
+elapsed_seconds: 50.074
+input_tokens: 160071
+output_tokens: 1891
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Architecture Loop result: `NOT_APPLICABLE`
+
+
+  The review root is empty and is not a Git repository. It contains no declared architecture,
+  decision records, source code, configuration, dependencies, or prior YNM state.
+  Therefore, no architectural proposition can be responsibly evaluated.
+
+
+  - Findings: none
+
+  - Reviewed scope: complete contents and repository status of the supplied root
+
+  - Unreviewed scope: none discoverable
+
+  - Execution: YNM-2 SPECIALIZE, Architecture Loop only
+
+  - Converged: yes
+
+  - Stop reason: `NO_APPLICABLE_PROPOSITION`
+
+  - Persistence: stateless; no files changed
+
+  - Revisit condition: rerun when architecture documentation, implementation, configuration,
+  or an authoritative architectural decision exists
+
+
+  Run receipt: `ynm-run-receipt.v2`, terminal outcome `NOT_APPLICABLE_REVIEW`, completed
+  at `2026-08-20T11:18:06Z`.'
+error: Reading additional input from stdin...

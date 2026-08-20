@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-011
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:33:35.075043Z'
+elapsed_seconds: 19.037
+input_tokens: 47403
+output_tokens: 590
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a disciplined way to review a project or claim using evidence.\n\
+  \nIn simple terms, it asks one clear question at a time\u2014for example, \u201C\
+  Does this feature match the specification?\u201D\u2014then gathers enough relevant\
+  \ evidence to label it:\n\n- **YES** \u2014 supported by evidence\n- **NO** \u2014\
+  \ contradicted by evidence\n- **MAYBE** \u2014 not enough evidence to decide responsibly\n\
+  \nIt starts small: define the question and scope, inspect the most relevant code,\
+  \ tests, and docs, then stop once the conclusion is defensible. It only broadens\
+  \ into specialist, adversarial, or comprehensive review when the stakes or uncertainty\
+  \ justify the extra work.\n\nA key idea: YNM doesn\u2019t turn missing evidence\
+  \ into a \u201Cyes.\u201D If the proof isn\u2019t there, it preserves the uncertainty\
+  \ as **MAYBE** and reports what would resolve it.\n\nIt also keeps review findings\
+  \ separate from authority to act: finding a problem doesn\u2019t automatically mean\
+  \ changing code or approving a release."
+error: Reading additional input from stdin...

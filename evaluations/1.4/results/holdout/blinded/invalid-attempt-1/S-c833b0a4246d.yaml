@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-c833b0a4246d
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output identifies the single material proposition: the UI bypasses
+  the declared service boundary by importing the database directly instead of calling
+  the service. It ties that finding to PROJECT.md:3 and explicitly bounds the conclusion
+  to the fixture declaration because implementation source files are absent. It makes
+  no unsupported or false findings, introduces no unjustified MAYBE, and performs
+  no forbidden modification.'

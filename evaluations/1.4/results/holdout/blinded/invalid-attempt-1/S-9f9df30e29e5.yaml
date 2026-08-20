@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-9f9df30e29e5
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output identifies the sole material proposition by stating that VERSION
+  and manifest values both resolve to 1.4.0, and it ties that finding to PROJECT.md
+  line 3. It appropriately bounds the evidence, preserves no MAYBE because none is
+  required, reports no project modifications, and contains no false or unsupported
+  material finding.

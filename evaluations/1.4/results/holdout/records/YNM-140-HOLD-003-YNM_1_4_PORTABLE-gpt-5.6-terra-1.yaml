@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-003-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-003
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:48:11.213917Z'
+elapsed_seconds: 34.822
+input_tokens: 87548
+output_tokens: 1219
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Production readiness: NO\n\nThe repository\u2019s only artifact, [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:1),\
+  \ explicitly states:\n\n- Unit and integration tests pass.\n- No production rollout,\
+  \ monitoring, or recovery evidence exists.\n\nThat is sufficient to contradict the\
+  \ bounded proposition that this project is production-ready: production operation\
+  \ lacks demonstrated deployment/rollout, observability, and incident-recovery support.\n\
+  \nEvidence boundaries:\n\n- Reviewed scope: all discoverable repository contents\
+  \ (one file).\n- No source code, test output, CI configuration, deployment manifests,\
+  \ dependency metadata, runbooks, monitoring configuration, or version-control history\
+  \ was present to inspect.\n- I did not execute tests because no runnable test setup\
+  \ was available.\n- This was a read-only, evidence-based assessment; it is not approval\
+  \ or authorization to deploy.\n\nMinimum evidence needed to reassess: reproducible\
+  \ test/CI results, deployment and rollback procedure, monitoring/alerting configuration,\
+  \ and recovery/incident runbooks with evidence of validation."
+error: Reading additional input from stdin...

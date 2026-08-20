@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-ee17f5afd5f4
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: "The output identifies the material contradiction: a configuration permitting\
+  \ plaintext fallback is incompatible with a claim that encryption is always enabled.\
+  \ It explicitly ties that finding to PROJECT.md:3, carefully distinguishes the fixture\u2019\
+  s stated contradiction from independently verified runtime behavior, preserves the\
+  \ required evidentiary boundaries, and reports no project modification."

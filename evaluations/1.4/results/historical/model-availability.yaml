@@ -1,0 +1,15 @@
+models:
+- provider: OpenAI
+  model: gpt-5.6-sol
+  role: evaluated_executor
+  status: AVAILABLE
+  checked_at: '2026-08-20T11:36:08.780487Z'
+  client: codex-cli 0.148.0
+  error: ''
+- provider: OpenAI
+  model: gpt-5.6-terra
+  role: evaluated_executor
+  status: AVAILABLE
+  checked_at: '2026-08-20T11:36:15.517116Z'
+  client: codex-cli 0.148.0
+  error: ''

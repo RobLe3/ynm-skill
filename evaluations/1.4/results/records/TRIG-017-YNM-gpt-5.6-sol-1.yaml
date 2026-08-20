@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-017-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-017
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:26:15.441734Z'
+elapsed_seconds: 27.135
+input_tokens: 82015
+output_tokens: 831
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I can help, but the workspace is empty and no screenshot or design came\
+  \ through, so there\u2019s nothing visible to review yet.\n\nSend a screenshot,\
+  \ mockup, link, or the relevant UI files. I\u2019ll assess hierarchy, spacing, typography,\
+  \ color, responsiveness, and overall polish."
+error: Reading additional input from stdin...

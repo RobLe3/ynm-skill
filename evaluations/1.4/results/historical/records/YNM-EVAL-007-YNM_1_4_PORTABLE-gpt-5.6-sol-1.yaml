@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-007-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-007
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:38:16.479811Z'
+elapsed_seconds: 61.752
+input_tokens: 176901
+output_tokens: 2284
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "**Disposition: NO.** A new user cannot install and verify the project\
+  \ as provided.\n\n- The complete project contains only [README.md](<<EVALUATION_PROJECT>/README.md:1>).\n\
+  - No installation command, prerequisites, package metadata, source code, or installable\
+  \ artifact exists.\n- The documented verification command references a nonexistent\
+  \ file:\n  `python scripts/verify_install.py`\n- Replaying it with Python 3.12.8\
+  \ exits with code 2: `scripts/verify_install.py: No such file or directory`.\n\n\
+  Minimum remediation:\n\n1. Add the project implementation and packaging metadata.\n\
+  2. Document exact prerequisites and installation commands.\n3. Add `scripts/verify_install.py`\
+  \ or document a real verification command.\n4. Test the instructions from a clean\
+  \ environment.\n\nYNM-1 LIGHT review completed over the entire supplied project\
+  \ surface. The failure is conclusively attributable to missing project artifacts\
+  \ and onboarding instructions; whether files were omitted from this snapshot remains\
+  \ unknown. No files were changed."
+error: Reading additional input from stdin...

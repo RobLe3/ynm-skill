@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a01ef2-daed-7321-9df6-2c845e11897a"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"Please paste the sentence you’d like corrected."}}
+{"type":"turn.completed","usage":{"input_tokens":14073,"cached_input_tokens":9984,"cache_write_input_tokens":0,"output_tokens":27,"reasoning_output_tokens":12}}

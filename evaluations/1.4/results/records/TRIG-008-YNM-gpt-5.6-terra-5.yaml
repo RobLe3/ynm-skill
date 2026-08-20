@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-008
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:32:10.090357Z'
+elapsed_seconds: 34.496
+input_tokens: 105812
+output_tokens: 1221
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Initialization is blocked: this workspace is empty and the current environment
+  permits reads only, so I cannot create the required `.ynm/` persistent-state scaffold
+  or bootstrap receipt.
+
+
+  Also, the optional integration helper is unavailable because `PyYAML` is not installed.
+  Once write access is enabled, I can initialize the minimal YNM-owned state safely.'
+error: Reading additional input from stdin...

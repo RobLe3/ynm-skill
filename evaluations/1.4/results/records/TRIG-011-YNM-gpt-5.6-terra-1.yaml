@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-011
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:33:31.962442Z'
+elapsed_seconds: 14.843
+input_tokens: 30503
+output_tokens: 413
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a careful way to review a project without pretending certainty.\n\
+  \nIn simple terms, it works like this:\n\n1. State the exact question being checked\
+  \ \u2014 for example, \u201CDoes the app\u2019s documentation match what the code\
+  \ does?\u201D\n2. Look for evidence in the smallest relevant area first: code, tests,\
+  \ docs, configuration, or release files.\n3. Give the question one of three outcomes:\n\
+  \   - **YES**: evidence supports it\n   - **NO**: evidence contradicts it\n   -\
+  \ **MAYBE**: there isn\u2019t enough reliable evidence yet\n4. Only investigate\
+  \ further if another pass could genuinely change the answer.\n5. Report what was\
+  \ checked, what was not checked, and why the review stopped.\n\nThe key idea is\
+  \ that YNM separates facts from guesses and recommendations. It doesn\u2019t treat\
+  \ missing evidence as proof, and it doesn\u2019t silently expand a small review\
+  \ into a huge audit.\n\nMost reviews use the lightweight \u201CYNM-1\u201D level.\
+  \ More intensive modes are reserved for cases where the stakes or uncertainty justify\
+  \ them."
+error: Reading additional input from stdin...

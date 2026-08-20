@@ -5,129 +5,152 @@ findings:
     assigning YES.
   source_loop: Implementation
   scope: disposition semantics
-  observation: The 1.3 clean-project evaluation exposed unjustified affirmative certainty.
+  observation: The primary holdout retained required MAYBEs in aggregate but produced
+    a non-zero false-finding rate; replication also produced false material findings.
   evidence:
-  - evaluations/results/benchmark-summary.yaml
-  - contracts/disposition.md
-  interpretation: This is release-blocking and requires deterministic and empirical
-    regression evidence.
-  proposed_disposition: 'MAYBE'
-  disposition: 'MAYBE'
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: The frozen epistemic target was not met.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
   created_at: '2026-08-20T00:00:00Z'
   updated_at: '2026-08-20T00:00:00Z'
   history:
   - YNM-1.4-E001
-  status: OPEN
+  - YNM-1.4-E002
+  status: RESOLVED
   maturity_impact: RELEASE_BLOCKING
   revisit_conditions: Complete the frozen clean-project and holdout evaluation.
-  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
-    supplies the required evidence.
+  disposition_reason: The frozen epistemic target was not met.
 - id: YNM-140-EFF-001
   title: Adaptive execution effectiveness
   proposition: YNM 1.4 preserves or improves controlled review quality without epistemic
     or authority regression.
   source_loop: Adoption
   scope: frozen effectiveness evaluation
-  observation: No 1.4 empirical execution has occurred.
+  observation: Primary and replication holdout decisions were NO under the frozen
+    non-inferiority and hard-safety rules.
   evidence:
-  - evaluations/1.4/protocol.yaml
-  interpretation: Effectiveness remains unresolved until blinded holdout scoring completes.
-  proposed_disposition: 'MAYBE'
-  disposition: 'MAYBE'
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Quality gains did not satisfy the frozen safety criteria.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
   created_at: '2026-08-20T00:00:00Z'
   updated_at: '2026-08-20T00:00:00Z'
   history:
   - YNM-1.4-E001
-  status: OPEN
+  - YNM-1.4-E002
+  status: RESOLVED
   maturity_impact: RELEASE_BLOCKING
   revisit_conditions: Execute and score the frozen holdout.
-  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
-    supplies the required evidence.
+  disposition_reason: Quality gains did not satisfy the frozen safety criteria.
 - id: YNM-140-COST-001
   title: Execution efficiency
   proposition: YNM 1.4 meets the frozen cost ratios without omitting evidence required
     for correctness.
   source_loop: Maintenance
   scope: execution cost
-  observation: No 1.4 cost measurements exist.
+  observation: Primary PORTABLE ratios were input 2.3404x, output 2.8158x, elapsed
+    2.4044x, and tools 2.8966x.
   evidence:
-  - evaluations/1.4/protocol.yaml
-  interpretation: Cost remains unresolved.
-  proposed_disposition: 'MAYBE'
-  disposition: 'MAYBE'
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Every frozen cost target was missed.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
   created_at: '2026-08-20T00:00:00Z'
   updated_at: '2026-08-20T00:00:00Z'
   history:
   - YNM-1.4-E001
-  status: OPEN
+  - YNM-1.4-E002
+  status: RESOLVED
   maturity_impact: RELEASE_BLOCKING
   revisit_conditions: Complete primary cost comparison.
-  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
-    supplies the required evidence.
+  disposition_reason: Every frozen cost target was missed.
 - id: YNM-140-ACT-001
   title: Lightweight activation
   proposition: Natural project-review requests reliably enter YNM-0 while negative
     cases remain inactive.
   source_loop: Adoption
   scope: activation
-  observation: YNM 1.3 behavioral activation recall was materially below target.
+  observation: All 200 trigger runs completed, but the frozen smoke test selected
+    NOT_OBSERVED.
   evidence:
-  - evaluations/results/trigger-summary.yaml
-  - evaluations/1.4/protocol.yaml
-  interpretation: Activation remains unresolved.
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Unavailable activation telemetry cannot establish recall or selectivity.
   proposed_disposition: 'MAYBE'
   disposition: 'MAYBE'
   created_at: '2026-08-20T00:00:00Z'
   updated_at: '2026-08-20T00:00:00Z'
   history:
   - YNM-1.4-E001
+  - YNM-1.4-E002
   status: OPEN
   maturity_impact: RELEASE_BLOCKING
   revisit_conditions: Execute frozen trigger evaluation.
-  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
-    supplies the required evidence.
+  disposition_reason: Unavailable activation telemetry cannot establish recall or
+    selectivity.
 - id: YNM-140-ACC-001
   title: Optional acceleration effectiveness
   proposition: ACCELERATED mode preserves dispositions and provenance while reducing
     a material resource dimension with safe PORTABLE fallback.
   source_loop: Implementation
   scope: optional acceleration
-  observation: Runtime capabilities have not yet been frozen or evaluated.
+  observation: Ruflo/RuVector structural tools responded, but project-scoped semantic
+    retrieval and isolated memory did not pass smoke validation; no accelerated ablation
+    ran.
   evidence:
-  - evaluations/1.4/protocol.yaml
-  interpretation: Optional acceleration remains unresolved and is not a semantic dependency.
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Acceleration benefit remains unmeasured.
   proposed_disposition: 'MAYBE'
   disposition: 'MAYBE'
   created_at: '2026-08-20T00:00:00Z'
   updated_at: '2026-08-20T00:00:00Z'
   history:
   - YNM-1.4-E001
+  - YNM-1.4-E002
   status: OPEN
   maturity_impact: NON_BLOCKING
   revisit_conditions: Run capability smoke tests and ablation where available.
-  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
-    supplies the required evidence.
+  disposition_reason: Acceleration benefit remains unmeasured.
 - id: YNM-140-REP-001
   title: Cross-model replication
   proposition: YNM 1.4 effectiveness and safety reproduce across the frozen primary
     and replication models.
   source_loop: Adoption
   scope: replication
-  observation: No 1.4 replication execution has occurred.
+  observation: Replication holdout treatment reduced recall, increased false findings,
+    and failed frozen non-inferiority rules.
   evidence:
-  - evaluations/1.4/protocol.yaml
-  interpretation: Replication remains unresolved.
-  proposed_disposition: 'MAYBE'
-  disposition: 'MAYBE'
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Safe cross-model replication was not established.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
   created_at: '2026-08-20T00:00:00Z'
   updated_at: '2026-08-20T00:00:00Z'
   history:
   - YNM-1.4-E001
-  status: OPEN
+  - YNM-1.4-E002
+  status: RESOLVED
   maturity_impact: NON_BLOCKING
   revisit_conditions: Execute the final path on the frozen replication model.
-  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
-    supplies the required evidence.
+  disposition_reason: Safe cross-model replication was not established.
 - id: YNM-VAL-001
   title: Independent implementation validation remains pending
   proposition: An independent third-party implementation can produce compatible YNM

@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-010-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-010
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:33:12.266350Z'
+elapsed_seconds: 22.808
+input_tokens: 61992
+output_tokens: 669
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is loaded in portable, read-only mode.\n\n- Route: YNM-0 (no review\
+  \ requested)\n- Repository scope: `<EVALUATION_PROJECT>`\n- Observable state: no\
+  \ tracked project files were listed\n- Disposition: MAYBE \u2014 repository content\
+  \ has not been evaluated\n- Persistent YNM state: not created\n\nReady for a bounded\
+  \ YNM review when you specify the proposition or review goal."
+error: Reading additional input from stdin...

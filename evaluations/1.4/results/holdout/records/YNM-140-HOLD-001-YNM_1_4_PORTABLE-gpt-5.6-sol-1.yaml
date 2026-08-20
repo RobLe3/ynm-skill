@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-001-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-001
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:43:39.720649Z'
+elapsed_seconds: 60.501
+input_tokens: 138407
+output_tokens: 2129
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Disposition\n\n**MAYBE \u2014 production behavior is unresolved**\
+  \ (`EVIDENCE_REQUIRED`).\n\nThe available evidence neither supports nor contradicts\
+  \ correct production behavior.\n\n### Evidence boundary\n\nReviewed the complete\
+  \ workspace as of **2026-08-20**:\n\n- Only [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:1)\
+  \ exists.\n- It claims implementation and tests agree, but neither implementation\
+  \ nor tests are present to verify that claim.\n- It explicitly states that no production\
+  \ observations are included ([line 3](<EVALUATION_PROJECT>/PROJECT.md:3)).\n- No\
+  \ deployment configuration, release metadata, logs, metrics, traces, health checks,\
+  \ incident records, or user-observed outcomes are available.\n- The directory is\
+  \ not a Git repository, so revision and history evidence are unavailable.\n\nTherefore:\n\
+  \n- \u201CProduction behavior is correct\u201D: **MAYBE**\n- \u201CThe supplied\
+  \ project contains production observations\u201D: **NO**\n- \u201CImplementation\
+  \ and tests actually agree\u201D: **MAYBE**; documented but not independently inspectable\n\
+  \nNo files were changed. The review converged at **YNM-1 / PORTABLE / LIGHT** because\
+  \ another pass over the same bounded evidence would add no information. Affirmative\
+  \ production assurance would require identifiable deployed revision evidence plus\
+  \ representative runtime observations and expected-behavior criteria."
+error: Reading additional input from stdin...

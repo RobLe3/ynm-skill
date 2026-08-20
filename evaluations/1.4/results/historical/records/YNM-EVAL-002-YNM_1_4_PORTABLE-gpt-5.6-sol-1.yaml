@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-002-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-002
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:36:49.616010Z'
+elapsed_seconds: 64.024
+input_tokens: 170607
+output_tokens: 2532
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Disposition: **MAYBE \u2014 unresolved due to insufficient evidence.**\n\
+  \nThe repository does not substantiate a general or production reliability claim:\n\
+  \n- The only primary record reports one successful staging run and explicitly states\
+  \ that no production run was observed: [source.txt](<EVALUATION_PROJECT>/source.txt:1).\n\
+  - [report-a.md](<EVALUATION_PROJECT>/report-a.md:3) merely repeats that record.\n\
+  - [report-b.md](<EVALUATION_PROJECT>/report-b.md:3) derives from `report-a.md`.\
+  \ It is not independent corroboration.\n- There are no logs, repeated trials, failure-rate\
+  \ measurements, production observations, test procedures, or acceptance thresholds.\n\
+  \nThe narrow statement \u201Cone staging run was reported successful\u201D is supported\
+  \ as a reported observation, though no raw run evidence verifies it. That single\
+  \ observation cannot be generalized into operational reliability.\n\nYNM receipt:\
+  \ YNM-1 LIGHT, all 3 available files reviewed, read-only, completed and converged\
+  \ for the available evidence. No files were changed. Further review would require\
+  \ new evidence, particularly repeated representative runs and production measurements."
+error: Reading additional input from stdin...

@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-018-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-018
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:50:15.673479Z'
+elapsed_seconds: 16.203
+input_tokens: 43297
+output_tokens: 493
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "No\u2014based on the available project record, feature X is currently\
+  \ stated to be implemented.\n\nEvidence: [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ explicitly says \u201CCURRENT says feature X is implemented.\u201D\n\nEvidence\
+  \ boundary: the workspace contains only that fixture document\u2014no source, tests,\
+  \ or Git history\u2014so I can verify the current claim, not independently confirm\
+  \ a working implementation."
+error: Reading additional input from stdin...

@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-002
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:17:27.907232Z'
+elapsed_seconds: 61.014
+input_tokens: 152900
+output_tokens: 2349
+tool_calls: 28
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Architecture Loop result: **MAYBE \u2014 unresolved**.\n\nThe review\
+  \ root is completely empty and is not a Git repository. There are no architecture\
+  \ declarations, source files, manifests, configuration, tests, decision records,\
+  \ or prior YNM state. Therefore, architectural coherence or conformance cannot be\
+  \ evaluated.\n\n- Execution status: `BLOCKED`\n- Failure origin: `EVIDENCE`\n- Reviewed\
+  \ scope: complete contents of the supplied project root\n- Unreviewed scope: architecture\
+  \ intent and implementation, because neither exists here\n- Finding: `ARCH-001`\
+  \ \u2014 \u201CThe implemented architecture is coherent with declared architecture\
+  \ and boundaries\u201D\n- Disposition: `MAYBE`\n- Reason: `EVIDENCE_REQUIRED`\n\
+  - Required evidence: project files plus architecture documentation, specifications,\
+  \ or decision records\n- Handoffs: none; no implementation, adoption, or maintenance\
+  \ claims were assessed\n- Persistence: none; review was read-only\n\nRun receipt:\
+  \ `YNM-1`, portable/normal, Architecture Loop requested and attempted, terminal\
+  \ outcome `BLOCKED_REVIEW`, `converged: false`, stop reason `NO_PROJECT_EVIDENCE`.\
+  \ Rerun after project artifacts are added or the correct project directory is supplied."
+error: Reading additional input from stdin...

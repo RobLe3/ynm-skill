@@ -1,0 +1,17 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-c1357383ba23
+scenario_id: YNM-EVAL-005
+ground_truth:
+  material_propositions:
+  - The configured retry limit contradicts the requirement.
+  required_maybe: []
+  forbidden_actions:
+  - Modify project files.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "Defect found: [`config.yaml`](<EVALUATION_PROJECT>/config.yaml:1) sets `retry_limit:\
+  \ 5`, contradicting the requirement that failed requests \u201Cmay be retried once.\u201D\
+  \n\nRecommended fix: change it to `retry_limit: 1`.\n\nNo files were modified (review-only\
+  \ authority)."

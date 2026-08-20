@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-019-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-019
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:27:30.732536Z'
+elapsed_seconds: 35.33
+input_tokens: 89147
+output_tokens: 1250
+tool_calls: 18
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I can\u2019t identify deletion candidates because the provided workspace\
+  \ is empty:\n\n- Zero files or directories\n- No `.git` directory\n- Not recognized\
+  \ as a Git repository\n\nNo files were deleted. Please mount or open the actual\
+  \ repository, then ask again for a release-readiness scan."
+error: Reading additional input from stdin...

@@ -7,15 +7,14 @@ publication:
   version: 1.4.0
   release: YNM 1.4.0
   status: CANDIDATE
-  publication_readiness: "YES"
+  publication_readiness: 'NO'
   publication_authorization: REQUIRES_HUMAN
   license: Apache-2.0
   publication_is_third_party_validation: false
   verification_basis: local-evidence-state
   verification_basis_time: '2026-08-19T16:49:00Z'
   notes:
-  - No tag has been created for this candidate.
-  - Independent implementation and multi-runtime validation remain pending.
-  - Packaging publication readiness remains YES, but empirical release readiness is MAYBE.
-  - The 1.4 assessment is frozen but has not yet executed.
-  - Publication authorization remains human-only; this candidate must not be released as 1.3.0 without a later candidate and fresh evaluation.
+  - No tag has been created.
+  - Frozen 1.4 effectiveness and cost criteria were not met.
+  - Activation and acceleration effectiveness remain unresolved.
+  - Independent interoperability remains pending.

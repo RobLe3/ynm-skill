@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-002-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-002
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:47:53.211830Z'
+elapsed_seconds: 17.998
+input_tokens: 57771
+output_tokens: 548
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'No material defects found.
+
+
+  Evidence boundary: the workspace contains only [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md),
+  which states the function and bounded tests agree. There is no library source, test
+  suite, package manifest, or Git history available to inspect, so I cannot assess
+  implementation or deployment behavior.'
+error: Reading additional input from stdin...

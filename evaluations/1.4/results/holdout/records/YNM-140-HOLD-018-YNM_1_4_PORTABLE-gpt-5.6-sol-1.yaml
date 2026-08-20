@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-018-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-018
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:47:21.107798Z'
+elapsed_seconds: 79.949
+input_tokens: 148260
+output_tokens: 2171
+tool_calls: 36
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "No\u2014as a claim about the project\u2019s current documented state,\
+  \ \u201Cfeature X is absent now\u201D is **contradicted (NO)**. [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ says the feature is currently implemented and scopes its absence to last month.\n\
+  \nEvidence boundaries:\n\n- Reviewed the complete workspace: one file, `PROJECT.md`.\n\
+  - No source code, tests, runtime evidence, or Git history exists here.\n- The previous\
+  \ review itself was unavailable; only the historical statement was present.\n- Therefore,\
+  \ actual functional implementation is **MAYBE**; only the current documentation\
+  \ claim supports **NO**.\n- Review was entirely read-only and converged for this\
+  \ bounded documentary scope."
+error: Reading additional input from stdin...

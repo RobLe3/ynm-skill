@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-010-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-010
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:24:44.869614Z'
+elapsed_seconds: 40.363
+input_tokens: 99617
+output_tokens: 1166
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'YNM loaded in `YNM-0 ROUTE` mode, read-only.
+
+
+  Repository loading is **BLOCKED**: the workspace directory is empty and contains
+  no `.git` metadata or project files. No files were created or modified.
+
+
+  To continue, mount/copy the repository into the workspace or provide its correct
+  path, then ask me to load it again.'
+error: Reading additional input from stdin...

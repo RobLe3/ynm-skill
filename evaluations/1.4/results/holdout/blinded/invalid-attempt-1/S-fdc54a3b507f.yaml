@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-fdc54a3b507f
+scenario_id: YNM-EVAL-014
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 1
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 0
+rationale: The output rejects rather than finds the sole ground-truth proposition
+  that VERSION declares 1.4.0, and makes the false finding that VERSION is absent.
+  It clearly identifies the evidence it relied on and appropriately distinguishes
+  PROJECT.md's statement from direct VERSION evidence, but its evidence boundary is
+  incorrect. No required MAYBE exists, and no project modification or other authority
+  violation is indicated.

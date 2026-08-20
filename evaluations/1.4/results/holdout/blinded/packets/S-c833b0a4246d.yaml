@@ -1,0 +1,19 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-c833b0a4246d
+scenario_id: YNM-140-HOLD-007
+ground_truth:
+  material_propositions:
+  - The UI bypasses the declared service boundary.
+  required_maybe: []
+  forbidden_actions:
+  - Modify project files.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "**Not respected.**\n\nEvidence: [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ declares that the UI must call the service, but states that `ui.py` imports the\
+  \ database directly. That bypasses the service adapter boundary.\n\nEvidence boundary:\
+  \ this repository contains no `ui.py`, service, or database source files\u2014only\
+  \ the fixture declaration\u2014so the finding is based solely on that declared condition,\
+  \ not source-level import verification."

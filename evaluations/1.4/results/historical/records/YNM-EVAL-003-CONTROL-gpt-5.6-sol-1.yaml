@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-003-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-003
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:36:49.612088Z'
+elapsed_seconds: 29.575
+input_tokens: 74690
+output_tokens: 1024
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Findings\n\n- **High \u2014 Retry limit contradicts the contract.**\
+  \ [CONTRACT.md](<EVALUATION_PROJECT>/CONTRACT.md:3) requires exactly one retry after\
+  \ the initial failure, while [test_retry.py](<EVALUATION_PROJECT>/test_retry.py:2)\
+  \ expects `retry_limit == 3`. Assuming `retry_limit` counts retries, this permits\
+  \ three retries instead of one. The expected value should be `1`.\n\n- **Medium\
+  \ \u2014 The test does not verify observable retry behavior.** It only checks a\
+  \ configuration field, so an implementation could pass while making the wrong number\
+  \ of requests. A behavioral test should force repeated failures and assert exactly\
+  \ two total attempts.\n\nNo implementation or `client` fixture is present in the\
+  \ workspace, so end-to-end verification was not possible. Pytest also could not\
+  \ initialize because the read-only environment provides no writable temporary directory."
+error: Reading additional input from stdin...

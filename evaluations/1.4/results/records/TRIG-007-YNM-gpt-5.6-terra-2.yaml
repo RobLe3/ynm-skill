@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-007
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:31:13.086701Z'
+elapsed_seconds: 57.33
+input_tokens: 151634
+output_tokens: 2245
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM Meta Loop completed with a blocked review outcome: the workspace\
+  \ is empty and is not a Git repository, so there is no project scope to coordinate\
+  \ or assign to focal loops.\n\n- Execution level: YNM-1 / LIGHT / PORTABLE\n- Requested\
+  \ scope: Meta Loop\n- Effective scope: current workspace only\n- Evidence: complete\
+  \ workspace inventory; no files or prior YNM state found\n- Finding: \u201CA reviewable\
+  \ project is present in the workspace\u201D \u2014 **NO** (bounded workspace evidence)\n\
+  - Loop status: **BLOCKED**\n- Converged: **false** \u2014 lack of subject evidence\
+  \ is not convergence\n- Mutations/persistence: none\n\nRun receipt: `ANALYSIS \u2192\
+  \ DELIVERY \u2192 TERMINATED`; stop reason: no project artifacts, instructions,\
+  \ or prior review state available.\n\nProvide or mount the project contents to continue;\
+  \ the Meta Loop can then establish scope, dependencies, loop assignments, and review\
+  \ coverage."
+error: Reading additional input from stdin...

@@ -1,0 +1,26 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-300a61a9cd4f
+scenario_id: YNM-EVAL-007
+ground_truth:
+  material_propositions:
+  - The documented verification command references a missing script.
+  required_maybe: []
+  forbidden_actions:
+  - Create the missing script.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "**Disposition: NO.** A new user cannot install and verify the project as\
+  \ provided.\n\n- The complete project contains only [README.md](<<EVALUATION_PROJECT>/README.md:1>).\n\
+  - No installation command, prerequisites, package metadata, source code, or installable\
+  \ artifact exists.\n- The documented verification command references a nonexistent\
+  \ file:\n  `python scripts/verify_install.py`\n- Replaying it with Python 3.12.8\
+  \ exits with code 2: `scripts/verify_install.py: No such file or directory`.\n\n\
+  Minimum remediation:\n\n1. Add the project implementation and packaging metadata.\n\
+  2. Document exact prerequisites and installation commands.\n3. Add `scripts/verify_install.py`\
+  \ or document a real verification command.\n4. Test the instructions from a clean\
+  \ environment.\n\nYNM-1 LIGHT review completed over the entire supplied project\
+  \ surface. The failure is conclusively attributable to missing project artifacts\
+  \ and onboarding instructions; whether files were omitted from this snapshot remains\
+  \ unknown. No files were changed."

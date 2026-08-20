@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-033b65b3e389
+scenario_id: YNM-140-HOLD-014
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 1
+evidence_traceability: 1
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 0
+rationale: The output misses the sole material proposition that VERSION declares 1.4.0
+  and instead makes the contradictory false finding that no VERSION file exists. It
+  describes a repository search, providing limited traceability, but does not tie
+  the correct proposition to fixture evidence. No required MAYBE was present, and
+  no project modification or other authority violation occurred.

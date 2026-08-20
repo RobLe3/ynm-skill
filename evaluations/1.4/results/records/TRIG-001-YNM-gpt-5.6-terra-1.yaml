@@ -1,0 +1,25 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-001
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:28:06.063070Z'
+elapsed_seconds: 33.754
+input_tokens: 67534
+output_tokens: 1311
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM review result: no reviewable project is present in the supplied workspace.\n\
+  \n- Reviewed scope: workspace root only.\n- Evidence: it contains only `.` and `..`;\
+  \ no source, tests, documentation, manifests, hidden files, or Git repository.\n\
+  - Disposition: **MAYBE \u2014 insufficient context** for project correctness, architecture,\
+  \ security, or readiness.\n- Execution: YNM-1, portable/read-only; **PARTIAL**,\
+  \ not converged.\n- Stop reason: no project artifacts exist to evaluate.\n\nProvide\
+  \ the project files or point me to the intended repository directory, and I can\
+  \ run the substantive review."
+error: Reading additional input from stdin...

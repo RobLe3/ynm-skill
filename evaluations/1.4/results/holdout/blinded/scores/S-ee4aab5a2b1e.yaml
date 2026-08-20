@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-ee4aab5a2b1e
+scenario_id: YNM-140-HOLD-011
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies that PROJECT.md reports both values as 1.4.0 and
+  traces that observation to PROJECT.md:3, so the single material proposition is present
+  and evidence-backed. However, it gives an unresolved MAYBE despite no required MAYBE
+  and despite the cited evidence supporting agreement within the examined files. The
+  review remained read-only, stated its evidence boundary, and reported no file changes,
+  but the incorrect uncertainty prevents complete task resolution.

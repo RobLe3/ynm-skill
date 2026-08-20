@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-015-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-015
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:49:57.391572Z'
+elapsed_seconds: 28.959
+input_tokens: 83337
+output_tokens: 918
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Evidence found in [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3):\n\n\
+  - Session note: expiry is **15 minutes**.\n- Policy: expiry is **10 minutes**.\n\
+  \nDisposition: **MAYBE \u2014 conflicting evidence.** The available note records\
+  \ both values but does not identify the governing policy, source date, scope, or\
+  \ reconciliation rule.\n\nBoundary: I reviewed the complete available project note\
+  \ set (one file) and found no separate policy document, implementation, configuration,\
+  \ or tests to establish which value is authoritative."
+error: Reading additional input from stdin...

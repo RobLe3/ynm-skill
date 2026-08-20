@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-014-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-014
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:49:51.177094Z'
+elapsed_seconds: 24.489
+input_tokens: 79758
+output_tokens: 802
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "No `VERSION` file is present in the repository, so no version is declared\
+  \ there.\n\nEvidence boundary: the only project file is `PROJECT.md`, which states\
+  \ \u201CVERSION contains 1.4.0,\u201D but that is an unverified claim because `VERSION`\
+  \ itself is absent."
+error: Reading additional input from stdin...

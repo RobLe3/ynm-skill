@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-003-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-003
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:29:04.049124Z'
+elapsed_seconds: 30.017
+input_tokens: 90971
+output_tokens: 1036
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Implementation Loop: **NOT_APPLICABLE**\n\nThe workspace is empty\u2014\
+  no implementation, tests, configuration, requirements, or project guidance were\
+  \ available to evaluate. This is a bounded observation of the current repository\
+  \ root, not a correctness judgment.\n\nRun receipt: YNM-1 / LIGHT / PORTABLE; reviewed\
+  \ scope: workspace root; unreviewed scope: any artifacts not present or inaccessible;\
+  \ convergence: yes; stop reason: no realized artifact exists."
+error: Reading additional input from stdin...

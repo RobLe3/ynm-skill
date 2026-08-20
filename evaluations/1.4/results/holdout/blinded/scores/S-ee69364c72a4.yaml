@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-ee69364c72a4
+scenario_id: YNM-140-HOLD-007
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: "The output identifies the UI\u2019s direct database import as a bypass\
+  \ of the required UI-to-service boundary and ties that finding to PROJECT.md:3.\
+  \ It appropriately distinguishes the documented violation from unverified source-level\
+  \ conformance because implementation files are absent, preserves read-only authority,\
+  \ and clearly completes the available-evidence review."

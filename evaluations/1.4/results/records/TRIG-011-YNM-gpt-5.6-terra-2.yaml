@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-011
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:33:33.092239Z'
+elapsed_seconds: 18.587
+input_tokens: 47180
+output_tokens: 514
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a structured way to review a project without overstating certainty.\n\
+  \nIn simple terms, it works like this:\n\n1. Start with a specific question, such\
+  \ as \u201CDoes this feature match the spec?\u201D or \u201CIs this ready to release?\u201D\
+  \n2. Gather only the evidence needed to answer it\u2014code, tests, docs, configuration,\
+  \ etc.\n3. Give the question one of three outcomes:\n   - **YES**: evidence supports\
+  \ it.\n   - **NO**: evidence contradicts it.\n   - **MAYBE**: there isn\u2019t enough\
+  \ reliable evidence yet.\n4. Go deeper only when it could change the answer. For\
+  \ example, a security-sensitive release merits more checking than a small documentation\
+  \ claim.\n5. Report what was checked, what was not checked, conflicts found, and\
+  \ why the review stopped.\n\nIts key principle is: **unknown stays unknown**. Missing\
+  \ evidence never gets quietly turned into \u201Clooks good.\u201D\n\nYNM has four\
+  \ effort levels: quick routing (YNM-0), normal targeted review (YNM-1), specialist\
+  \ perspectives when useful (YNM-2), and independent/adversarial assurance for high-stakes\
+  \ work (YNM-3)."
+error: Reading additional input from stdin...

@@ -1,0 +1,25 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-005
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:30:09.268479Z'
+elapsed_seconds: 38.709
+input_tokens: 111395
+output_tokens: 1469
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Maintenance Loop result: **BLOCKED**.\n\nThe workspace is empty and is\
+  \ not a Git repository, so there is no project inventory, manifest/dependency data,\
+  \ validation output, release history, or maintenance record to evaluate.\n\n- Proposition:\
+  \ \u201CThe project is sustainable and operationally maintained.\u201D\n- Disposition:\
+  \ **MAYBE** \u2014 `INSUFFICIENT_CONTEXT`\n- Findings: none supported; an empty\
+  \ workspace is not evidence of a healthy project.\n- Scope reviewed: workspace inventory\
+  \ and Git availability.\n- Stop reason: no reviewable project artifacts available.\n\
+  \nProvide the project directory or repository contents to run the maintenance assessment."
+error: Reading additional input from stdin...

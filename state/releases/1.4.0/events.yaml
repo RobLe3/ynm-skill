@@ -3,3 +3,7 @@ events:
   event_type: ASSESSMENT_FROZEN
   timestamp: '2026-08-20T00:00:00Z'
   summary: Frozen YNM 1.4 adaptive execution targets and evidence boundaries before runtime changes.
+- event_id: YNM-1.4-E002
+  event_type: EMPIRICAL_EVALUATION_COMPLETED
+  timestamp: '2026-08-20T00:00:00Z'
+  summary: Completed frozen trigger, historical regression, and 18-scenario holdout execution and blinded adjudication; release criteria were not met.

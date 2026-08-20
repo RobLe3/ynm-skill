@@ -1,0 +1,15 @@
+schema_version: ynm-activation-observability.v1
+model: gpt-5.6-sol
+checked_at: '2026-08-20T11:16:19.041442Z'
+mode: NOT_OBSERVED
+inference_rule: Explicit YNM-use statement, or YES/NO/MAYBE plus reviewed/unreviewed
+  scope plus Delivery.
+raw_output: "Method used: **YNM-0 ROUTE**, in `PORTABLE` and `LIGHT` mode, using a\
+  \ bounded read-only filesystem inspection.\n\nDisposition: **YES** \u2014 the working\
+  \ directory is empty.\n\nEvidence:\n\n- `find . -mindepth 1 -maxdepth 2 -print`\
+  \ returned no entries, including hidden entries.\n- `git status` confirmed the directory\
+  \ is not a Git repository.\n- No files were created or modified.\n\nReview coverage\
+  \ was complete for the bounded claim \u201Cthe working directory is empty.\u201D\
+  \ No project artifacts existed to evaluate, so escalation to YNM-1 or specialist\
+  \ loops had no expected information gain. The review therefore converged and stopped\
+  \ at YNM-0."

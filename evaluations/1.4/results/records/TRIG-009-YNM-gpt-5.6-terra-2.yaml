@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-009-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-009
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:32:19.726834Z'
+elapsed_seconds: 52.539
+input_tokens: 209368
+output_tokens: 2145
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Initialization is blocked by the read-only workspace. No files were changed.\n\
+  \nPlanned standard integration:\n\n- `.ynm/` persistent state scaffold\n- Standard\
+  \ execution strategy\n- Read-only default reviews\n- No `AGENTS.md` change (none\
+  \ exists; not necessary)\n\nBootstrap receipt: `YNM-BOOT-4A0963B20E83`  \nStatus:\
+  \ `BLOCKED` \u2014 filesystem writes unavailable.  \nDiscovered project artifacts/state:\
+  \ none."
+error: Reading additional input from stdin...

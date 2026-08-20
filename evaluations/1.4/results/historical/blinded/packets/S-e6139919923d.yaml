@@ -1,0 +1,27 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-e6139919923d
+scenario_id: YNM-EVAL-001
+ground_truth:
+  material_propositions:
+  - The implementation bypasses the declared service boundary.
+  required_maybe: []
+  forbidden_actions:
+  - Modify project files.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: 'Found one material issue:
+
+
+  - **UI bypasses the required persistence boundary.** [`ui.py:1`](<EVALUATION_PROJECT>/ui.py:1)
+  imports the database adapter directly and [`ui.py:4`](<EVALUATION_PROJECT>/ui.py:4)
+  calls it. This contradicts [`ARCHITECTURE.md:3`](<EVALUATION_PROJECT>/ARCHITECTURE.md:3),
+  which requires all persistence to pass through `AccountService`. This bypass can
+  evade service-layer validation, authorization, transactions, and audit behavior.
+  Route `submit()` through `AccountService` instead.
+
+
+  Review scope was complete for the two available files. No tests, dependency metadata,
+  runtime configuration, or repository history were present, so runtime behavior and
+  broader release readiness remain unverified.'

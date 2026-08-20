@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-007-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-007
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:40:40.611239Z'
+elapsed_seconds: 29.001
+input_tokens: 98322
+output_tokens: 1012
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "No. A new user cannot currently install or verify it.\n\n- README only\
+  \ says \u201CInstall the project\u201D without providing an install command or dependencies.\n\
+  - The repository contains only [`README.md`](<EVALUATION_PROJECT>/README.md:1);\
+  \ there is no package/configuration or `scripts/` directory.\n- The documented verification\
+  \ command fails: `python scripts/verify_install.py` \u2192 file not found.\n\nDisposition:\
+  \ **NO** \u2014 contradicted by the project contents and a direct verification attempt."
+error: Reading additional input from stdin...

@@ -1,0 +1,86 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-003-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-003
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:17:45.180911Z'
+elapsed_seconds: 60.975
+input_tokens: 159890
+output_tokens: 2320
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'The YNM Implementation Loop is `NOT_APPLICABLE`.
+
+
+  The workspace is empty: no declared intent, implementation, configuration, tests,
+  project instructions, or prior YNM state exists. Therefore, no implementation proposition
+  can be evaluated, and no `YES`/`NO`/`MAYBE` disposition was created.
+
+
+  ```yaml
+
+  schema_version: ynm-run-receipt.v2
+
+  run_id: ynm-implementation-20260820T111830Z
+
+  generation: 1
+
+  project_state: empty_directory
+
+  execution_context: read_only_stateless
+
+  execution_strategy: YNM-0_ROUTE_to_Implementation_LIGHT_PORTABLE
+
+  loops_requested: [Implementation]
+
+  loops_executed: [Implementation]
+
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+
+  stage_reached: TERMINATED
+
+  execution_status: NOT_APPLICABLE
+
+  terminal_outcome: NOT_APPLICABLE_REVIEW
+
+  halt_reason: NO_APPLICABLE_IMPLEMENTATION_PROPOSITION
+
+  reviewed_scope: complete workspace contents and project metadata
+
+  unreviewed_scope: []
+
+  evidence_added: 2
+
+  findings_created: 0
+
+  findings_updated: 0
+
+  dispositions_changed: 0
+
+  unresolved_findings: []
+
+  unresolved_dependencies: []
+
+  continuation_scope: []
+
+  required_human_decisions: []
+
+  iteration_count: 1
+
+  converged: true
+
+  stop_reason: complete bounded inspection found no realized artifact
+
+  next_revisit_condition: declared intent or realized artifacts are added
+
+  persistence_status: disabled; no project files created
+
+  delivery: Implementation review is not applicable to the current empty workspace.
+
+  ```'
+error: Reading additional input from stdin...

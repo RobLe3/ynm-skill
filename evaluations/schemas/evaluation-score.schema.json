@@ -6,7 +6,7 @@
   "properties": {
     "schema_version": {"type": "string", "const": "ynm-evaluation-score.v1"},
     "sample_id": {"type": "string", "pattern": "^S-[a-f0-9]{12}$"},
-    "scenario_id": {"type": "string", "pattern": "^YNM-EVAL-[0-9]{3}$"},
+    "scenario_id": {"type": "string", "pattern": "^(?:YNM-EVAL|YNM-140-HOLD)-[0-9]{3}$"},
     "adjudication_role": {"type": "string", "const": "MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION"},
     "material_propositions_found": {"type": "integer", "minimum": 0},
     "supported_material_findings": {"type": "integer", "minimum": 0},

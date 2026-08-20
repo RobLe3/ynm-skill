@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-017-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-017
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:34:42.184623Z'
+elapsed_seconds: 24.752
+input_tokens: 63058
+output_tokens: 729
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I can\u2019t assess the styling yet\u2014the workspace is empty, with\
+  \ no design files or screenshot to review.\n\nPlease attach a screenshot or point\
+  \ me to the UI files, and I\u2019ll give specific feedback on hierarchy, spacing,\
+  \ typography, color, and polish."
+error: Reading additional input from stdin...

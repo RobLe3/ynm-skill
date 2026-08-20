@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-86fc24aa6c54
+scenario_id: YNM-EVAL-009
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 4
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The four explicit findings are tied to cited implementation, documentation,
+  test, or repository evidence. Local implementation and test results are scoped separately
+  from production and operational readiness, which remains MAYBE due to identified
+  unreviewed areas. The review stayed read-only, reported the validation constraint
+  and workaround, and stated that no files were changed.

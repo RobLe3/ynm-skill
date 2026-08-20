@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-71cbcf9f9d23
+scenario_id: YNM-140-HOLD-009
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output correctly identifies that both reports share one source lineage
+  and therefore provide no independent corroboration, explicitly tying that finding
+  to PROJECT.md:3. It appropriately preserves the reliability target as MAYBE/unresolved
+  because the underlying reports and source note are unavailable for direct verification.
+  Evidence boundaries and scope are clear, the review remained read-only, and no forbidden
+  modification occurred.

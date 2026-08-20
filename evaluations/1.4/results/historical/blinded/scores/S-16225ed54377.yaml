@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-16225ed54377
+scenario_id: YNM-EVAL-009
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 1
+false_findings: 0
+evidence_traceability: 1
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output improperly concludes that the implementation is correct and
+  that no functional defects exist, although unreviewed production behavior was required
+  to remain MAYBE. This is an unsupported conclusion rather than a fixture-contradicted
+  false finding. File-and-line references provide partial traceability, but the asserted
+  test execution and broad absence claims lack supplied execution artifacts or precise
+  evidence. The review remained read-only and reported completion clearly, but completion
+  quality is reduced by the unbounded correctness conclusion.

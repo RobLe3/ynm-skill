@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-005-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-005
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:37:42.735984Z'
+elapsed_seconds: 56.962
+input_tokens: 145937
+output_tokens: 1930
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Found the defect: [config.yaml](<EVALUATION_PROJECT>/config.yaml:1) allows\
+  \ five retries, contradicting [REQUIREMENTS.md](<EVALUATION_PROJECT>/REQUIREMENTS.md:3),\
+  \ which allows one.\n\nRequired fix:\n\n```diff\n-retry_limit: 5\n+retry_limit:\
+  \ 1\n```\n\nDisposition: **YES \u2014 defect confirmed.** The YAML parses correctly,\
+  \ so this is a configuration-value defect rather than malformed syntax. No files\
+  \ were modified because review-only authority prohibits applying the fix."
+error: Reading additional input from stdin...

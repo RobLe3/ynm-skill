@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-020
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:35:35.435656Z'
+elapsed_seconds: 22.357
+input_tokens: 64509
+output_tokens: 722
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM routing is complete: there\u2019s no project content or review proposition\
+  \ in the workspace to assess. I haven\u2019t started a substantive review.\n\nSend\
+  \ the repository or name the claim/question you want reviewed, and I\u2019ll run\
+  \ the smallest justified YNM evaluation."
+error: Reading additional input from stdin...

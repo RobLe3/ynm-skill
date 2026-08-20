@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-011
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:25:06.003611Z'
+elapsed_seconds: 23.181
+input_tokens: 47419
+output_tokens: 721
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a disciplined way to review a project without pretending the evidence\
+  \ is stronger than it is.\n\nIt works like this:\n\n1. **Turn the question into\
+  \ a precise claim.**  \n   Example: \u201CThe authentication code correctly rejects\
+  \ expired tokens.\u201D\n\n2. **Inspect the most relevant evidence.**  \n   YNM\
+  \ might compare the implementation, tests, documentation, and specifications.\n\n\
+  3. **Give the claim one result:**\n   - **YES** \u2014 evidence supports it.\n \
+  \  - **NO** \u2014 evidence contradicts it.\n   - **MAYBE** \u2014 the available\
+  \ evidence is insufficient or conflicting.\n\n4. **Go deeper only when worthwhile.**\n\
+  \   - **YNM-0:** Define and route the question.\n   - **YNM-1:** Perform a focused\
+  \ review\u2014normally enough.\n   - **YNM-2:** Add specialist perspectives.\n \
+  \  - **YNM-3:** Conduct deeper or adversarial assurance for consequential work.\n\
+  \n5. **Report boundaries honestly.**  \n   The result states what was reviewed,\
+  \ what was not, what conflicts remain, and why the review stopped.\n\nThe key principle\
+  \ is: **not finding a problem does not automatically mean everything is correct.**\
+  \ A \u201CYES\u201D needs positive evidence and adequate coverage; otherwise, YNM\
+  \ preserves the answer as \u201CMAYBE.\u201D\n\nBy default, YNM is read-only. Finding\
+  \ a problem does not grant permission to modify the project."
+error: Reading additional input from stdin...

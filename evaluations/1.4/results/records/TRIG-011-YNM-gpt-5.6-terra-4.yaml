@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-011
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:33:37.828711Z'
+elapsed_seconds: 20.008
+input_tokens: 47252
+output_tokens: 551
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a disciplined way to review a project without pretending certainty.\n\
+  \nIt starts with a specific claim, such as \u201Cthe release is ready\u201D or \u201C\
+  the documentation matches the code,\u201D then looks for evidence and reaches one\
+  \ of three outcomes:\n\n- **YES** \u2014 supported by enough relevant evidence.\n\
+  - **NO** \u2014 contradicted by evidence.\n- **MAYBE** \u2014 not enough evidence\
+  \ to decide responsibly.\n\nThe key idea is: do the *smallest amount of review work\
+  \ that can give a defensible answer*.\n\nIt has four depth levels:\n\n1. **Route**\
+  \ \u2014 define exactly what is being checked and how risky it is.\n2. **Evaluate**\
+  \ \u2014 inspect the minimum useful evidence and decide.\n3. **Specialize** \u2014\
+  \ bring in focused perspectives, like security or testing, only if they could change\
+  \ the result.\n4. **Assure** \u2014 use broader or independent/adversarial checks\
+  \ for high-stakes cases.\n\nYNM also keeps important distinctions clear: what was\
+  \ observed, what was inferred, what remains unknown, and what someone is authorized\
+  \ to decide or change. If the evidence runs out, it preserves **MAYBE** rather than\
+  \ forcing a reassuring answer.\n\nIn short: YNM is evidence-first project review\
+  \ that scales its effort to the question and makes uncertainty explicit."
+error: Reading additional input from stdin...

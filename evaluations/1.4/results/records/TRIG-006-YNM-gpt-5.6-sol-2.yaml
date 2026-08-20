@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-006-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-006
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:20:21.695008Z'
+elapsed_seconds: 69.981
+input_tokens: 186826
+output_tokens: 2639
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Disposition Loop\n\n**Result:** `NOT_APPLICABLE`\n\nThe workspace\
+  \ is empty and is not a Git repository. No findings, evidence records, lifecycle\
+  \ events, authority charter, prior YNM state, or disposition-transition requests\
+  \ exist to reconcile.\n\n- Dispositions changed: 0\n- Findings created or updated:\
+  \ 0\n- Conflicts/dependencies: none\n- Converged: yes, for the bounded Disposition\
+  \ Loop scope\n- Persistence: disabled; no files written\n- Revisit condition: rerun\
+  \ when findings, prior state, or transition requests are available\n\n**Run receipt:**\
+  \ `ynm-20260820T112117Z-disposition-001`  \n**Execution:** `YNM-1 / LIGHT / PORTABLE`\
+  \  \n**Terminal outcome:** `NOT_APPLICABLE_REVIEW`  \n**Stop reason:** `NO_RECONCILABLE_INPUT`"
+error: Reading additional input from stdin...

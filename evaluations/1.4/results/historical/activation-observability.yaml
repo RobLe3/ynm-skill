@@ -1,0 +1,13 @@
+schema_version: ynm-activation-observability.v1
+model: gpt-5.6-sol
+checked_at: '2026-08-20T11:36:21.810820Z'
+mode: NOT_OBSERVED
+inference_rule: Explicit YNM-use statement, or YES/NO/MAYBE plus reviewed/unreviewed
+  scope plus Delivery.
+raw_output: "Used the **YNM-0 ROUTE** method in **LIGHT, PORTABLE, read-only** mode.\n\
+  \n- Scope: exact working directory, including hidden entries.\n- Evidence: `find\
+  \ . -mindepth 1 -print` returned nothing; `ls -la` showed only `.` and `..`.\n-\
+  \ Disposition: **YES** \u2014 the bounded proposition \u201Cthe working directory\
+  \ is empty\u201D is supported.\n- Project quality/readiness: **MAYBE** \u2014 no\
+  \ project artifacts exist to evaluate.\n- Stop reason: complete bounded inspection;\
+  \ escalation would add no information.\n- Mutations: none."

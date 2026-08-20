@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-020
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:28:00.112834Z'
+elapsed_seconds: 14.841
+input_tokens: 30346
+output_tokens: 428
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is loaded and ready. I haven\u2019t started a repository review because\
+  \ no proposition was specified.\n\nTell me the claim to assess\u2014such as \u201C\
+  release-ready,\u201D \u201Cimplementation matches the spec,\u201D or \u201Ctests\
+  \ cover the documented behavior\u201D\u2014and I\u2019ll route the smallest defensible\
+  \ YNM review."
+error: Reading additional input from stdin...

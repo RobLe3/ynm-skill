@@ -1,18 +1,18 @@
 final_assessment:
   proposition: YNM 1.4.0 preserves or improves evidence-bounded review quality while substantially reducing unnecessary execution work.
-  disposition: 'MAYBE'
-  final_disposition: 'MAYBE'
-  disposition_reason: The assessment and thresholds are frozen, but no 1.4 runtime or empirical evidence has yet been evaluated.
-  maturity_blockers: [YNM-140-EPI-001, YNM-140-EFF-001, YNM-140-COST-001, YNM-140-ACT-001]
-  remaining_maybe_findings: [YNM-140-EPI-001, YNM-140-EFF-001, YNM-140-COST-001, YNM-140-ACT-001, YNM-140-ACC-001, YNM-140-REP-001, YNM-VAL-001]
-  converged: false
-  stability_pass: 'MAYBE'
+  disposition: 'NO'
+  final_disposition: 'NO'
+  disposition_reason: The frozen holdout produced false findings and replication regressions, missed all frozen cost targets, and could not establish activation or acceleration effectiveness.
+  maturity_blockers: [YNM-140-EPI-001, YNM-140-EFF-001, YNM-140-COST-001]
+  remaining_maybe_findings: [YNM-140-ACT-001, YNM-140-ACC-001, YNM-VAL-001]
+  converged: true
+  stability_pass: 'YES'
   version_decision: 1.4.0
   assessed_at: '2026-08-20T00:00:00Z'
   evaluated_at: '2026-08-20T00:00:00Z'
   assessment_id: YNM-1.4-ADAPTIVE-ASSESSMENT
-  assessment_revision: 1
-  change_reason: Frozen before YNM 1.4 runtime implementation or empirical execution.
-  evidence: [state/releases/1.4.0/assessment.yaml, state/releases/1.4.0/findings.yaml, evaluations/1.4/protocol.yaml]
-  publication_readiness: 'MAYBE'
+  assessment_revision: 2
+  change_reason: Frozen trigger, historical regression, holdout, and blinded adjudication completed without post-holdout runtime changes.
+  evidence: [evaluations/1.4/results/summary.md, evaluations/1.4/results/historical/benchmark-summary.yaml, evaluations/1.4/results/holdout/benchmark-summary.yaml, evaluations/1.4/results/trigger-summary.yaml, evaluations/1.4/capability-discovery.yaml]
+  publication_readiness: 'NO'
   publication_authorization: REQUIRES_HUMAN

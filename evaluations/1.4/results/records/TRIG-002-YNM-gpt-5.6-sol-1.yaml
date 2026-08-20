@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-002
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:16:41.423524Z'
+elapsed_seconds: 50.1
+input_tokens: 120055
+output_tokens: 1613
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Architecture Loop result: **MAYBE \u2014 BLOCKED**\n\nThe supplied project\
+  \ root is empty and is not a Git repository. No architecture documents, decision\
+  \ records, manifests, source, configuration, dependency definitions, interfaces,\
+  \ or tests were available.\n\n- Proposition: The project\u2019s intended architecture\
+  \ is coherent and its implementation conforms to it.\n- Disposition: `MAYBE`\n-\
+  \ Reason: `EVIDENCE_REQUIRED`\n- Execution: `BLOCKED`\n- Failure origin: `EVIDENCE`\n\
+  - Reviewed scope: Complete supplied directory contents.\n- Unreviewed scope: All\
+  \ intended architecture and implementation.\n- Required continuation: Provide the\
+  \ project files or point to the correct repository root. Useful minimum evidence\
+  \ is an architecture description plus manifests/source or configuration.\n- Changes\
+  \ made: None.\n- Persistence: No YNM state written.\n\nRun receipt: `YNM-2 SPECIALIZE`,\
+  \ `LIGHT`, `PORTABLE`; phases `ANALYSIS \u2192 ITERATION \u2192 DELIVERY`; one iteration;\
+  \ `converged: false`; terminal outcome `BLOCKED_REVIEW`; stop reason `NO_PROJECT_EVIDENCE`."
+error: Reading additional input from stdin...

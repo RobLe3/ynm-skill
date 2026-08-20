@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-006-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-006
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:37:53.645236Z'
+elapsed_seconds: 61.01
+input_tokens: 168636
+output_tokens: 2116
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Security claim: `NO` \u2014 contradicted\n\n[SECURITY.md](<EVALUATION_PROJECT>/SECURITY.md:3)\
+  \ claims unauthenticated requests are denied by default. However, [deny_by_default.py](<EVALUATION_PROJECT>/deny_by_default.py:2)\
+  \ returns `True` when `user is None`.\n\nRuntime confirmation:\n\n```text\nauthorize(None,\
+  \ object()) = True\n```\n\nAssuming `True` means authorized\u2014as the function\
+  \ name and authenticated-user branch indicate\u2014this permits unauthenticated\
+  \ access. Impact is potentially high wherever this function gates resources; actual\
+  \ reachability cannot be assessed because no callers or tests are present.\n\nRecommended\
+  \ remediation: return `False` for `user is None` and add an explicit regression\
+  \ test.\n\nYNM receipt: `YNM-1 EVALUATE`, complete bounded review of both repository\
+  \ files, implementation loop completed, converged because the contradiction is direct.\
+  \ No files were changed or created."
+error: Reading additional input from stdin...

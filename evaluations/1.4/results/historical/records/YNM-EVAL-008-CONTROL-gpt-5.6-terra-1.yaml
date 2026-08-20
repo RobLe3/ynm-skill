@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-008-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-008
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:40:48.847487Z'
+elapsed_seconds: 14.823
+input_tokens: 43033
+output_tokens: 441
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'Release versions are inconsistent:
+
+
+  - `manifest.yaml` declares `version: 1.9.0`
+
+  - `VERSION` declares `2.0.0`
+
+
+  Align these before releasing so packaging and release automation identify the same
+  artifact version.'
+error: Reading additional input from stdin...

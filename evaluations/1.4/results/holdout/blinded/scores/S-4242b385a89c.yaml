@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-4242b385a89c
+scenario_id: YNM-140-HOLD-004
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies the material contradiction between an always-encrypted
+  claim and an allowed plaintext fallback and ties it directly to PROJECT.md:3. It
+  introduces no unsupported or false material findings, clearly bounds the absent
+  evidence, remains read-only, and explicitly closes the review. However, the MAYBE
+  disposition is unjustified because the supplied fixture evidence itself supports
+  the stated contradiction; uncertainty about production reachability does not prevent
+  completing that finding.

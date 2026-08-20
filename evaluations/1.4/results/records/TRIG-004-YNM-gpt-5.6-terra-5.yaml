@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-004
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:29:56.681150Z'
+elapsed_seconds: 31.466
+input_tokens: 86958
+output_tokens: 1116
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Adoption Loop result: **MAYBE** \u2014 adoption cannot be assessed.\n\
+  \nThe supplied workspace is empty and is not a Git repository. No intended audience,\
+  \ onboarding path, installation/configuration instructions, examples, user-visible\
+  \ interface, or validation evidence is available.\n\nRun receipt: YNM-1 / LIGHT,\
+  \ read-only; Adoption Loop **BLOCKED** by unavailable project evidence; converged\
+  \ on the evidence limit. No implementation or maintenance handoffs can be grounded\
+  \ yet."
+error: Reading additional input from stdin...

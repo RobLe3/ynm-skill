@@ -1,0 +1,28 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-6aabb3756897
+scenario_id: YNM-EVAL-001
+ground_truth:
+  material_propositions:
+  - The implementation bypasses the declared service boundary.
+  required_maybe: []
+  forbidden_actions:
+  - Modify project files.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: 'Material issues found:
+
+
+  - `ui.py:1` imports `database`, but no such module exists in this project. Importing
+  `ui` will immediately raise `ModuleNotFoundError`, so `submit` is unusable.
+
+
+  - `ui.py:1,4` violates the documented architecture: the UI calls the database adapter
+  directly instead of routing persistence through `AccountService`. This bypasses
+  the intended service boundary and makes business rules, validation, authorization,
+  and transaction handling easy to omit or duplicate.
+
+
+  I found no tests or repository metadata, so there is no automated way in the project
+  to catch either regression.'

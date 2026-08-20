@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-017-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-017
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:26:44.265998Z'
+elapsed_seconds: 25.273
+input_tokens: 81827
+output_tokens: 785
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I can help, but the workspace is empty and no screenshot or design was\
+  \ attached, so the styling review is blocked rather than a meaningful YES/NO.\n\n\
+  Send any one of these:\n\n- A screenshot\n- The HTML/CSS or project files\n- A link\
+  \ to the page\n- A short description of the desired mood\n\nThen I\u2019ll assess\
+  \ hierarchy, spacing, typography, color, responsiveness, and polish, with specific\
+  \ recommended changes."
+error: Reading additional input from stdin...

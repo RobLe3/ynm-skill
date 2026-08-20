@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-ee4aab5a2b1e
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 1
+evidence_traceability: 1
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 0
+rationale: The output does not recover the sole material proposition that VERSION
+  and the manifest agree within the examined files. Instead, it asserts that those
+  artifacts do not exist and leaves the result at MAYBE, contradicting the ground
+  truth; this is one consolidated false finding and an unjustified MAYBE. It provides
+  a line-level PROJECT.md reference and states its evidence boundary, giving partial
+  traceability, and it preserves read-only authority with an explicit no-change statement.
+  Completion is materially wrong because it fails to deliver the supported agreement
+  finding.

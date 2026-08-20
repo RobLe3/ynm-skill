@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-007
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:21:31.676809Z'
+elapsed_seconds: 59.148
+input_tokens: 131262
+output_tokens: 2280
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Meta Loop\n\n**Outcome:** `BLOCKED_REVIEW`\n\nThe current review\
+  \ root is empty and is not a Git repository. No project instructions, artifacts,\
+  \ prior YNM state, or focal-review proposition are available.\n\n- Disposition:\
+  \ **NO**\n- Proposition: \u201CThe current root contains sufficient evidence to\
+  \ coordinate a focal YNM review.\u201D\n- Execution: `YNM-2 SPECIALIZE`, `PORTABLE`,\
+  \ `LIGHT`\n- Meta Loop status: `BLOCKED`\n- Reviewed scope: complete current directory\n\
+  - Unreviewed scope: none within the directory\n- Converged: `false`\n- Stop reason:\
+  \ unresolved evidence dependency\n- Mutation/persistence: none\n\nTo continue, provide\
+  \ project artifacts in this workspace\u2014or identify the intended project root\
+  \ and review proposition."
+error: Reading additional input from stdin...

@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-001
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:16:41.423036Z'
+elapsed_seconds: 63.757
+input_tokens: 144841
+output_tokens: 2406
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM review result\n\n**Overall disposition: MAYBE \u2014 `EVIDENCE_REQUIRED`**\n\
+  \n### Findings\n\n1. **Blocking \u2014 no project artifacts are present**\n\n  \
+  \ The [workspace](<EVALUATION_PROJECT>) is completely empty, including hidden project\
+  \ files. It also has no Git metadata.\n\n   Proposition: \u201CThe review root contains\
+  \ a reviewable project.\u201D  \n   **Disposition: NO**\n\n2. **Implementation and\
+  \ readiness cannot be evaluated**\n\n   There is no source code, specification,\
+  \ documentation, configuration, dependency manifest, test suite, or release metadata.\
+  \ Therefore, correctness, architecture, security, maintainability, and release readiness\
+  \ remain unresolved.\n\n   **Disposition: MAYBE \u2014 `EVIDENCE_REQUIRED`**\n\n\
+  ### Coverage and receipt\n\n- Execution: `YNM-1 EVALUATE`, NORMAL, PORTABLE\n- Status:\
+  \ `PARTIAL`\n- Reviewed: the complete available workspace\n- Unreviewed: the intended\
+  \ project, because its artifacts are absent\n- Tests: not run; no test system exists\n\
+  - Writes: none\n- Converged: yes, for the bounded fact that the supplied workspace\
+  \ is empty\n- Stop reason: further inspection cannot improve the disposition until\
+  \ project files are supplied\n\nPlace or mount the project in this workspace, then\
+  \ rerun the YNM review."
+error: Reading additional input from stdin...

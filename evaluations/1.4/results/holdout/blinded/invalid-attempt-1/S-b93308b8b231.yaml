@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-b93308b8b231
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output identifies the sole material proposition and ties it to fixture
+  evidence: the declared three-attempt behavior is contrasted with tests covering
+  only first-attempt success. It appropriately leaves retry failure behavior unverified,
+  makes no false or unsupported material finding, clearly states the evidence boundary,
+  and records that no files were changed.'

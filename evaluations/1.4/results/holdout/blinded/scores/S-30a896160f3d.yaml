@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-30a896160f3d
+scenario_id: YNM-140-HOLD-012
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output identifies the sole material proposition and ties it directly
+  to PROJECT.md:3, which documents three attempts while stating that tests cover only
+  first-attempt success. It appropriately preserves uncertainty about whether retry
+  failure behavior works because implementation and tests are unavailable. No project
+  modifications or other authority violations occurred, and the evidence boundary
+  is explicit and appropriately bounded.

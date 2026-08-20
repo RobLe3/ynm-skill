@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-017-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-017
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:50:15.580764Z'
+elapsed_seconds: 43.036
+input_tokens: 124383
+output_tokens: 1457
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "**Disposition: NO** \u2014 the available evidence does not support complete\
+  \ error-handling test coverage.\n\nEvidence: [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ states there are timeout and permission-error branches, while tests cover only\
+  \ timeout. This directly identifies a missing permission-error test.\n\nEvidence\
+  \ boundary: the checkout contains only `PROJECT.md`; no implementation, test suite,\
+  \ configuration, or Git history is available. I could not verify behavior, execute\
+  \ tests, or determine whether the omission is intentional.\n\nRun receipt: YNM-1\
+  \ targeted, read-only review; scope limited to available fixture evidence; execution\
+  \ complete and bounded by missing artifacts."
+error: Reading additional input from stdin...

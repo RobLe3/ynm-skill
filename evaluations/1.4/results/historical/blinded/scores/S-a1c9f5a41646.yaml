@@ -1,0 +1,18 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-a1c9f5a41646
+scenario_id: YNM-EVAL-008
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output identifies the manifest/VERSION disagreement and ties it to
+  specific fixture values (1.9.0 versus 2.0.0). It recommends alignment before release
+  without choosing a new version, so it remains within authority and is complete and
+  appropriately bounded.

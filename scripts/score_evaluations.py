@@ -25,19 +25,20 @@ def load_yaml(path: Path) -> dict:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
-def sample_id(run_id: str) -> str:
-    return "S-" + hashlib.sha256(f"{SEED}:{run_id}".encode()).hexdigest()[:12]
+def sample_id(run_id: str, seed: str = SEED) -> str:
+    return "S-" + hashlib.sha256(f"{seed}:{run_id}".encode()).hexdigest()[:12]
 
 
-def prepare_packets(results_root: Path) -> list[Path]:
-    scenarios = {item["id"]: item for item in load_yaml(ROOT / "evaluations/scenarios.yaml")["scenarios"]}
+def prepare_packets(results_root: Path, scenarios_path: Path | None = None, seed: str = SEED) -> list[Path]:
+    source = scenarios_path or (ROOT / "evaluations/scenarios.yaml")
+    scenarios = {item["id"]: item for item in load_yaml(source)["scenarios"]}
     packet_root = results_root / "blinded" / "packets"
     packet_root.mkdir(parents=True, exist_ok=True)
     mapping: dict[str, dict[str, str]] = {}
     written: list[Path] = []
-    records = [load_yaml(path) for path in sorted((results_root / "records").glob("YNM-EVAL-*.yaml"))]
-    for record in sorted(records, key=lambda item: sample_id(item["run_id"])):
-        sid = sample_id(record["run_id"])
+    records = [load_yaml(path) for path in sorted((results_root / "records").glob("*.yaml")) if load_yaml(path).get("scenario_id") in scenarios]
+    for record in sorted(records, key=lambda item: sample_id(item["run_id"], seed)):
+        sid = sample_id(record["run_id"], seed)
         scenario = scenarios[record["scenario_id"]]
         packet = {
             "schema_version": "ynm-blinded-packet.v1",
@@ -52,7 +53,7 @@ def prepare_packets(results_root: Path) -> list[Path]:
         mapping[sid] = {"run_id": record["run_id"], "condition": record["condition"], "model": record["model"]}
         written.append(target)
     (results_root / "blinded" / "mapping.yaml").write_text(
-        yaml.safe_dump({"seed": SEED, "samples": mapping}, sort_keys=False), encoding="utf-8"
+        yaml.safe_dump({"seed": seed, "samples": mapping}, sort_keys=False), encoding="utf-8"
     )
     return written
 
@@ -195,8 +196,12 @@ def trigger_summary(results_root: Path) -> dict:
     return summary
 
 
-def aggregate(results_root: Path) -> dict:
-    scenarios = {item["id"]: item for item in load_yaml(ROOT / "evaluations/scenarios.yaml")["scenarios"]}
+def aggregate(
+    results_root: Path, scenarios_path: Path | None = None,
+    treatment_label: str = "YNM", *, include_trigger: bool = True,
+) -> dict:
+    source = scenarios_path or (ROOT / "evaluations/scenarios.yaml")
+    scenarios = {item["id"]: item for item in load_yaml(source)["scenarios"]}
     mapping = load_yaml(results_root / "blinded" / "mapping.yaml")["samples"]
     records = {load_yaml(path)["run_id"]: load_yaml(path) for path in (results_root / "records").glob("*.yaml")}
     rows: list[dict] = []
@@ -230,7 +235,7 @@ def aggregate(results_root: Path) -> dict:
     for model in models:
         model_rows = [row for row in rows if row["model"] == model]
         by_condition: dict[str, dict] = {}
-        for condition in ("CONTROL", "YNM"):
+        for condition in ("CONTROL", treatment_label):
             subset = [row for row in model_rows if row["condition"] == condition]
             numeric = ("material_recall", "material_precision", "unsupported_claim_rate", "false_finding_rate", "required_maybe_recall", "unjustified_maybe", "evidence_traceability", "lifecycle_quality", "completion_quality", "input_tokens", "output_tokens", "elapsed_seconds", "tool_calls")
             by_condition[condition] = {
@@ -238,14 +243,16 @@ def aggregate(results_root: Path) -> dict:
             }
             by_condition[condition]["authority_violations"] = sum(bool(row["authority_violation"]) for row in subset)
         summaries[model] = {"conditions": by_condition}
-        summaries[model]["decision"] = decide_core_effect(by_condition["CONTROL"], by_condition["YNM"], model_rows)
+        normalized_rows = [dict(row, condition="YNM" if row["condition"] == treatment_label else row["condition"]) for row in model_rows]
+        summaries[model]["decision"] = decide_core_effect(by_condition["CONTROL"], by_condition[treatment_label], normalized_rows)
         summaries[model]["cost_ratios"] = {
-            key: safe_ratio(by_condition["YNM"][key], by_condition["CONTROL"][key])
+            key: safe_ratio(by_condition[treatment_label][key], by_condition["CONTROL"][key])
             for key in ("input_tokens", "output_tokens", "elapsed_seconds", "tool_calls")
         }
     result = {"schema_version": "ynm-evaluation-summary.v1", "models": summaries, "rows": rows}
     (results_root / "benchmark-summary.yaml").write_text(yaml.safe_dump(result, sort_keys=False), encoding="utf-8")
-    trigger_summary(results_root)
+    if include_trigger and (results_root / "activation-observability.yaml").exists():
+        trigger_summary(results_root)
     return result
 
 
@@ -257,13 +264,17 @@ def main() -> int:
     parser.add_argument("--model", default=run_evaluations.PRIMARY_MODEL)
     parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--results-dir", type=Path, default=ROOT / "evaluations/results")
+    parser.add_argument("--scenarios", type=Path, default=ROOT / "evaluations/scenarios.yaml")
+    parser.add_argument("--seed", default=SEED)
+    parser.add_argument("--treatment-label", default="YNM")
+    parser.add_argument("--skip-trigger-summary", action="store_true")
     args = parser.parse_args()
     if args.prepare:
-        prepare_packets(args.results_dir)
+        prepare_packets(args.results_dir, args.scenarios, args.seed)
     if args.score:
         score_packets(args.results_dir, args.model, args.workers)
     if args.aggregate:
-        aggregate(args.results_dir)
+        aggregate(args.results_dir, args.scenarios, args.treatment_label, include_trigger=not args.skip_trigger_summary)
     if not (args.prepare or args.score or args.aggregate):
         parser.error("select --prepare, --score, or --aggregate")
     return 0

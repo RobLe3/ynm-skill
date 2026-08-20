@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-018-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-018
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:34:59.345529Z'
+elapsed_seconds: 23.622
+input_tokens: 67925
+output_tokens: 592
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I don\u2019t see any files or function in the workspace\u2014it\u2019\
+  s empty. Please paste the function (and ideally its callers/tests), or point me\
+  \ to the relevant file."
+error: Reading additional input from stdin...

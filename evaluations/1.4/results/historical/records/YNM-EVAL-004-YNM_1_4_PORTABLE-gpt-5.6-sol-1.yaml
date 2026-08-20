@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-004-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-004
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:37:19.190224Z'
+elapsed_seconds: 82.414
+input_tokens: 170578
+output_tokens: 2747
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Operational readiness: **NO \u2014 contradicted within the available\
+  \ project evidence.**\n\nThe sole project artifact defines `restore --latest` followed\
+  \ by a record-count check, but explicitly states that this recovery procedure has\
+  \ not been exercised in a production-like environment ([RUNBOOK.md](<<EVALUATION_PROJECT>/RUNBOOK.md:3>)).\
+  \ Because validated recovery is a necessary operational-readiness condition, this\
+  \ is a material blocker\u2014not merely missing documentation.\n\n| Proposition\
+  \ | Disposition | Basis |\n|---|---|---|\n| A recovery procedure is documented |\
+  \ YES | Command and verification step are present |\n| Recovery is validated under\
+  \ realistic conditions | NO | Runbook explicitly says it is unexercised |\n| Build,\
+  \ test, and deployment are operationally validated | MAYBE | No evidence available\
+  \ |\n| Monitoring, alerting, and incident response are established | MAYBE | No\
+  \ evidence available |\n| Security, configuration, ownership, and release controls\
+  \ are established | MAYBE | No evidence available |\n| Project is operationally\
+  \ ready overall | NO | Necessary recovery-validation gate is contradicted |\n\n\
+  Readiness requires, at minimum, a recorded production-like restore exercise showing\
+  \ prerequisites, backup provenance, results, record reconciliation, duration/RTO,\
+  \ failure handling, and responsible owner. Evidence for deployment, tests, observability,\
+  \ incident response, and security controls is also needed to resolve the MAYBE findings.\n\
+  \nYNM run receipt: `YNM-1 NORMAL`, read-only; complete available project surface\
+  \ reviewed (one file); Implementation and Maintenance loops completed; no persistent\
+  \ state written; converged for available evidence on 2026-08-20. No escalation was\
+  \ useful because further analysis cannot manufacture the missing operational evidence."
+error: Reading additional input from stdin...
