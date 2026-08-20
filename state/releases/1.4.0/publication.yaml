@@ -6,15 +6,17 @@ publication:
   branch: main
   version: 1.4.0
   release: YNM 1.4.0
-  status: CANDIDATE
-  publication_readiness: 'NO'
-  publication_authorization: REQUIRES_HUMAN
+  status: READY_FOR_TAG
+  publication_readiness: 'YES'
+  publication_authorization: AUTHORIZED_BY_HUMAN
+  release_class: RESEARCH_PRERELEASE
   license: Apache-2.0
   publication_is_third_party_validation: false
   verification_basis: local-evidence-state
   verification_basis_time: '2026-08-19T16:49:00Z'
   notes:
-  - No tag has been created.
+  - Human publication authorization was granted for a bounded Research/Experimental Pre-release.
+  - Exact tag, commit, and tree identity will be derived and verified by tag CI.
   - Frozen 1.4 effectiveness and cost criteria were not met.
   - Activation and acceleration effectiveness remain unresolved.
   - Independent interoperability remains pending.

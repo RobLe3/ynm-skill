@@ -43,7 +43,7 @@ class ReleaseIntegrityTests(unittest.TestCase):
         result = validate_release_integrity("9.9.9", root=ROOT)
         self.assertTrue(result.errors)
 
-    def test_current_candidate_is_not_tag_ready(self):
+    def test_current_release_is_human_authorized_and_tag_ready(self):
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
         checks = validate_release_integrity(
             version,
@@ -51,8 +51,9 @@ class ReleaseIntegrityTests(unittest.TestCase):
             require_tagged_subject=True,
             tag_ref=f"v{version}",
         )
-        self.assertTrue(any("READY_FOR_TAG" in item for item in checks.errors))
-        self.assertTrue(any("human publication authorization" in item for item in checks.errors))
+        self.assertFalse(any("READY_FOR_TAG" in item for item in checks.errors))
+        self.assertFalse(any("human publication authorization" in item for item in checks.errors))
+        self.assertTrue(any("does not resolve to a commit" in item for item in checks.errors))
 
     def test_simulated_human_finalized_tag_subject_passes(self):
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
