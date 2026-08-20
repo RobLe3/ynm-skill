@@ -39,6 +39,29 @@ DEFAULT_CHECKS = [
     "runtime-boundary",
     "workflow-invariants",
 ]
+PREFLIGHT_CHECKS = [
+    "schema",
+    "links",
+    "adversarial-scenarios",
+    "normative-invariants",
+    "state",
+    "yaml-disposition-quoting",
+    "release",
+    "version-consistency",
+    "baseline-integrity",
+    "public-sanitization",
+    "runtime-boundary",
+    "workflow-invariants",
+]
+CROSS_PLATFORM_CHECKS = [
+    "schema",
+    "links",
+    "adversarial-scenarios",
+    "normative-invariants",
+    "state",
+    "yaml-disposition-quoting",
+    "runtime-boundary",
+]
 SECURITY_BOUNDARY_CHECKS = [
     "repository-security-boundary",
     "project-integration-security",
@@ -392,7 +415,12 @@ def _compare_sanitization_report(root: Path, report: dict[str, Any], *, findings
         if key not in data:
             errors.append(f"sanitization report missing {key}: {path.relative_to(root)}")
     if data.get("files_scanned") != report["files_scanned"]:
-        errors.append("sanitization report files_scanned mismatch")
+        errors.append(
+            "sanitization report files_scanned mismatch: "
+            f"recorded={data.get('files_scanned')} actual={report['files_scanned']}\n"
+            "Refresh intentionally with:\n"
+            "python validation/validate_ynm.py --refresh-sanitization-report"
+        )
     if data.get("files_excluded_as_binary") != report["files_excluded_as_binary"]:
         errors.append("sanitization report excluded-binary count mismatch")
     if data.get("result") not in {"PASS", "FAIL"}:
@@ -1289,8 +1317,8 @@ def check_workflow_invariants() -> list[str]:
         errors.append("workflow invariant: concurrency block missing")
     else:
         group = str(concurrency.get("group", ""))
-        if "github.event_name" not in group:
-            errors.append("workflow invariant: concurrency group does not include github.event_name")
+        if "github.event.pull_request.number" not in group or "github.ref" not in group:
+            errors.append("workflow invariant: concurrency group must isolate pull requests and refs")
         if not concurrency.get("cancel-in-progress"):
             errors.append("workflow invariant: concurrency.cancel-in-progress must be true")
 
@@ -1301,6 +1329,16 @@ def check_workflow_invariants() -> list[str]:
 
     if "release-integrity-tag" not in jobs:
         errors.append("workflow invariant: release-integrity-tag job missing")
+    if "preflight" not in jobs:
+        errors.append("workflow invariant: preflight job missing")
+
+    validate_job = jobs.get("validate")
+    if not isinstance(validate_job, dict) or validate_job.get("needs") != "preflight":
+        errors.append("workflow invariant: validate matrix must depend on preflight")
+    for downstream in ["package", "security"]:
+        job = jobs.get(downstream)
+        if not isinstance(job, dict) or job.get("needs") != "validate":
+            errors.append(f"workflow invariant: {downstream} job must depend on validate")
 
     actions = [line for line in WORKFLOW_PATH.read_text(encoding="utf-8").splitlines() if "uses:" in line]
     if "@" not in "".join(actions):
@@ -1340,14 +1378,28 @@ def check_workflow_invariants() -> list[str]:
         if not isinstance(needs, list):
             errors.append("workflow invariant: release-integrity-tag job requires explicit needs")
         else:
-            missing_needs = sorted(set(["validate", "package", "security"]) - set(needs))
+            missing_needs = sorted(set(["preflight", "validate", "package", "security"]) - set(needs))
             if missing_needs:
                 errors.append(f"workflow invariant: release-integrity-tag job missing needs {missing_needs}")
         workflow_text = WORKFLOW_PATH.read_text(encoding="utf-8")
         if "--require-tagged-subject" not in workflow_text or '--tag-ref "$GITHUB_REF_NAME"' not in workflow_text:
             errors.append("workflow invariant: tag job must validate the exact tagged subject")
+        if "main:refs/remotes/origin/main" not in workflow_text:
+            errors.append("workflow invariant: tag job must fetch an exact origin/main tracking ref")
+        tag_steps = jobs["release-integrity-tag"].get("steps", [])
+        checkout_steps = [step for step in tag_steps if isinstance(step, dict) and str(step.get("uses", "")).startswith("actions/checkout@")]
+        if not checkout_steps or checkout_steps[0].get("with", {}).get("fetch-depth") != 0:
+            errors.append("workflow invariant: tag checkout must use full history")
         if re.search(r"\b(?:gh release create|softprops/action-gh-release|actions/create-release)\b", workflow_text):
             errors.append("workflow invariant: validation workflow must not publish a release")
+
+    workflow_text = WORKFLOW_PATH.read_text(encoding="utf-8")
+    if "--refresh-sanitization-report" in workflow_text:
+        errors.append("workflow invariant: CI must not refresh candidate evidence")
+    if "pip install --upgrade pip" in workflow_text:
+        errors.append("workflow invariant: CI must not upgrade pip implicitly")
+    if "git config --global core.autocrlf" in workflow_text or "git config --global core.eol" in workflow_text:
+        errors.append("workflow invariant: checkout normalization must rely on .gitattributes")
 
     return errors
 
@@ -1545,7 +1597,7 @@ def main() -> int:
     parser.add_argument(
         "--check",
         action="append",
-        choices=DEFAULT_CHECKS + ["security-boundary", "all", "workflow-invariants"],
+        choices=DEFAULT_CHECKS + ["preflight", "cross-platform", "security-boundary", "all", "workflow-invariants"],
         help="Run a single validation check (repeatable).",
     )
     parser.add_argument(
@@ -1559,6 +1611,10 @@ def main() -> int:
     if requested:
         if "all" in requested:
             checks_to_run = DEFAULT_CHECKS
+        elif "preflight" in requested:
+            checks_to_run = PREFLIGHT_CHECKS
+        elif "cross-platform" in requested:
+            checks_to_run = CROSS_PLATFORM_CHECKS
         elif "security-boundary" in requested:
             checks_to_run = SECURITY_BOUNDARY_CHECKS
         else:

@@ -10,16 +10,37 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ynm-ci-${{ github.event_name }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  group: ynm-ci-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
+  preflight:
+    name: repository preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.13"
+      - name: Install validation dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Validate repository-wide invariants
+        run: |
+          python validation/validate_ynm.py --check preflight
+          python validation/validate_release_integrity.py
+      - name: Test repository evidence diagnostics
+        run: python -m unittest tests.test_repository_validation -v
+
   validate:
     name: validate (${{ matrix.os }} / Python ${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
+    needs: preflight
     strategy:
       fail-fast: false
       matrix:
@@ -42,24 +63,15 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Enforce normalized text checkout behavior
-        shell: bash
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install runtime and dev dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e .[dev]
-      - name: Validate schemas and repository invariants
-        run: python validation/validate_ynm.py
-      - name: Validate release integrity
-        run: python validation/validate_release_integrity.py
-      - name: Run unit/integration tests
-        run: python -m unittest discover -s tests -v
+        run: python -m pip install -e ".[dev]"
+      - name: Validate cross-platform invariants
+        run: python validation/validate_ynm.py --check cross-platform
+      - name: Run portable contract and lifecycle tests
+        run: python -m unittest tests.test_validate_ynm tests.test_trigger_cases -v
 
   package:
     name: package-and-verify
@@ -70,18 +82,11 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Enforce normalized text checkout behavior
-        shell: bash
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: "3.13"
       - name: Install validation dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e .[dev]
+        run: python -m pip install -e ".[dev]"
       - name: Build and verify package
         run: |
           python scripts/build_skill_package.py --output-dir dist --overwrite
@@ -118,6 +123,10 @@ jobs:
               assert (package / required).exists(), f'missing {required} in package'
           print('Generated package root:', package)
           PY
+      - name: Test generated package behavior
+        run: |
+          python validation/validate_ynm.py --check package-links
+          python -m unittest tests.test_package_security tests.test_release_and_package.PackageBuildTests -v
       - name: Validate package with pinned Agent Skills reference validator
         env:
           AGENTSKILLS_REF: 69ef37e9424c0a7ea9dd2293b559e43ec8176379
@@ -139,28 +148,15 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Enforce normalized text checkout behavior
-        shell: bash
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: "3.13"
       - name: Install validation dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e .[dev]
-      - name: Run trigger/metadata checks
-        run: python -m unittest discover -s tests -v
+        run: python -m pip install -e ".[dev]"
       - name: Run security-boundary checks
         run: |
           python validation/validate_ynm.py --check security-boundary
-          python -m unittest \
-            tests.test_release_and_package.PackageBuildTests.test_manifest_include_rejects_platform_independent_escapes \
-            tests.test_release_and_package.PackageBuildTests.test_manifest_rejects_external_symlink_file_and_directory \
-            tests.test_release_and_package.PackageBuildTests.test_packaged_tree_excludes_development_and_historical_sections \
-            -v
+          python -m unittest tests.test_project_integration_security tests.test_package_security -v
       - name: Ensure sanitization report exists for candidate
         run: |
           test -f state/releases/$(cat VERSION)/sanitization-report.yaml
@@ -169,31 +165,24 @@ jobs:
   release-integrity-tag:
     name: release-integrity (tagged commit)
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-    needs: [validate, package, security]
+    needs: [preflight, validate, package, security]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Enforce normalized text checkout behavior
-        shell: bash
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: "3.13"
       - name: Install dev dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e .[dev]
+        run: python -m pip install -e ".[dev]"
       - name: Verify tagged commit and release evidence
         run: |
           REF_VERSION="${GITHUB_REF_NAME#v}"
           EXPECTED_VERSION="$(cat VERSION)"
           test "$REF_VERSION" = "$EXPECTED_VERSION"
-          git fetch origin main --tags
+          git fetch origin main:refs/remotes/origin/main --tags
           git merge-base --is-ancestor "$GITHUB_SHA" origin/main
           python validation/validate_release_integrity.py \
             --release "$REF_VERSION" \
