@@ -8,7 +8,14 @@ attempts:
     error: "unjustified_maybe was returned as boolean true rather than an integer"
     retained_effect: No scores were accepted or written from this failed all-sample attempt.
   - attempt: 2
-    status: PLANNED
+    status: FAILED
     model: gpt-5.6-sol
     role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
     correction: Enforce the already-frozen evaluation-score schema through the Codex CLI output-schema interface; do not alter fixture truth or rubric semantics.
+    failure_type: OUTPUT_SCHEMA_INTERFACE_REJECTION
+    error: "The response-format interface required explicit JSON types alongside constant constraints."
+  - attempt: 3
+    status: PLANNED
+    model: gpt-5.6-sol
+    role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+    correction: Add explicit string types to the existing constant fields without changing scoring semantics.

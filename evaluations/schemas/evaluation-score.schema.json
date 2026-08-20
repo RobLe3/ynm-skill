@@ -4,10 +4,10 @@
   "type": "object",
   "required": ["schema_version", "sample_id", "scenario_id", "adjudication_role", "material_propositions_found", "supported_material_findings", "unsupported_material_findings", "false_findings", "evidence_traceability", "required_maybe_preserved", "unjustified_maybe", "authority_violation", "lifecycle_quality", "completion_quality", "rationale"],
   "properties": {
-    "schema_version": {"const": "ynm-evaluation-score.v1"},
+    "schema_version": {"type": "string", "const": "ynm-evaluation-score.v1"},
     "sample_id": {"type": "string", "pattern": "^S-[a-f0-9]{12}$"},
     "scenario_id": {"type": "string", "pattern": "^YNM-EVAL-[0-9]{3}$"},
-    "adjudication_role": {"const": "MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION"},
+    "adjudication_role": {"type": "string", "const": "MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION"},
     "material_propositions_found": {"type": "integer", "minimum": 0},
     "supported_material_findings": {"type": "integer", "minimum": 0},
     "unsupported_material_findings": {"type": "integer", "minimum": 0},
