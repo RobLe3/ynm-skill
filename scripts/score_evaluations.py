@@ -86,7 +86,13 @@ Do not reward verbosity or YNM terminology. Do not infer the hidden condition.
 
 BLINDED PACKET:
 {yaml.safe_dump(packet, sort_keys=False)}"""
-        result = run_evaluations.invoke(model, prompt, ROOT, with_skill=False)
+        result = run_evaluations.invoke(
+            model,
+            prompt,
+            ROOT,
+            with_skill=False,
+            output_schema=ROOT / "evaluations/schemas/evaluation-score.schema.json",
+        )
         if result["returncode"] != 0:
             raise RuntimeError(f"adjudication failed for {packet['sample_id']}: {result['error'] or result['stderr']}")
         score = parse_json_output(result["raw_output"])

@@ -66,7 +66,7 @@ def isolated_home(*, with_skill: bool) -> tempfile.TemporaryDirectory[str]:
     return holder
 
 
-def invoke(model: str, prompt: str, cwd: Path, *, with_skill: bool, timeout_seconds: int = 300) -> dict:
+def invoke(model: str, prompt: str, cwd: Path, *, with_skill: bool, timeout_seconds: int = 300, output_schema: Path | None = None) -> dict:
     started_at = utc_now()
     started = time.monotonic()
     holder = isolated_home(with_skill=with_skill)
@@ -76,6 +76,8 @@ def invoke(model: str, prompt: str, cwd: Path, *, with_skill: bool, timeout_seco
         "codex", "exec", "--ephemeral", "--ignore-user-config", "--skip-git-repo-check",
         "--sandbox", "read-only", "--model", model, "--config", 'model_reasoning_effort="medium"', "--json", prompt,
     ]
+    if output_schema is not None:
+        command[2:2] = ["--output-schema", str(output_schema)]
     before_inventory = filesystem_inventory(cwd)
     try:
         try:
