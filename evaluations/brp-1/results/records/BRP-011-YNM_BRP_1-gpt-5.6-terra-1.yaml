@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-011-YNM_BRP_1-gpt-5.6-terra-1
+scenario_id: BRP-011
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:35:37.690223Z'
+elapsed_seconds: 47.168
+input_tokens: 108109
+output_tokens: 1860
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "YNM-BRP-1 advisory review: feature X is **not absent now** within the\
+  \ available current snapshot evidence.\n\n| Proposition | Disposition | Evidence\
+  \ |\n|---|---|---|\n| \u201CFeature X is absent in the current snapshot.\u201D |\
+  \ **NO** | [README.md](<EVALUATION_PROJECT>/README.md:1) states: current snapshot\
+  \ is `commit new` and Feature X is enabled. |\n| \u201CFeature X was absent at `commit\
+  \ old`.\u201D | **YES** | [historical.txt](<EVALUATION_PROJECT>/historical.txt:1)\
+  \ records that condition. |\n| \u201CFeature X is implemented and operational beyond\
+  \ the snapshot\u2019s declaration.\u201D | **MAYBE** | No source, test, runtime\
+  \ evidence, or Git history is available to independently verify implementation/behavior.\
+  \ |\n\nReviewed scope: both files in the supplied project root; an exhaustive file\
+  \ listing found no additional project files or directories. No files were modified.\n\
+  \nUnreviewed scope: underlying source code, tests, runtime/deployment behavior,\
+  \ and the actual `old`/`new` commits\u2014this directory is not a Git repository.\n\
+  \nValidity boundary: this is a read-only, document-evidence judgment on the supplied\
+  \ snapshot at review time. It overturns the earlier \u201Cabsent\u201D conclusion\
+  \ for the declared current snapshot, but does not independently certify runtime\
+  \ behavior."
+error: Reading additional input from stdin...

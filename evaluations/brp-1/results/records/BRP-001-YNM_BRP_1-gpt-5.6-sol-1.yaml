@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-001-YNM_BRP_1-gpt-5.6-sol-1
+scenario_id: BRP-001
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:31:36.039362Z'
+elapsed_seconds: 66.194
+input_tokens: 172406
+output_tokens: 2497
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## YNM-BRP-1 Review\n\nExecution: `YNM-1 EVALUATE`, LIGHT, PORTABLE,\
+  \ read-only advisory. Status: `COMPLETED`; converged after one evidence pass.\n\n\
+  | Proposition | Disposition | Evidence |\n|---|---|---|\n| P1: Project documentation\
+  \ declares API version `3` as required. | **YES** | [README.md](<<EVALUATION_PROJECT>/README.md:1>):\
+  \ `Required API version: 3.` |\n| P2: Project configuration specifies API version\
+  \ `3`. | **YES** | [config.yaml](<<EVALUATION_PROJECT>/config.yaml:1>): `api_version:\
+  \ 3` |\n| P3: The API version in configuration matches the documented required version.\
+  \ | **YES** | The directly observed values are equal: `3 = 3`. No contradictory\
+  \ project artifact was found. |\n\nReviewed scope: all project files present\u2014\
+  `README.md` and `config.yaml`.\n\nUnreviewed scope: external specifications, deployment/runtime\
+  \ overrides, generated configuration, and repository history; none were available\
+  \ or necessary for the artifact-level comparison.\n\nValidity boundary: These dispositions\
+  \ apply to the two-file snapshot inspected at `2026-08-20T12:32:21Z` (`README.md`\
+  \ SHA-256 `2f8bef3c\u20267001`; `config.yaml` SHA-256 `8270fc06\u20265a6`). They\
+  \ establish textual agreement between the checked artifacts, not that `config.yaml`\
+  \ is the configuration deployed at runtime or that version `3` is externally valid.\
+  \ No files were modified."
+error: Reading additional input from stdin...

@@ -11,3 +11,7 @@ events:
   event_type: BOUNDED_ASSESSMENT_FROZEN
   timestamp: '2026-08-20T12:21:19Z'
   summary: Frozen YNM-BRP-1 as a new bounded usability proposition without changing prior 1.4 empirical dispositions.
+- event_id: YNM-1.4-E004
+  event_type: BOUNDED_USABILITY_EVALUATION_COMPLETED
+  timestamp: '2026-08-20T12:48:00Z'
+  summary: Completed 24 frozen YNM-BRP-1 executions and 24 blinded adjudications. The primary missed the frozen required-MAYBE criterion on BRP-007, so bounded usability did not pass.

@@ -86,3 +86,57 @@ runs:
     persistence_attempted: true
     persistence_outcome: SUCCEEDED
     continuation_scope: later candidate only; no 1.4.0 release
+- schema_version: ynm-run-receipt.v3
+  run_id: YNM-1.4-BRP-1-EVALUATION
+  generation: 2
+  project_state: YNM-1.4.0-CANDIDATE
+  execution_context: YNM-BRP-1-FROZEN-EVALUATION
+  execution_strategy: EXTENDED
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+  review_plan_revision: 1
+  iteration_count: 1
+  loops_requested: [Adoption, Disposition, Meta]
+  loops_executed: [Adoption, Disposition, Meta]
+  stage_reached: EMPIRICAL_DELIVERY
+  execution_status: COMPLETED
+  terminal_outcome: CONVERGED_REVIEW
+  converged: true
+  halt_reason: Frozen BRP-1 evidence reached a release-blocking NO; post-execution fixture or runtime tuning is prohibited.
+  stop_reason: MATURITY_BLOCKER
+  reviewed_scope:
+  - 12 frozen primary YNM-BRP-1 executions
+  - 12 non-gating executor-profile executions
+  - 24 blinded adjudications
+  unreviewed_scope:
+  - independent human adjudication
+  - general model-independent effectiveness
+  - independent interoperability
+  evidence_added: 101
+  findings_created: []
+  findings_updated: [YNM-140-BRP-001, YNM-140-BND-001, YNM-140-SCOPE-001, YNM-140-UNC-001, YNM-140-AUTH-001]
+  dispositions_changed: [YNM-140-BRP-001, YNM-140-BND-001, YNM-140-SCOPE-001, YNM-140-UNC-001, YNM-140-AUTH-001]
+  unresolved_findings: [YNM-140-ACT-001, YNM-140-ACC-001, YNM-VAL-001]
+  unresolved_dependencies: [fresh bounded-profile evidence after a later runtime change, independent implementation]
+  material_changes: [bounded profile contract, validity-boundary contract, fresh bounded usability evidence]
+  findings_reopened: []
+  findings_resolved: [YNM-140-BRP-001, YNM-140-BND-001, YNM-140-SCOPE-001, YNM-140-UNC-001, YNM-140-AUTH-001]
+  required_human_decisions: [retain the release candidate]
+  continuation_scope: later candidate with fresh evidence
+  next_revisit_condition: A later candidate addresses the bounded semantic-disposition failure and uses fresh frozen evidence.
+  persistence_status: PERSISTENT
+  delivery:
+    human_artifact: evaluations/brp-1/results/summary.md
+    machine_state: evaluations/brp-1/results
+    authorization_status: AUTHORIZED_FOR_CANDIDATE_EVIDENCE_ONLY
+    persistence_attempted: true
+    persistence_outcome: SUCCEEDED
+  validity_boundary:
+    propositions: [YNM provides useful, auditable, and appropriately bounded review assistance within YNM-BRP-1.]
+    reviewed_scope: [12 frozen primary fixtures, 12 non-gating executor-profile fixtures]
+    unreviewed_scope: [general model independence, independent interoperability]
+    evidence_snapshot: runtime candidate f526f3d plus evaluation-only runner corrections
+    evidence_limitations: [one execution per fixture, maintainer-operated model adjudication, frozen BRP-007 interpretation]
+    executor_profile: gpt-5.6-sol primary; gpt-5.6-terra non-gating
+    authority: read-only fixture execution; candidate evidence persistence only
+    execution_limits: [synthetic fixtures, Codex CLI 0.148.0, no independent adjudicator]
+    temporal_reference: '2026-08-20T12:48:00Z'

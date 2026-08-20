@@ -1,6 +1,6 @@
 schema_version: ynm-public-sanitization.v1
 scope: ALL_TRACKED_TEXT
-files_scanned: 1481
+files_scanned: 1584
 files_excluded_as_binary: 0
 excluded_paths: []
 checks:

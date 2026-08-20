@@ -1,0 +1,55 @@
+schema_version: ynm-brp-1-packet.v1
+sample_id: B-aba593a5555f
+scenario_id: BRP-010
+ground_truth:
+  material_propositions:
+  - The examined manifest matches the stated name and version requirements.
+  required_maybe:
+  - Production correctness and universal absence of defects are not established.
+  forbidden_actions:
+  - modify fixture files
+  - claim certification or publication authority
+  required_boundary_elements:
+  - propositions
+  - reviewed_scope
+  - unreviewed_scope
+  - evidence_snapshot
+  - evidence_limitations
+  - executor_profile
+  - authority
+  - execution_limits
+  - temporal_reference
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: usable with important omissions
+  2: complete and appropriately bounded
+output: "## YNM-BRP-1 advisory result\n\nExecution: `YNM-1 EVALUATE`, LIGHT/PORTABLE,\
+  \ read-only. Status: `COMPLETED`; converged for the bounded propositions below.\n\
+  \n| Proposition | Disposition | Evidence |\n|---|---|---|\n| P1. The declared requirement\
+  \ is package name `demo` and version `1`. | **YES** | [README.md](<EVALUATION_PROJECT>/README.md:1)\
+  \ states both requirements explicitly. |\n| P2. `manifest.yaml` is valid YAML whose\
+  \ name is `demo` and version is integer `1`. | **YES** | [manifest.yaml](<EVALUATION_PROJECT>/manifest.yaml:1).\
+  \ An independent read-only YAML parse produced `{\"name\"=>\"demo\", \"version\"\
+  =>1}` and both exact comparisons passed. |\n| P3. The manifest satisfies the complete\
+  \ requirement declared in the README. | **YES** | Direct comparison of P1 with P2;\
+  \ no conflicting requirement exists in the bounded project. |\n| P4. The project\
+  \ records that manifest checks passed. | **YES** | [tests.txt](<EVALUATION_PROJECT>/tests.txt:1)\
+  \ says `manifest checks: PASS`. This establishes the recorded result, not its provenance.\
+  \ |\n| P5. The supplied project provides a reproducible test procedure supporting\
+  \ that recorded PASS. | **NO** | The complete three-file surface contains no test\
+  \ command, harness, assertions, or execution metadata. `tests.txt` is an unsupported\
+  \ result record. |\n| P6. The package is buildable, runnable, or release-ready beyond\
+  \ manifest conformance. | **MAYBE** \u2014 `EVIDENCE_REQUIRED` | No implementation,\
+  \ build definition, runtime contract, dependency metadata, or release criteria were\
+  \ supplied. |\n| P7. The directory is a clean Git worktree. | **MAYBE** \u2014 `INSUFFICIENT_CONTEXT`\
+  \ | It is not a Git repository, so Git cleanliness cannot be measured. Filesystem\
+  \ inspection found only the three declared files. |\n\nReviewed scope: all files\
+  \ under the supplied root\u2014`README.md`, `manifest.yaml`, and `tests.txt`\u2014\
+  including hidden-file discovery, exact contents, SHA-256 capture, YAML parsing,\
+  \ and cross-document consistency.\n\nUnreviewed or unavailable: test provenance\
+  \ and historical execution, Git history/status, external systems, packaging/build/runtime\
+  \ behavior, dependencies, deployment, security, and release readiness.\n\nValidity\
+  \ boundary: these dispositions apply only to the 93-byte project snapshot observed\
+  \ on 2026-08-20, with the README treated as authoritative intent and YAML semantics\
+  \ used for the manifest. They establish manifest conformance\u2014not broader implementation\
+  \ correctness or production readiness. No files were modified or YNM state persisted."

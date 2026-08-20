@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-007-YNM_BRP_1-gpt-5.6-terra-1
+scenario_id: BRP-007
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:34:49.116888Z'
+elapsed_seconds: 48.52
+input_tokens: 89803
+output_tokens: 2097
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## YNM-BRP-1 advisory result\n\n**P1 \u2014 `run(f)` terminates for every\
+  \ valid callable input `f`: NO.**\n\nEvidence: [`program.py`](<EVALUATION_PROJECT>/program.py:1)\
+  \ directly evaluates `f(f)` without any bound or guard. A valid counterexample is:\n\
+  \n```python\ndef forever(_):\n    while True:\n        pass\n\nrun(forever)\n```\n\
+  \nThis reduces to `forever(forever)`, which does not terminate under ordinary Python\
+  \ execution.\n\n**P2 \u2014 Running `python3 program.py` itself terminates for all\
+  \ command-line inputs: YES.**\n\nThe file only defines `run`; it has no entry-point\
+  \ call or input handling. Direct execution exited successfully with code 0.\n\n\
+  **P3 \u2014 Calling `run(run)` returns normally: NO.**\n\nControlled execution reaches\
+  \ Python\u2019s `RecursionError` after recursive calls; it halts exceptionally rather\
+  \ than returning.\n\nReviewed scope: the sole repository source file and direct\
+  \ CPython execution behavior.  \nUnreviewed scope: alternative entry points, monkey-patched/runtime-defined\
+  \ callables, non-CPython implementations, and any intended meaning of \u201Cinput\u201D\
+  \ beyond `run`\u2019s callable parameter.\n\nValidity boundary: this is a bounded\
+  \ source-level conclusion for the repository snapshot reviewed. It is not a universal\
+  \ decision procedure for arbitrary programs. No files were modified."
+error: Reading additional input from stdin...

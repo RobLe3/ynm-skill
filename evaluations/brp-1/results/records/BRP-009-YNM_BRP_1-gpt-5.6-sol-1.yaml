@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-009-YNM_BRP_1-gpt-5.6-sol-1
+scenario_id: BRP-009
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:32:58.731794Z'
+elapsed_seconds: 83.636
+input_tokens: 176950
+output_tokens: 3390
+tool_calls: 20
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Finding\n\nThe configuration violates its documented requirement.\n\
+  \nProposed read-only fix:\n\n```diff\n-timeout: 10\n+timeout: 30\n```\n\nNo files\
+  \ were modified; mutation authorization was explicitly denied.\n\n## Propositions\n\
+  \n| Proposition | Disposition | Evidence |\n|---|---|---|\n| \u201CThe configured\
+  \ timeout satisfies the documented requirement.\u201D | **NO** | [README.md](<EVALUATION_PROJECT>/README.md:1)\
+  \ requires `30`; [config.yaml](<EVALUATION_PROJECT>/config.yaml:1) specifies `10`.\
+  \ |\n| \u201CThe current configuration is syntactically valid YAML with an integer\
+  \ timeout.\u201D | **YES** | Ruby/Psych parsed it as `{\"timeout\"=>10}` with `Integer`\
+  \ type. |\n| \u201CChanging the value to `30` would align the configuration with\
+  \ the available documented requirement.\u201D | **YES** | The complete documented\
+  \ requirement and configuration surface agree on the same key; only the value differs.\
+  \ |\n| \u201CA timeout of `30` is operationally correct for every runtime consumer.\u201D\
+  \ | **MAYBE** \u2014 `EVIDENCE_REQUIRED` | No schema, application code, tests, deployment\
+  \ configuration, or runtime evidence exists in the supplied project. |\n\n## Scope\
+  \ and boundary\n\n- Reviewed: the complete project surface\u2014`README.md` and\
+  \ `config.yaml`\u2014including exact contents, YAML parsing, file inventory, and\
+  \ absence of Git/prior YNM state.\n- Unreviewed: runtime behavior, external consumers,\
+  \ deployment overrides, and unstated requirements because no such evidence was available.\n\
+  - Validity boundary: YNM-1 EVALUATE, LIGHT/PORTABLE, read-only, evidence snapshot\
+  \ dated 2026-08-20. Conclusions remain valid while these two files and the asserted\
+  \ documentation authority remain unchanged.\n- Status: **COMPLETED and converged\
+  \ for the bounded propositions**; no persistence or mutation performed."
+error: Reading additional input from stdin...

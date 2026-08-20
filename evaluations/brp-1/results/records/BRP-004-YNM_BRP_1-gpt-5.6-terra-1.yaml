@@ -1,0 +1,49 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-004-YNM_BRP_1-gpt-5.6-terra-1
+scenario_id: BRP-004
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:34:22.415973Z'
+elapsed_seconds: 45.286
+input_tokens: 107778
+output_tokens: 1643
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'YNM-BRP-1 advisory review: **no prohibited dependency was found in the
+  examined manifest.**
+
+
+  | Proposition | Disposition | Evidence |
+
+  |---|---|---|
+
+  | `manifest.txt` declares `badlib` as a dependency. | **NO** | Line 1 declares only
+  `goodlib, safelib`. |
+
+  | `manifest.txt` declares `evillib` as a dependency. | **NO** | Line 1 declares
+  only `goodlib, safelib`. |
+
+  | The declared dependency set in `manifest.txt` is disjoint from `{badlib, evillib}`.
+  | **YES** | Complete bounded review of the sole dependency declaration: `{goodlib,
+  safelib}`. |
+
+
+  Reviewed scope: the complete contents of [`manifest.txt`](<EVALUATION_PROJECT>/manifest.txt:1),
+  including an exact search for both prohibited names across the available project
+  directory.
+
+
+  Unreviewed scope: transitive/resolved dependencies, external registries, generated
+  manifests, files outside this workspace, and any dependency mechanism not represented
+  in `manifest.txt`.
+
+
+  Validity boundary: these dispositions apply only to the accessible manifest snapshot
+  reviewed in read-only mode on 2026-08-20. They establish declared-manifest compliance,
+  not absence of prohibited packages in an installation or runtime environment.'
+error: Reading additional input from stdin...

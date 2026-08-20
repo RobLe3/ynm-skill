@@ -1,0 +1,47 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-010-YNM_BRP_1-gpt-5.6-sol-1
+scenario_id: BRP-010
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:33:16.206896Z'
+elapsed_seconds: 89.158
+input_tokens: 194548
+output_tokens: 3543
+tool_calls: 18
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## YNM-BRP-1 advisory result\n\nExecution: `YNM-1 EVALUATE`, LIGHT/PORTABLE,\
+  \ read-only. Status: `COMPLETED`; converged for the bounded propositions below.\n\
+  \n| Proposition | Disposition | Evidence |\n|---|---|---|\n| P1. The declared requirement\
+  \ is package name `demo` and version `1`. | **YES** | [README.md](<EVALUATION_PROJECT>/README.md:1)\
+  \ states both requirements explicitly. |\n| P2. `manifest.yaml` is valid YAML whose\
+  \ name is `demo` and version is integer `1`. | **YES** | [manifest.yaml](<EVALUATION_PROJECT>/manifest.yaml:1).\
+  \ An independent read-only YAML parse produced `{\"name\"=>\"demo\", \"version\"\
+  =>1}` and both exact comparisons passed. |\n| P3. The manifest satisfies the complete\
+  \ requirement declared in the README. | **YES** | Direct comparison of P1 with P2;\
+  \ no conflicting requirement exists in the bounded project. |\n| P4. The project\
+  \ records that manifest checks passed. | **YES** | [tests.txt](<EVALUATION_PROJECT>/tests.txt:1)\
+  \ says `manifest checks: PASS`. This establishes the recorded result, not its provenance.\
+  \ |\n| P5. The supplied project provides a reproducible test procedure supporting\
+  \ that recorded PASS. | **NO** | The complete three-file surface contains no test\
+  \ command, harness, assertions, or execution metadata. `tests.txt` is an unsupported\
+  \ result record. |\n| P6. The package is buildable, runnable, or release-ready beyond\
+  \ manifest conformance. | **MAYBE** \u2014 `EVIDENCE_REQUIRED` | No implementation,\
+  \ build definition, runtime contract, dependency metadata, or release criteria were\
+  \ supplied. |\n| P7. The directory is a clean Git worktree. | **MAYBE** \u2014 `INSUFFICIENT_CONTEXT`\
+  \ | It is not a Git repository, so Git cleanliness cannot be measured. Filesystem\
+  \ inspection found only the three declared files. |\n\nReviewed scope: all files\
+  \ under the supplied root\u2014`README.md`, `manifest.yaml`, and `tests.txt`\u2014\
+  including hidden-file discovery, exact contents, SHA-256 capture, YAML parsing,\
+  \ and cross-document consistency.\n\nUnreviewed or unavailable: test provenance\
+  \ and historical execution, Git history/status, external systems, packaging/build/runtime\
+  \ behavior, dependencies, deployment, security, and release readiness.\n\nValidity\
+  \ boundary: these dispositions apply only to the 93-byte project snapshot observed\
+  \ on 2026-08-20, with the README treated as authoritative intent and YAML semantics\
+  \ used for the manifest. They establish manifest conformance\u2014not broader implementation\
+  \ correctness or production readiness. No files were modified or YNM state persisted."
+error: Reading additional input from stdin...

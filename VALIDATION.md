@@ -48,6 +48,10 @@ This is evidence that YNM can improve review quality under some tested condition
 
 This availability probe and any later maintainer-operated runs do not constitute independent interoperability evidence.
 
+## Bounded usability assessment
+
+`YNM-BRP-1` was evaluated on 12 fresh frozen fixtures using `gpt-5.6-sol`, with `gpt-5.6-terra` reported separately as non-gating executor-profile evidence. Both completed all fixtures without authority violations or escaped containment failures. The primary missed the frozen required-MAYBE criterion on the semantic-limit fixture, so bounded usability is **NO** and 1.4.0 remains a release candidate. The frozen fixture interpretation and its post-execution limitation are retained in [the BRP-1 result](evaluations/brp-1/results/summary.md).
+
 ## Validation evidence snapshot
 
 - `python validation/validate_ynm.py`

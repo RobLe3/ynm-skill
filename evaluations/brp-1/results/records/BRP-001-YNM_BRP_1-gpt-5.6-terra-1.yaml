@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-001-YNM_BRP_1-gpt-5.6-terra-1
+scenario_id: BRP-001
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:34:00.455331Z'
+elapsed_seconds: 35.846
+input_tokens: 87104
+output_tokens: 1315
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "YNM-BRP-1 review complete \u2014 read-only, YNM-1 LIGHT / PORTABLE.\n\
+  \n| Proposition | Disposition | Evidence |\n|---|---|---|\n| The configured API\
+  \ version matches the documented required API version. | **YES** | [config.yaml:1](<EVALUATION_PROJECT>/config.yaml:1)\
+  \ sets `api_version: 3`; [README.md:1](<EVALUATION_PROJECT>/README.md:1) states\
+  \ \u201CRequired API version: 3.\u201D |\n\nReviewed scope: the repository\u2019\
+  s API-version configuration and the documented requirement; all discovered project\
+  \ files (`config.yaml`, `README.md`).\n\nUnreviewed scope: runtime/API behavior,\
+  \ external documentation, generated or ignored files, and any requirement not represented\
+  \ in the two available project files.\n\nValidity boundary: this YES applies only\
+  \ to the observed repository snapshot and the literal version values in those files;\
+  \ it does not establish compatibility with a live API or external version policy."
+error: Reading additional input from stdin...

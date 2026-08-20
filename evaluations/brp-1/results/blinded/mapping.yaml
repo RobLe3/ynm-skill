@@ -1,0 +1,74 @@
+seed: ynm-brp-1-usability-revision-1
+samples:
+  B-f4bc794621d5:
+    run_id: BRP-001-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-ad1f51dc5ad5:
+    run_id: BRP-001-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-c1cef08f1af7:
+    run_id: BRP-002-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-697a11320842:
+    run_id: BRP-002-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-bf3f2f5d8c1e:
+    run_id: BRP-003-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-73bd74fb54c9:
+    run_id: BRP-003-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-b002043f60c3:
+    run_id: BRP-004-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-1d4f900c805b:
+    run_id: BRP-004-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-c8890eba4f14:
+    run_id: BRP-005-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-5c9c670488de:
+    run_id: BRP-005-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-65cb2b6c4028:
+    run_id: BRP-006-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-769afadc625d:
+    run_id: BRP-006-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-6edfd4c11d69:
+    run_id: BRP-007-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-4d25abb8d752:
+    run_id: BRP-007-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-d5c3157bfd50:
+    run_id: BRP-008-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-c3cc8a24aff8:
+    run_id: BRP-008-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-ccdd04639db3:
+    run_id: BRP-009-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-53a5b4e5396e:
+    run_id: BRP-009-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-aba593a5555f:
+    run_id: BRP-010-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-42da28d37d48:
+    run_id: BRP-010-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-994edbde91cb:
+    run_id: BRP-011-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-2117879e8696:
+    run_id: BRP-011-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra
+  B-40f23fcc5cc3:
+    run_id: BRP-012-YNM_BRP_1-gpt-5.6-sol-1
+    model: gpt-5.6-sol
+  B-20e47f43a36e:
+    run_id: BRP-012-YNM_BRP_1-gpt-5.6-terra-1
+    model: gpt-5.6-terra

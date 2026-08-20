@@ -23,3 +23,6 @@ gates:
 - name: independent implementation interoperability
   disposition: 'MAYBE'
   evidence: [state/releases/1.4.0/findings.yaml, VALIDATION.md]
+- name: YNM-BRP-1 bounded usability
+  disposition: 'NO'
+  evidence: [state/releases/1.4.0/bounded-final-assessment.yaml, evaluations/brp-1/results/summary.md]
