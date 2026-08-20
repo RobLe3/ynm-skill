@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import yaml
@@ -62,11 +63,11 @@ def parse_json_output(output: str) -> dict:
     return json.loads(text)
 
 
-def score_packets(results_root: Path, model: str) -> None:
+def score_packets(results_root: Path, model: str, workers: int = 6) -> None:
     schema = json.loads((ROOT / "evaluations/schemas/evaluation-score.schema.json").read_text(encoding="utf-8"))
     score_root = results_root / "blinded" / "scores"
     score_root.mkdir(parents=True, exist_ok=True)
-    for packet_path in sorted((results_root / "blinded" / "packets").glob("*.yaml")):
+    def adjudicate(packet_path: Path) -> tuple[Path, dict]:
         packet = load_yaml(packet_path)
         prompt = f"""You are performing blinded rubric adjudication. The condition label is intentionally hidden.
 Return JSON only, with exactly these fields:
@@ -94,7 +95,13 @@ BLINDED PACKET:
             raise ValueError(f"invalid score for {packet['sample_id']}: material proposition count exceeds ground truth")
         if score["required_maybe_preserved"] > len(truth["required_maybe"]):
             raise ValueError(f"invalid score for {packet['sample_id']}: required MAYBE count exceeds ground truth")
-        (score_root / f"{packet['sample_id']}.yaml").write_text(yaml.safe_dump(score, sort_keys=False), encoding="utf-8")
+        return score_root / f"{packet['sample_id']}.yaml", score
+    packet_paths = sorted((results_root / "blinded" / "packets").glob("*.yaml"))
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = [pool.submit(adjudicate, packet_path) for packet_path in packet_paths]
+        for future in as_completed(futures):
+            target, score = future.result()
+            target.write_text(yaml.safe_dump(score, sort_keys=False), encoding="utf-8")
 
 
 def safe_ratio(numerator: float, denominator: float) -> float | None:
@@ -225,12 +232,13 @@ def main() -> int:
     parser.add_argument("--score", action="store_true")
     parser.add_argument("--aggregate", action="store_true")
     parser.add_argument("--model", default=run_evaluations.PRIMARY_MODEL)
+    parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--results-dir", type=Path, default=ROOT / "evaluations/results")
     args = parser.parse_args()
     if args.prepare:
         prepare_packets(args.results_dir)
     if args.score:
-        score_packets(args.results_dir, args.model)
+        score_packets(args.results_dir, args.model, args.workers)
     if args.aggregate:
         aggregate(args.results_dir)
     if not (args.prepare or args.score or args.aggregate):
