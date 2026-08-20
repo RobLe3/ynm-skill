@@ -6,21 +6,25 @@
 
 **Research cycle:** CONCLUDED
 
-**Current candidate:** 1.4.0
+**Current version:** 1.4.0
 
-**Release state:** UNRELEASED
+**Publication state:** PUBLISHED RESEARCH RELEASE
 
-**Release recommendation:** DO NOT RELEASE THE CURRENT CANDIDATE
+**Release class:** EXPERIMENTAL / RESEARCH PRE-RELEASE
 
 **Current profile:** YNM-BRP-1, experimental
 
-YNM is preserved as an auditable research checkpoint. It contains an implemented evidence-backed review methodology, deterministic validation, controlled empirical evaluations, and both favorable and adverse results. It is not abandoned or deprecated, but another development cycle is not currently justified by expected information gain.
+YNM 1.4.0 is published as an auditable research checkpoint. It contains an implemented evidence-backed review methodology, deterministic validation, controlled empirical evaluations, and both favorable and adverse results. It is not abandoned or deprecated, but another development cycle is not currently justified by expected information gain.
+
+## Publication interpretation
+
+`v1.4.0` makes the evaluated implementation publicly obtainable as a bounded Research/Experimental Pre-release. Publication does not mean that the frozen 1.4 or BRP-1 contracts passed. It means that the implemented method, reproducible evidence, demonstrated strengths, and measured limitations are useful enough to publish under an explicitly narrower claim. `v1.2.0` remains the previous stable release.
 
 ## Purpose
 
 YNM investigated whether explicit propositions, evidence provenance, bounded `YES` / `NO` / `MAYBE` judgments, review lifecycle records, and authority separation could make model-assisted project review more useful and auditable. It also examined whether those benefits could be obtained consistently across executors and at acceptable cost.
 
-The central result is mixed. YNM improved several aspects of bounded review, but methodology instructions alone did not guarantee reliable executor behavior, low execution cost, complete uncertainty preservation, or cross-model equivalence. The current implementation therefore remains an unreleased research candidate.
+The central result is mixed. YNM improved several aspects of bounded review, but methodology instructions alone did not guarantee reliable executor behavior, low execution cost, complete uncertainty preservation, or cross-model equivalence. The current implementation is published as a bounded Research Release while active methodology development remains paused.
 
 ## Research progression
 
@@ -99,7 +103,7 @@ The frozen assessments recorded:
 - substantial execution overhead;
 - poor or unobservable activation behavior;
 - no demonstrated acceleration savings; and
-- failure of the frozen 1.4 release and BRP-1 usability contracts.
+- failure of the frozen 1.4 general-effectiveness and BRP-1 usability contracts. These results remain unchanged by the narrower Research Release classification.
 
 The authoritative dispositions remain in [`state/releases/1.4.0/findings.yaml`](../state/releases/1.4.0/findings.yaml). They must not be reclassified by summary prose.
 

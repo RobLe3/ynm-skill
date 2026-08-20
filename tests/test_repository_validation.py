@@ -9,7 +9,7 @@ from validation import validate_ynm as validator
 
 
 class RepositoryValidationTests(unittest.TestCase):
-    def test_paused_research_status_is_consistent(self):
+    def test_research_release_status_is_consistent(self):
         root = Path(__file__).resolve().parents[1]
         documents = {
             name: (root / name).read_text(encoding="utf-8")
@@ -17,11 +17,11 @@ class RepositoryValidationTests(unittest.TestCase):
         }
         for name, text in documents.items():
             self.assertIn("1.4.0", text, name)
-        self.assertIn("PAUSED RESEARCH PROJECT", documents["README.md"])
+        self.assertIn("Research Release", documents["README.md"])
         self.assertIn("PAUSED RESEARCH PROJECT", documents["docs/RESEARCH_STATUS.md"])
-        self.assertIn("DO NOT RELEASE", documents["VALIDATION.md"])
-        self.assertIn("UNRELEASED", documents["docs/RESEARCH_STATUS.md"])
-        self.assertNotIn("1.4.0 is released", "\n".join(documents.values()).lower())
+        self.assertIn("Research / Experimental Pre-release", documents["VALIDATION.md"])
+        self.assertIn("PUBLISHED RESEARCH RELEASE", documents["docs/RESEARCH_STATUS.md"])
+        self.assertIn("previous stable release", documents["VERSIONING.md"])
 
     def test_research_checkpoint_preserves_empirical_dispositions(self):
         root = Path(__file__).resolve().parents[1]

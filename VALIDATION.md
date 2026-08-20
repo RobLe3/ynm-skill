@@ -1,6 +1,6 @@
 # Validation
 
-Current candidate: **YNM 1.4.0 (unreleased paused research candidate; do not release)**
+Current publication: **YNM 1.4.0 Research Release (experimental pre-release; development paused)**
 
 ## Executive status
 
@@ -18,10 +18,16 @@ Current candidate: **YNM 1.4.0 (unreleased paused research candidate; do not rel
 | Activation behavior | `MAYBE`; insufficient telemetry |
 | Acceleration effectiveness | `MAYBE`; not measured safely |
 | Independent interoperability | `MAYBE`; no independent implementation evidence |
-| Current release recommendation | **DO NOT RELEASE** |
+| Publication class | **Research / Experimental Pre-release** |
 | Research state | **PAUSED** after the 1.4 and BRP-1 cycles |
 
 See the [research checkpoint](docs/RESEARCH_STATUS.md) for the evidence map and restart conditions. Passing one validation category does not imply passing another.
+
+## Publication interpretation
+
+YNM 1.4.0 is published as a Research/Experimental Pre-release. Repository and package validation pass, and useful bounded behavior was demonstrated under tested conditions. General empirical effectiveness is not established, cross-model non-inferiority failed under the frozen 1.4 criteria, execution efficiency failed, and independent interoperability remains `MAYBE`.
+
+Publication uses the narrower claim that YNM is usable as bounded, evidence-backed advisory review with disclosed limitations. It does not reclassify any historical empirical `NO` or `MAYBE` disposition.
 
 ## Deterministic validation status
 
@@ -37,7 +43,7 @@ See the [research checkpoint](docs/RESEARCH_STATUS.md) for the evidence map and 
 
 ## A. Structural validation
 
-Validation confirms that current 1.4.0 candidate files, schemas, lifecycle invariants, and package metadata are internally consistent.
+Validation confirms that current 1.4.0 Research Release files, schemas, lifecycle invariants, and package metadata are internally consistent.
 The package checks confirm runtime-conformant files for `dist/ynm` from the manifest, including deterministic file inventory and content. They do not claim deterministic filesystem metadata or archive bytes.
 
 Agent Skills reference validation is a format conformance check; it does not prove independent implementation compatibility.
@@ -71,7 +77,7 @@ This availability probe and any later maintainer-operated runs do not constitute
 
 ## Bounded usability assessment
 
-`YNM-BRP-1` was evaluated on 12 fresh frozen fixtures using `gpt-5.6-sol`, with `gpt-5.6-terra` reported separately as non-gating executor-profile evidence. Both completed all fixtures without authority violations or escaped containment failures. The primary missed the frozen required-MAYBE criterion on the semantic-limit fixture, so bounded usability is **NO** and 1.4.0 remains a release candidate. The frozen fixture interpretation and its post-execution limitation are retained in [the BRP-1 result](evaluations/brp-1/results/summary.md).
+`YNM-BRP-1` was evaluated on 12 fresh frozen fixtures using `gpt-5.6-sol`, with `gpt-5.6-terra` reported separately as non-gating executor-profile evidence. Both completed all fixtures without authority violations or escaped containment failures. The primary missed the frozen required-MAYBE criterion on the semantic-limit fixture, so bounded usability is **NO** under that frozen contract. The result remains adverse evidence within the narrower Research Release claim. The frozen fixture interpretation and its post-execution limitation are retained in [the BRP-1 result](evaluations/brp-1/results/summary.md).
 
 ## Validation evidence snapshot
 

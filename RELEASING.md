@@ -1,27 +1,35 @@
 # Releasing YNM
 
-There is currently no authorized YNM 1.4.0 release. The project is paused after the 1.4 and YNM-BRP-1 evaluations, and the current candidate is not recommended for release. Green repository CI is necessary but not sufficient publication evidence.
+YNM 1.4.0 is authorized for publication as a bounded Research/Experimental Pre-release. Green repository CI is necessary but does not establish universal effectiveness, certification, or publication authority.
 
-The candidate pull request prepares a release; it does not authorize publication. A maintainer completes the following steps only after the candidate is merged and a human has approved the release.
+## Release classes
 
-1. Create a release-finalization commit on `main` that changes `CHANGELOG.md` from `Unreleased` to the actual date and changes publication state from `CANDIDATE` / `REQUIRES_HUMAN` to `READY_FOR_TAG` / `AUTHORIZED_BY_HUMAN`.
-2. Run the repository, release-integrity, package, security, and Agent Skills reference checks.
-3. Create the immutable annotated tag `v<version>` at the finalized commit. Never force-update a release tag.
-4. Wait for tag CI to verify the exact tag, commit, tree, mainline reachability, and finalized publication state.
-5. Publish a GitHub Release only after tag CI passes and a maintainer makes that separate decision.
+- **Stable Release:** the conventional publication channel.
+- **Research Release:** a reproducible experimental implementation published with measured strengths, adverse results, and explicit operating boundaries.
+- **Development Candidate:** an unpublished work item.
 
-Historical tags are immutable. A correction to release evidence is appended in a later version rather than rewriting a published tag or its files.
+A Research Release may publish a useful bounded artifact while broader empirical findings remain `NO` or `MAYBE`, provided its claims do not contradict the evidence. This distinction does not rewrite historical assessments.
 
-## Claims required for a bounded release
+## Research Release requirements
 
-Release decisions distinguish methodology usability, general effectiveness, and certification. A release may support a declared bounded profile without claiming universal effectiveness or certification.
+A maintainer may publish a Research Release only when repository, package, security, authority, sanitization, and Agent Skills checks pass; the public documentation discloses known empirical failures and cost; no known mutation defect is hidden; and a human explicitly authorizes publication. Research Release status does not authorize certification, autonomous mutation, deployment, or publication by downstream users.
 
-For `YNM-BRP-1`, require repository and package integrity, security-boundary tests, Agent Skills conformance, read-only authority behavior, bounded `YES` semantics, clean-project restraint, bounded-negative behavior, explicit `MAYBE` preservation, visible Delivery limitations, and honest documentation of empirical limits. Do not require or claim exhaustive review, universal semantic correctness, zero possible future findings, self-proof of independent validity, or model-independent parity.
+## Procedure
 
-Release readiness does not grant publication authorization. YNM-BRP-1 remains advisory and cannot independently authorize security or safety certification, legal compliance, production release, destructive migration, publication, or autonomous mutation.
+1. Merge the approved candidate.
+2. Create a release-finalization commit on `main` that dates the changelog and changes publication state from `CANDIDATE` / `REQUIRES_HUMAN` to `READY_FOR_TAG` / `AUTHORIZED_BY_HUMAN`.
+3. Run repository, release-integrity, package, security, sanitization, and Agent Skills checks.
+4. Create immutable annotated tag `v<version>` at the finalized commit. Never force-update a release tag.
+5. Wait for tag CI to verify the exact tag, commit, tree, mainline reachability, package, security gates, and finalized publication state.
+6. Publish the GitHub release only after tag CI passes. Mark an experimental Research Release as a pre-release.
+7. Record publication afterward without rewriting the tag.
 
-## Restarting release work
+Historical tags are immutable. Corrections are appended in a later commit or version.
 
-Before proposing a future release, read [Research Status](docs/RESEARCH_STATUS.md), identify the existing `NO` or `MAYBE` finding addressed by the new hypothesis, explain its expected information gain, and freeze a new Assessment Contract. Behavioral changes require fresh holdout evidence; known 1.3, 1.4, and BRP-1 fixtures remain regression evidence rather than independent proof.
+## Claims and evidence
 
-Preserve all historical assessments and dispositions. Do not treat a green deterministic suite, provider-neutral contracts, or improved performance on known fixtures as release authorization.
+YNM 1.4.0 is released as bounded advisory review, not universal review superiority. Its frozen effectiveness, cost, replication, activation, acceleration, and BRP-1 results remain unchanged. A release may support a declared bounded use without claiming exhaustive review, arbitrary semantic correctness, zero false findings, model-independent parity, independent interoperability, or certification.
+
+## Future release work
+
+Before changing behavior after 1.4.0, read [Research Status](docs/RESEARCH_STATUS.md), identify the existing `NO` or `MAYBE` finding addressed, explain expected information gain, choose a new version, and freeze a new Assessment Contract. Known fixtures remain regression evidence rather than independent proof.

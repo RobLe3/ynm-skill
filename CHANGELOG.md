@@ -14,7 +14,18 @@
 - YES now requires affirmative support within an explicit and sufficiently covered scope.
 - Specialist, adversarial, retrieval, and repeated evidence work are demand-driven.
 - Defined YNM as bounded evidential decision support rather than a universal verifier, certification system, or model-independent effectiveness claim.
-- Concluded the 1.4 and YNM-BRP-1 research cycles without satisfying their frozen release or bounded-usability acceptance contracts. Development is paused with the unreleased candidate and all favorable and adverse evidence retained for future research.
+- Concluded the 1.4 and YNM-BRP-1 research cycles without satisfying their frozen general-effectiveness or bounded-usability acceptance contracts. Active methodology development is paused with all favorable and adverse evidence retained.
+
+### Research findings
+
+- The primary fresh holdout showed full material recall, `0.9722` precision, no unsupported claims, full required-`MAYBE` recall, complete evidence traceability, and no authority violations under the tested executor profile.
+- The same PORTABLE path required approximately `2.34×` input tokens, `2.82×` output tokens, `2.40×` elapsed time, and `2.90×` tool calls relative to control.
+- Cross-model non-inferiority failed under the frozen criteria, activation remained unobservable, and acceleration effectiveness was not established.
+- YNM-BRP-1 showed strong bounded usefulness and containment but missed one frozen required-`MAYBE` criterion. The result remains `NO` for that assessment.
+
+### Release classification
+
+- Prepared 1.4.0 as a **Research / Experimental Pre-release**. This classification publishes a bounded, reproducible research artifact and does not reclassify historical `NO` or `MAYBE` evidence.
 
 All notable YNM changes are recorded here. Historical release and maturity evidence remains available through immutable Git history and release tags.
 
