@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-009-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-009
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:41:03.676054Z'
+elapsed_seconds: 48.567
+input_tokens: 154725
+output_tokens: 1786
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Review complete \u2014 read-only, YNM-1 (light).\n\n- **Implementation\
+  \ vs. stated behavior: YES.** [`format_name`](formatter.py:1) uses `str.strip()`,\
+  \ matching the README\u2019s requirement to remove surrounding whitespace while\
+  \ preserving internal characters.\n- **Validation: YES.** The included pytest test\
+  \ passes when run without cache/capture; four additional direct checks passed for\
+  \ spaces, tabs/newlines, internal whitespace, and all-whitespace input.\n- **Test\
+  \ coverage sufficiency: NO.** [`test_formatter.py`](test_formatter.py:3) checks\
+  \ only one happy-path input, leaving the documented internal-character-preservation\
+  \ behavior unasserted.\n- **Release/operational readiness: MAYBE.** The repository\
+  \ contains no package metadata, declared Python support, CI configuration, or API\
+  \ behavior for non-string inputs. Those may be intentionally out of scope for this\
+  \ tiny utility.\n\nThe normal pytest invocation is blocked by the read-only sandbox\u2019\
+  s lack of a writable temporary directory; `pytest -q -s -p no:cacheprovider` ran\
+  \ successfully (1 passed).\n\nScope reviewed: all three project files. No files\
+  \ were changed."
+error: Reading additional input from stdin...

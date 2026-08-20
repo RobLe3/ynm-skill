@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-0d685e152f25
+scenario_id: YNM-EVAL-010
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 3
+supported_material_findings: 3
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output identifies all three material propositions and ties each to
+  specific fixture evidence: the declared CLI-to-service-to-storage direction and
+  corresponding imports, the README quick-start targeting a nonexistent file, and
+  the absence of in-scope dependency manifests, enforcement mechanisms, tests, configuration,
+  or deployment records. It correctly preserves deployment enforcement as MAYBE because
+  external deployment systems were unreviewed, without converting missing repository
+  evidence into proof of non-enforcement. The review remained read-only, clearly reported
+  completed lifecycle states and scope limitations, and provided a complete terminal
+  receipt.'

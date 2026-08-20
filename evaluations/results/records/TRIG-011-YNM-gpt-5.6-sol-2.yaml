@@ -1,0 +1,35 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-011
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:27:20.666745Z'
+elapsed_seconds: 19.998
+input_tokens: 30476
+output_tokens: 544
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM stands for \u201CYes, No, Maybe.\u201D It\u2019s a disciplined way\
+  \ to review a project without pretending uncertainty doesn\u2019t exist.\n\nIt works\
+  \ like this:\n\n1. Turn concerns into precise questions  \n   For example: \u201C\
+  Does the system recover safely after a failed payment?\u201D\n\n2. Examine evidence\
+  \  \n   YNM checks code, tests, documentation, project intent, and other observable\
+  \ facts.\n\n3. Give each question a disposition\n\n   - **YES** \u2014 evidence\
+  \ supports the claim.\n   - **NO** \u2014 evidence contradicts it.\n   - **MAYBE**\
+  \ \u2014 the available evidence cannot settle it.\n\n4. Review from several angles\
+  \  \n   Depending on the project, separate loops examine architecture, implementation,\
+  \ adoption, maintenance, and conflicting findings.\n\n5. Preserve boundaries  \n\
+  \   YNM records what was reviewed, what wasn\u2019t, assumptions, conflicts, and\
+  \ limitations. A **YES** is not approval to make changes, and a **NO** does not\
+  \ automatically authorize a fix.\n\n6. Stop when another pass is unlikely to teach\
+  \ anything new  \n   It then delivers the findings, unresolved questions, suggested\
+  \ handoffs, and a receipt describing the review\u2019s coverage.\n\nIn short, YNM\
+  \ replaces vague judgments like \u201Cthis looks good\u201D with explicit questions,\
+  \ traceable evidence, and honest **YES/NO/MAYBE** conclusions. It is read-only by\
+  \ default and changes project files only when explicitly authorized."
+error: Reading additional input from stdin...

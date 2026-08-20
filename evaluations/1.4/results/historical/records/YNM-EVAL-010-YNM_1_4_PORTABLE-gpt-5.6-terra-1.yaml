@@ -1,0 +1,40 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-010-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-010
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:41:21.775729Z'
+elapsed_seconds: 82.848
+input_tokens: 223309
+output_tokens: 3451
+tool_calls: 20
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Read-only review complete. The project is not runnable from the available\
+  \ repository snapshot.\n\n- Architecture \u2014 **MAYBE (partial)**. The stated\
+  \ boundary is structurally followed: [cli.py](<EVALUATION_PROJECT>/cli.py:1) calls\
+  \ the service, and [service.py](<EVALUATION_PROJECT>/service.py:1) is the only code\
+  \ that accesses storage. However, the storage component itself is absent, so the\
+  \ described architecture cannot be confirmed as a complete deployable design.\n\n\
+  - Implementation \u2014 **NO**. Importing `service` and running `python cli.py`\
+  \ both fail with `ModuleNotFoundError: No module named 'storage'`. The only realized\
+  \ behavior, `list_items()`, cannot execute. Additionally, `cli.py` defines `main()`\
+  \ but has no direct-execution entry point.\n\n- Adoption \u2014 **NO**. The sole\
+  \ onboarding instruction, [README.md](<EVALUATION_PROJECT>/README.md:3), tells users\
+  \ to run `python quickstart.py`, but that file is not present. A new user has no\
+  \ working starting path.\n\n- Maintenance \u2014 **MAYBE** for actual dependency-policy\
+  \ compliance; **NO** for in-repository evidence of it. [POLICY.md](<EVALUATION_PROJECT>/POLICY.md:3)\
+  \ requires deployment-time critical-vulnerability rejection, while the README says\
+  \ deployment records are unavailable. There is also no dependency manifest, test\
+  \ suite, version/release metadata, or Git history in the supplied directory, so\
+  \ ongoing validation and policy enforcement cannot be assessed.\n\nHighest-value\
+  \ remediation sequence: supply or declare the storage dependency, add a real CLI\
+  \ entry point, correct the quick-start instructions, then add dependency/validation\
+  \ metadata and retain deployment-policy evidence.\n\nRun receipt: YNM-1 normal,\
+  \ read-only; all five supplied artifacts reviewed; runtime import check performed;\
+  \ no changes made."
+error: Reading additional input from stdin...

@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-007
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:33:53.426644Z'
+elapsed_seconds: 40.11
+input_tokens: 148176
+output_tokens: 1470
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Meta Loop completed: **NO** \u2014 the workspace contains no project\
+  \ artifacts, documentation, instructions, or prior YNM state to coordinate.\n\n\
+  - Scope reviewed: entire workspace (empty)\n- Strategy: CONSTRAINED, read-only\n\
+  - Focal loops: not applicable; no meaningful project proposition exists\n- Persistence:\
+  \ disabled; no files changed\n- Converged: yes; a rerun has no expected information\
+  \ gain\n\nRun receipt: `CONVERGED_REVIEW` / Meta Loop `COMPLETED`. Revisit when\
+  \ project material is added or a project path is provided."
+error: Reading additional input from stdin...

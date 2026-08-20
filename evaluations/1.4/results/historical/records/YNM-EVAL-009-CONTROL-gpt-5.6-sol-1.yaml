@@ -1,0 +1,40 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-009-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-009
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:38:39.703007Z'
+elapsed_seconds: 41.305
+input_tokens: 94869
+output_tokens: 1537
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'No correctness defects found in the reviewed scope.
+
+
+  The implementation in [formatter.py](<EVALUATION_PROJECT>/formatter.py:1) matches
+  the documented contract in [README.md](<EVALUATION_PROJECT>/README.md:3).
+
+
+  Residual risks:
+
+
+  - [test_formatter.py](<EVALUATION_PROJECT>/test_formatter.py:3) covers only ordinary
+  spaces. Empty strings, all-whitespace input, tabs/newlines, Unicode whitespace,
+  and repeated internal whitespace are untested.
+
+  - No dependency or test-runner configuration is present, so the expected environment
+  is undocumented.
+
+  - Git history and diffs could not be reviewed because this directory has no `.git`
+  metadata.
+
+
+  Verification: `1 passed`; additional read-only probes behaved consistently with
+  `str.strip()`. No files were changed.'
+error: Reading additional input from stdin...

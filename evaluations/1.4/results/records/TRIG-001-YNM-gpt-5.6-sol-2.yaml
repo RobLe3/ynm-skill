@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-001
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:16:41.422882Z'
+elapsed_seconds: 32.862
+input_tokens: 81352
+output_tokens: 956
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM review result: **BLOCKED \u2014 the workspace is empty.**\n\n- Requested\
+  \ scope: full project review\n- Reviewed scope: complete workspace directory listing\n\
+  - Evidence: no files, hidden files, repository metadata, source, tests, or documentation\
+  \ exist\n- Disposition: **YES** \u2014 the supplied workspace contains no reviewable\
+  \ project artifacts\n- Correctness, architecture, security, and readiness: **MAYBE**\
+  \ \u2014 insufficient evidence\n- Execution: `YNM-0 ROUTE`, `PORTABLE`, `LIGHT`\n\
+  - Escalation: none; deeper review cannot add information\n- Mutations: none\n- Stop\
+  \ reason: evidence source exhausted\n\nAdd or mount the project files in the workspace,\
+  \ then rerun the review."
+error: Reading additional input from stdin...

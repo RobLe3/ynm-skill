@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-018-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-018
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:29:06.828662Z'
+elapsed_seconds: 30.269
+input_tokens: 101850
+output_tokens: 1029
+tool_calls: 24
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Yes\u2014please paste the function or attach the file. The workspace\
+  \ is currently empty, so there\u2019s no code to inspect.\n\nReview status: **blocked**\
+  \ (`EVIDENCE_REQUIRED`). Once provided, I\u2019ll review correctness, edge cases,\
+  \ error handling, security, performance, and test coverage."
+error: Reading additional input from stdin...

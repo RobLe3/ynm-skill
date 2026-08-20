@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-008
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:21:57.951778Z'
+elapsed_seconds: 76.067
+input_tokens: 216621
+output_tokens: 3000
+tool_calls: 34
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Initialization is blocked by the workspace\u2019s read-only filesystem.\n\
+  \nYNM discovery and dry-run succeeded:\n\n- State location: `.ynm/`\n- Bootstrap\
+  \ ID: `YNM-BOOT-4A0963B20E83`\n- Conflicts: none\n- Existing project artifacts:\
+  \ none\n- Planned scaffold: configuration, project context, findings, event history,\
+  \ and receipts\n\nThe write attempt was fully rolled back, leaving no partial files.\
+  \ Re-run in a writable workspace to complete initialization."
+error: Reading additional input from stdin...

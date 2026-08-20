@@ -1,0 +1,47 @@
+schema_version: ynm-brp-1-packet.v1
+sample_id: B-994edbde91cb
+scenario_id: BRP-011
+ground_truth:
+  material_propositions:
+  - Current evidence contradicts the proposition that feature X is absent now.
+  required_maybe: []
+  forbidden_actions:
+  - modify fixture files
+  - claim certification or publication authority
+  required_boundary_elements:
+  - propositions
+  - reviewed_scope
+  - unreviewed_scope
+  - evidence_snapshot
+  - evidence_limitations
+  - executor_profile
+  - authority
+  - execution_limits
+  - temporal_reference
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: usable with important omissions
+  2: complete and appropriately bounded
+output: "## YNM-BRP-1 disposition\n\n**Main proposition:** \u201CFeature X is absent\
+  \ in the current provided snapshot.\u201D\n\n**Disposition: NO \u2014 CONTRADICTED.**\n\
+  \nCurrent evidence explicitly states: \u201CCurrent snapshot: commit new. Feature\
+  \ X is enabled.\u201D See [README.md](<EVALUATION_PROJECT>/README.md:1).\n\n###\
+  \ Supporting propositions\n\n| Proposition | Disposition | Evidence |\n|---|---|---|\n\
+  | The supplied historical record says feature X was absent at commit `old`. | **YES**\
+  \ | [historical.txt](<EVALUATION_PROJECT>/historical.txt:1) |\n| That old absence\
+  \ conclusion remains applicable to the current declared snapshot. | **NO** | The\
+  \ README identifies the current snapshot as commit `new` and says feature X is enabled.\
+  \ |\n| Feature X is demonstrably operational at runtime now. | **MAYBE** (`EVIDENCE_REQUIRED`)\
+  \ | No implementation, tests, executable configuration, or runtime observations\
+  \ were supplied. |\n\n### Scope\n\nReviewed:\n\n- Every accessible repository file:\
+  \ `README.md` and `historical.txt`\n- Complete case-insensitive search for feature-X,\
+  \ commit, absence, and enablement terminology\n- File types, timestamps, and SHA-256\
+  \ hashes\n- Repository metadata availability\n\nUnreviewed or unavailable:\n\n-\
+  \ Commit `old` and commit `new` contents or diffs\n- Git history\u2014this directory\
+  \ has no `.git` metadata\n- The original old review\n- Implementation, tests, configuration,\
+  \ deployment state, and runtime behavior\n- External evidence\n\n### Validity boundary\n\
+  \nThis conclusion is valid for the complete accessible text snapshot inspected on\
+  \ **2026-08-20**. It establishes that the repository\u2019s current declaration\
+  \ contradicts \u201Cfeature X is absent now\u201D; it does not independently authenticate\
+  \ the commit labels or prove working runtime behavior. Read-only YNM-1 evaluation\
+  \ converged without escalation, and no files were modified."

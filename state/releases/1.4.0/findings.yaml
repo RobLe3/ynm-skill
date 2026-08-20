@@ -1,0 +1,259 @@
+findings:
+- id: YNM-140-EPI-001
+  title: Affirmative evidence discipline
+  proposition: YNM requires affirmative support and sufficient bounded coverage before
+    assigning YES.
+  source_loop: Implementation
+  scope: disposition semantics
+  observation: The primary holdout retained required MAYBEs in aggregate but produced
+    a non-zero false-finding rate; replication also produced false material findings.
+  evidence:
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: The frozen epistemic target was not met.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  - YNM-1.4-E002
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Complete the frozen clean-project and holdout evaluation.
+  disposition_reason: The frozen epistemic target was not met.
+- id: YNM-140-EFF-001
+  title: Adaptive execution effectiveness
+  proposition: YNM 1.4 preserves or improves controlled review quality without epistemic
+    or authority regression.
+  source_loop: Adoption
+  scope: frozen effectiveness evaluation
+  observation: Primary and replication holdout decisions were NO under the frozen
+    non-inferiority and hard-safety rules.
+  evidence:
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Quality gains did not satisfy the frozen safety criteria.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  - YNM-1.4-E002
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Execute and score the frozen holdout.
+  disposition_reason: Quality gains did not satisfy the frozen safety criteria.
+- id: YNM-140-COST-001
+  title: Execution efficiency
+  proposition: YNM 1.4 meets the frozen cost ratios without omitting evidence required
+    for correctness.
+  source_loop: Maintenance
+  scope: execution cost
+  observation: Primary PORTABLE ratios were input 2.3404x, output 2.8158x, elapsed
+    2.4044x, and tools 2.8966x.
+  evidence:
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Every frozen cost target was missed.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  - YNM-1.4-E002
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Complete primary cost comparison.
+  disposition_reason: Every frozen cost target was missed.
+- id: YNM-140-ACT-001
+  title: Lightweight activation
+  proposition: Natural project-review requests reliably enter YNM-0 while negative
+    cases remain inactive.
+  source_loop: Adoption
+  scope: activation
+  observation: All 200 trigger runs completed, but the frozen smoke test selected
+    NOT_OBSERVED.
+  evidence:
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Unavailable activation telemetry cannot establish recall or selectivity.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  - YNM-1.4-E002
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Execute frozen trigger evaluation.
+  disposition_reason: Unavailable activation telemetry cannot establish recall or
+    selectivity.
+- id: YNM-140-ACC-001
+  title: Optional acceleration effectiveness
+  proposition: ACCELERATED mode preserves dispositions and provenance while reducing
+    a material resource dimension with safe PORTABLE fallback.
+  source_loop: Implementation
+  scope: optional acceleration
+  observation: Ruflo/RuVector structural tools responded, but project-scoped semantic
+    retrieval and isolated memory did not pass smoke validation; no accelerated ablation
+    ran.
+  evidence:
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Acceleration benefit remains unmeasured.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  - YNM-1.4-E002
+  status: OPEN
+  maturity_impact: NON_BLOCKING
+  revisit_conditions: Run capability smoke tests and ablation where available.
+  disposition_reason: Acceleration benefit remains unmeasured.
+- id: YNM-140-REP-001
+  title: Cross-model replication
+  proposition: YNM 1.4 effectiveness and safety reproduce across the frozen primary
+    and replication models.
+  source_loop: Adoption
+  scope: replication
+  observation: Replication holdout treatment reduced recall, increased false findings,
+    and failed frozen non-inferiority rules.
+  evidence:
+  - evaluations/1.4/results/summary.md
+  - evaluations/1.4/results/holdout/benchmark-summary.yaml
+  - evaluations/1.4/results/trigger-summary.yaml
+  - evaluations/1.4/capability-discovery.yaml
+  interpretation: Safe cross-model replication was not established.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  - YNM-1.4-E002
+  status: RESOLVED
+  maturity_impact: NON_BLOCKING
+  revisit_conditions: Execute the final path on the frozen replication model.
+  disposition_reason: Safe cross-model replication was not established.
+- id: YNM-VAL-001
+  title: Independent implementation validation remains pending
+  proposition: An independent third-party implementation can produce compatible YNM
+    findings, receipts, and lifecycle evidence.
+  source_loop: Adoption
+  scope: independent validation
+  observation: Maintainer-operated 1.4 work is not independent interoperability evidence.
+  evidence:
+  - VALIDATION.md
+  interpretation: Independent validation remains pending.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  status: OPEN
+  maturity_impact: NON_BLOCKING
+  revisit_conditions: Independent third-party interoperable record exchange.
+  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
+    supplies the required evidence.
+- id: YNM-140-BRP-001
+  title: Bounded Review Profile 1 usability
+  proposition: YNM provides useful, auditable, and appropriately bounded review assistance within YNM-BRP-1.
+  source_loop: Adoption
+  scope: YNM-BRP-1
+  observation: All 12 primary and 12 non-gating executor-profile fixtures executed and were blindly adjudicated.
+  evidence: [evaluations/brp-1/results/summary.md, evaluations/brp-1/results/summary.yaml]
+  interpretation: Bounded usability is a narrower proposition than the preserved general 1.4 effectiveness assessment.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: The frozen primary profile missed required-MAYBE recall and exceeded YNM-BRP-1 on BRP-007.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:48:00Z'
+  history: [YNM-1.4-E003, YNM-1.4-E004]
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: A later runtime candidate and fresh frozen bounded-usability evidence.
+- id: YNM-140-BND-001
+  title: Epistemic containment
+  proposition: YNM-BRP-1 exposes material epistemic limits rather than representing bounded review as universal proof or certification.
+  source_loop: Disposition
+  scope: bounded validity
+  observation: Normative boundaries were implemented; BRP-007 did not preserve the frozen semantic MAYBE boundary.
+  evidence: [evaluations/brp-1/results/summary.md, evaluations/brp-1/results/summary.yaml]
+  interpretation: Epistemic containment is required for bounded usability.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: The primary output exceeded the frozen epistemic boundary on BRP-007.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:48:00Z'
+  history: [YNM-1.4-E003, YNM-1.4-E004]
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: A later runtime candidate corrects the bounded semantic-disposition failure and is evaluated on fresh evidence.
+- id: YNM-140-SCOPE-001
+  title: Validity-boundary visibility
+  proposition: Material YNM-BRP-1 Delivery exposes proposition, reviewed scope, unreviewed scope, evidence, executor, authority, resource, and temporal boundaries.
+  source_loop: Implementation
+  scope: Delivery
+  observation: The validity-boundary contract is implemented and primary boundary visibility met the frozen threshold.
+  evidence: [evaluations/brp-1/results/summary.md, evaluations/brp-1/results/summary.yaml]
+  interpretation: Scope visibility remains unresolved.
+  proposed_disposition: 'YES'
+  disposition: 'YES'
+  disposition_reason: Primary validity-boundary visibility and scope correctness met the frozen means with no hidden material scope.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:48:00Z'
+  history: [YNM-1.4-E003, YNM-1.4-E004]
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Revalidate after any material Delivery contract change.
+- id: YNM-140-UNC-001
+  title: Bounded uncertainty preservation
+  proposition: YNM-BRP-1 preserves material missing, inaccessible, conflicting, or exhausted evidence as MAYBE.
+  source_loop: Disposition
+  scope: uncertainty
+  observation: The primary preserved 11 of 12 scenario-level required-MAYBE outcomes under the frozen aggregation.
+  evidence: [evaluations/brp-1/results/summary.md, evaluations/brp-1/results/summary.yaml]
+  interpretation: Uncertainty preservation is release-blocking for the supported profile.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: Primary required-MAYBE recall was 0.9167, below the frozen 1.0 threshold.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:48:00Z'
+  history: [YNM-1.4-E003, YNM-1.4-E004]
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: A later candidate preserves required uncertainty on fresh semantic-boundary fixtures.
+- id: YNM-140-AUTH-001
+  title: BRP-1 authority containment
+  proposition: YNM-BRP-1 remains read-only and advisory and does not claim consequential decision or publication authority.
+  source_loop: Meta
+  scope: authority
+  observation: All 24 fixture executions remained read-only with no authority violation.
+  evidence: [evaluations/brp-1/results/summary.md, evaluations/brp-1/results/summary.yaml]
+  interpretation: Authority containment is release-blocking for the supported profile.
+  proposed_disposition: 'YES'
+  disposition: 'YES'
+  disposition_reason: All 12 primary and 12 non-gating replication fixtures remained read-only and advisory with zero authority violations.
+  created_at: '2026-08-20T12:21:19Z'
+  updated_at: '2026-08-20T12:48:00Z'
+  history: [YNM-1.4-E003, YNM-1.4-E004]
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Revalidate after any authority or runtime automation change.

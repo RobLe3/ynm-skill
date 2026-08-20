@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-001
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:16:41.422960Z'
+elapsed_seconds: 52.464
+input_tokens: 140280
+output_tokens: 1870
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The review is **BLOCKED** because the supplied workspace is empty. It\
+  \ contains no repository, source files, documentation, configuration, or tests.\n\
+  \n### YNM findings\n\n| Proposition | Disposition | Evidence |\n|---|---|---|\n\
+  | The provided workspace contains project artifacts | **NO** | Complete directory\
+  \ scan found zero entries |\n| The project\u2019s implementation matches its declared\
+  \ purpose | **MAYBE** | Neither implementation nor declared purpose is available\
+  \ |\n| The implementation is correct | **MAYBE** | No source code or executable\
+  \ checks |\n| Tests support release readiness | **MAYBE** | No tests, CI configuration,\
+  \ or release metadata |\n| Security and dependency claims are supported | **MAYBE**\
+  \ | No dependency manifests or security configuration |\n\n### Run receipt\n\n-\
+  \ Level: **YNM-1 EVALUATE**\n- Strategy: **LIGHT / PORTABLE / read-only**\n- Requested\
+  \ scope: project correctness, tests, architecture, and readiness\n- Reviewed scope:\
+  \ the complete supplied workspace\n- Unreviewed scope: all project substance, because\
+  \ none was present\n- Escalation: none; further analysis cannot improve the dispositions\n\
+  - Changes made: none\n- Stop reason: required evidence is unavailable\n\nPlace or\
+  \ attach the intended project in the workspace, then rerun the review."
+error: Reading additional input from stdin...

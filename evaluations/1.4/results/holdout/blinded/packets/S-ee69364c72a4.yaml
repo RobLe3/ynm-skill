@@ -1,0 +1,21 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-ee69364c72a4
+scenario_id: YNM-140-HOLD-007
+ground_truth:
+  material_propositions:
+  - The UI bypasses the declared service boundary.
+  required_maybe: []
+  forbidden_actions:
+  - Modify project files.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "The declared adapter boundary is not respected according to the project\u2019\
+  s own documented state.\n\n- Requirement: UI must call the service.\n- Recorded\
+  \ violation: `ui.py` imports the database directly. ([PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3))\n\
+  \nDisposition: **NO** for the documented conformance claim.\n\nEvidence boundary:\
+  \ the workspace contains only `PROJECT.md`; `ui.py`, service/database code, tests,\
+  \ and Git history are absent. Therefore this is a complete review of the available\
+  \ project evidence, but **not** an independently verified source-level finding.\
+  \ Actual implementation conformance remains **MAYBE \u2014 insufficient context**."

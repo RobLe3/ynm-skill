@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-002
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:31:15.144454Z'
+elapsed_seconds: 32.806
+input_tokens: 97974
+output_tokens: 1057
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Architecture Loop: **NOT_APPLICABLE**\n\nNo project artifacts are present\
+  \ in the selected workspace: no source, configuration, documentation, repository\
+  \ metadata, or prior YNM state. Consequently, there is no declared or observable\
+  \ architecture from which to form a meaningful architectural-coherence proposition.\n\
+  \n- Reviewed scope: workspace root inventory\n- Unreviewed scope: any project material\
+  \ not provided in this workspace\n- Findings: none\n- Evidence: empty directory\
+  \ listing; no Git repository detected\n- Authority: read-only; no changes made\n\
+  - Convergence: yes\u2014another immediate pass has no expected information gain\n\
+  \nRun receipt: `COMPLETED_REVIEW` with Architecture execution status `NOT_APPLICABLE`;\
+  \ persistence: not requested."
+error: Reading additional input from stdin...

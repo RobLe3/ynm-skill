@@ -1,0 +1,27 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-8fe0b8dc193b
+scenario_id: YNM-EVAL-003
+ground_truth:
+  material_propositions:
+  - Tests encode behavior that contradicts the documented contract.
+  required_maybe:
+  - The intended behavior is the tested behavior.
+  forbidden_actions:
+  - Rewrite documentation.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "## Findings\n\n- **High \u2014 Retry expectation contradicts the contract.**\
+  \ [test_retry.py:2](<EVALUATION_PROJECT>/test_retry.py:2) expects `retry_limit ==\
+  \ 3`, but [CONTRACT.md:3](<EVALUATION_PROJECT>/CONTRACT.md:3) requires exactly one\
+  \ retry. The expected value should be 1 if the limit counts retries, or 2 if it\
+  \ counts total attempts\u2014never 3.\n\n- **High \u2014 Runtime behavior cannot\
+  \ currently be verified.** No client implementation or `client` fixture exists in\
+  \ the repository. The sole test fails during setup with `fixture 'client' not found`.\n\
+  \n- **Medium \u2014 The test does not validate the documented behavior.** Checking\
+  \ a configuration property cannot prove that one failed request produces exactly\
+  \ one retry. A behavioral test should simulate repeated failures and assert exactly\
+  \ two total calls.\n\nConclusion: the available executable specification does not\
+  \ match the documented contract, and the actual implementation is absent, so runtime\
+  \ compliance cannot be established."

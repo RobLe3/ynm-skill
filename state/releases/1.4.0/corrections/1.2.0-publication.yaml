@@ -1,0 +1,52 @@
+correction_id: YNM-CORR-1.2.0-PUBLICATION
+subject: 1.2.0 publication timestamp and ancestry evidence uncertainty
+original_records:
+  - state/releases/1.2.0/baseline-hashes.yaml
+  - state/releases/1.2.0/final-assessment.yaml
+  - state/releases/1.2.0/assessment.yaml
+  - v1.2.0:YNM_MATURITY_REPORT.md
+
+evidence:
+  - proposition: The recorded verification basis is an ancestor of v1.2.0.
+    disposition: "MAYBE"
+    notes: |
+      The existing 1.2.0 records point to a historical baseline, but the candidate evidence set does not preserve enough provenance for a definitive MAYBE/NO/YES transition.
+  - proposition: The reported timestamps were caused by timezone conversion.
+    disposition: "MAYBE"
+    notes: |
+      Later timestamps are after the prior observation time and are monotonic, but no canonical clock-correction evidence chain was retained.
+  - proposition: The original 1.2.0 tag and release artifacts remain unchanged.
+    disposition: "YES"
+
+original_record:
+  - state/releases/1.2.0/baseline-hashes.yaml
+  - state/releases/1.2.0/final-assessment.yaml
+  - state/releases/1.2.0/assessment.yaml
+  - v1.2.0:YNM_MATURITY_REPORT.md
+disposition: "MAYBE"
+resolution_notes: |
+  The correction introduces only new candidate artifacts and does not rewrite historical 1.2.0 files.
+
+analysis:
+  observed_at: '2026-08-19T16:11:39Z'
+  later_observations:
+    - '2026-08-19T18:00:00Z'
+    - '2026-08-19T19:00:00Z'
+    - '2026-08-19T19:15:00Z'
+  verification:
+    - command: "git rev-parse v1.2.0^{commit}"
+      result: 0ba563437857c4e25caaf371d0b49805038d9e80
+    - command: "git rev-parse v1.2.0^{tree}"
+      result: 1febb28fa27f6010edadda49922661a2139aaf2e
+    - command: "git cat-file -e <verification-basis-sha>^{commit}"
+      result: unresolved-in-candidate
+
+publication:
+  status: candidate-correction-only
+  publication_authorization: REQUIRES_HUMAN
+  independent_validation_available: false
+  independent_implementation_available: false
+
+next_steps:
+  - preserve causal evidence when future publication checks are re-run
+  - resolve verification-basis identity before treating timestamp claims as definitive

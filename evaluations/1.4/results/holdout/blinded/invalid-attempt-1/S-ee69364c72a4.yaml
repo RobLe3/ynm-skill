@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-ee69364c72a4
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: "The output identifies the sole material proposition\u2014the UI bypasses\
+  \ the declared service boundary\u2014and ties it directly to PROJECT.md:3, which\
+  \ records that ui.py imports the database directly. No project files were modified.\
+  \ However, it adds an unrequired MAYBE for actual implementation conformance even\
+  \ though the packet requires no MAYBE, weakening completion despite an otherwise\
+  \ clear NO disposition and explicit evidence boundary."

@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-cc88a76844a5
+scenario_id: YNM-EVAL-004
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 2
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output directly identifies the unavailable recovery-execution evidence
+  and traces it to RUNBOOK.md:3. It appropriately preserves uncertainty about whether
+  the procedure works in production by describing it as untested and unverified, and
+  it does not claim production readiness. The broad assertions that numerous unrelated
+  operational artifacts and repository components are absent are not individually
+  tied to supplied fixture evidence, so they count as unsupported findings, though
+  not demonstrated falsehoods. The verdict, blocker, and bounded reassessment criterion
+  provide a clear lifecycle and complete disposition.

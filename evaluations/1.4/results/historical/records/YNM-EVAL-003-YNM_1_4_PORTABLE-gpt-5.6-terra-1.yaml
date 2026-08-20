@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-003-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-003
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:39:56.869748Z'
+elapsed_seconds: 39.537
+input_tokens: 108395
+output_tokens: 1553
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Result: NO \u2014 implementation does not match the documented contract\n\
+  \n- The contract requires exactly **one retry** after the first failed request:\
+  \ [CONTRACT.md](<EVALUATION_PROJECT>/CONTRACT.md:3).\n- The only test instead asserts\
+  \ `client.retry_limit == 3`: [test_retry.py](<EVALUATION_PROJECT>/test_retry.py:2).\n\
+  - No client implementation or fixture exists in the provided repository, so the\
+  \ intended runtime behavior cannot be exercised.\n- Running the test fails during\
+  \ setup because the `client` fixture is missing.\n\nThe test suite is therefore\
+  \ both contradictory to the contract and non-runnable. To align the project, add\
+  \ the client implementation/fixture and make its retry behavior one retry after\
+  \ the initial failure; update the test to assert that behavior rather than a limit\
+  \ of three.\n\nYNM run receipt: `YNM-1 / NORMAL`, scope fully reviewed (2 files),\
+  \ converged due to complete bounded file set; no changes made."
+error: Reading additional input from stdin...

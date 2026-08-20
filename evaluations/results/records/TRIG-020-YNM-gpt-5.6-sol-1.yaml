@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-020
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:30:00.792728Z'
+elapsed_seconds: 15.444
+input_tokens: 30302
+output_tokens: 324
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: YNM is loaded and ready. No project files or persistent state were changed.
+  If you want, the next step is a read-only YNM project review.
+error: Reading additional input from stdin...

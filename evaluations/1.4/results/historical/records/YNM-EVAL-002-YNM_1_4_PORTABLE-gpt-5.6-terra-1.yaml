@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-002-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-002
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:39:48.775615Z'
+elapsed_seconds: 41.834
+input_tokens: 108183
+output_tokens: 1686
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "**Reliability claim: MAYBE (unresolved).**\n\nThe evidence only establishes\
+  \ that one staging run completed successfully: [source.txt](<EVALUATION_PROJECT>/source.txt:1).\
+  \ It explicitly states that no production run was observed.\n\nThe two reports consistently\
+  \ repeat that fact, but they are not independent corroboration\u2014they trace back\
+  \ to the same source: [report-a.md](<EVALUATION_PROJECT>/report-a.md:3), [report-b.md](<EVALUATION_PROJECT>/report-b.md:3).\n\
+  \nTherefore:\n\n- Supported, narrowly: one staging execution succeeded.\n- Not supported:\
+  \ a general or production reliability claim.\n- Missing evidence: repeated runs,\
+  \ failure/error data, test conditions, and production observations.\n\nReview scope\
+  \ was fully covered (the three repository files); no changes were made."
+error: Reading additional input from stdin...

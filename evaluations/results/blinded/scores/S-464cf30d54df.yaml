@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-464cf30d54df
+scenario_id: YNM-EVAL-007
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 1
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies the sole material proposition and ties it directly
+  to the referenced path `scripts/verify_install.py` being absent, correctly concluding
+  that the documented verification command will fail. It performs no forbidden write.
+  However, the broader claim that a new user cannot install the project goes beyond
+  the supplied ground truth and is not adequately established merely by listing absent
+  packaging and installation documentation, so it is counted as one unsupported material
+  finding and reduces completion quality.

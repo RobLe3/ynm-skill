@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">YNM bounded review workflow</title>
+  <desc id="desc">A project question is converted into a proposition, assessed against evidence inside a visible scope boundary, and delivered as YES, NO, or MAYBE with evidence, scope, and authority.</desc>
+  <defs>
+    <style>
+      text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; fill: #172033; }
+      .heading { font-size: 28px; font-weight: 700; letter-spacing: .03em; }
+      .label { font-size: 21px; font-weight: 650; }
+      .small { font-size: 17px; }
+      .muted { fill: #566176; }
+      .box { fill: #ffffff; stroke: #24324a; stroke-width: 2.5; }
+      .line { fill: none; stroke: #35445f; stroke-width: 2.5; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#35445f"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="700" rx="18" fill="#f7f9fc"/>
+  <rect x="32" y="32" width="1136" height="636" rx="16" fill="none" stroke="#a6afbd" stroke-width="2" stroke-dasharray="9 9"/>
+  <text x="56" y="66" class="small muted">REVIEWED EVIDENCE BOUNDARY</text>
+  <text x="885" y="650" class="small muted">Outside: unreviewed, unavailable, or out of scope</text>
+
+  <rect x="415" y="84" width="370" height="72" rx="12" class="box"/>
+  <text x="600" y="115" text-anchor="middle" class="label">PROJECT / QUESTION</text>
+  <text x="600" y="140" text-anchor="middle" class="small muted">an explicit review proposition</text>
+  <path d="M600 156 V195" class="line"/>
+
+  <rect x="385" y="198" width="430" height="168" rx="16" fill="#eef3ff" stroke="#24324a" stroke-width="3"/>
+  <text x="600" y="235" text-anchor="middle" class="heading">YNM</text>
+  <text x="600" y="275" text-anchor="middle" class="label">Proposition</text>
+  <path d="M600 285 V305" class="line"/>
+  <text x="600" y="332" text-anchor="middle" class="label">Evidence + scope boundary</text>
+  <path d="M600 366 V402" class="line"/>
+
+  <path d="M600 402 H245 V435" class="line"/>
+  <path d="M600 402 V435" class="line"/>
+  <path d="M600 402 H955 V435" class="line"/>
+
+  <rect x="125" y="438" width="240" height="108" rx="14" fill="#e9f6ee" stroke="#1f5635" stroke-width="3"/>
+  <text x="245" y="479" text-anchor="middle" class="heading">YES</text>
+  <text x="245" y="515" text-anchor="middle" class="small">supported within scope</text>
+
+  <rect x="480" y="438" width="240" height="108" rx="14" fill="#fceced" stroke="#7b2930" stroke-width="3"/>
+  <text x="600" y="479" text-anchor="middle" class="heading">NO</text>
+  <text x="600" y="515" text-anchor="middle" class="small">contradicted by evidence</text>
+
+  <rect x="835" y="438" width="240" height="108" rx="14" fill="#fff6dd" stroke="#6d5516" stroke-width="3"/>
+  <text x="955" y="479" text-anchor="middle" class="heading">MAYBE</text>
+  <text x="955" y="515" text-anchor="middle" class="small">material evidence unresolved</text>
+
+  <path d="M245 546 V575 H600" class="line"/>
+  <path d="M600 546 V575" class="line"/>
+  <path d="M955 546 V575 H600" class="line"/>
+  <rect x="385" y="578" width="430" height="64" rx="12" class="box"/>
+  <text x="600" y="607" text-anchor="middle" class="label">BOUNDED DELIVERY</text>
+  <text x="600" y="630" text-anchor="middle" class="small muted">evidence • scope • authority • revisit conditions</text>
+
+  <text x="56" y="650" class="small muted">Not reviewed ≠ correct</text>
+</svg>

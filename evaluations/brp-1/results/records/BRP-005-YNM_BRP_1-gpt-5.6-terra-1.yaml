@@ -1,0 +1,40 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-005-YNM_BRP_1-gpt-5.6-terra-1
+scenario_id: BRP-005
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:34:36.421174Z'
+elapsed_seconds: 76.77
+input_tokens: 187308
+output_tokens: 3388
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## YNM-BRP-1 advisory review\n\n**Overall proposition \u2014 \u201CThe\
+  \ implementation is correct.\u201D: MAYBE**\n\nThe only declared requirement is\
+  \ that the parser accept integers; production behavior is explicitly undocumented.\
+  \ That requirement is supported, but broader correctness cannot be determined from\
+  \ the available contract.\n\n| Proposition | Disposition | Evidence |\n|---|---|---|\n\
+  | `parse` accepts Python integers and returns their integer value. | **YES** | [`parser.py`](<EVALUATION_PROJECT>/parser.py:1)\
+  \ calls `int(value)`; direct runtime checks returned `1`, `0`, and `-2` unchanged.\
+  \ |\n| The implementation is correct for the documented contract. | **YES** | The\
+  \ entire stated contract is \u201Cmust accept integers\u201D in [`README.md`](<EVALUATION_PROJECT>/README.md:1),\
+  \ and the implementation satisfies it. |\n| The implementation\u2019s production\
+  \ behavior is correct. | **MAYBE** \u2014 `INSUFFICIENT_CONTEXT` | The README explicitly\
+  \ says production behavior is undocumented. No acceptance/rejection rules, error\
+  \ behavior, or input-domain contract exists to evaluate. |\n| The repository provides\
+  \ reproducible automated test validation. | **NO** | [`tests.txt`](<EVALUATION_PROJECT>/tests.txt:1)\
+  \ is a result note, not executable test code or configuration. No test runner configuration\
+  \ was present; `pytest` is unavailable in the environment. |\n\nReviewed scope:\
+  \ all three repository files; static implementation inspection; direct no-bytecode\
+  \ runtime probes of representative inputs.\n\nUnreviewed scope: intended production\
+  \ contract, deployment/runtime environment, callers, dependency constraints, historical\
+  \ behavior, and any tests or specifications outside this directory.\n\nValidity\
+  \ boundary: this is a read-only, advisory YNM-BRP-1 assessment of the three-file\
+  \ snapshot reviewed on 2026-08-20. It supports only the bounded integer-acceptance\
+  \ claim, not universal or production correctness. No files were modified."
+error: Reading additional input from stdin...

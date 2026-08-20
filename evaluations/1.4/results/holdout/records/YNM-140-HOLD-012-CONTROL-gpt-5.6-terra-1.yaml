@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-012-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-012
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:49:28.043410Z'
+elapsed_seconds: 23.13
+input_tokens: 87528
+output_tokens: 772
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'Tests do **not** support the documented retry behavior.
+
+
+  Evidence available:
+
+
+  - [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3) states the documented behavior
+  is three attempts and says tests cover only a successful first attempt.
+
+
+  Evidence boundary: the workspace contains only `PROJECT.md`; no source code, test
+  files, configuration, or Git history are present to independently verify the implementation
+  or inspect test cases.'
+error: Reading additional input from stdin...

@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-009-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-009
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:49:11.606384Z'
+elapsed_seconds: 26.554
+input_tokens: 62215
+output_tokens: 758
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Assessment: **No**\u2014the two reports do not independently corroborate\
+  \ reliability.\n\nEvidence boundary: [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ states that both reports quote the same source note and that no independent observation\
+  \ exists. Their agreement therefore represents repeated reporting of one source,\
+  \ not independent confirmation.\n\nThis does not establish that the underlying reliability\
+  \ claim is false; it remains **unresolved** without the source note or a separate\
+  \ observation/evaluation. Review was read-only, bounded to the available project\
+  \ evidence, and stopped because the shared-source dependency directly decides the\
+  \ independence question."
+error: Reading additional input from stdin...

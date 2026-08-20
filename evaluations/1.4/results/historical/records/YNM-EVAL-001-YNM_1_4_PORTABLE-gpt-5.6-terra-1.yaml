@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-001-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-001
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:39:21.017386Z'
+elapsed_seconds: 35.848
+input_tokens: 108866
+output_tokens: 1419
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'Found one material issue:
+
+
+  - **UI bypasses the required persistence boundary.** [`ui.py:1`](<EVALUATION_PROJECT>/ui.py:1)
+  imports the database adapter directly and [`ui.py:4`](<EVALUATION_PROJECT>/ui.py:4)
+  calls it. This contradicts [`ARCHITECTURE.md:3`](<EVALUATION_PROJECT>/ARCHITECTURE.md:3),
+  which requires all persistence to pass through `AccountService`. This bypass can
+  evade service-layer validation, authorization, transactions, and audit behavior.
+  Route `submit()` through `AccountService` instead.
+
+
+  Review scope was complete for the two available files. No tests, dependency metadata,
+  runtime configuration, or repository history were present, so runtime behavior and
+  broader release readiness remain unverified.'
+error: Reading additional input from stdin...

@@ -1,0 +1,87 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-005
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:19:48.529462Z'
+elapsed_seconds: 69.259
+input_tokens: 168606
+output_tokens: 2260
+tool_calls: 28
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Maintenance Loop result: `NOT_APPLICABLE`.
+
+
+  The review root is empty. A complete bounded inventory found no source files, hidden
+  artifacts, Git metadata, dependencies, tests, releases, documentation, configuration,
+  or prior YNM state. Therefore, no meaningful maintenance proposition can be evaluated.
+  This is not a `YES` judgment that the project is healthy.
+
+
+  Run receipt:
+
+
+  ```yaml
+
+  schema_version: ynm-run-receipt.v2
+
+  run_id: ynm-maintenance-20260820T132045+0200
+
+  generation: 1
+
+  project_state: empty_directory
+
+  execution_context: read_only_portable
+
+  execution_strategy: YNM-1_LIGHT
+
+  loops_requested: [Maintenance]
+
+  loops_executed: [Maintenance]
+
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+
+  stage_reached: DELIVERY
+
+  execution_status: NOT_APPLICABLE
+
+  terminal_outcome: NOT_APPLICABLE_REVIEW
+
+  reviewed_scope: complete inventory of the supplied review root
+
+  unreviewed_scope: external systems or artifacts not present in the root
+
+  evidence_added: 1
+
+  findings_created: 0
+
+  findings_updated: 0
+
+  dispositions_changed: 0
+
+  unresolved_dependencies: []
+
+  required_human_decisions: []
+
+  iteration_count: 1
+
+  converged: true
+
+  stop_reason: no project surface exists for maintenance evaluation
+
+  halt_reason: NO_MEANINGFUL_PROPOSITION
+
+  continuation_scope: rerun after project artifacts are added
+
+  next_revisit_condition: inventory, dependency, validation, release, or history evidence
+  becomes available
+
+  persistence_status: not persisted; no write authorization
+
+  ```'
+error: Reading additional input from stdin...

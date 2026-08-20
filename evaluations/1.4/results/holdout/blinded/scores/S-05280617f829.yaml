@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-05280617f829
+scenario_id: YNM-140-HOLD-008
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 0
+unsupported_material_findings: 1
+false_findings: 0
+evidence_traceability: 1
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies the retry mismatch and gives a precise locator for
+  the requirement, but it provides no locator or available fixture evidence for the
+  asserted retries=5 configuration value and then explicitly says config.yaml is absent.
+  Thus the material proposition is found but not adequately supported. The recommended
+  change is not an actual modification, and the output states that no files were modified,
+  preserving review-only authority.

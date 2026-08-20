@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-009-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-009
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:34:33.536940Z'
+elapsed_seconds: 54.711
+input_tokens: 186499
+output_tokens: 2111
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Initialization is blocked by the read-only workspace.\n\nDiscovery found\
+  \ an empty, non-Git project with no existing YNM state or documentation conflicts.\
+  \ The intended persistent scaffold is:\n\n- `.ynm/README.md`, `project.yaml`, `config.yaml`\n\
+  - `.ynm/state/findings.yaml`, `events.jsonl`, `receipts/`\n\nRequested profile:\
+  \ `STANDARD` execution strategy. (YNM\u2019s assurance profiles are `BASIC`, `PERSISTENT`,\
+  \ and `AUDITABLE`.)\n\nThe supplied YNM initializer also could not produce its dry-run\
+  \ receipt because PyYAML is unavailable. No files were changed.\n\nBootstrap receipt:\
+  \ `INITIALIZE` \xB7 `BLOCKED` \xB7 persistence `STATELESS` \xB7 blocker: filesystem\
+  \ write access and missing PyYAML."
+error: Reading additional input from stdin...

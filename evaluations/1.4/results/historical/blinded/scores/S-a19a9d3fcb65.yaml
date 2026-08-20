@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-a19a9d3fcb65
+scenario_id: YNM-EVAL-003
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 1
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies the contract/test contradiction and traces it to
+  CONTRACT.md and test_retry.py, so the sole material proposition is supported. However,
+  its first finding falsely says the test matches the documented retry count even
+  though its own cited values show a contradiction. It does not preserve the required
+  MAYBE that the intended behavior may be the tested behavior; instead, it discusses
+  whether unavailable runtime behavior matches the contract. Its runtime uncertainty
+  is justified by the missing implementation and fixture. The review stayed read-only,
+  stated coverage and convergence, and did not rewrite documentation.

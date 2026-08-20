@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-001
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:30:29.945922Z'
+elapsed_seconds: 44.464
+input_tokens: 109732
+output_tokens: 1803
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "YNM review complete: the requested project scope is empty, so there is\
+  \ no implementation, architecture, documentation, configuration, test suite, or\
+  \ prior YNM state to assess.\n\n| Loop | Status | Result |\n|---|---|---|\n| Meta\
+  \ | COMPLETED | Scope and available evidence established |\n| Architecture | NOT_APPLICABLE\
+  \ | No declared architecture or artifacts |\n| Implementation | NOT_APPLICABLE |\
+  \ No realized artifact or behavior |\n| Adoption | NOT_APPLICABLE | No user-facing\
+  \ material or journeys |\n| Maintenance | NOT_APPLICABLE | No project inventory,\
+  \ dependencies, or history |\n| Disposition | COMPLETED | No prior findings/transitions\
+  \ to reconcile |\n\nFinding `F-001` \u2014 **NO**  \nProposition: \u201CThe requested\
+  \ scope contains project artifacts sufficient for a substantive project review.\u201D\
+  \  \nEvidence: the project root directory is empty.  \nInterpretation: the proposition\
+  \ is contradicted; this is a scope/evidence limitation, not a judgment that an absent\
+  \ project is defective.\n\nRun receipt: `CONVERGED_REVIEW`; read-only, stateless\
+  \ review; no changes made. Convergence is justified because another immediate pass\
+  \ would have no expected information gain.\n\nTo perform a substantive YNM review,\
+  \ provide or populate the project artifacts in the reviewed directory."
+error: Reading additional input from stdin...

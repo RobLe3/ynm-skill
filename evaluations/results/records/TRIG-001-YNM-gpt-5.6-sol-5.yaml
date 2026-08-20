@@ -1,0 +1,52 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-001
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:18:07.048226Z'
+elapsed_seconds: 93.564
+input_tokens: 210047
+output_tokens: 3603
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "## YNM review result: BLOCKED\n\nThe selected [project root](<EVALUATION_PROJECT>)\
+  \ is completely empty: zero files, zero subdirectories, no Git repository, and no\
+  \ prior YNM state. Consequently, no substantive architecture, implementation, adoption,\
+  \ or maintenance claims can be evaluated.\n\n### Material findings\n\n| ID | Proposition\
+  \ | Disposition | Basis |\n|---|---|---|---|\n| YNM-001 | The selected root contains\
+  \ project artifacts. | **NO** | Complete inventory returned no entries. |\n| YNM-002\
+  \ | The project declares an intended architecture. | **NO** | No specifications,\
+  \ decisions, configuration, or source artifacts exist. |\n| YNM-003 | The project\
+  \ contains a realized implementation or procedure. | **NO** | No executable, source,\
+  \ configuration, test, or procedural artifacts exist. |\n| YNM-004 | The project\
+  \ defines an audience and usable adoption path. | **NO** | No README, documentation,\
+  \ examples, interface, or onboarding material exists. |\n| YNM-005 | The project\u2019\
+  s architectural coherence, behavioral correctness, adoptability, and sustainability\
+  \ are established. | **MAYBE** | `EVIDENCE_REQUIRED`; absence of a subject prevents\
+  \ those quality judgments. |\n\nThe NO dispositions concern artifact existence\u2014\
+  not the quality of a project that may exist elsewhere.\n\n### Loop results\n\n-\
+  \ Meta: **COMPLETED** \u2014 discovered an empty root and bounded the review.\n\
+  - Architecture: **BLOCKED** \u2014 declared intent and structural evidence unavailable.\n\
+  - Implementation: **BLOCKED** \u2014 implementation, contracts, and tests unavailable.\n\
+  - Adoption: **BLOCKED** \u2014 audience and user journeys unavailable.\n- Maintenance:\
+  \ **BLOCKED** \u2014 history, dependencies, validation, release, and ownership evidence\
+  \ unavailable.\n- Disposition: **COMPLETED** \u2014 findings reconciled without\
+  \ treating missing evidence as proof of poor quality.\n\n### Run receipt\n\n```yaml\n\
+  schema_version: ynm-run-receipt.v2\nrun_id: ynm-2026-08-20-empty-root\ngeneration:\
+  \ 1\nproject_state: \"empty directory; not a Git repository\"\nexecution_strategy:\
+  \ CONSTRAINED\nreview_profile: BASIC\nstage_reached: DELIVERY\nexecution_status:\
+  \ BLOCKED\nterminal_outcome: BLOCKED_REVIEW\nhalt_reason: EVIDENCE_LIMIT\nreviewed_scope:\
+  \ \"complete filesystem inventory of the selected root\"\nunreviewed_scope: \"all\
+  \ substantive project architecture, behavior, adoption, and maintenance\"\nfindings_created:\
+  \ 5\ndispositions_changed: 0\nconverged: true\nstop_reason: \"No further immediate\
+  \ pass can gain information from the unchanged empty root\"\nnext_revisit_condition:\
+  \ \"Project artifacts are added or the correct project root is supplied\"\npersistence_status:\
+  \ \"STATELESS_READ_ONLY\"\nauthorization_status: NOT_REQUESTED\n```\n\nNo files\
+  \ were changed. Because persistence was not authorized, longitudinal finding history\
+  \ and cross-run reopening detection were not retained."
+error: Reading additional input from stdin...

@@ -130,20 +130,23 @@ cases:
     scenario: Generic code review request without method context.
     prompt: "Can you do a code review of this function?"
     expectation:
-      expected_activation: true
-      classification: contextual
-    expected_class: contextual
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+    reason: ordinary isolated code review does not imply the YNM methodology
   - id: TRIG-019
     scenario: Isolated maintenance check.
     prompt: "What files should I delete before publishing this repo?"
     expectation:
-      expected_activation: true
-      classification: contextual
-    expected_class: contextual
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+    reason: isolated cleanup advice does not imply a structured project review
   - id: TRIG-020
     scenario: Near miss invocation.
     prompt: "I think we may need YNM if we have time."
     expectation:
-      expected_activation: true
-      classification: contextual
-    expected_class: contextual
+      expected_activation: false
+      classification: negative
+    expected_class: negative
+    reason: a weak future reference is not an invocation

@@ -9,15 +9,16 @@ findings:
     against the updated schema.
   evidence:
   - methodology/execution-lifecycle.md
-  - contracts/run-receipt.md
+  - schemas/run-receipt.schema.json
   - scripts/execution_lifecycle.py
   interpretation: The macro phases are explicit and separate from loop findings.
   proposed_disposition: 'YES'
   disposition: 'YES'
   created_at: '2026-08-19T16:35:00Z'
-  updated_at: '2026-08-19T16:50:00Z'
+  updated_at: '2026-08-20T07:40:02Z'
   history:
   - YNM-1.3-E001
+  - YNM-1.3-E007
   status: RESOLVED
   maturity_impact: MATURITY_BLOCKING
 - id: YNM-LIFE-002
@@ -32,7 +33,7 @@ findings:
   - scripts/execution_lifecycle.py
   - schemas/run-receipt.schema.json
   - tests/test_validate_ynm.py
-  - tests/fixtures/run_receipt.yaml
+  - examples/data/run-receipt.yaml
   interpretation: Delivery is no longer optional and is validated in both deterministic
     and unit tests.
   proposed_disposition: 'YES'
@@ -40,9 +41,10 @@ findings:
   disposition_reason: Delivery transitions are now exercised on every terminal reason
     in unit tests.
   created_at: '2026-08-19T16:40:00Z'
-  updated_at: '2026-08-19T16:50:00Z'
+  updated_at: '2026-08-20T07:40:02Z'
   history:
   - YNM-1.3-E002
+  - YNM-1.3-E008
   status: RESOLVED
   maturity_impact: MATURITY_BLOCKING
 - id: YNM-PUB-002
@@ -114,3 +116,95 @@ findings:
   - YNM-1.3-E005
   status: RESOLVED
   maturity_impact: MATURITY_BLOCKING
+- id: YNM-MAINT-001
+  title: Current finding evidence locators resolve
+  proposition: Path-like evidence locators in current candidate findings resolve to repository artifacts.
+  source_loop: Maintenance
+  scope: candidate evidence integrity
+  observation: Self-review found two stale run-receipt evidence paths that deterministic validation previously accepted.
+  evidence:
+  - state/releases/1.3.0/findings.yaml
+  - validation/validate_ynm.py
+  - tests/test_repository_validation.py
+  interpretation: Current path-like evidence now resolves and future drift is checked without treating non-file evidence identifiers as paths.
+  proposed_disposition: 'YES'
+  disposition: 'YES'
+  created_at: '2026-08-20T07:40:02Z'
+  updated_at: '2026-08-20T07:40:02Z'
+  history:
+  - YNM-1.3-E009
+  - YNM-1.3-E010
+  status: RESOLVED
+  maturity_impact: NON_BLOCKING
+- id: YNM-EVAL-001
+  title: Two-model empirical review evaluation
+  proposition: The precommitted two-model trigger and A/B benchmark provides evidence that YNM improves model-assisted project review.
+  source_loop: Adoption
+  scope: empirical effectiveness
+  observation: The frozen rubric and ten benchmark fixtures are available, but the required GPT-5.4 mini snapshot is unavailable through the authenticated Codex client.
+  evidence:
+  - evaluations/rubric.yaml
+  - evaluations/scenarios.yaml
+  - evaluations/results/model-availability.yaml
+  interpretation: Executing only the available model would have violated revision 1. Revision 2 preserves this history and evaluates core effectiveness, trigger selectivity, and replication as YNM-EMP-001 through YNM-EMP-003.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  disposition_reason: The required second model is unavailable; no comparative effectiveness result exists.
+  created_at: '2026-08-20T07:40:37Z'
+  updated_at: '2026-08-20T08:03:23Z'
+  history:
+  - YNM-1.3-E011
+  status: SUPERSEDED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Run the frozen trigger and A/B suites when both precommitted model identifiers are available, or create an explicit assessment revision before substituting a model.
+- id: YNM-EMP-001
+  title: Core empirical effectiveness
+  proposition: Under controlled model, project, prompt, toolset, and read-only authority, making YNM available produces review quality that is measurably better than, or at minimum safely non-inferior to, the same executor without YNM.
+  source_loop: Adoption
+  scope: controlled primary-model empirical effectiveness
+  observation: The primary paired benchmark completed all ten CONTROL/YNM scenarios. Aggregate precision improved and unsupported claims decreased, but YNM asserted correctness on the clean fixture while failing to preserve its explicitly unreviewed production proposition.
+  evidence: [evaluations/protocol.yaml, evaluations/results/benchmark-summary.yaml, evaluations/results/summary.md]
+  interpretation: The clean-project paired regression meets the frozen false-certainty hard-safety criterion, so aggregate improvements cannot compensate for it.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: YNM-EVAL-009 converted explicitly unresolved evidence into a less-calibrated unsupported conclusion.
+  created_at: '2026-08-20T08:03:23Z'
+  updated_at: '2026-08-20T08:56:02Z'
+  history: [YNM-1.3-E012, YNM-1.3-E014]
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Execute and blindly score the frozen primary CONTROL/YNM benchmark.
+- id: YNM-EMP-002
+  title: Trigger selectivity
+  proposition: YNM activates reliably for intended YNM review requests and remains inactive for the frozen negative and near-miss cases.
+  source_loop: Adoption
+  scope: frozen trigger suite
+  observation: Behavioral inference was frozen after a separate smoke request. Primary activation recall was 9/55 with 43/45 correct non-activations; replication activation recall was 8/55 with 44/45 correct non-activations.
+  evidence: [evaluations/results/activation-observability.yaml, evaluations/results/trigger-summary.yaml, tests/data/trigger-cases.yaml]
+  interpretation: Negative selectivity was strong, but intended specialist, setup, and contextual activation was not reliably observable under the frozen rule.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: Material false-negative activation behavior occurred across both evaluated models.
+  created_at: '2026-08-20T08:03:23Z'
+  updated_at: '2026-08-20T08:56:02Z'
+  history: [YNM-1.3-E012, YNM-1.3-E014]
+  status: RESOLVED
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Establish activation observability and execute the frozen trigger suite.
+- id: YNM-EMP-003
+  title: Cross-model replication
+  proposition: The observed YNM effect reproduces on a second materially different model or capability tier.
+  source_loop: Adoption
+  scope: frozen replication model order
+  observation: gpt-5.6-terra was the first available replication candidate and completed all trigger and benchmark executions. It improved several dimensions but increased false findings on a paired authority-boundary scenario.
+  evidence: [evaluations/results/model-availability.yaml, evaluations/results/benchmark-summary.yaml, evaluations/results/summary.md]
+  interpretation: The effect did not reproduce under the frozen safety and non-inferiority rules.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: Replication increased false material findings relative to paired control.
+  created_at: '2026-08-20T08:03:23Z'
+  updated_at: '2026-08-20T08:56:02Z'
+  history: [YNM-1.3-E012, YNM-1.3-E014]
+  status: RESOLVED
+  maturity_impact: NON_BLOCKING
+  revisit_conditions: Probe the frozen candidate order and execute replication if one candidate is available.

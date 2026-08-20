@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-003-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-003
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:36:49.612054Z'
+elapsed_seconds: 78.271
+input_tokens: 194988
+output_tokens: 2551
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Overall disposition: **MAYBE \u2014 implementation behavior cannot be\
+  \ verified.** The entire repository was reviewed, but it contains no client implementation.\n\
+  \nFindings:\n\n1. **NO \u2014 the test matches the documented retry count.**  \n\
+  \   The contract requires exactly one retry after the initial failure ([CONTRACT.md](<EVALUATION_PROJECT>/CONTRACT.md:3)),\
+  \ while the test expects `retry_limit == 3` ([test_retry.py](<EVALUATION_PROJECT>/test_retry.py:2)).\n\
+  \n2. **NO \u2014 the available test validates runtime behavior.**  \n   `pytest\
+  \ -q -s -p no:cacheprovider` errors during setup because the `client` fixture is\
+  \ missing. It never exercises retry behavior.\n\n3. **MAYBE \u2014 actual runtime\
+  \ behavior matches the contract.**  \n   No implementation, fixture, dependency\
+  \ configuration, or executable client is present. The contradictory assertion is\
+  \ evidence about test intent, not runtime behavior.\n\nCoverage: both repository\
+  \ files reviewed; no project scope omitted. Implementation and disposition loops\
+  \ completed in read-only, stateless mode. The review converged because all available\
+  \ evidence was examined, but the primary proposition remains unresolved until the\
+  \ client implementation or runnable fixture is supplied."
+error: Reading additional input from stdin...

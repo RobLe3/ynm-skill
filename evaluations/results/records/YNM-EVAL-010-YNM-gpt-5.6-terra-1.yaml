@@ -1,0 +1,38 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-010-YNM-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-010
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:42:53.303966Z'
+elapsed_seconds: 67.148
+input_tokens: 153827
+output_tokens: 2984
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Read-only review complete. Effective scope: the five repository artifacts;\
+  \ no Git, deployment, dependency, test, or prior-review records were available.\n\
+  \n| Area | Disposition | Finding |\n|---|---|---|\n| Architecture | **NO** | The\
+  \ declared CLI \u2192 service \u2192 storage structure references a `storage` component\
+  \ that is absent. The boundary intent is clear, but the available architecture is\
+  \ incomplete. [ARCHITECTURE.md](<EVALUATION_PROJECT>/ARCHITECTURE.md:3) [service.py](<EVALUATION_PROJECT>/service.py:1)\
+  \ |\n| Implementation | **NO** | The primary code path cannot load: importing the\
+  \ CLI raises `ModuleNotFoundError: No module named 'storage'`. [cli.py](<EVALUATION_PROJECT>/cli.py:1)\
+  \ |\n| Adoption | **NO** | The documented onboarding command points to nonexistent\
+  \ `quickstart.py`, so a new user cannot begin as instructed. [README.md](<EVALUATION_PROJECT>/README.md:3)\
+  \ |\n| Maintenance | **NO** | Documentation and repository contents have drifted\
+  \ (`quickstart.py` is referenced but absent). **MAYBE:** the dependency-vulnerability\
+  \ deployment policy cannot be verified because the repository contains no deployment\
+  \ records or dependency metadata. [POLICY.md](<EVALUATION_PROJECT>/POLICY.md:3)\
+  \ |\n\nValidation attempted the documented command and import path; both failed\
+  \ as above. A bytecode compilation check was blocked by the read-only filesystem\
+  \ because Python attempted to create `__pycache__`; this does not affect the direct\
+  \ runtime failure finding.\n\nRun receipt: all four requested loops completed against\
+  \ the available repository evidence; no files changed; no immediate rerun has expected\
+  \ information gain. Review is converged for this evidence boundary, with deployment-policy\
+  \ enforcement remaining unresolved pending deployment/dependency evidence."
+error: Reading additional input from stdin...

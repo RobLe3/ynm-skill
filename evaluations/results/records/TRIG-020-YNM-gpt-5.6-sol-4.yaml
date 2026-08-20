@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-020
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:30:21.404982Z'
+elapsed_seconds: 33.359
+input_tokens: 46992
+output_tokens: 737
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is loaded in read-only mode. The workspace is currently empty, so\
+  \ there\u2019s no evidence base for a project review yet. No files or persistent\
+  \ YNM state were created."
+error: Reading additional input from stdin...

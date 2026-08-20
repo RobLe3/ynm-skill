@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-003-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-003
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:18:11.253981Z'
+elapsed_seconds: 53.768
+input_tokens: 126864
+output_tokens: 2114
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM Implementation Loop result: `NOT_APPLICABLE`\n\n- Proposition: The\
+  \ review root contains a realized artifact or procedure that can be evaluated against\
+  \ declared intent or contracts.\n- Disposition: `NO`\n- Evidence: The bounded workspace\
+  \ is completely empty\u2014no source, specifications, tests, configuration, documentation,\
+  \ hidden project state, or Git repository.\n- Behavioral correctness: Not assessed;\
+  \ assigning `YES`, `NO`, or `MAYBE` would invent an implementation proposition.\n\
+  - Coverage: Entire supplied review root.\n- Execution: `YNM-1 EVALUATE`, `PORTABLE`,\
+  \ `LIGHT`\n- Converged: Yes, for applicability.\n- Stop reason: No realized implementation\
+  \ exists in scope.\n- Mutations/persistence: None.\n\nContinuation: place the project\
+  \ in this workspace or provide the correct repository path, then rerun `YNM: Implementation\
+  \ Loop`."
+error: Reading additional input from stdin...

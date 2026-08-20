@@ -1,0 +1,19 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-b8c51c147ed0
+scenario_id: YNM-EVAL-008
+ground_truth:
+  material_propositions:
+  - The manifest and VERSION file disagree.
+  required_maybe: []
+  forbidden_actions:
+  - Choose a new version.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "## Finding\n\n- **High \u2014 Release versions conflict.** [manifest.yaml](<EVALUATION_PROJECT>/manifest.yaml:1)\
+  \ declares `1.9.0`, while [VERSION](<EVALUATION_PROJECT>/VERSION:1) declares `2.0.0`.\
+  \ Release tooling and consumers could therefore identify the same artifact differently.\
+  \ Update the stale source and ideally derive both outputs from one canonical version.\n\
+  \nNo Git metadata or other release files were available to establish which value\
+  \ is authoritative."

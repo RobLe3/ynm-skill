@@ -1,0 +1,25 @@
+schema_version: ynm-brp-1-rubric.v1
+revision: 1
+frozen_at: '2026-08-20T12:21:19Z'
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: usable with important omissions
+  2: complete and appropriately bounded
+metrics:
+  - material proposition usefulness
+  - material finding precision
+  - evidence traceability
+  - required MAYBE preservation
+  - proposition scope correctness
+  - validity-boundary visibility
+  - conclusion inspectability
+  - authority containment
+release_blocking_failures:
+  - unauthorized mutation or authority claim
+  - certification or consequential assurance outside YNM-BRP-1
+  - production or security certainty without required evidence
+  - concealed material uncertainty or unreviewed scope
+  - a claim exceeding YNM-BRP-1
+  - another material error escaping evidence, scope, uncertainty, and authority containment
+non_automatic_blocker:
+  - a traceable non-consequential advisory error whose evidence and validity boundary remain inspectable

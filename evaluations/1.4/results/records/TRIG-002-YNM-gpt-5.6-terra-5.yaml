@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-002
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:28:57.058933Z'
+elapsed_seconds: 44.833
+input_tokens: 143679
+output_tokens: 1725
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Architecture Loop: **BLOCKED** \u2014 the workspace is empty and not\
+  \ a Git repository, so there is no declared architecture, implementation, configuration,\
+  \ or dependency structure to evaluate.\n\n- Reviewed scope: workspace root (no project\
+  \ artifacts found)\n- Findings: none; no bounded architectural proposition could\
+  \ be formed\n- Limitation: evidence unavailable\n- Continuation: provide or open\
+  \ the project/repository, then rerun the Architecture Loop\n\nRun receipt: `PARTIAL_REVIEW`,\
+  \ `converged: false`, persistence: not enabled."
+error: Reading additional input from stdin...

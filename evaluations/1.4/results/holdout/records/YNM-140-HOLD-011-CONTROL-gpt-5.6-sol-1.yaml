@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-011-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-011
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:45:45.528617Z'
+elapsed_seconds: 21.54
+input_tokens: 57735
+output_tokens: 613
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Yes\u2014within the available evidence, both are `1.4.0`, according to\
+  \ [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3).\n\nEvidence boundary: the workspace\
+  \ contains no separate `VERSION` or manifest file, so this confirms only the statement\
+  \ in `PROJECT.md`, not the underlying files independently. No files were modified."
+error: Reading additional input from stdin...

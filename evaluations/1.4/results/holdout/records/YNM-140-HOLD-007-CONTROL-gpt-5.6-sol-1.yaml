@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-007-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-007
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:44:47.677122Z'
+elapsed_seconds: 26.879
+input_tokens: 72395
+output_tokens: 734
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'The declared adapter boundary is not respected.
+
+
+  - Declared rule: UI must call the service layer.
+
+  - Reported violation: `ui.py` imports the database directly, bypassing that service
+  boundary.
+
+  - Evidence: [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3).
+
+
+  Evidence boundary: `PROJECT.md` is the only file present. Neither `ui.py` nor a
+  separate architecture specification is available, so the violation is explicitly
+  documented but cannot be independently verified at source-code level.
+
+
+  No files were changed.'
+error: Reading additional input from stdin...

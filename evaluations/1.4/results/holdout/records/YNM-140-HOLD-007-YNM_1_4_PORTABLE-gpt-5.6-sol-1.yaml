@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-007-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-007
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:44:49.627054Z'
+elapsed_seconds: 63.958
+input_tokens: 143538
+output_tokens: 1951
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Disposition: **NO for the documented state; MAYBE for independently verified\
+  \ implementation conformance.**\n\n- The only project artifact states both the boundary\u2014\
+  UI must call the service\u2014and the violation\u2014`ui.py` imports the database\
+  \ directly ([PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)). On that document\u2019\
+  s own terms, the declared boundary is not respected.\n- Evidence boundary: the workspace\
+  \ contains no `ui.py`, service/database implementation, dependency manifest, tests,\
+  \ Git history, or architecture record beyond `PROJECT.md`. Therefore the reported\
+  \ import cannot be independently inspected or reproduced.\n- Terminology boundary:\
+  \ the document declares a UI-to-service boundary; it does not explicitly call the\
+  \ service an \u201Cadapter.\u201D\n\nReview status: read-only, YNM-1 LIGHT architecture\
+  \ review; implementation verification is partial due to missing source evidence.\
+  \ No files were changed."
+error: Reading additional input from stdin...

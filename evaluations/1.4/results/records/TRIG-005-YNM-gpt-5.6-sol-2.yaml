@@ -1,0 +1,45 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-005
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:19:27.554005Z'
+elapsed_seconds: 59.601
+input_tokens: 169207
+output_tokens: 2318
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Maintenance Loop result: `NOT_APPLICABLE`
+
+
+  The selected workspace is empty: 0 files, 0 subdirectories, and no Git repository.
+  Therefore, no dependencies, manifests, validation, release history, or maintenance
+  records exist to evaluate.
+
+
+  Run receipt:
+
+
+  - Level: `YNM-2 SPECIALIZE`, LIGHT, PORTABLE
+
+  - Reviewed scope: Entire supplied workspace root
+
+  - Findings: None
+
+  - Dispositions: None; project health was not inferred
+
+  - Terminal outcome: `NOT_APPLICABLE_REVIEW`
+
+  - Converged: Yes, for applicability only
+
+  - Persistence: None; read-only review
+
+  - Revisit condition: Populate the workspace or provide the intended project root
+
+  - Run ID: `ynm-maintenance-20260820T112012Z`'
+error: Reading additional input from stdin...

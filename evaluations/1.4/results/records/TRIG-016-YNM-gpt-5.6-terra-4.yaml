@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-016-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-016
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:34:24.246739Z'
+elapsed_seconds: 17.953
+input_tokens: 43598
+output_tokens: 534
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The workspace is empty, so I can\u2019t tailor names to the utility yet.\
+  \ A few versatile options:\n\n- **Toolbox** \u2014 simple, familiar\n- **Nimble**\
+  \ \u2014 lightweight and adaptable\n- **Forge** \u2014 practical, builder-oriented\n\
+  - **Kitsune** \u2014 distinctive, playful toolkit feel\n- **Utility Belt** \u2014\
+  \ clear and memorable\n- **Sidekick** \u2014 helpful companion tool\n- **Workbench**\
+  \ \u2014 solid for developer utilities\n- **Relay** \u2014 good for automation or\
+  \ glue code\n- **Tinker** \u2014 experimental and approachable\n- **Mosaic** \u2014\
+  \ good if it combines small tools\n\nTell me what it does and its intended audience,\
+  \ and I\u2019ll suggest names that match its personality."
+error: Reading additional input from stdin...

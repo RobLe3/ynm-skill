@@ -289,6 +289,9 @@ class YNMValidationTests(unittest.TestCase):
         receipt = lifecycle.receipt_fields(unresolved_findings=["YNM-MAYBE-1"], reviewed_scope=["a"], unreviewed_scope=["b"], persistence_authorized=False)
         self.assertEqual(receipt["unresolved_findings"], ["YNM-MAYBE-1"])
         self.assertEqual(receipt["unreviewed_scope"], ["b"])
+        self.assertEqual(receipt["schema_version"], "ynm-run-receipt.v3")
+        self.assertEqual(receipt["validity_boundary"]["reviewed_scope"], ["a"])
+        self.assertEqual(receipt["validity_boundary"]["unreviewed_scope"], ["b"])
 
     def test_delivery_does_not_grant_authorization(self):
         lifecycle = InvocationLifecycle()
@@ -317,6 +320,28 @@ class YNMValidationTests(unittest.TestCase):
         self.assertEqual(validate(receipt, schema), [])
         receipt.pop("delivery")
         self.assertTrue(any("delivery" in error for error in validate(receipt, schema)))
+
+    def test_v3_receipt_requires_validity_boundary(self):
+        lifecycle = InvocationLifecycle()
+        lifecycle.deliver("EVIDENCE_LIMIT")
+        fragment = lifecycle.lifecycle_receipt_fragment(
+            unresolved_findings=["YNM-MAYBE-1"],
+            reviewed_scope=["repository snapshot"],
+            unreviewed_scope=["production"],
+            persistence_authorized=False,
+            propositions=["Reviewed behavior matches specification S"],
+            evidence_snapshot="commit abc123",
+            evidence_limitations=["production evidence unavailable"],
+            executor_profile="example executor",
+            execution_limits=["read-only repository access"],
+            temporal_reference="2026-08-20",
+        )
+        receipt = load_yaml(ROOT / "examples/data/run-receipt.yaml")
+        receipt.update(fragment)
+        schema = load_json(ROOT / "schemas/run-receipt.schema.json")
+        self.assertEqual(validate(receipt, schema), [])
+        receipt.pop("validity_boundary")
+        self.assertTrue(any("validity_boundary" in error for error in validate(receipt, schema)))
 
 
 if __name__ == "__main__":

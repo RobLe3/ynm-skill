@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-d3ab0186f131
+scenario_id: YNM-EVAL-009
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output makes no material defect finding, consistent with the empty
+  material-proposition set. Its bounded conclusion is tied to specific README, implementation,
+  test, and probe evidence, while explicitly excluding unreviewed production-relevant
+  areas such as CI, packaging, integrations, performance, and broader security assurance;
+  this preserves uncertainty about unreviewed production behavior. It reports a completed,
+  converged read-only review and states that no files or persistent state were written.

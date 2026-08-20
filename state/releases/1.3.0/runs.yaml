@@ -70,3 +70,102 @@ runs:
     persistence_attempted: true
     persistence_outcome: SUCCEEDED
     continuation_scope: independent evaluator loop
+- schema_version: ynm-run-receipt.v2
+  run_id: YNM-1.3-SELF-EVALUATION
+  generation: 2
+  project_state: YNM-1.3.0-CANDIDATE
+  execution_context: YNM-1.3-EXECUTION
+  execution_strategy: EXTENDED
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+  review_plan_revision: 3
+  iteration_count: 2
+  loops_requested: [Architecture, Implementation, Adoption, Maintenance, Disposition, Meta]
+  loops_executed: [Architecture, Implementation, Adoption, Maintenance, Disposition, Meta]
+  stage_reached: MODEL_AVAILABILITY_DELIVERY
+  execution_status: BLOCKED
+  terminal_outcome: BLOCKED_REVIEW
+  converged: false
+  halt_reason: The precommitted second model was unavailable through the authenticated Codex client.
+  stop_reason: CAPABILITY_BOUNDARY
+  reviewed_scope:
+  - project-native YNM bootstrap
+  - current finding evidence integrity
+  - evaluation rubric and fixture design
+  - exact model availability
+  unreviewed_scope:
+  - 200 trigger executions
+  - 40 A/B benchmark executions
+  - isolated two-model package implementation
+  evidence_added: 6
+  findings_created: [YNM-MAINT-001, YNM-EVAL-001]
+  findings_updated: [YNM-LIFE-001, YNM-LIFE-002]
+  dispositions_changed: [YNM-MAINT-001]
+  unresolved_findings: [YNM-EVAL-001, YNM-VAL-001]
+  unresolved_dependencies:
+  - availability of gpt-5.4-mini-2026-03-17 through the selected client
+  material_changes:
+  - persistent self-bootstrap using existing project-native release state
+  - current evidence locator validation
+  - frozen empirical evaluation harness
+  findings_reopened: []
+  findings_resolved: [YNM-MAINT-001]
+  required_human_decisions:
+  - revise the frozen model pair if the selected second model remains unavailable
+  next_revisit_condition: Both precommitted models become available or an explicit Assessment Contract revision selects a replacement.
+  persistence_status: PERSISTENT
+  continuation_scope: [trigger evaluation, A/B benchmark, isolated package execution]
+  delivery:
+    human_artifact: VALIDATION.md
+    machine_state: state/releases/1.3.0
+    authorization_status: AUTHORIZED
+    persistence_attempted: true
+    persistence_outcome: SUCCEEDED
+    continuation_scope: empirical evaluation execution
+- schema_version: ynm-run-receipt.v2
+  run_id: YNM-1.3-EMPIRICAL-REVISION-2
+  generation: 3
+  project_state: YNM-1.3.0-CANDIDATE
+  execution_context: YNM-1.3-EXECUTION
+  execution_strategy: EXTENDED
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+  review_plan_revision: 4
+  iteration_count: 2
+  loops_requested: [Adoption, Disposition, Meta]
+  loops_executed: [Adoption, Disposition, Meta]
+  stage_reached: EMPIRICAL_DELIVERY
+  execution_status: COMPLETED
+  terminal_outcome: CONVERGED_REVIEW
+  converged: true
+  halt_reason: Frozen empirical evidence reached a release-blocking NO disposition; tuning against the consumed fixtures is prohibited.
+  stop_reason: MATURITY_BLOCKER
+  reviewed_scope:
+  - 200 frozen trigger executions across primary and replication models
+  - 40 paired CONTROL/YNM benchmark executions
+  - blinded semantic scoring of all benchmark outputs
+  - token, elapsed-time, tool-call, and filesystem mutation evidence
+  unreviewed_scope:
+  - independent implementation interoperability
+  - real-project effectiveness beyond the synthetic fixture set
+  evidence_added: 245
+  findings_created: [YNM-EMP-001, YNM-EMP-002, YNM-EMP-003]
+  findings_updated: [YNM-EVAL-001, YNM-VAL-001]
+  dispositions_changed: [YNM-EMP-001, YNM-EMP-002, YNM-EMP-003]
+  unresolved_findings: [YNM-VAL-001]
+  unresolved_dependencies: [independent implementation and fresh post-correction evaluation fixtures]
+  material_changes:
+  - repository-only empirical protocol, execution records, blinded scores, and summaries
+  - no installed runtime package change
+  findings_reopened: []
+  findings_resolved: [YNM-EMP-001, YNM-EMP-002, YNM-EMP-003]
+  required_human_decisions:
+  - decide whether to create a later runtime candidate addressing the observed defects
+  next_revisit_condition: A later candidate with precommitted fresh fixtures and no reuse of these consumed fixtures as independent evidence.
+  persistence_status: PERSISTENT
+  continuation_scope: [later candidate, fresh empirical evaluation, independent implementation]
+  delivery:
+    human_artifact: evaluations/results/summary.md
+    machine_state: evaluations/results
+    authorization_status: AUTHORIZED
+    persistence_attempted: true
+    persistence_outcome: SUCCEEDED
+    continuation_scope: later candidate only; no 1.3.0 release

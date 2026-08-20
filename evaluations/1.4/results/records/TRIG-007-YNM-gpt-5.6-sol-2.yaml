@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-007
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:20:57.788545Z'
+elapsed_seconds: 60.119
+input_tokens: 118658
+output_tokens: 2336
+tool_calls: 28
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Meta Loop result\n\n**Disposition: NO** \u2014 the current review\
+  \ root does not contain enough project evidence to coordinate a substantive review.\n\
+  \n- Root inspected: `<EVALUATION_PROJECT>`\n- Bounded inspection found no files,\
+  \ hidden entries, Git repository, project instructions, or prior YNM state.\n- No\
+  \ focal loops can be responsibly assigned.\n- No project files or YNM state were\
+  \ modified.\n\n```yaml\nrun_id: ynm-meta-2026-08-20\nschema_version: ynm-run-receipt.v2\n\
+  generation: 1\nexecution_strategy: LIGHT_PORTABLE\nloops_requested: [META]\nloops_executed:\
+  \ [META]\nexecution_status: BLOCKED\nterminal_outcome: BLOCKED_REVIEW\nstage_reached:\
+  \ DELIVERY\nreviewed_scope: current review root and its complete directory contents\n\
+  unreviewed_scope: any intended project located elsewhere or not yet supplied\nhalt_reason:\
+  \ PROJECT_EVIDENCE_ABSENT\nconverged: false\nfindings_created: 1\ndispositions_changed:\
+  \ 0\npersistence_status: NOT_REQUESTED\nnext_revisit_condition: project artifacts\
+  \ are added or the correct project root is provided\n```\n\nThe blocking finding\
+  \ is project-evidence absence, not a conclusion about the quality or readiness of\
+  \ the intended project."
+error: Reading additional input from stdin...

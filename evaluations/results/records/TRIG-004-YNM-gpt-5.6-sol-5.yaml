@@ -1,0 +1,44 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-004
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:21:20.522508Z'
+elapsed_seconds: 66.289
+input_tokens: 143323
+output_tokens: 2076
+tool_calls: 32
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Adoption Loop result\n\n**Overall disposition: NO** for the proposition:\n\
+  \n> The inspected project root currently provides an identifiable path for intended\
+  \ users to understand, access, configure, operate, or adopt the project.\n\nThe\
+  \ directory is empty: zero project artifacts, no repository metadata, audience definition,\
+  \ onboarding documentation, examples, configuration, interfaces, or observable user\
+  \ journey.\n\nA broader proposition\u2014\u201Cintended users can successfully adopt\
+  \ the project\u201D\u2014is **MAYBE**, because there is no artifact or user-validation\
+  \ evidence from which to evaluate actual adoption success.\n\n### Findings\n\n-\
+  \ **ADOPT-001 \u2014 NO:** No discoverable adoption path exists in the inspected\
+  \ root.\n  - Evidence: complete depth-three inventory returned zero entries.\n \
+  \ - Recommendation: provide a project entry point defining purpose, intended audience,\
+  \ prerequisites, and one end-to-end getting-started journey.\n  - Authorization:\
+  \ `NOT_REQUESTED`; no files were changed.\n\n- **ADOPT-002 \u2014 MAYBE (`EVIDENCE_REQUIRED`):**\
+  \ Successful adoption cannot be validated.\n  - Needed evidence: a runnable or otherwise\
+  \ actionable project artifact, declared user journey, expected outcome, and preferably\
+  \ an observed user attempt.\n  - Revisit when those materials exist.\n\n### Run\
+  \ receipt\n\n```yaml\nschema_version: ynm-run-receipt.v2\nrun_id: adoption-20260820T082207Z\n\
+  generation: 1\nproject_state: empty non-git directory\nexecution_strategy: CONSTRAINED\n\
+  loops_requested: [Adoption]\nloops_executed:\n  Adoption: COMPLETED\nstage_reached:\
+  \ DELIVERY\nexecution_status: COMPLETED\nterminal_outcome: CONVERGED_REVIEW\nphase_history:\
+  \ [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\niteration_count: 1\nconverged: true\n\
+  stop_reason: NO_FURTHER_INFORMATION_GAIN\nreviewed_scope: complete visible project\
+  \ root and adoption evidence\nunreviewed_scope: external systems, undocumented artifacts,\
+  \ and real user behavior\nfindings_created: [ADOPT-001, ADOPT-002]\npersistence_status:\
+  \ STATELESS_READ_ONLY\nnext_revisit_condition: adoption artifacts or user-validation\
+  \ evidence are added\n```\n\nNo Architecture, Implementation, or Maintenance conclusions\
+  \ were made, and no project or YNM state was written."
+error: Reading additional input from stdin...

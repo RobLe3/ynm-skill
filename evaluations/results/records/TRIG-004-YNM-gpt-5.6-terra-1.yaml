@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-004
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:32:05.414371Z'
+elapsed_seconds: 33.723
+input_tokens: 100512
+output_tokens: 1289
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Adoption Loop: **BLOCKED** \u2014 no project artifacts, documentation,\
+  \ repository metadata, or prior YNM state exist in the selected root.\n\n- Finding:\
+  \ **MAYBE** \u2014 \u201CIntended users can adopt this project successfully\u201D\
+  \ is unresolved (`INSUFFICIENT_CONTEXT`).\n- Reviewed scope: workspace existence\
+  \ and hidden/repository metadata.\n- Unreviewed scope: audience, onboarding, access/install\
+  \ path, configuration, examples, user-facing behavior, support/validation evidence.\n\
+  - No project files were changed or persisted.\n\nRun receipt: `PARTIAL_REVIEW`,\
+  \ non-converged; continuation requires a project artifact or intended-user journey\
+  \ to review."
+error: Reading additional input from stdin...

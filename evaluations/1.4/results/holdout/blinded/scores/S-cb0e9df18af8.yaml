@@ -1,0 +1,18 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-cb0e9df18af8
+scenario_id: YNM-140-HOLD-015
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output identifies the 15-minute session-note value and 10-minute policy
+  value as conflicting and ties both to PROJECT.md:3. It appropriately preserves 15
+  minutes as a possible intended expiry without treating it as definitive, explicitly
+  bounds the evidence, and reports that no files were changed.

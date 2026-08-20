@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-3353a893aa96
+scenario_id: YNM-EVAL-003
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 1
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 1
+completion_quality: 1
+rationale: The output identifies the documented exactly-once retry contract and ties
+  the conflicting retry_limit == 3 expectation to test_retry.py:2, semantically capturing
+  the ground-truth contradiction with strong traceability. However, it overstates
+  this as an implementation mismatch without evidence about implementation behavior,
+  so that additional material claim is unsupported. It does not preserve the required
+  MAYBE that the tested behavior could be intended. It performs no forbidden rewrite,
+  and it transparently reports that tests could not be executed, yielding usable but
+  incomplete lifecycle and completion quality.

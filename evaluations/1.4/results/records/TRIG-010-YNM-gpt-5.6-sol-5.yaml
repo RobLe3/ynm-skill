@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-010-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-010
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:24:56.819502Z'
+elapsed_seconds: 36.697
+input_tokens: 99697
+output_tokens: 1203
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'YNM repository load completed at `YNM-0 ROUTE`.
+
+
+  - Target directory is empty.
+
+  - No Git metadata, files, `AGENTS.md`, documentation, or source code were found.
+
+  - No review proposition could be evaluated.
+
+  - Mode: `PORTABLE`, read-only.
+
+  - Stop reason: no project evidence available.
+
+  - No files or YNM state were created.
+
+
+  Result: **MAYBE / blocked pending repository contents**.'
+error: Reading additional input from stdin...

@@ -1,0 +1,36 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-006-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-006
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:44:40.226380Z'
+elapsed_seconds: 17.843
+input_tokens: 42896
+output_tokens: 472
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'No.
+
+
+  Evidence: [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3) declares:
+
+
+  - `alpha`: MIT
+
+  - `beta`: Apache-2.0
+
+
+  Neither is GPL-licensed. The same line identifies GPL-2.0 and GPL-3.0 as prohibited,
+  but does not assign them to any dependency.
+
+
+  Evidence boundary: this conclusion covers only the complete manifest as represented
+  in `PROJECT.md`. No lockfile, transitive dependency data, package contents, or separate
+  license metadata exists in the workspace, so transitive or incorrectly declared
+  licensing cannot be independently verified. No files were changed.'
+error: Reading additional input from stdin...

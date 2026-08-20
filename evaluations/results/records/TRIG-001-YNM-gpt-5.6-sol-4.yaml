@@ -1,0 +1,44 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-001
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:18:07.048136Z'
+elapsed_seconds: 93.801
+input_tokens: 192312
+output_tokens: 3832
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "The supplied [project root](<EVALUATION_PROJECT>) is empty and is not\
+  \ a Git repository. A substantive project-quality review is therefore unavailable;\
+  \ this is not evidence that the project itself is defective.\n\n### YNM disposition\n\
+  \n**YNM-001 \u2014 `NO`**\n\n- **Proposition:** The supplied root contains sufficient\
+  \ project evidence for a substantive cross-loop YNM review.\n- **Observation:**\
+  \ `ls`, `find`, and `du` found zero artifacts; Git reported no repository.\n- **Evidence\
+  \ horizon:** 2026-08-20 08:19:17 UTC.\n- **Inventory fingerprint:** `e3b0c442\u2026\
+  b855`\u2014the SHA-256 of an empty inventory.\n- **Interpretation:** There is no\
+  \ declared intent, implementation, configuration, documentation, test suite, history,\
+  \ runtime evidence, or prior YNM state to evaluate.\n- **Revisit condition:** Re-run\
+  \ after project artifacts are placed in this root or the correct populated root\
+  \ is supplied.\n\n### Loop results\n\n| Loop | Status | Result |\n|---|---|---|\n\
+  | Meta | `COMPLETED` | Discovered and bounded the empty evidence horizon |\n| Architecture\
+  \ | `BLOCKED` | No declared intent or structural evidence |\n| Implementation |\
+  \ `NOT_APPLICABLE` | No realized artifact exists in the supplied scope |\n| Adoption\
+  \ | `NOT_APPLICABLE` | No audience or user journey is defined |\n| Maintenance |\
+  \ `NOT_APPLICABLE` | No inventory, dependencies, releases, or history |\n| Disposition\
+  \ | `COMPLETED` | Reconciled YNM-001; no conflicts or duplicates |\n\n### Run receipt\n\
+  \n```yaml\nschema_version: ynm-run-receipt.v2\nrun_id: ynm-20260820-081917\ngeneration:\
+  \ 1\nphase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nreview_plan_revision:\
+  \ 1\nexecution_strategy: CONSTRAINED\nreview_profile: BASIC\nexecution_status: PARTIAL\n\
+  terminal_outcome: CONVERGED_REVIEW\nconverged: true\nstop_reason: NO_IMMEDIATE_INFORMATION_GAIN\n\
+  findings_created: 1\nfindings_updated: 0\ndispositions_changed: 0\nunresolved_findings:\
+  \ [YNM-001]\npersistence_status: STATELESS_READ_ONLY\nauthorization_status: NOT_REQUESTED\n\
+  ```\n\nConvergence means another immediate inspection of the same empty root would\
+  \ add no information. It does not mean the absent project has passed review. No\
+  \ files or YNM state were written."
+error: Reading additional input from stdin...

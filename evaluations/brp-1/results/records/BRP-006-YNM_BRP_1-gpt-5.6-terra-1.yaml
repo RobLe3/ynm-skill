@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-006-YNM_BRP_1-gpt-5.6-terra-1
+scenario_id: BRP-006
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:34:45.421447Z'
+elapsed_seconds: 69.467
+input_tokens: 135894
+output_tokens: 3011
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Disposition: NO\n\nAuthentication is not adequately implemented against\
+  \ the repository\u2019s stated requirement.\n\n| Proposition | Disposition | Evidence\
+  \ |\n|---|---|---|\n| `verify` performs exact supplied-vs-expected value comparison.\
+  \ | **YES** | [auth.py](<EVALUATION_PROJECT>/auth.py:1) returns `password == expected`;\
+  \ equal, unequal, and empty-string probes behaved accordingly. |\n| The stated password-verification\
+  \ requirement is fully implemented. | **MAYBE** | Equality checking exists, but\
+  \ no password-storage, hashing, input, or caller contract establishes whether this\
+  \ is suitable for the intended password model. |\n| The stated multi-region failover\
+  \ requirement is implemented. | **NO** | [README.md](<EVALUATION_PROJECT>/README.md:1)\
+  \ requires it; the complete available project tree contains only that README and\
+  \ [auth.py](<EVALUATION_PROJECT>/auth.py:1), with no failover implementation or\
+  \ configuration. |\n| Authentication is production-secure. | **MAYBE** | No requirements,\
+  \ deployment architecture, credential-storage details, rate limiting, session/token\
+  \ handling, tests, or infrastructure evidence were available. |\n\nReviewed scope:\
+  \ complete available repository snapshot: `README.md` and `auth.py`; targeted behavioral\
+  \ probes of `verify`.\n\nUnreviewed scope: external services and infrastructure,\
+  \ deployment and regional topology, callers, secret/password storage, configuration,\
+  \ CI, and runtime behavior. No test artifacts were present.\n\nValidity boundary:\
+  \ this is a read-only YNM-2, security-relevant advisory assessment of the two-file\
+  \ snapshot on 2026-08-20. The overall **NO** is limited to the documented failover\
+  \ requirement; it is not a universal claim about any unprovided system components.\
+  \ No files were modified."
+error: Reading additional input from stdin...

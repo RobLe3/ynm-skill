@@ -1,0 +1,43 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-002
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:18:07.048485Z'
+elapsed_seconds: 66.833
+input_tokens: 117455
+output_tokens: 2088
+tool_calls: 30
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Architecture Loop\n\n**Disposition: MAYBE \u2014 `EVIDENCE_REQUIRED`**\n\
+  \n**Proposition:** The project\u2019s intended structure is internally coherent\
+  \ and consistent with its declared architecture.\n\nThe supplied project root is\
+  \ empty: no source, documentation, configuration, decision records, dependency metadata,\
+  \ project instructions, or Git history were available. Architectural coherence therefore\
+  \ cannot be supported or contradicted. Absence of evidence is not evidence of architectural\
+  \ failure.\n\n### Loop result\n\n- **Execution status:** `BLOCKED`\n- **Strategy:**\
+  \ `CONSTRAINED`, read-only\n- **Reviewed scope:** Complete supplied project root,\
+  \ including hidden entries and repository metadata\n- **Unreviewed scope:** Intended\
+  \ boundaries, decomposition, interfaces, dependencies, data/control flow, constraints,\
+  \ decisions, and cross-cutting concerns\n- **Finding:** `ARCH-001` \u2014 architecture\
+  \ unresolved because no project artifacts or declared intent are available\n- **Failure\
+  \ origin:** `EVIDENCE`\n- **Halt reason:** `REQUIRED_EVIDENCE_UNAVAILABLE`\n- **Converged:**\
+  \ `false`\n- **Persistence:** Disabled; no files were created or modified\n- **Rerun\
+  \ condition:** Add or identify project artifacts\u2014ideally source/configuration\
+  \ plus a README, architecture description, ADRs, or specification\n\n### Run receipt\n\
+  \n```yaml\nschema_version: ynm-run-receipt.v2\nrun_id: ynm-architecture-20260820T081855Z\n\
+  generation: 1\nproject_state: empty_non_git_directory\nexecution_strategy: CONSTRAINED\n\
+  loops_requested: [Architecture]\nloops_executed: [Architecture]\nphase_history:\
+  \ [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nexecution_status: BLOCKED\nterminal_outcome:\
+  \ BLOCKED_REVIEW\nfinding:\n  id: ARCH-001\n  proposed_disposition: \"MAYBE\"\n\
+  \  disposition: \"MAYBE\"\n  disposition_reason: EVIDENCE_REQUIRED\nreviewed_scope:\
+  \ supplied project root\nunreviewed_scope: all architectural propositions requiring\
+  \ project evidence\niteration_count: 1\nconverged: false\nstop_reason: REQUIRED_EVIDENCE_UNAVAILABLE\n\
+  next_revisit_condition: project artifacts or authoritative architectural intent\
+  \ becomes available\npersistence_status: NOT_REQUESTED\n```"
+error: Reading additional input from stdin...

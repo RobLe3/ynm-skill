@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-018-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-018
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:29:07.721926Z'
+elapsed_seconds: 39.713
+input_tokens: 114157
+output_tokens: 1145
+tool_calls: 24
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I can, but no function or files were included\u2014the workspace is empty.\n\
+  \nPlease paste the function (and ideally its surrounding types/callers), and I\u2019\
+  ll review it for correctness, edge cases, security, performance, and maintainability.\n\
+  \nReview status: **BLOCKED** (`EVIDENCE_REQUIRED`); no files were changed."
+error: Reading additional input from stdin...

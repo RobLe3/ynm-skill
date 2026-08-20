@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-017-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-017
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:28:41.547719Z'
+elapsed_seconds: 19.371
+input_tokens: 43457
+output_tokens: 453
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I can absolutely help, but the shared workspace is empty, so I can\u2019\
+  t see the current design yet.\n\nSend a screenshot, mockup, URL, or the project\
+  \ files. I can then review typography, color, spacing, hierarchy, responsive behavior,\
+  \ and interaction states\u2014and propose specific CSS changes."
+error: Reading additional input from stdin...

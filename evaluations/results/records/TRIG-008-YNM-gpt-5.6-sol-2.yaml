@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-008
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:24:28.407431Z'
+elapsed_seconds: 65.013
+input_tokens: 171757
+output_tokens: 2380
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM initialization is **BLOCKED** because the workspace is mounted read-only.\
+  \ No files were changed.\n\nBootstrap receipt:\n\n- ID: `YNM-BOOT-F606EB6CF4A`\n\
+  - Status: `BLOCKED`\n- Authorization: authorized by the request\n- Current persistence:\
+  \ `STATELESS`\n- Project: empty, non-Git directory\n- Conflicts: none\n- Optional\
+  \ helper issue: PyYAML is unavailable\n\nPlanned minimal scaffold:\n\n```text\n\
+  .ynm/\n\u251C\u2500\u2500 README.md\n\u251C\u2500\u2500 project.yaml\n\u251C\u2500\
+  \u2500 config.yaml\n\u2514\u2500\u2500 state/\n    \u251C\u2500\u2500 findings.yaml\n\
+  \    \u251C\u2500\u2500 events.jsonl\n    \u2514\u2500\u2500 receipts/YNM-BOOT-F606EB6CF4A.yaml\n\
+  ```\n\nNo `AGENTS.md` section was proposed because the empty project provides no\
+  \ existing agent-guidance convention. Initialization can continue once the workspace\
+  \ is writable; installing PyYAML would also enable YNM\u2019s supplied bootstrap\
+  \ helper."
+error: Reading additional input from stdin...

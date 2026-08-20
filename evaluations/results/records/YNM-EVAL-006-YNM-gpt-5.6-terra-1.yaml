@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-006-YNM-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-006
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:42:01.021459Z'
+elapsed_seconds: 46.977
+input_tokens: 122276
+output_tokens: 1932
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Security claim: **NO \u2014 contradicted**\n\nClaim: unauthenticated\
+  \ requests are denied by default.\n\n- Policy says they must be denied: [SECURITY.md](<EVALUATION_PROJECT>/SECURITY.md:3).\n\
+  - The implementation authorizes an unauthenticated user (`user is None`) by returning\
+  \ `True`: [deny_by_default.py](<EVALUATION_PROJECT>/deny_by_default.py:2).\n\nDirect\
+  \ read-only execution confirmed:\n\n- unauthenticated request: `actual=True`, expected\
+  \ `False` \u2014 failed\n- authenticated allowed/denied paths behaved as expected\n\
+  \nImpact: any caller relying on `authorize()` can grant unauthenticated access,\
+  \ which is a high-severity authorization bypass.\n\nReview receipt: completed a\
+  \ constrained, read-only implementation/policy review of both project files; no\
+  \ repository history, integration callers, or test suite were available. No files\
+  \ were changed."
+error: Reading additional input from stdin...

@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-009-YNM-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-009
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:42:44.371140Z'
+elapsed_seconds: 74.899
+input_tokens: 273513
+output_tokens: 2968
+tool_calls: 20
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Review complete: no implementation defect found in the declared formatter\
+  \ behavior. The full source surface was reviewed read-only.\n\nOne finding:\n\n\
+  - MAYBE \u2014 The test suite does not fully protect the documented \u201Cpreserves\
+  \ internal characters\u201D contract. It tests leading/trailing trimming, but not\
+  \ inputs where an implementation might accidentally collapse or alter internal whitespace.\
+  \ See [README.md](<EVALUATION_PROJECT>/README.md:3) and [test_formatter.py](<EVALUATION_PROJECT>/test_formatter.py:4).\n\
+  \nEvidence supporting current behavior:\n\n- [formatter.py](<EVALUATION_PROJECT>/formatter.py:1)\
+  \ uses `str.strip()`, which matches the documented contract.\n- Direct read-only\
+  \ assertions passed for surrounding whitespace and preserved internal double spaces.\n\
+  - `pytest` could not start because the sandbox has no writable temporary directory;\
+  \ this is an environment limitation, not a project failure.\n\nRun receipt: `CONVERGED_REVIEW`;\
+  \ scope: all three project files; no writes performed; no Git history, CI configuration,\
+  \ dependency metadata, or prior review state were available."
+error: Reading additional input from stdin...

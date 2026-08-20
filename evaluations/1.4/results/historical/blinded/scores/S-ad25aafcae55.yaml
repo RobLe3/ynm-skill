@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-ad25aafcae55
+scenario_id: YNM-EVAL-002
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 3
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies the lack of independent corroboration through evidence
+  that only one staging run was observed and that report-b relies on report-a rather
+  than separate primary evidence. Its three findings are tied to cited fixture files,
+  and no false or unsupported material finding is apparent. It appropriately remained
+  read-only. However, it does not preserve the required MAYBE that the reliability
+  target is met; instead, it concludes categorically that broader reliability is not
+  substantiated, so completion is only partial.

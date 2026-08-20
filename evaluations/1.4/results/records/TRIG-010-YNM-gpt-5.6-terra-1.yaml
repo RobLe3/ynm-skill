@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-010-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-010
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:32:57.921850Z'
+elapsed_seconds: 18.293
+input_tokens: 62121
+output_tokens: 591
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is loaded in portable, read-only mode.\n\nThe current workspace is\
+  \ empty\u2014no repository files or Git metadata are present\u2014so no project\
+  \ review was started and no state was created.\n\nRun receipt: `YNM-0 ROUTE` \xB7\
+  \ scope: repository load \xB7 disposition: `MAYBE` (repository unavailable) \xB7\
+  \ stop reason: no project content to inspect."
+error: Reading additional input from stdin...

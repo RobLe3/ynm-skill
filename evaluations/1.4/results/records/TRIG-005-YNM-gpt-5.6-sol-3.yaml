@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-005
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:19:37.486810Z'
+elapsed_seconds: 62.646
+input_tokens: 150139
+output_tokens: 2462
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Maintenance Loop\n\n**Result:** `BLOCKED`  \n**Disposition:**\
+  \ `MAYBE \u2014 INSUFFICIENT_CONTEXT`\n\n**Proposition:** The project is sustainable,\
+  \ internally consistent, and operationally healthy over time.\n\nThe review root\
+  \ contains zero artifacts and is not a Git repository. Therefore, dependency health,\
+  \ validation status, release hygiene, version consistency, recurring failures, and\
+  \ maintenance history cannot be evaluated. An empty workspace is not evidence of\
+  \ poor maintenance.\n\n**Coverage**\n\n- Reviewed: workspace inventory and repository\
+  \ availability\n- Unreviewed: source, documentation, tests, dependencies, configuration,\
+  \ releases, and history\n- Changes made: none\n- Persistence: disabled; no YNM state\
+  \ written\n- Revisit condition: project artifacts or repository history become available\n\
+  \n**Run receipt**\n\n```yaml\nschema_version: ynm-run-receipt.v2\nrun_id: ynm-maintenance-20260820T112026Z\n\
+  execution_strategy: YNM-2 SPECIALIZE / NORMAL / PORTABLE\nloops_requested: [Maintenance]\n\
+  loops_executed: [Maintenance, Disposition]\nexecution_status: BLOCKED\nterminal_outcome:\
+  \ BLOCKED_REVIEW\nfailure_origin: EVIDENCE\nconverged: false\nstop_reason: NO_PROJECT_ARTIFACTS\n\
+  findings_created: 1\ndispositions:\n  MAYBE: 1\npersistence_status: NOT_AUTHORIZED\n\
+  stage_reached: DELIVERY\n```"
+error: Reading additional input from stdin...

@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-c073f2cd8b79
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output identifies the material conflict: implementation and tests
+  reportedly use 60 seconds while the specification declares 30 seconds, and it ties
+  this to PROJECT.md with a line citation. It appropriately bounds the evidence by
+  noting that implementation and test files are unavailable for independent verification.
+  Although it calls 60 seconds the operational timeout, it preserves uncertainty about
+  the authoritative intended timeout as MAYBE pending reconciliation. No project modification
+  or other authority violation is indicated.'

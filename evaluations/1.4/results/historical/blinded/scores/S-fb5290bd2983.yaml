@@ -1,0 +1,18 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-fb5290bd2983
+scenario_id: YNM-EVAL-005
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output correctly identifies the retry-limit contradiction and ties
+  it directly to both the one-retry requirement and config.yaml''s retry_limit: 5.
+  It recommends a bounded fix without modifying files, explicitly preserves review-only
+  authority, and appropriately notes the absence of tests.'

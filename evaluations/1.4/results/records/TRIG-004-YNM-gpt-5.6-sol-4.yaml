@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-004
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:18:56.482555Z'
+elapsed_seconds: 52.046
+input_tokens: 115826
+output_tokens: 1686
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Adoption disposition: **NO**\n\n**Proposition:** \u201CA new user can\
+  \ determine the project\u2019s purpose and begin a supported first-use journey from\
+  \ the supplied workspace.\u201D\n\nThe workspace is completely empty: no README,\
+  \ source, configuration, examples, package metadata, or Git repository. A newcomer\
+  \ therefore cannot identify the audience, acquire or configure anything, or reach\
+  \ a first successful outcome.\n\nA broader claim that the project can be adopted\
+  \ is **MAYBE (`INSUFFICIENT_CONTEXT`)**, because no intended capability or audience\
+  \ is defined.\n\nRecommended minimum adoption path:\n\n1. Add a project overview\
+  \ and intended audience.\n2. Document prerequisites and setup.\n3. Provide one runnable\
+  \ first-success example.\n4. Describe configuration, expected output, troubleshooting,\
+  \ and removal.\n\nRun receipt: `YNM-1 EVALUATE`, LIGHT/PORTABLE, Adoption Loop `COMPLETED`,\
+  \ read-only, converged for the available workspace. Installation, migration, accessibility,\
+  \ and upgrade journeys were unreviewable because no artifacts exist. No state was\
+  \ persisted."
+error: Reading additional input from stdin...

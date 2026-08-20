@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-e42fad86741c
+scenario_id: YNM-140-HOLD-006
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output correctly concludes that no prohibited GPL-2.0 or GPL-3.0 dependency
+  appears in the declared complete manifest, and directly ties that finding to PROJECT.md:3,
+  which lists only MIT and Apache-2.0 dependencies and defines the prohibited licenses.
+  Its transitive-dependency boundary is appropriately scoped rather than an unjustified
+  MAYBE. No project modification or other authority violation is indicated.

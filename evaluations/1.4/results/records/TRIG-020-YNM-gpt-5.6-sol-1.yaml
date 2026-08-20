@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-020
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:27:39.280468Z'
+elapsed_seconds: 20.832
+input_tokens: 47486
+output_tokens: 642
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is loaded. I stopped at `YNM-0 ROUTE` because there\u2019s no concrete\
+  \ review proposition yet; no project files or state were changed. When needed, give\
+  \ me the claim or readiness question to evaluate."
+error: Reading additional input from stdin...

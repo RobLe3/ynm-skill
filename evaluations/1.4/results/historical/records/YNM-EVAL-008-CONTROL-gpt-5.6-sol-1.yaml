@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-008-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-008
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:38:35.480680Z'
+elapsed_seconds: 29.446
+input_tokens: 57898
+output_tokens: 860
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Finding\n\n- **High \u2014 Release versions conflict.** [manifest.yaml](<EVALUATION_PROJECT>/manifest.yaml:1)\
+  \ declares `1.9.0`, while [VERSION](<EVALUATION_PROJECT>/VERSION:1) declares `2.0.0`.\
+  \ Release tooling and consumers could therefore identify the same artifact differently.\
+  \ Update the stale source and ideally derive both outputs from one canonical version.\n\
+  \nNo Git metadata or other release files were available to establish which value\
+  \ is authoritative."
+error: Reading additional input from stdin...

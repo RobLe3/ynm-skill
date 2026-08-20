@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a01eeb-d331-7673-9742-0d784c109e3f"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"YNM es un marco de revisión."}}
+{"type":"turn.completed","usage":{"input_tokens":14277,"cached_input_tokens":6912,"cache_write_input_tokens":0,"output_tokens":12,"reasoning_output_tokens":0}}

@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-005
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:32:55.186079Z'
+elapsed_seconds: 38.342
+input_tokens: 116770
+output_tokens: 1281
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Maintenance loop complete: `NOT_APPLICABLE`.\n\nThe selected project\
+  \ root is empty\u2014no source, manifests, configuration, documentation, history,\
+  \ releases, dependencies, or prior YNM state were available to evaluate. Therefore,\
+  \ no meaningful maintenance proposition could be assessed and no findings were created.\n\
+  \nRun receipt: `NOT_APPLICABLE_REVIEW`; read-only/stateless; reviewed scope: project\
+  \ inventory; unreviewed scope: all maintenance signals absent from the workspace;\
+  \ converged: yes (no further immediate evidence is available)."
+error: Reading additional input from stdin...

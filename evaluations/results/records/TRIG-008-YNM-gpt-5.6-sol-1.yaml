@@ -1,0 +1,62 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-008
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:24:20.969511Z'
+elapsed_seconds: 71.983
+input_tokens: 177527
+output_tokens: 2869
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'YNM initialization is planned but blocked by the read-only filesystem.
+  No files were created or modified.
+
+
+  Planned persistent scaffold:
+
+
+  - `.ynm/README.md`
+
+  - `.ynm/project.yaml`
+
+  - `.ynm/config.yaml`
+
+  - `.ynm/state/findings.yaml`
+
+  - `.ynm/state/events.jsonl`
+
+  - `.ynm/state/receipts/YNM-BOOT-A6DCAF52D6E8.yaml`
+
+
+  Bootstrap receipt:
+
+
+  - Status: `BLOCKED`
+
+  - Mode: `INITIALIZE`
+
+  - Project: `ynm-trigger-project-zxwjjrvh`
+
+  - Canonical state location: `.ynm`
+
+  - Existing artifacts or conflicts: none
+
+  - User authorization: granted
+
+  - Executor write capability: unavailable
+
+  - Persistence mode: `STATELESS`
+
+  - Additional limitation: the bundled helper requires PyYAML, which is not installed
+
+
+  Run the same request in a writable workspace session to complete initialization.
+  No `AGENTS.md` integration is planned because it is optional and requires separately
+  bounded authorization.'
+error: Reading additional input from stdin...

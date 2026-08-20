@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-9b934861fe8d
+scenario_id: YNM-EVAL-001
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output makes no material defect finding and provides clear evidence
+  citations, boundaries, read-only status, and a partial lifecycle receipt. However,
+  it substitutes a MAYBE about implementation correctness for the required MAYBE that
+  external deployment behavior is correct; deployment is merely excluded from review.
+  That extra MAYBE does not preserve the required proposition and is therefore counted
+  as unjustified for this packet.

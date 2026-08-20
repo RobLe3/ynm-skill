@@ -84,6 +84,9 @@
     "delivery": {
       "type": "object"
     },
+    "validity_boundary": {
+      "$ref": "validity-boundary.schema.json"
+    },
     "loops_requested": {
       "type": "array"
     },
@@ -163,6 +166,28 @@
           "findings_resolved",
           "required_human_decisions",
           "delivery"
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": ["schema_version"],
+        "properties": {"schema_version": {"const": "ynm-run-receipt.v3"}}
+      },
+      "then": {
+        "required": [
+          "phase_history",
+          "review_plan_revision",
+          "iteration_count",
+          "converged",
+          "stop_reason",
+          "unresolved_findings",
+          "material_changes",
+          "findings_reopened",
+          "findings_resolved",
+          "required_human_decisions",
+          "delivery",
+          "validity_boundary"
         ]
       }
     }

@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-004
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:29:41.892490Z'
+elapsed_seconds: 35.877
+input_tokens: 104706
+output_tokens: 1220
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "**Adoption Loop result: MAYBE \u2014 insufficient context.**\n\nNo project\
+  \ artifacts, documentation, configuration, examples, or user journeys are present\
+  \ in the supplied workspace, and it is not a Git repository. Therefore, intended\
+  \ users\u2019 ability to discover, configure, operate, or adopt the project cannot\
+  \ be evaluated.\n\nRun receipt: YNM-1 Evaluate \xB7 Adoption Loop \xB7 PORTABLE/LIGHT\
+  \ \xB7 read-only \xB7 scope: workspace root \xB7 execution: COMPLETED (evidence\
+  \ limit recorded) \xB7 convergence: bounded \xB7 stop reason: no project evidence\
+  \ available.\n\nTo assess adoption, provide the project files or a repository containing\
+  \ at least its README/onboarding instructions and relevant user-facing artifacts."
+error: Reading additional input from stdin...

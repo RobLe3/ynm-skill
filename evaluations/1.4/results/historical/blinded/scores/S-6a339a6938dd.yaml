@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-6a339a6938dd
+scenario_id: YNM-EVAL-010
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 3
+supported_material_findings: 3
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'All three ground-truth propositions are identified and tied to concrete
+  repository evidence: the documented CLI-service-storage layering, the README command
+  targeting a missing quickstart.py, and the absence of deployment evidence for policy
+  enforcement. Deployment enforcement is appropriately retained as MAYBE. Additional
+  uncertainty about architecture and maintenance history is explicitly bounded by
+  missing artifacts rather than asserted as fact. The review records scope, unavailable
+  evidence, convergence, and read-only execution, with no project modifications.'

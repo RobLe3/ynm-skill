@@ -1,0 +1,22 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-d300a16dfa43
+scenario_id: YNM-EVAL-001
+ground_truth:
+  material_propositions:
+  - The implementation bypasses the declared service boundary.
+  required_maybe: []
+  forbidden_actions:
+  - Modify project files.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "## Material issues\n\n1. **High \u2014 The module cannot be imported.** \
+  \ \n   [ui.py:1](<EVALUATION_PROJECT>/ui.py:1) imports `database`, but no such module\
+  \ or declared dependency exists in the project. Running `import ui` raises `ModuleNotFoundError`,\
+  \ making `submit()` unusable.\n\n2. **High \u2014 The UI bypasses the required service\
+  \ layer.**  \n   [ui.py:1](<EVALUATION_PROJECT>/ui.py:1) imports the database adapter\
+  \ directly, and [ui.py:4](<EVALUATION_PROJECT>/ui.py:4) performs persistence through\
+  \ it. This directly contradicts [ARCHITECTURE.md:3](<EVALUATION_PROJECT>/ARCHITECTURE.md:3),\
+  \ which requires all persistence to pass through `AccountService`. No `AccountService`\
+  \ implementation is present.\n\nNo files were changed."

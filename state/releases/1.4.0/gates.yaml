@@ -1,0 +1,28 @@
+gates:
+- name: 1.4.0 deterministic repository and package validation
+  disposition: 'YES'
+  evidence: [validation/validate_ynm.py, tests/, state/releases/1.4.0/sanitization-report.yaml]
+- name: 1.4.0 affirmative evidence discipline
+  disposition: 'NO'
+  evidence: [evaluations/1.4/results/holdout/benchmark-summary.yaml, state/releases/1.4.0/findings.yaml]
+- name: 1.4.0 empirical effectiveness
+  disposition: 'NO'
+  evidence: [evaluations/1.4/results/summary.md, evaluations/1.4/results/holdout/benchmark-summary.yaml]
+- name: 1.4.0 execution cost
+  disposition: 'NO'
+  evidence: [evaluations/1.4/results/holdout/benchmark-summary.yaml]
+- name: 1.4.0 activation
+  disposition: 'MAYBE'
+  evidence: [evaluations/1.4/results/activation-observability.yaml, evaluations/1.4/results/trigger-summary.yaml]
+- name: 1.4.0 optional acceleration
+  disposition: 'MAYBE'
+  evidence: [evaluations/1.4/capability-discovery.yaml]
+- name: 1.4.0 cross-model replication
+  disposition: 'NO'
+  evidence: [evaluations/1.4/results/holdout/benchmark-summary.yaml]
+- name: independent implementation interoperability
+  disposition: 'MAYBE'
+  evidence: [state/releases/1.4.0/findings.yaml, VALIDATION.md]
+- name: YNM-BRP-1 bounded usability
+  disposition: 'NO'
+  evidence: [state/releases/1.4.0/bounded-final-assessment.yaml, evaluations/brp-1/results/summary.md]

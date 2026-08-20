@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-016-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-016
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:36:25.686518Z'
+elapsed_seconds: 29.629
+input_tokens: 63872
+output_tokens: 959
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The workspace is empty, so I can\u2019t infer the utility\u2019s exact\
+  \ job. If it\u2019s the Y/N/M-style review tool implied by the folder name, I\u2019\
+  d consider:\n\n- **Verity** \u2014 evidence-focused and concise.\n- **Triage** \u2014\
+  \ emphasizes sorting decisions and uncertainty.\n- **Proposition** \u2014 fits claim-by-claim\
+  \ assessment.\n- **SignalCheck** \u2014 clear, practical utility feel.\n- **ClearMark**\
+  \ \u2014 suggests explicit, traceable conclusions.\n- **Verdict Loop** \u2014 communicates\
+  \ iterative review.\n- **Evidence Ledger** \u2014 stronger audit/record-keeping\
+  \ angle.\n- **Converge** \u2014 emphasizes reaching a justified stopping point.\n\
+  \nMy favorite: **Verity** \u2014 distinctive, professional, and broader than a literal\
+  \ \u201Cyes/no/maybe\u201D name."
+error: Reading additional input from stdin...

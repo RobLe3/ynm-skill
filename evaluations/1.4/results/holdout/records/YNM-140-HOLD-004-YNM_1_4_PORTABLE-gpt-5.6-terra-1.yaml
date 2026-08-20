@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-004-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-004
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:48:25.658711Z'
+elapsed_seconds: 36.219
+input_tokens: 83980
+output_tokens: 1483
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Disposition: **MAYBE \u2014 not verified** (`CONFLICTING_EVIDENCE` /\
+  \ insufficient direct evidence).\n\nEvidence observed:\n\n- [`PROJECT.md`](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ states that a README claims encryption is always enabled, while `config.yaml`\
+  \ allows a plaintext fallback.\n\nThis is a material conflict with the claim: if\
+  \ that setting is effective, encryption is not always enabled.\n\nEvidence boundary:\n\
+  \n- The workspace contains only `PROJECT.md`; neither the referenced README nor\
+  \ `config.yaml` is present.\n- No application code, deployment configuration, tests,\
+  \ runtime observations, or repository history were available to establish whether\
+  \ the fallback exists, is enabled in production, or is reachable.\n- Therefore I\
+  \ cannot conclusively state the claim is false for the actual system\u2014but it\
+  \ is not supportable from the available evidence.\n\nReview was read-only and stopped\
+  \ because the available evidence is exhausted."
+error: Reading additional input from stdin...

@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-006-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-006
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:22:21.449641Z'
+elapsed_seconds: 52.653
+input_tokens: 140903
+output_tokens: 1860
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Disposition Loop completed and converged.\n\n- Scope reviewed: Entire\
+  \ project directory\n- Evidence: Directory is empty; no Git repository, findings,\
+  \ YNM state, lifecycle events, authority records, or change records\n- Execution\
+  \ status: `COMPLETED`\n- Findings/dispositions: None\u2014absence of submissions\
+  \ does not warrant inventing a `YES`, `NO`, or `MAYBE`\n- Reconciliation: No transitions\
+  \ to apply, reject, merge, reopen, supersede, or escalate\n- Unreviewed scope: None\
+  \ among available artifacts\n- Persistence: Disabled; no files changed\n- Stop reason:\
+  \ `NO_SUBMITTED_TRANSITIONS`\n- Rerun condition: New findings, lifecycle events,\
+  \ transition requests, authority records, or material project changes arrive\n\n\
+  Run receipt: `CONVERGED_REVIEW`, one iteration, full available-scope coverage, zero\
+  \ findings created or updated, zero dispositions changed. Longitudinal history was\
+  \ not persisted because the invocation was read-only and no project state exists."
+error: Reading additional input from stdin...

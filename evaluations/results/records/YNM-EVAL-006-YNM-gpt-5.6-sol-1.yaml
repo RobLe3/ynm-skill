@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-006-YNM-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-006
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:39:22.497989Z'
+elapsed_seconds: 65.99
+input_tokens: 167015
+output_tokens: 2503
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Disposition: **NO \u2014 contradicted.**\n\nThe policy claims unauthenticated\
+  \ requests are denied in [SECURITY.md](<<EVALUATION_PROJECT>/SECURITY.md:3>). However,\
+  \ [deny_by_default.py](<<EVALUATION_PROJECT>/deny_by_default.py:2>) returns `True`\
+  \ when `user is None`.\n\nRuntime verification confirmed:\n\n```text\nunauthenticated/arbitrary:\
+  \ True\nauthenticated/allowed:     True\nauthenticated/denied:      False\n```\n\
+  \nBecause `True` represents authorization for authenticated users, the unauthenticated\
+  \ branch grants access instead of denying it. This is a potential authentication\
+  \ bypass wherever this function controls access. Actual exploitability remains unverified\
+  \ because no callers or deployment artifacts are present.\n\nRun receipt:\n\n- Status:\
+  \ `COMPLETED`\n- Finding: Security policy contradicted by implementation\n- Reviewed:\
+  \ Both project files and representative runtime behavior\n- Unreviewed: External\
+  \ callers, deployment, and production configuration\n- Converged: Yes; another immediate\
+  \ pass has no expected information gain\n- Persistence: None; read-only review,\
+  \ no files changed"
+error: Reading additional input from stdin...

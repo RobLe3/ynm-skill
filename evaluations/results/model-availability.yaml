@@ -1,0 +1,38 @@
+models:
+- provider: OpenAI
+  model: gpt-5.6-sol
+  role: evaluated_executor
+  status: AVAILABLE
+  checked_at: '2026-08-20T08:12:32.042177Z'
+  client: codex-cli 0.147.0
+  error: ''
+- provider: OpenAI
+  model: gpt-5.4-mini-2026-03-17
+  role: evaluated_executor
+  status: UNAVAILABLE
+  checked_at: '2026-08-20T08:12:38.417645Z'
+  client: codex-cli 0.147.0
+  error: '{"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The
+    ''gpt-5.4-mini-2026-03-17'' model is not supported when using Codex with a ChatGPT
+    account."}}'
+- provider: OpenAI
+  model: gpt-5.6-terra
+  role: evaluated_executor
+  status: AVAILABLE
+  checked_at: '2026-08-20T08:12:43.099698Z'
+  client: codex-cli 0.147.0
+  error: ''
+- provider: OpenAI
+  model: gpt-5.6-luna
+  role: evaluated_executor
+  status: AVAILABLE
+  checked_at: '2026-08-20T08:12:50.439910Z'
+  client: codex-cli 0.147.0
+  error: ''
+- provider: OpenAI
+  model: gpt-5.4
+  role: evaluated_executor
+  status: AVAILABLE
+  checked_at: '2026-08-20T08:12:57.238640Z'
+  client: codex-cli 0.147.0
+  error: ''

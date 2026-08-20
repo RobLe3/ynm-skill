@@ -1,0 +1,45 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-003-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-003
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:43:39.720683Z'
+elapsed_seconds: 69.902
+input_tokens: 161011
+output_tokens: 2493
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Verdict\n\n**Production-readiness approval: NO.**\n\nThe supplied\
+  \ workspace does not contain sufficient evidence to approve a production release.\
+  \ This means \u201Cnot demonstrated ready,\u201D not \u201Cproven defective.\u201D\
+  \n\n### Findings\n\n| Proposition | Disposition | Evidence |\n|---|---|---|\n| Available\
+  \ evidence supports production readiness | **NO** | The sole project document explicitly\
+  \ says production rollout, monitoring, and recovery evidence does not exist ([PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)).\
+  \ |\n| Unit and integration tests pass | **MAYBE** | The document asserts this,\
+  \ but no tests, source, CI results, logs, revision identity, or reproducible command\
+  \ were supplied. |\n| Rollout readiness is evidenced | **NO** | Explicitly contradicted\
+  \ by PROJECT.md and confirmed by a complete search of the one-file workspace. |\n\
+  | Monitoring readiness is evidenced | **NO** | Same bounded evidence. |\n| Recovery\
+  \ readiness is evidenced | **NO** | Same bounded evidence. |\n| Security, configuration,\
+  \ dependency, and capacity readiness are established | **MAYBE** | No relevant artifacts\
+  \ or runtime evidence are available. Absence does not prove failure. |\n\n### Evidence\
+  \ boundary\n\nReviewed: the complete workspace\u2014one regular file, [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:1).\n\
+  \nUnavailable and therefore unreviewed: implementation, test suite and results,\
+  \ Git history/revision, CI/CD, deployment manifests, environment configuration,\
+  \ dependency inventory, security analysis, runtime observations, SLOs, alerting,\
+  \ dashboards, rollout history, backups, restore tests, incident procedures, and\
+  \ rollback evidence.\n\nNo commands capable of validating the test claim were present.\
+  \ No files were changed.\n\n### Readiness gate\n\nBefore approval, obtain at minimum:\n\
+  \n- Reproducible test results tied to the intended release revision.\n- A validated\
+  \ deployment and rollback procedure.\n- Monitoring, alerting, and operational ownership\
+  \ evidence.\n- Backup/recovery procedures with a successful restore exercise.\n\
+  - Security, dependency, configuration, and capacity checks appropriate to the system.\n\
+  \n**Run receipt:** YNM-2 SPECIALIZE, NORMAL/PORTABLE, read-only; execution partial\
+  \ because essential project and runtime evidence is unavailable; converged for the\
+  \ supplied one-file scope, not for the underlying system\u2019s actual readiness."
+error: Reading additional input from stdin...

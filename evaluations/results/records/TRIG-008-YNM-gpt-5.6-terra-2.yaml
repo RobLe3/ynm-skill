@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-008
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:34:14.637791Z'
+elapsed_seconds: 53.133
+input_tokens: 243849
+output_tokens: 2095
+tool_calls: 18
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Initialization is blocked by the workspace\u2019s read-only filesystem.\n\
+  \nDiscovery found an empty, non-Git project root with no existing documentation\
+  \ or YNM state. The intended minimal scaffold is `.ynm/` with config, project context,\
+  \ findings, events, and receipts; none was written.\n\nBootstrap receipt: `YNM-BOOT-859A10B5CDAE`\
+  \  \nStatus: `BLOCKED` \u2014 mutation authorization was requested, but filesystem\
+  \ writes are unavailable.  \nPersistent state: `STATELESS`  \nUnresolved: enable\
+  \ write access, then rerun initialization."
+error: Reading additional input from stdin...

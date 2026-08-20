@@ -1,0 +1,25 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-018-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-018
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:50:22.614742Z'
+elapsed_seconds: 41.579
+input_tokens: 100892
+output_tokens: 1687
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "**Disposition: MAYBE \u2014 feature X\u2019s current implementation status\
+  \ is unresolved.**\n\nEvidence observed:\n\n- The only project artifact, [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3),\
+  \ says \u201CCURRENT\u201D considers feature X implemented, while \u201CHISTORY\u201D\
+  \ says it was absent last month.\n- The accessible workspace contains no source,\
+  \ tests, configuration, release artifacts, or VCS history\u2014only that document.\n\
+  \nSo I cannot support the prior claim that X is absent now, nor verify the current\
+  \ claim that it is implemented. The historical statement is not evidence of the\
+  \ present state, and the current statement is uncorroborated."
+error: Reading additional input from stdin...

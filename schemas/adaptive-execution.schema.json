@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/RobLe3/ynm-skill/schemas/adaptive-execution.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mode", "initial_level", "maximum_level_reached", "budget", "early_stop"],
+  "properties": {
+    "mode": {"enum": ["PORTABLE", "ACCELERATED"]},
+    "initial_level": {"enum": ["YNM-0", "YNM-1", "YNM-2", "YNM-3"]},
+    "maximum_level_reached": {"enum": ["YNM-0", "YNM-1", "YNM-2", "YNM-3"]},
+    "budget": {"enum": ["LIGHT", "NORMAL", "THOROUGH"]},
+    "specialists_invoked": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "evidence_items_acquired": {"type": "integer", "minimum": 0},
+    "evidence_expansions": {"type": "integer", "minimum": 0},
+    "rechecks": {"type": "integer", "minimum": 0},
+    "adversarial_review_used": {"type": "boolean"},
+    "early_stop": {"type": "boolean"},
+    "early_stop_reason": {"type": ["string", "null"]},
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {"oneOf": [{"type": "integer", "minimum": 0}, {"type": "number", "minimum": 0}, {"const": "UNAVAILABLE"}]}
+    }
+  }
+}

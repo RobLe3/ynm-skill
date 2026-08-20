@@ -1,0 +1,56 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-012-YNM_BRP_1-gpt-5.6-sol-1
+scenario_id: BRP-012
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:33:28.645305Z'
+elapsed_seconds: 80.42
+input_tokens: 156041
+output_tokens: 2838
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## YNM-BRP-1 disposition\n\n**Primary proposition:** \u201CPassing this\
+  \ repository\u2019s own checks independently validates the methodology.\u201D\n\n\
+  **Disposition: NO.**\n\n| ID | Explicit proposition | Disposition | Evidence and\
+  \ interpretation |\n|---|---|---:|---|\n| P1 | Passing the repository\u2019s maintainer-operated\
+  \ checks constitutes independent validation of the methodology. | **NO** | The repository\
+  \ explicitly characterizes the checks as maintainer-operated and states that no\
+  \ independent implementation report is included ([README.md](<EVALUATION_PROJECT>/README.md:1)).\
+  \ Maintainer self-checks and independent validation have different evidence ancestry.\
+  \ |\n| P2 | The repository contains independently sourced validation evidence. |\
+  \ **NO** | The complete repository surface contains only `README.md`; no independent\
+  \ report, external implementation, or separately produced evaluation is present.\
+  \ |\n| P3 | The claimed schema and unit-check result can be reproduced from this\
+  \ repository alone. | **NO** | No schemas, tests, implementation, commands, CI configuration,\
+  \ or captured results are included. There is nothing executable with which to reproduce\
+  \ the stated pass. |\n| P4 | The schema and unit checks actually passed. | **MAYBE**\
+  \ | The README asserts that they passed, but the check definitions, execution records,\
+  \ environment, revision, and outputs are unavailable. Reason: `REPRODUCTION_REQUIRED`.\
+  \ |\n| P5 | The methodology itself is valid or invalid. | **MAYBE** | Failure to\
+  \ establish independent validation does not establish methodological invalidity.\
+  \ The repository contains neither the methodology nor enough external evaluation\
+  \ to decide that broader proposition. Reason: `EVIDENCE_REQUIRED`. |\n\n### Reviewed\
+  \ scope\n\n- Entire repository artifact set: one 99-byte `README.md`\n- File inventory\
+  \ and absence of hidden project material within the inspected tree\n- README SHA-256:\
+  \ `7cde82e480aef1bce4267113e4cff643e2db7ae982e152c65709a27298e9e7c3`\n- The distinction\
+  \ between internal validation and independent evidence under YNM-BRP-1\n\n### Unreviewed\
+  \ or unavailable scope\n\n- Actual schema and unit checks\n- Check source, fixtures,\
+  \ criteria, outputs, and runtime environment\n- CI history or immutable run records\n\
+  - Methodology specification and implementation\n- Independent implementations or\
+  \ third-party reports\n- Repository history; this directory is not a Git repository\n\
+  - Production behavior, interoperability, cross-model effectiveness, and external\
+  \ adoption\n\n### Validity boundary\n\nThe **NO** applies narrowly to the claim\
+  \ that this repository\u2019s own reported checks provide **independent methodological\
+  \ validation**. Such checks could support bounded internal consistency or implementation-conformance\
+  \ claims if their definitions and results were supplied, but they cannot by themselves\
+  \ establish independence, general methodological adequacy, or interoperability.\
+  \ No conclusion is reached about whether the methodology is ultimately valid.\n\n\
+  **Run receipt:** YNM-1 targeted evaluation; `COMPLETED`, bounded convergence reached\
+  \ for the primary proposition; read-only advisory authority; no files modified;\
+  \ evidence snapshot dated 2026-08-20."
+error: Reading additional input from stdin...

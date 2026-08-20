@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-019-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-019
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:35:06.931109Z'
+elapsed_seconds: 21.701
+input_tokens: 47871
+output_tokens: 693
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "There are no files here to review\u2014the workspace directory is empty\
+  \ and isn\u2019t a Git repository.\n\nPlease open or upload the repository, then\
+  \ I can identify exactly which files to delete before publishing."
+error: Reading additional input from stdin...

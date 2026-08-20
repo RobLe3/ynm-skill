@@ -6,11 +6,13 @@ YNM uses Semantic Versioning for its public contracts and operational behavior.
 - **Minor:** backward-compatible methods, optional contracts, focal-loop extensions, or operational capabilities.
 - **Patch:** corrections and clarifications that do not add behavior or alter compatible records.
 
-## Current candidate
+## Current release
 
-`1.3.0` is a backwards-compatible release-candidate set of hardening and packaging work. It adds explicit iteration-stop reasons, stricter project-integration security boundaries, release-integrity evidence, and package-construction determinism.
+`1.4.0` is the published Research/Experimental release. It contains adaptive execution, stronger evidence-sufficiency rules, validity boundaries, optional acceleration interfaces, and the frozen 1.4 and YNM-BRP-1 evaluation evidence.
 
-The existing core semantics, run-receipt contract shape, and focal-loop ownership model are preserved.
+A **Stable Release** represents the conventional publication channel. A **Research Release** makes a reproducible experimental implementation available with its measured strengths and limitations. A **Development Candidate** is not yet published. Research Release status is not production certification or evidence of universal effectiveness.
+
+Active development is paused after the bounded-usability evaluation. `v1.4.0` is the latest research release; `v1.2.0` remains the previous stable release.
 
 ## Historical baseline
 

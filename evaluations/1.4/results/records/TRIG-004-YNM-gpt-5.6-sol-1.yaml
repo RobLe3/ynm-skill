@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-004
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:18:24.931292Z'
+elapsed_seconds: 62.622
+input_tokens: 165535
+output_tokens: 2450
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Adoption Loop\n\n**Disposition: MAYBE \u2014 `EVIDENCE_REQUIRED`**\
+  \  \n**Execution: BLOCKED**\n\nProposition: \u201CIntended users can successfully\
+  \ discover, acquire, configure, and operate this project.\u201D\n\nThe workspace\
+  \ is empty: no project artifacts, audience definition, documentation, onboarding\
+  \ path, executable behavior, repository metadata, or prior YNM state. Missing evidence\
+  \ cannot support either YES or NO, and users must not be invented.\n\nTo continue,\
+  \ provide at least the project artifact plus its intended audience or primary adoption\
+  \ journey.\n\nRun receipt:\n\n- Strategy: `YNM-2 SPECIALIZE`, LIGHT, PORTABLE, read-only\n\
+  - Phases: `ANALYSIS \u2192 ITERATION \u2192 DELIVERY \u2192 TERMINATED`\n- Reviewed:\
+  \ complete workspace inventory\n- Unreviewed: all adoption journeys\n- Terminal\
+  \ outcome: `BLOCKED_REVIEW`\n- Converged: false\n- Persistence: none; no files modified\n\
+  - Revisit condition: project or adoption evidence becomes available"
+error: Reading additional input from stdin...

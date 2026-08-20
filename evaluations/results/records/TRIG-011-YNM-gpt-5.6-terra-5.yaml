@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-011
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:35:49.363000Z'
+elapsed_seconds: 15.162
+input_tokens: 30232
+output_tokens: 389
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "YNM is a structured way to review a project without jumping straight\
+  \ to changes.\n\nIt works by turning questions into clear propositions\u2014for\
+  \ example, \u201CIs the system secure enough for its intended use?\u201D\u2014and\
+  \ judging each one as:\n\n- **YES**: evidence supports it\n- **NO**: evidence contradicts\
+  \ it\n- **MAYBE**: there isn\u2019t enough reliable evidence yet\n\nA YNM review\
+  \ looks through several lenses, such as architecture, implementation, adoption,\
+  \ and maintenance. Each lens gathers evidence independently, then the results are\
+  \ reconciled so contradictions and unknowns don\u2019t get hidden.\n\nThe basic\
+  \ flow is:\n\n1. Decide what is being reviewed and what authority the reviewer has.\n\
+  2. Inspect the relevant evidence, normally without modifying anything.\n3. Record\
+  \ supported, contradicted, and unresolved propositions.\n4. Revisit only if another\
+  \ pass is likely to reveal something meaningfully new.\n5. Deliver a clear summary\
+  \ of what was checked, what was not, and what remains uncertain.\n\nThe important\
+  \ distinction: a **NO** is not automatically a command to fix something, and a **YES**\
+  \ is not approval to deploy. They are evidence-based conclusions; people still decide\
+  \ priorities and authorize actions."
+error: Reading additional input from stdin...

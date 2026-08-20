@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-3c66d2cb1a77
+scenario_id: YNM-140-HOLD-007
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies the UI's direct database import as a bypass of the
+  declared UI-to-service boundary and traces that finding to PROJECT.md:3. It remained
+  read-only and clearly bounded the review lifecycle. However, the independently verified
+  implementation-conformance MAYBE was not required by the ground truth and unnecessarily
+  weakens an otherwise supported documented-state conclusion.

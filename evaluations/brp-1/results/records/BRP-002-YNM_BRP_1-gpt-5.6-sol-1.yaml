@@ -1,0 +1,41 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-002-YNM_BRP_1-gpt-5.6-sol-1
+scenario_id: BRP-002
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:31:36.039529Z'
+elapsed_seconds: 100.047
+input_tokens: 222231
+output_tokens: 3882
+tool_calls: 28
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## YNM-BRP-1 advisory disposition\n\n**Overall: NO \u2014 debug mode\
+  \ is not disabled in the reviewed repository configuration.**\n\n| ID | Explicit\
+  \ proposition | Disposition | Evidence |\n|---|---|---|---|\n| P1 | Production configuration\
+  \ is required to disable debug mode. | **YES** | [README.md](<EVALUATION_PROJECT>/README.md:1):\
+  \ \u201CProduction configuration requires debug mode disabled.\u201D |\n| P2 | The\
+  \ repository configuration disables debug mode. | **NO** | [config.yaml](<EVALUATION_PROJECT>/config.yaml:1)\
+  \ contains `debug: true`, directly contradicting P2. |\n| P3 | The repository configuration\
+  \ satisfies the declared production requirement. | **NO** | P1 requires disabled;\
+  \ P2\u2019s configuration explicitly enables it. |\n| P4 | Debug mode is disabled\
+  \ in the actually deployed runtime. | **MAYBE** (`EVIDENCE_REQUIRED`) | No deployment\
+  \ artifacts, environment overrides, startup code, or runtime observations are available.\
+  \ |\n\n### Scope\n\n- **Reviewed:** Complete project file inventory: `README.md`\
+  \ and `config.yaml`; debug- and production-related content; file types, sizes, and\
+  \ SHA-256 hashes.\n- **Unreviewed/unavailable:** Deployed configuration, environment\
+  \ variables, runtime behavior, configuration precedence, CI/CD, tests, operational\
+  \ records, and version history. The directory is not a Git repository.\n- **Mutation:**\
+  \ None. Review was read-only; no state was persisted.\n\n### Validity boundary\n\
+  \nThis advisory result applies only to the two-file snapshot inspected on **2026-08-20**.\
+  \ It establishes a repository-level configuration contradiction, not deployed-runtime\
+  \ behavior. Revalidate if either file changes or runtime/deployment evidence becomes\
+  \ available.\n\n**Run receipt:** YNM-1, PORTABLE/LIGHT; Implementation and Disposition\
+  \ loops completed; outcome `CONVERGED_REVIEW`; stop reason: direct contradiction\
+  \ found and the complete available repository surface was reviewed. Human authority\
+  \ remains required for remediation or release decisions."
+error: Reading additional input from stdin...

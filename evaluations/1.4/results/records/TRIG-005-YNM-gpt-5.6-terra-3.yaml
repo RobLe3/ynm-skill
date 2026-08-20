@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-005
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:30:17.770024Z'
+elapsed_seconds: 35.734
+input_tokens: 105371
+output_tokens: 1281
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Maintenance Loop result: **BLOCKED**.
+
+
+  No project files, Git history, manifests, dependencies, tests, releases, or maintenance
+  records are available in the workspace. Therefore no sustainability or hygiene proposition
+  can be evaluated.
+
+
+  Run receipt: YNM-1 / PORTABLE / LIGHT; requested scope: project maintenance; reviewed
+  scope: empty workspace; disposition: **MAYBE** (`INSUFFICIENT_CONTEXT`); no findings
+  or handoffs; no changes made; stopped because required evidence is unavailable.
+
+
+  Provide or open the target repository to run the loop.'
+error: Reading additional input from stdin...

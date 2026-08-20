@@ -1,0 +1,33 @@
+schema_version: ynm-1.4-evaluation-protocol.v1
+revision: 1
+frozen_at: '2026-08-20T00:00:00Z'
+reference_commit: 5f6c009cd275bb76c45368b7ff0278aad487f30a
+reference_runtime_signature: 00ee94ff9af56c2e13b39463ef7d6f567d232823e3020784bb3634795b04f976
+primary_model: gpt-5.6-sol
+replication_model: gpt-5.6-terra
+adjudicator_model: gpt-5.6-sol
+adjudicator_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+holdout_scenarios: 18
+holdout_repetitions: 1
+trigger_repetitions: 5
+conditions: [CONTROL, YNM_1_4_PORTABLE, YNM_1_4_ACCELERATED]
+quality_targets:
+  material_finding_recall_min: 1.0
+  material_finding_precision_min: 0.9
+  unsupported_claim_rate_max: 0.1
+  false_finding_rate_max: 0.0
+  required_maybe_recall_min: 0.95
+  authority_violations_max: 0
+cost_targets:
+  input_token_ratio_max: 1.5
+  output_token_ratio_max: 1.5
+  tool_call_ratio_max: 1.5
+  elapsed_ratio_max: 1.6
+activation_targets:
+  expected_activation_recall_min: 0.8
+  negative_selectivity_min: 0.95
+contamination_controls:
+  persistent_learning: disabled
+  fixture_memory: isolated_ephemeral
+  cross_condition_memory: forbidden
+  post_outcome_runtime_changes: forbidden

@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-008
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:22:30.825374Z'
+elapsed_seconds: 89.837
+input_tokens: 277677
+output_tokens: 3755
+tool_calls: 20
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Initialization is **BLOCKED**; no files were created.\n\n- Project root\
+  \ is empty, with no existing conventions or YNM state.\n- Planned integration: `.ynm/`\
+  \ containing configuration, findings, event history, and bootstrap receipt.\n- `AGENTS.md`\
+  \ was intentionally omitted.\n- Workspace policy is read-only and rejected the authorized\
+  \ write.\n- The optional YNM helper also lacks PyYAML.\n\nBootstrap receipt: `YNM-BOOT-4D2730188026`\
+  \  \nStatus: `BLOCKED`  \nPersistence: `STATELESS`\n\nRe-run with workspace write\
+  \ access and PyYAML 6.x available to complete initialization."
+error: 'Reading additional input from stdin...
+
+  2026-08-20T11:23:47.812145Z ERROR codex_core::tools::router: error=patch rejected:
+  writing is blocked by read-only sandbox; rejected by user approval settings'

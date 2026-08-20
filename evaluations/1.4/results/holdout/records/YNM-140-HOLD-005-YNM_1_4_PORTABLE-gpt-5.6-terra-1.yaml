@@ -1,0 +1,25 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-005-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-005
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:48:37.731290Z'
+elapsed_seconds: 41.718
+input_tokens: 98440
+output_tokens: 1208
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'The operational timeout is **60 seconds**: the available project record
+  says implementation and tests use 60 seconds. [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)
+
+
+  Evidence boundary: this is the sole repository file; no implementation or test files
+  are available to independently verify it. The specification reportedly says **30
+  seconds**, so the authoritative intended timeout remains **MAYBE** pending spec/owner
+  reconciliation.'
+error: Reading additional input from stdin...

@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-006-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-006
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:32:58.342525Z'
+elapsed_seconds: 39.895
+input_tokens: 119258
+output_tokens: 1490
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Disposition Loop: **NOT_APPLICABLE**\n\nNo canonical findings, lifecycle\
+  \ events, authority records, or prior YNM state exist in the workspace, so there\
+  \ is no meaningful proposition or transition to reconcile. No files were changed.\n\
+  \nRun receipt:\n\n- Execution status: `NOT_APPLICABLE`\n- Terminal outcome: `NOT_APPLICABLE_REVIEW`\n\
+  - Reviewed scope: workspace finding lifecycle / YNM state\n- Unreviewed scope: any\
+  \ findings or evidence not provided\n- Findings created or updated: none\n- Dispositions\
+  \ changed: none\n- Converged: yes \u2014 no pending inputs or credible immediate\
+  \ information gain\n- Persistence: stateless; no write authorization requested\n\
+  - Revisit condition: submit findings, evidence, transition requests, or existing\
+  \ YNM state"
+error: Reading additional input from stdin...

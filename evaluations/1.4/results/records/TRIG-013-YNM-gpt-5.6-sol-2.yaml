@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-013-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-013
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:25:39.440117Z'
+elapsed_seconds: 26.362
+input_tokens: 81824
+output_tokens: 787
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I can\u2019t summarize it because the workspace is empty\u2014there\u2019\
+  s no README or Git repository present.\n\nPlease attach the README, paste its contents,\
+  \ or place it in the workspace, and I\u2019ll summarize it."
+error: Reading additional input from stdin...

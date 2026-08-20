@@ -1,0 +1,45 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-002
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:19:25.266006Z'
+elapsed_seconds: 47.779
+input_tokens: 97654
+output_tokens: 1794
+tool_calls: 34
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Architecture Loop result\n\n**Disposition: MAYBE \u2014 unresolved**\
+  \  \n**Execution status: BLOCKED**\n\nProposition: *The project\u2019s intended\
+  \ structure is internally coherent and consistent with its declared architecture.*\n\
+  \nThe workspace is empty: it contains no source files, documentation, configuration,\
+  \ architecture records, version-control metadata, or prior YNM state. Therefore,\
+  \ there is no declared architecture or realized structure to evaluate. This is absence\
+  \ of evidence, not evidence of architectural failure.\n\n### Finding ARCH-001\n\n\
+  - **Observation:** Recursive inventory found zero project artifacts; the directory\
+  \ is not a Git repository.\n- **Interpretation:** Boundaries, dependencies, interfaces,\
+  \ data flow, constraints, and architectural drift cannot be assessed.\n- **Disposition:**\
+  \ `MAYBE`\n- **Reason:** `EVIDENCE_REQUIRED`\n- **Required evidence:** At least\
+  \ a project description, architecture declaration, decision record, source tree,\
+  \ configuration, or comparable structural artifact.\n- **Revisit condition:** Rerun\
+  \ when project artifacts or declared intent are present.\n\n### Coverage and handoffs\n\
+  \n- Reviewed: workspace inventory, repository status, prior-state availability.\n\
+  - Unreviewed: all architectural propositions requiring project artifacts.\n- Other\
+  \ YNM loops: excluded because only the Architecture Loop was requested.\n- Persistence:\
+  \ disabled; no files were created or changed.\n- Convergence: false\u2014the review\
+  \ stopped at an evidence boundary, not because architectural evaluation converged.\n\
+  - Authorization: no remediation or architectural change is authorized or recommended.\n\
+  \n### Run receipt\n\n```yaml\nschema_version: ynm-run-receipt.v2\nrun_id: ynm-architecture-20260820T081953Z\n\
+  generation: 1\nexecution_strategy: CONSTRAINED\nloops_requested: [Architecture]\n\
+  loops_executed: [Architecture]\nphase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\n\
+  stage_reached: DELIVERY\nexecution_status: BLOCKED\nterminal_outcome: BLOCKED_REVIEW\n\
+  halt_reason: EVIDENCE_LIMIT\niteration_count: 1\nconverged: false\nfindings_created:\
+  \ [ARCH-001]\ndispositions_changed: []\nunresolved_findings: [ARCH-001]\nnext_revisit_condition:\
+  \ Project artifacts or declared architectural intent become available\npersistence_status:\
+  \ NOT_REQUESTED\n```"
+error: Reading additional input from stdin...

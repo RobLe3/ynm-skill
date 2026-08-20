@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-016-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-016
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:50:05.807596Z'
+elapsed_seconds: 34.155
+input_tokens: 84143
+output_tokens: 1273
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Scope risk: **high**.\n\nThe supplied summary says authentication changes\
+  \ from default-deny to default-allow. That is a security-sensitive behavioral reversal\
+  \ with potentially broad impact: any unconfigured, failed, or newly introduced auth\
+  \ path may become permitted.\n\nFinding: docs are explicitly unchanged, so user/operator\
+  \ expectations and deployment guidance may now conflict with behavior. This is a\
+  \ concrete scope gap in the stated change.\n\nEvidence boundary: the workspace contains\
+  \ only [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:1). No diff, source, tests,\
+  \ configuration, history, or documentation corpus was available. Therefore:\n\n\
+  - **Supported:** the summary describes a high-impact auth-default change and unchanged\
+  \ docs.\n- **MAYBE \u2014 insufficient context:** exact affected endpoints, fallback\
+  \ behavior, test coverage, migration/rollout controls, and whether the broadened\
+  \ access is intentional.\n\nRecommended gate before merge: inspect the actual diff\
+  \ and auth call sites; require tests for absent/invalid configuration and unauthenticated\
+  \ requests; update security and configuration documentation; obtain explicit security-owner\
+  \ approval."
+error: Reading additional input from stdin...

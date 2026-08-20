@@ -1,0 +1,290 @@
+seed: ynm-1.4-adaptive-holdout-revision-1
+samples:
+  S-033b65b3e389:
+    run_id: YNM-140-HOLD-014-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-05280617f829:
+    run_id: YNM-140-HOLD-008-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-07aba43ff851:
+    run_id: YNM-140-HOLD-016-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-0ecb68b85b51:
+    run_id: YNM-140-HOLD-018-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-106a08e3da84:
+    run_id: YNM-140-HOLD-003-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-1343426da69e:
+    run_id: YNM-140-HOLD-006-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-159ec3b047ce:
+    run_id: YNM-140-HOLD-004-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-2181fc2faa1b:
+    run_id: YNM-140-HOLD-018-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-23fb4e8f12a6:
+    run_id: YNM-140-HOLD-017-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-2470a65eb67d:
+    run_id: YNM-140-HOLD-008-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-2569b4a83299:
+    run_id: YNM-140-HOLD-001-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-26bf9f07ddf7:
+    run_id: YNM-140-HOLD-005-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-30532b13e4ac:
+    run_id: YNM-140-HOLD-006-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-30a896160f3d:
+    run_id: YNM-140-HOLD-012-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-312293a09d61:
+    run_id: YNM-140-HOLD-016-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-31a6ebc3d2da:
+    run_id: YNM-140-HOLD-002-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-31dc5aaf2b91:
+    run_id: YNM-140-HOLD-005-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-35a47bda3a41:
+    run_id: YNM-140-HOLD-010-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-36ed58d49dff:
+    run_id: YNM-140-HOLD-002-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-3c66d2cb1a77:
+    run_id: YNM-140-HOLD-007-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-3e70d4237235:
+    run_id: YNM-140-HOLD-011-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-41489580d5a8:
+    run_id: YNM-140-HOLD-001-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-4242b385a89c:
+    run_id: YNM-140-HOLD-004-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-47abc5724b2e:
+    run_id: YNM-140-HOLD-013-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-48b1c051a68c:
+    run_id: YNM-140-HOLD-017-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-4afec756ddfa:
+    run_id: YNM-140-HOLD-005-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-4ca9b9843c03:
+    run_id: YNM-140-HOLD-003-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-4e5643228401:
+    run_id: YNM-140-HOLD-006-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-5ddefa2eb591:
+    run_id: YNM-140-HOLD-013-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-71cbcf9f9d23:
+    run_id: YNM-140-HOLD-009-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-759437af0b95:
+    run_id: YNM-140-HOLD-015-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-75ef82f5a8d0:
+    run_id: YNM-140-HOLD-002-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-75f0e9e0d3e2:
+    run_id: YNM-140-HOLD-004-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-7d1a74665b8b:
+    run_id: YNM-140-HOLD-014-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-80e526b9f973:
+    run_id: YNM-140-HOLD-010-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-82ff605b5292:
+    run_id: YNM-140-HOLD-009-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-8883f33f9ec8:
+    run_id: YNM-140-HOLD-010-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-8d1149aedf4c:
+    run_id: YNM-140-HOLD-011-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-94f083b45c65:
+    run_id: YNM-140-HOLD-007-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-9625281b3d0b:
+    run_id: YNM-140-HOLD-008-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-9b934861fe8d:
+    run_id: YNM-140-HOLD-002-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-9badaf3c67ab:
+    run_id: YNM-140-HOLD-008-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-9f9df30e29e5:
+    run_id: YNM-140-HOLD-011-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-a0b9092cc9c8:
+    run_id: YNM-140-HOLD-003-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-a3aee404f3c6:
+    run_id: YNM-140-HOLD-016-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-a8b75bf0d6ef:
+    run_id: YNM-140-HOLD-015-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-ab56a1eae962:
+    run_id: YNM-140-HOLD-017-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-ae04af48a702:
+    run_id: YNM-140-HOLD-003-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-b004df6fc6ba:
+    run_id: YNM-140-HOLD-001-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-b097051d9eba:
+    run_id: YNM-140-HOLD-017-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-b195fd0cc52e:
+    run_id: YNM-140-HOLD-009-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-b546355d6833:
+    run_id: YNM-140-HOLD-009-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-b93308b8b231:
+    run_id: YNM-140-HOLD-012-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-c025ddc9505f:
+    run_id: YNM-140-HOLD-012-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-c073f2cd8b79:
+    run_id: YNM-140-HOLD-005-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-c72e831707ea:
+    run_id: YNM-140-HOLD-001-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-c73028c7cf32:
+    run_id: YNM-140-HOLD-014-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-c833b0a4246d:
+    run_id: YNM-140-HOLD-007-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-cb0e9df18af8:
+    run_id: YNM-140-HOLD-015-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-cd8b021b3440:
+    run_id: YNM-140-HOLD-015-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-d43d674abff2:
+    run_id: YNM-140-HOLD-018-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-d47d8db7a5ea:
+    run_id: YNM-140-HOLD-012-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-dfd1b6acac0b:
+    run_id: YNM-140-HOLD-013-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-e42fad86741c:
+    run_id: YNM-140-HOLD-006-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-e6173e45a02c:
+    run_id: YNM-140-HOLD-010-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-e7f47091e524:
+    run_id: YNM-140-HOLD-016-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-e97a5d035655:
+    run_id: YNM-140-HOLD-018-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-ee17f5afd5f4:
+    run_id: YNM-140-HOLD-004-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-ee4aab5a2b1e:
+    run_id: YNM-140-HOLD-011-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-sol
+  S-ee69364c72a4:
+    run_id: YNM-140-HOLD-007-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra
+  S-eeeb62d3b206:
+    run_id: YNM-140-HOLD-013-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-fdc54a3b507f:
+    run_id: YNM-140-HOLD-014-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+    condition: YNM_1_4_PORTABLE
+    model: gpt-5.6-terra

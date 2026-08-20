@@ -1,0 +1,99 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-003-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-003
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:17:33.887086Z'
+elapsed_seconds: 51.044
+input_tokens: 172475
+output_tokens: 1946
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Implementation Loop result: `NOT_APPLICABLE`.
+
+
+  The review root is empty: no repository metadata, source, executable artifacts,
+  specifications, configuration, tests, or prior YNM state were present. Therefore,
+  no implementation proposition could be evaluated and no `YES`/`NO`/`MAYBE` finding
+  was created.
+
+
+  ```yaml
+
+  schema_version: ynm-run-receipt.v2
+
+  run_id: ynm-implementation-20260820T111812Z
+
+  generation: 1
+
+  project_state: empty_review_root
+
+  execution_context: read_only_portable
+
+  execution_strategy: LIGHT
+
+  loops_requested: [Implementation]
+
+  loops_executed: [Implementation]
+
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+
+  stage_reached: DELIVERY
+
+  execution_status: NOT_APPLICABLE
+
+  terminal_outcome: NOT_APPLICABLE_REVIEW
+
+  halt_reason: NO_REALIZED_ARTIFACT_OR_DECLARED_CONTRACT
+
+  review_plan_revision: 1
+
+  iteration_count: 1
+
+  converged: true
+
+  stop_reason: COMPLETE_BOUNDED_EMPTY_SURFACE
+
+  reviewed_scope: complete contents of the supplied review root
+
+  unreviewed_scope: []
+
+  evidence_added: 1
+
+  findings_created: 0
+
+  findings_updated: 0
+
+  dispositions_changed: 0
+
+  unresolved_findings: []
+
+  unresolved_dependencies: []
+
+  material_changes: []
+
+  reopened_findings: []
+
+  resolved_findings: []
+
+  required_human_decisions: []
+
+  continuation_scope: implementation artifacts and their declared contracts
+
+  next_revisit_condition: source, procedures, tests, specifications, or configuration
+  are added
+
+  persistence_status: NOT_REQUESTED
+
+  delivery: No implementation behavior exists in the supplied scope to review.
+
+  ```
+
+
+  No files were modified.'
+error: Reading additional input from stdin...

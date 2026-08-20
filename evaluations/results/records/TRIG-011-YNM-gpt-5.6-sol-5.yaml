@@ -1,0 +1,35 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-011
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:27:37.556049Z'
+elapsed_seconds: 20.417
+input_tokens: 30250
+output_tokens: 565
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "YNM stands for **YES / NO / MAYBE**. It\u2019s a structured way to review\
+  \ a project using evidence instead of giving it a vague score.\n\nIt works like\
+  \ this:\n\n1. **Define specific questions**  \n   For example: \u201CDoes the architecture\
+  \ support the expected scale?\u201D\n\n2. **Inspect the evidence**  \n   YNM examines\
+  \ relevant code, documents, tests, processes, and project history.\n\n3. **Review\
+  \ from several angles**  \n   Depending on the project, it can assess architecture,\
+  \ implementation, adoption, maintenance, and how conflicting findings are resolved.\n\
+  \n4. **Label each conclusion**\n   - **YES** \u2014 the evidence supports the claim.\n\
+  \   - **NO** \u2014 the evidence contradicts it.\n   - **MAYBE** \u2014 there isn\u2019\
+  t enough reliable evidence yet.\n\n5. **Preserve uncertainty and disagreements**\
+  \  \n   It records what was reviewed, what wasn\u2019t, conflicting evidence, and\
+  \ why each conclusion was reached.\n\n6. **Stop when another pass won\u2019t add\
+  \ useful information**  \n   The final report explains coverage, findings, limitations,\
+  \ and sensible next steps.\n\nA crucial detail: **YES does not mean \u201Capproved,\u201D\
+  \ and NO does not automatically authorize a fix.** YNM reviews projects in read-only\
+  \ mode by default; changing the project requires separate permission.\n\nIn short,\
+  \ YNM turns \u201CIs this project in good shape?\u201D into a collection of precise,\
+  \ evidence-backed answers."
+error: Reading additional input from stdin...

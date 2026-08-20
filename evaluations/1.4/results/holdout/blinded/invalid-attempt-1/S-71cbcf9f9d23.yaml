@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-71cbcf9f9d23
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output identifies the lack of independent corroboration and directly
+  ties that finding to PROJECT.md:3, explaining the single shared evidence lineage.
+  It preserves the required uncertainty about whether the reliability target is met
+  by marking the underlying reliability claim MAYBE/unresolved. It clearly bounds
+  unavailable evidence, separates the independence conclusion from reliability, reports
+  a read-only review, and states that no files were modified.

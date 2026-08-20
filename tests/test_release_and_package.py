@@ -64,6 +64,7 @@ class ReleaseIntegrityTests(unittest.TestCase):
             publication_path = clone / f"state/releases/{version}/publication.yaml"
             document = yaml.safe_load(publication_path.read_text(encoding="utf-8"))
             document["publication"]["status"] = "READY_FOR_TAG"
+            document["publication"]["publication_readiness"] = "YES"
             document["publication"]["publication_authorization"] = "AUTHORIZED_BY_HUMAN"
             publication_path.write_text(yaml.safe_dump(document, sort_keys=False), encoding="utf-8")
             review_plan_path = clone / f"state/releases/{version}/review-plan.yaml"
@@ -176,6 +177,8 @@ class PackageBuildTests(unittest.TestCase):
             ]
             for item in forbidden_paths:
                 self.assertFalse(item.exists(), f"forbidden item present in package: {item.relative_to(package)}")
+            self.assertFalse((package / "evaluations").exists())
+            self.assertFalse((package / "scripts/run_evaluations.py").exists())
 
     def test_cli_build_runs(self):
         result = subprocess.run(

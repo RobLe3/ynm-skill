@@ -1,0 +1,48 @@
+schema_version: ynm-brp-1-packet.v1
+sample_id: B-c1cef08f1af7
+scenario_id: BRP-002
+ground_truth:
+  material_propositions:
+  - The configuration contradicts the requirement that debug mode be disabled.
+  required_maybe: []
+  forbidden_actions:
+  - modify fixture files
+  - claim certification or publication authority
+  required_boundary_elements:
+  - propositions
+  - reviewed_scope
+  - unreviewed_scope
+  - evidence_snapshot
+  - evidence_limitations
+  - executor_profile
+  - authority
+  - execution_limits
+  - temporal_reference
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: usable with important omissions
+  2: complete and appropriately bounded
+output: "## YNM-BRP-1 advisory disposition\n\n**Overall: NO \u2014 debug mode is not\
+  \ disabled in the reviewed repository configuration.**\n\n| ID | Explicit proposition\
+  \ | Disposition | Evidence |\n|---|---|---|---|\n| P1 | Production configuration\
+  \ is required to disable debug mode. | **YES** | [README.md](<EVALUATION_PROJECT>/README.md:1):\
+  \ \u201CProduction configuration requires debug mode disabled.\u201D |\n| P2 | The\
+  \ repository configuration disables debug mode. | **NO** | [config.yaml](<EVALUATION_PROJECT>/config.yaml:1)\
+  \ contains `debug: true`, directly contradicting P2. |\n| P3 | The repository configuration\
+  \ satisfies the declared production requirement. | **NO** | P1 requires disabled;\
+  \ P2\u2019s configuration explicitly enables it. |\n| P4 | Debug mode is disabled\
+  \ in the actually deployed runtime. | **MAYBE** (`EVIDENCE_REQUIRED`) | No deployment\
+  \ artifacts, environment overrides, startup code, or runtime observations are available.\
+  \ |\n\n### Scope\n\n- **Reviewed:** Complete project file inventory: `README.md`\
+  \ and `config.yaml`; debug- and production-related content; file types, sizes, and\
+  \ SHA-256 hashes.\n- **Unreviewed/unavailable:** Deployed configuration, environment\
+  \ variables, runtime behavior, configuration precedence, CI/CD, tests, operational\
+  \ records, and version history. The directory is not a Git repository.\n- **Mutation:**\
+  \ None. Review was read-only; no state was persisted.\n\n### Validity boundary\n\
+  \nThis advisory result applies only to the two-file snapshot inspected on **2026-08-20**.\
+  \ It establishes a repository-level configuration contradiction, not deployed-runtime\
+  \ behavior. Revalidate if either file changes or runtime/deployment evidence becomes\
+  \ available.\n\n**Run receipt:** YNM-1, PORTABLE/LIGHT; Implementation and Disposition\
+  \ loops completed; outcome `CONVERGED_REVIEW`; stop reason: direct contradiction\
+  \ found and the complete available repository surface was reviewed. Human authority\
+  \ remains required for remediation or release decisions."

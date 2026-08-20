@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-006-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-006
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:30:47.977622Z'
+elapsed_seconds: 36.682
+input_tokens: 104201
+output_tokens: 1373
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Disposition Loop completed: `NOT_APPLICABLE`.\n\nThe workspace is empty\u2014\
+  no project files, YNM state, findings, lifecycle events, or transition requests\
+  \ exist to reconcile. No dispositions were created or changed.\n\nRun receipt: YNM-0\
+  \ \u2192 targeted Disposition Loop; portable/read-only; converged for the available\
+  \ scope; stop reason: no submitted records."
+error: Reading additional input from stdin...

@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-016-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-016
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:34:25.397100Z'
+elapsed_seconds: 21.712
+input_tokens: 64584
+output_tokens: 699
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The workspace is empty, so I can\u2019t infer what the utility does yet.\
+  \ Share a one- or two-sentence description (or its README/source), and I\u2019ll\
+  \ suggest names that match its purpose and tone."
+error: Reading additional input from stdin...

@@ -1,0 +1,42 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-004-YNM-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-004
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:38:49.208566Z'
+elapsed_seconds: 99.902
+input_tokens: 202078
+output_tokens: 3919
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Operational readiness: **NO \u2014 not demonstrated.**\n\nThe sole project\
+  \ artifact is [RUNBOOK.md](<EVALUATION_PROJECT>/RUNBOOK.md:1). Recovery validation\
+  \ was treated as a mandatory readiness gate.\n\n| Finding | Disposition | Evidence\
+  \ |\n|---|---|---|\n| Production-like recovery has been validated | **NO** | The\
+  \ runbook explicitly says the procedure has not been exercised in a production-like\
+  \ environment ([line 3](<EVALUATION_PROJECT>/RUNBOOK.md:3)). |\n| Recovery success\
+  \ is objectively defined | **NO** | \u201CVerify record counts\u201D provides no\
+  \ expected counts, comparison source, acceptable variance, or service-health criterion.\
+  \ |\n| `restore --latest` reliably restores the intended system | **MAYBE** | No\
+  \ executable artifact, test result, environment definition, or restoration record\
+  \ is available. Reason: `REPRODUCTION_REQUIRED`. |\n| An operator can perform recovery\
+  \ safely and independently | **MAYBE** | Prerequisites, target selection, permissions,\
+  \ failure handling, rollback, escalation, ownership, RTO, and RPO are undocumented.\
+  \ Reason: `EVIDENCE_REQUIRED`. |\n\nBefore declaring readiness, an accountable owner\
+  \ should exercise the restore in a production-like environment, record objective\
+  \ before/after validation and timing, and complete the runbook\u2019s prerequisites,\
+  \ failure, rollback, and escalation paths.\n\nReview receipt:\n\n- Strategy/profile:\
+  \ `CONSTRAINED`, `BASIC`, read-only\n- Execution status: `PARTIAL`\n- Terminal outcome:\
+  \ `PARTIAL_REVIEW`\n- Reviewed: available recovery documentation\n- Unreviewed due\
+  \ to absent evidence: deployment, monitoring, alerting, backup implementation, incident\
+  \ response, security, capacity, availability, and change/release controls\n- Convergence:\
+  \ yes for the current evidence horizon; this does **not** mean the project is ready\n\
+  - Revisit condition: production-like recovery evidence or additional operational\
+  \ artifacts become available\n- Persistence: stateless; no project files changed\n\
+  - Authorization: no operational action was requested or performed"
+error: Reading additional input from stdin...

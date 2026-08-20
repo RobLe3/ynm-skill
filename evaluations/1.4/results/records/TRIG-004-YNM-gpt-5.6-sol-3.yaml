@@ -1,0 +1,35 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-004
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:18:46.156853Z'
+elapsed_seconds: 67.441
+input_tokens: 168728
+output_tokens: 2861
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Adoption Loop\n\n**Disposition: NO \u2014 contradicted within\
+  \ the reviewed project root.**\n\nProposition: \u201CA new user can discover the\
+  \ project\u2019s purpose and reach an initial successful use using the available\
+  \ project artifacts.\u201D\n\nThe [review root](<EVALUATION_PROJECT>) is empty:\
+  \ no source, README, instructions, examples, configuration, package metadata, or\
+  \ Git repository exists. Therefore the adoption journey fails at initial discovery.\n\
+  \n- **NO:** Users can currently understand, acquire, configure, or operate the project\
+  \ from this root.\n- **MAYBE:** An adoption path might exist externally; no external\
+  \ documentation, distribution channel, runtime, or user-validation evidence was\
+  \ supplied (`EVIDENCE_REQUIRED`).\n- **Handoff:** Add or provide the intended audience,\
+  \ project entry point, installation/access instructions, and a verifiable first-success\
+  \ workflow. Any missing implementation belongs to the Implementation Loop.\n\nRun\
+  \ receipt:\n\n```yaml\nlevel: YNM-1\nstrategy: LIGHT\nmode: PORTABLE\nloop: Adoption\n\
+  execution_status: COMPLETED\nterminal_outcome: CONVERGED_REVIEW\nreviewed_scope:\
+  \ adoption evidence within the complete project root\nunreviewed_scope: external\
+  \ channels, runtime behavior, and actual user attempts\nconverged: true\nstop_reason:\
+  \ bounded root fully inspected; no additional local evidence exists\npersistence_status:\
+  \ STATELESS\nchanges_made: none\n```"
+error: Reading additional input from stdin...

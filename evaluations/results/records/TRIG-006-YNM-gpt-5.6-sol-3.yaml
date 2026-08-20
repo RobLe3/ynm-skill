@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-006-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-006
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:22:51.590614Z'
+elapsed_seconds: 58.273
+input_tokens: 149916
+output_tokens: 2218
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Disposition Loop result\n\n**Execution status:** `NOT_APPLICABLE`\
+  \  \n**Terminal outcome:** `NOT_APPLICABLE_REVIEW`\n\nThe project root is empty:\
+  \ it contains no findings, lifecycle events, prior YNM state, authority records,\
+  \ transition requests, or Git history. Therefore, there is no proposition or transition\
+  \ for the Disposition Loop to reconcile.\n\n- Findings created or updated: 0\n-\
+  \ Dispositions changed: 0\n- Conflicts, duplicates, or dependencies: none observed\n\
+  - YES/NO/MAYBE disposition: none assigned\u2014loop status is separate from finding\
+  \ disposition\n- Reviewed scope: complete contents of the supplied project root\n\
+  - Persistence: stateless and read-only; no project files were created\n- Converged:\
+  \ yes, for the available scope\n- Stop reason: `NO_DISPOSITION_INPUTS`\n- Revisit\
+  \ condition: findings, transition requests, lifecycle events, or prior YNM state\
+  \ become available\n\nRun receipt: `ynm-run-receipt.v2`, generation 1, phases `ANALYSIS\
+  \ \u2192 ITERATION \u2192 DELIVERY \u2192 TERMINATED`, completed at `2026-08-20T08:23:40Z`."
+error: Reading additional input from stdin...

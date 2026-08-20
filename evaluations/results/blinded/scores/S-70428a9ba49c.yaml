@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-70428a9ba49c
+scenario_id: YNM-EVAL-001
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 2
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output identifies the sole ground-truth proposition and traces it
+  directly to ARCHITECTURE.md and ui.py, explaining that the UI calls the database
+  adapter instead of AccountService. Its second material finding is also tied to concrete
+  evidence: an observed ModuleNotFoundError and the absence of a database module in
+  the reviewed inventory. It reports a read-only review, makes no prohibited modification,
+  preserves all required MAYBEs (none), and clearly bounds completion by noting the
+  missing tests, manifest, and history.'

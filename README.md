@@ -1,106 +1,108 @@
-# YNM
+# YNM — YES / NO / MAYBE
 
-YNM is a structured project review methodology for cases where “looks good” is not sufficient evidence for judgment. It turns conclusions into explicit propositions, binds each proposition to traceable evidence, preserves uncertainty where evidence is missing or conflicting, and records what was reviewed versus what was not.
+YNM is a bounded evidence-backed review methodology for projects and agent-assisted engineering. Instead of reducing a review to “looks good,” “probably ready,” or one overall score, YNM turns important conclusions into explicit propositions, connects them to traceable evidence, and returns one of three bounded dispositions:
 
-YNM is useful when teams need a reliable handoff between review, recommendation, and action, especially under changing scope, partial evidence, and multiple stakeholders.
+- **YES** — sufficient evidence supports the proposition within the reviewed boundary.
+- **NO** — sufficient evidence contradicts the proposition.
+- **MAYBE** — available evidence cannot responsibly decide the proposition.
+
+YNM separates what is known, what is contradicted, what remains unresolved, what was not reviewed, and what authority exists to act on the result.
+
+> **Current version: 1.4.0 — Research Release**
+>
+> YNM 1.4.0 is usable for bounded, advisory project review. It is experimental, can be substantially more expensive than ordinary review, and has not demonstrated equal effectiveness across all models or runtimes.
+
+| Item | State |
+| --- | --- |
+| Current version | 1.4.0 |
+| Release class | Research / Experimental pre-release |
+| Development state | Paused |
+| Latest research release | [`v1.4.0`](https://github.com/RobLe3/ynm-skill/releases/tag/v1.4.0) |
+| Previous stable release | [`v1.2.0`](https://github.com/RobLe3/ynm-skill/releases/tag/v1.2.0) |
+| License | Apache-2.0 |
+
+![YNM bounded review workflow](https://raw.githubusercontent.com/RobLe3/ynm-skill/main/docs/assets/ynm-overview.svg)
+
+## What YNM helps you do
+
+YNM helps a reviewer:
+
+- check whether implementation matches architecture, documentation, or a specification;
+- distinguish confirmed behavior from unsupported assumptions;
+- review release readiness without treating passing tests as production proof;
+- retain unresolved questions instead of forcing premature conclusions;
+- identify the evidence behind each material conclusion;
+- separate architecture, implementation, adoption, and maintenance concerns;
+- expose reviewed and unreviewed scope;
+- preserve findings and disposition changes across review cycles;
+- separate analysis from authority to modify, merge, deploy, or publish; and
+- stop honestly when required evidence is unavailable.
+
+## A 30-second example
+
+A conventional review may conclude:
+
+> The release looks ready.
+
+YNM separates that judgment:
+
+| Proposition | Result | Why |
+| --- | --- | --- |
+| Implementation matches the declared API | **YES** | Code and tests match the reviewed specification |
+| Required recovery procedure exists | **NO** | Required operator documentation is absent |
+| Production failover preserves security behavior | **MAYBE** | Production failover evidence was unavailable |
+| Publication is authorized | **NO / NOT AUTHORIZED** | Review authority does not grant publication authority |
+
+The result preserves what is supported, what failed, what remains unknown, and what the review did not authorize.
 
 ## What YNM gives you
 
-YNM gives practical, review-oriented behavior instead of generic quality rhetoric:
-
-- **Evidence instead of impressions:** findings are attached to explicit propositions, so conclusions are auditable.
-- **First-class uncertainty:** `MAYBE` is a managed state, not a failure mode.
-- **Safe agentic control:** review, recommendation, authorization, execution, persistence, and outcome are tracked separately.
-- **Honest completion:** convergence is separate from exhaustion or limit-driven stopping.
-- **Longitudinal knowledge:** findings preserve provenance, prior dispositions, conflicts, reopenings, supersessions, and resolution history.
-- **Specialist agreement without a universal score:** architecture, implementation, adoption, and maintenance can legitimately differ.
-- **Capability-aware operation:** scoped, constrained execution is preferred over lowering rigor.
-- **Provider-neutral execution:** humans, agents, and tooling can follow the same contracts.
+- **Traceable evidence:** findings attach to explicit propositions and source references.
+- **First-class uncertainty:** `MAYBE` records why a material question remains unresolved.
+- **Visible scope:** reviewed and unreviewed areas remain distinct.
+- **Authority containment:** review, recommendation, authorization, execution, persistence, and publication are separate.
+- **Longitudinal findings:** provenance, prior dispositions, conflicts, reopenings, supersessions, and resolution history can be retained.
+- **Honest completion:** convergence is distinct from exhaustion, missing evidence, and blocked execution.
+- **Provider-neutral contracts:** humans, agents, and tools can follow the method without requiring one provider or runtime.
 
 ## Why YNM exists
 
-Ordinary approaches help in different ways, but they typically leave gaps:
+Tests and linters answer bounded mechanical questions. Checklists improve repeatability. Human and model-assisted reviews provide interpretation. YNM adds explicit propositions, evidence provenance, scope boundaries, uncertainty, and terminal Delivery records so later decisions can be made with a visible basis.
 
-- **Tests/linters** validate specific mechanics.
-- **Checklists** provide repeatability.
-- **Code review / LLM reviews** provide interpretation.
+YNM complements rather than replaces tests, domain checks, formal verification where appropriate, operational evidence, and domain expertise.
 
-YNM adds the missing layer: explicit propositions, preserved uncertainty, and explicit terminal outcomes.
+## Should I use YNM?
 
-YNM was refined through practical engineering work across multiple technologies, audiences, and maturity levels. That experience showed one-pass judgments are often insufficient and that architecture, implementation, adoption, and maintenance can progress at different speeds.
+YNM is a good fit when the cost of an ambiguous review is higher than the cost of additional analysis. Use it when you need traceable evidence, explicit uncertainty, reviewed and unreviewed scope, repeatable findings, or separation between review and authority.
 
-YNM does not replace tests, domain checks, or domain expertise. It coordinates review, evidence, and uncertainty so subsequent decisions can be made intentionally.
-
-## What a YNM result looks like
-
-A conventional review might conclude:
-
-> Authentication is mostly good, but recovery documentation and failover testing are weak.
-
-YNM instead keeps each statement explicit:
-
-| Proposition | Disposition | Evidence / reason |
-|---|---|---|
-| Authentication enforces the declared access model | **YES** | Access-control implementation, tests, and config match the declared contract. |
-| Recovery behavior is sufficiently documented for operators | **NO** | The required operator procedure is not present in reviewed evidence. |
-| Multi-region failover preserves declared security properties | **MAYBE** | Failover evidence is outside reviewed scope and was not available for this run. |
-
-Execution status: **PARTIAL**
-Reviewed scope:
-- authentication implementation
-- authentication tests
-- recovery documentation
-
-Unreviewed scope:
-- production failover topology
-- incident post-mortem records
-
-Authorization:
-- review only
-- no project mutation authorized
-
-Continuation:
-- revisit MAYBE finding when failover evidence becomes available.
-
-This is what you can expect to receive as a terminal, auditable artifact, including explicit uncertainty.
-
-## What YNM adds beyond common approaches
-
-| Approach | Primary strength | What YNM adds |
-| --- | --- | --- |
-| Tests / linters | Deterministic checks | Proposition-focused interpretation, evidence context, explicit uncertainty, and scope boundaries |
-| Code review | Human judgment | Shared review contracts, lifecycle, and persistent, auditable findings |
-| Checklist | Repeatability | Evidence provenance, explicit `MAYBE`, history and reopening conditions |
-| One-shot LLM review | Fast synthesis | Scope control, convergence discipline, Delivery handoff, authorization separation |
-| YNM | Structured evidence-backed review | Keeps propositions, evidence, and authority distinct across repeatable iterations |
-
-YNM complements, rather than replaces, tests, linters, domain verification, and implementation-specific quality gates.
+A simpler review is often preferable when the question is deterministic, the task is small, auditability is unnecessary, or token and tool cost matter more than added review structure. YNM 1.4 trades substantially more computation for stronger review structure. That tradeoff should be intentional.
 
 ## When to use YNM
 
-Use YNM when you need structured, auditable review for:
+Use YNM experimentally, with a human retaining consequential authority, for:
 
-- architecture vs implementation alignment
-- release-readiness or audit-oriented reviews
-- recurring project audits across releases
-- multi-agent or multi-reviewer review coordination
-- incomplete, conflicting, or evolving evidence
-- explicit scope definition and rerun justification
-- controlled agentic workflows where write authority must remain explicit
-- adoption and maintenance reviews that differ from technical correctness
+- architecture-versus-implementation or specification-versus-code review;
+- bounded release-readiness and audit-oriented analysis;
+- recurring project reviews across releases;
+- incomplete, conflicting, or evolving evidence;
+- explicit scope definition and rerun justification;
+- controlled agent workflows where write authority must remain explicit;
+- adoption and maintenance reviews; and
+- comparative research into model-assisted review.
+
+For consequential work, YNM should complement tests, expert review, formal verification where applicable, security analysis, operational evidence, and human release authority. It is not an autonomous production release gate.
 
 ## When not to use YNM
 
-YNM is not the right tool for:
+Use a simpler method for syntax checks, formatting, trivial edits, general summaries, deterministic questions, or reviews where the extra process cost is unjustified. Do not use YNM as the sole basis for security, safety, legal, production, migration, deployment, or publication decisions, particularly where the executor has not been evaluated for the consequence involved.
 
-- simple syntax/style checks
-- trivial one-off edits
-- questions fully answered by deterministic tests
-- general summaries or explanations
-- isolated formatting or wording requests
-- quick informal opinions where project-level context is unnecessary
+## Quick start
 
-## Analysis, Iteration, and Delivery
+Ask for a bounded project review:
+
+```text
+Review this project using YNM. Evaluate whether the implementation matches the documented API, cite the evidence, state unreviewed scope, and retain unresolved production behavior as MAYBE.
+```
 
 YNM follows one macro lifecycle:
 
@@ -108,111 +110,94 @@ YNM follows one macro lifecycle:
 ANALYSIS → ITERATION → DELIVERY → TERMINATED
 ```
 
-- **ANALYSIS:** determine objective, requested/effective scope, evidence availability, authority, capability, applicable loops, and safety limits.
-- **ITERATION:** execute relevant loops, gather evidence, build and reconcile findings, and iterate only when the next pass has justified information gain.
-- **DELIVERY:** provide an explicit terminal handoff on every outcome (converged, partial, blocked, bounded, or escalated).
-
-Delivery is mandatory. It means the review ended with traceable results; it does not imply approval, completion, or automatic safety.
-
-Read the full lifecycle definition in [Invocation Lifecycle](methodology/execution-lifecycle.md) and [Review Plan](contracts/review-plan.md).
+Review is read-only by default. Persistence and project mutation require explicit authorization.
 
 ## YES / NO / MAYBE
 
-YNM is proposition-centered:
+- **YES:** sufficient affirmative evidence supports an explicit proposition under the stated scope and assessment conditions. It is not universal proof.
+- **NO:** sufficient evidence contradicts an explicit proposition under those conditions. It does not invalidate the entire project.
+- **MAYBE:** available evidence cannot responsibly decide the proposition because evidence is missing, conflicting, inaccessible, ambiguous, or outside the execution boundary.
 
-- **YES:** sufficient evidence supports the proposition under the established evaluation conditions.
-- **NO:** sufficient evidence contradicts the proposition.
-- **MAYBE:** evidence is insufficient, conflicting, or currently unavailable to decide.
+`MAYBE` is an expected terminal result, not low confidence disguised as a conclusion.
 
-`MAYBE` is not “low confidence.” It is a managed unresolved state that preserves why a decision is still pending.
+## Analysis, Iteration, and Delivery
 
-## Delivery and scope visibility
+- **ANALYSIS:** define objective, proposition, scope, evidence needs, authority, capability, and limits.
+- **ITERATION:** gather relevant evidence and continue only while another pass has credible information value.
+- **DELIVERY:** return dispositions, evidence, reviewed and unreviewed scope, limits, authority, and revisit conditions.
 
-A delivery output always includes:
+Delivery is mandatory. It records how the review ended; it does not imply approval or authorization. See [Invocation Lifecycle](methodology/execution-lifecycle.md) and [Review Plan](contracts/review-plan.md).
 
-- current dispositions
-- executed and requested scope
-- reviewed and unreviewed scope
-- evidence boundaries and failures
-- execution status and stop reason
-- continuation/revisit conditions
-- remaining `MAYBE` items and unresolved dependencies
+## Bounded validity
 
-Exhaustion (capability, context, budget, evidence, authorization, or failure) is recorded distinctly from convergence. A review may stop for limits and still produce a valid partial delivery.
+Every YNM disposition applies only to its proposition, reviewed scope, available evidence, assessment criteria, executor capability, authority, resource limits, and evidence snapshot.
 
-## Stateless and persistent use
+YNM cannot guarantee exhaustive discovery, decide arbitrary semantic properties of arbitrary software, or create independent validation through self-review. Therefore:
 
-YNM can be used in two operating modes:
+- convergence does not prove that nothing else could be discovered;
+- absence of contradictory evidence is not automatically affirmative evidence;
+- missing material evidence remains `MAYBE`;
+- unreviewed scope remains unreviewed;
+- repository evidence does not automatically establish production behavior; and
+- provider-neutral design does not imply equal effectiveness across models or runtimes.
 
-### Stateless
+The normative boundaries are defined in [Epistemic Boundaries](methodology/epistemic-boundaries.md). `YNM-BRP-1` covers experimental, read-only, advisory project review with explicit or decomposable propositions and traceable evidence.
 
-- no project writes
-- one-shot review and Delivery
-- no persistent finding history in-project
-- suitable for bounded ad-hoc reviews
+## Validation and empirical evidence
 
-### Persistent (authorized)
+Repository, package, Agent Skills, and deterministic security-boundary checks pass. These establish structural consistency, not universal review effectiveness.
 
-- optional and explicit authorization required
-- stores findings, plans, receipts, events, and resolution state
-- improves recurrence, reopening, and longitudinal context
+On the controlled 1.4 fresh holdout, the primary tested executor (`gpt-5.6-sol`) produced:
 
-Persistence is optional and authorization-gated, not required.
+| Measure | YNM 1.4 PORTABLE |
+| --- | ---: |
+| Material finding recall | 1.0000 |
+| Material finding precision | 0.9722 |
+| Unsupported-claim rate | 0.0000 |
+| Required-MAYBE recall | 1.0000 |
+| Evidence traceability | 2.0000 / 2 |
+| Authority violations | 0 |
 
-See [Project Integration](methodology/project-integration.md).
+These are benchmark-specific executor-profile results, not guarantees. The replication executor did not satisfy the frozen non-inferiority criteria.
 
-## Quick start
+### Execution cost
 
-1. Open this methodology:
+In the same primary-executor evaluation, PORTABLE YNM used approximately:
 
-   ```text
-   Review this project using YNM.
-   ```
+- **2.34×** the input tokens;
+- **2.82×** the output tokens;
+- **2.40×** the elapsed time; and
+- **2.90×** the tool calls
 
-2. The invocation follows one lifecycle:
+relative to control. These measurements are not universal cost estimates, but they show that the current implementation can be substantially more expensive than ordinary review. YNM is not currently an efficiency optimization.
 
-   ```text
-   ANALYSIS → ITERATION → DELIVERY
-   ```
+### YNM-BRP-1
 
-3. Use source checkout for inspection and development, or install as an Agent Skill for runtime execution.
+The bounded-usability assessment did not satisfy its complete frozen contract. It showed strong usefulness, traceability, inspectability, and authority containment, but both tested executors missed one frozen required-`MAYBE` condition. A plausible post-hoc alternative interpretation was documented, but the frozen ground truth was not changed after execution. The adverse result remains authoritative and is one reason this release is Research/Experimental.
 
-4. In a source checkout, repository validation starts with:
+The evidence supports a bounded claim: YNM demonstrated meaningful benefits under tested conditions, with substantial computational overhead and executor-dependent behavior.
 
-   ```text
-   python validation/validate_ynm.py
-   python -m unittest discover -s tests -v
-   ```
+## Known limitations
 
-This remains read-only by default. Persistent integration requires explicit authorization.
+YNM has not demonstrated universal improvement, equal cross-model effectiveness, zero false findings, exhaustive issue discovery, perfect uncertainty preservation, reliable automatic activation, cost reduction, independent interoperability, or measured Ruflo/RuVector acceleration savings. It provides advisory review structure, not production, security, safety, legal, or compliance certification.
+
+## What YNM is not
+
+YNM is not a correctness oracle, universal project score, exhaustive verifier, proof of arbitrary program semantics, guarantee of zero false findings, proof that another review pass could discover nothing, proof that unreviewed scope is correct, production-readiness or security certification, proof of independent interoperability, guarantee of model-independent behavior, automatic authorization to act, or a cost-saving mechanism in its current implementation.
+
+Provider-neutral means that YNM contracts do not require a specific provider, model, or runtime. It is a design property, not empirical evidence that all executors behave equally well.
 
 ## Installation and verification
 
-The installable entrypoint is [`SKILL.md`](SKILL.md). The package and repository are separated by intended use.
-
-### Source checkout (development / audit)
+YNM 1.4.0 is a Research Pre-release. For a reproducible source checkout:
 
 ```text
 git clone https://github.com/RobLe3/ynm-skill.git
 cd ynm-skill
+git checkout v1.4.0
 ```
 
-### Installed Agent Skill
-
-For agent-capable runtimes, the containing directory must be named `ynm`:
-
-```text
-git clone https://github.com/RobLe3/ynm-skill.git /path/to/skills/ynm
-```
-
-Or, from a source checkout, build the installed package:
-
-```text
-python scripts/build_skill_package.py --output-dir dist --overwrite
-ls dist/ynm
-```
-
-The following commands apply to a source checkout, not to the installed runtime package. They validate package format and metadata:
+For an Agent Skills location, the containing directory must be named `ynm`. A source checkout can build the focused runtime package with:
 
 ```text
 python scripts/build_skill_package.py --output-dir dist --overwrite
@@ -220,87 +205,39 @@ skills-ref validate dist/ynm
 skills-ref read-properties dist/ynm
 ```
 
-The CI checks `skills-ref` against a pinned reference revision so format and reference
-conformance are reproducible. It confirms Agent Skills format conformance only; it is
-**not** independent interoperability validation.
+The last two commands require the Agent Skills reference validator. CI pins it to an exact revision. Format conformance is not independent interoperability evidence.
 
-## Repository structure
-
-| Class | Locations | Role |
-|---|---|---|
-| Runtime / normative | `SKILL.md`, `contracts/`, `loops/`, `methodology/` | Defines YNM behavior |
-| Optional runtime support | `schemas/`, `scripts/`, `examples/`, `agents/` | Validation, tooling, examples, adapters |
-| Validation and history | `validation/`, `tests/`, `state/` | Evidence for current candidate claims and reproducible checks |
-| Packaging and contribution | `README.md`, `manifest.yaml`, `VERSION`, `CHANGELOG.md`, `VERSIONING.md`, `CONTRIBUTING.md`, `SECURITY.md` | Distribution and project policy |
-| Provenance | Git history and tags | Historical evidence retained in immutable tags, not copied into HEAD |
-
-## What YNM is not
-
-YNM is not:
-
-- a universal project score
-- automatic permission to modify a repository
-- proof that unreviewed scope is correct
-- a replacement for tests, linters, domain checks, or product requirements
-- a guarantee to eliminate uncertainty
-- evidence of production-readiness certification by itself
-- independent interoperability proof
-- tied to one provider, model, or runtime
-
-## Extend YNM
-
-Use [Extension Model](methodology/extension-model.md) for additional loops. Extensions must use the same evidence, finding, disposition, lifecycle, and delivery contracts and explicit ownership boundaries.
-
-## Validation status and limits
-
-**Current version:** `1.3.0`
-**Candidate status:** release candidate
-
-- [Candidate release evidence](https://github.com/RobLe3/ynm-skill/tree/main/state/releases/1.3.0) is maintained in the source repository, not in the installed package.
-- Deterministic local tests: **PASS**.
-- Workflow includes schema, lifecycle, security-boundary, package, and release-integrity validations.
-- Historical 1.0.0 through 1.2.0 maturity evidence is integrity-checked.
-- Manifested package validation uses the pinned Agent Skills reference implementation.
-- `YNM-VAL-001` remains **MAYBE**: no independent third-party implementation has yet demonstrated compatible YNM records.
-
-YNM uses the Python `jsonschema` Draft 2020-12 validator for its declared schemas, together with YNM-specific checks for cross-file lifecycle consistency, release integrity, sanitization, and runtime boundaries.
-
-Passing these checks means the repository and candidate evidence are internally consistent. It is not proof of independent implementation compatibility.
-
-## Core method vs optional tooling
-
-YNM can be used without a Python runtime for manual interpretation:
-
-- Core methodology: read and follow `SKILL.md`, contracts, and methodology.
-
-Optional runtime helpers are available for project integration and lifecycle automation:
-
-- Python >= 3.10
-- `PyYAML >= 6,<7`
-
-Install their dependency only when you intend to run those helpers:
+Core methodology is text-only. Optional bundled helpers require Python 3.10 or later and `PyYAML >=6,<7`:
 
 ```text
 python -m pip install "PyYAML>=6,<7"
 ```
 
-Repository validation and development use the broader dependency set declared in `pyproject.toml` in a source checkout.
+Repository development and validation use the broader dependencies in `pyproject.toml`.
 
-If you are only using the method and runtime package, these helper dependencies are optional.
+## Repository structure
 
-## Evaluate YNM independently
+| Class | Locations | Role |
+| --- | --- | --- |
+| Runtime and normative | `SKILL.md`, `contracts/`, `loops/`, `methodology/` | Defines YNM behavior |
+| Runtime support | `schemas/`, selected `scripts/`, `examples/`, `agents/` | Portable schemas, helpers, examples, and adapter metadata |
+| Research and validation | `evaluations/`, `validation/`, `tests/`, `state/`, `docs/` | Reproducible evidence and research history |
+| Packaging and policy | `manifest.yaml`, `VERSION`, `CHANGELOG.md`, `VERSIONING.md`, `CONTRIBUTING.md`, `SECURITY.md` | Distribution and repository policy |
+| Historical provenance | Git history and immutable tags | Published snapshots and prior evidence |
 
-1. Read `SKILL.md`.
-2. Inspect `contracts/` and `methodology/`.
-3. Run the local validation and tests.
-4. Review findings and candidate evidence in the [source repository](https://github.com/RobLe3/ynm-skill/tree/main/state/releases/1.3.0).
-5. Run a bounded review or independent implementation.
-6. Report incompatible or ambiguous behavior with evidence.
+Evaluation fixtures, adjudication results, and research-only tooling are excluded from the generated runtime package.
 
-Useful external evidence includes: alternate runtimes/models, manual execution, independent implementation of contracts, and reviews on different project types.
+## Research and validation
 
-## License, contributing, and security
+- [Research status](https://github.com/RobLe3/ynm-skill/blob/main/docs/RESEARCH_STATUS.md)
+- [Validation evidence](https://github.com/RobLe3/ynm-skill/blob/main/VALIDATION.md)
+- [Evaluation evidence](https://github.com/RobLe3/ynm-skill/blob/main/evaluations/README.md)
+- [Epistemic boundaries](methodology/epistemic-boundaries.md)
+- [Release policy](https://github.com/RobLe3/ynm-skill/blob/main/RELEASING.md)
+- [Changelog](https://github.com/RobLe3/ynm-skill/blob/main/CHANGELOG.md)
 
-YNM is licensed under the [Apache License 2.0](LICENSE). Source-repository contributors should read [CONTRIBUTING.md](https://github.com/RobLe3/ynm-skill/blob/main/CONTRIBUTING.md). Security reports should follow [SECURITY.md](https://github.com/RobLe3/ynm-skill/blob/main/SECURITY.md).
+Active methodology development is paused after the 1.4 and YNM-BRP-1 cycles. The repository remains open for use, independent evaluation, and future work when new evidence offers credible information value.
 
-Historical development notes were not removed from Git history and remain discoverable through tags, while current HEAD stays focused on the active public methodology and candidate evidence.
+## Contributing, security, and license
+
+YNM is licensed under the [Apache License 2.0](LICENSE). Read [CONTRIBUTING.md](https://github.com/RobLe3/ynm-skill/blob/main/CONTRIBUTING.md) before proposing behavioral work. Report security issues through the process in [SECURITY.md](https://github.com/RobLe3/ynm-skill/blob/main/SECURITY.md).

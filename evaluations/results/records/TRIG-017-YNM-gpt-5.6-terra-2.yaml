@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-017-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-017
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:36:41.944099Z'
+elapsed_seconds: 24.898
+input_tokens: 88404
+output_tokens: 804
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "I can, but there\u2019s no design, screenshot, or project files available\
+  \ in this workspace to assess. Share the page/image or point me to the relevant\
+  \ files, and I\u2019ll give concrete styling feedback."
+error: Reading additional input from stdin...

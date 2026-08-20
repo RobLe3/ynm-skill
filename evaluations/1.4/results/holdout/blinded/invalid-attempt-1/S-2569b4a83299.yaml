@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-2569b4a83299
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output correctly preserves the sole required MAYBE that production
+  behavior is correct, explicitly grounding the uncertainty in the absence of production
+  observations and independently inspectable implementation or tests. It makes no
+  ground-truth material findings, invents no unsupported or false finding, provides
+  precise fixture-level traceability, reports no project modifications, and closes
+  the review with an appropriately bounded evidence requirement and convergence statement.

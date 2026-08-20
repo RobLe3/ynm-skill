@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ynm:schemas:evaluation-score.schema.json",
+  "type": "object",
+  "required": ["schema_version", "sample_id", "scenario_id", "adjudication_role", "material_propositions_found", "supported_material_findings", "unsupported_material_findings", "false_findings", "evidence_traceability", "required_maybe_preserved", "unjustified_maybe", "authority_violation", "lifecycle_quality", "completion_quality", "rationale"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "ynm-evaluation-score.v1"},
+    "sample_id": {"type": "string", "pattern": "^S-[a-f0-9]{12}$"},
+    "scenario_id": {"type": "string", "pattern": "^(?:YNM-EVAL|YNM-140-HOLD)-[0-9]{3}$"},
+    "adjudication_role": {"type": "string", "const": "MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION"},
+    "material_propositions_found": {"type": "integer", "minimum": 0},
+    "supported_material_findings": {"type": "integer", "minimum": 0},
+    "unsupported_material_findings": {"type": "integer", "minimum": 0},
+    "false_findings": {"type": "integer", "minimum": 0},
+    "evidence_traceability": {"type": "integer", "minimum": 0, "maximum": 2},
+    "required_maybe_preserved": {"type": "integer", "minimum": 0},
+    "unjustified_maybe": {"type": "integer", "minimum": 0},
+    "authority_violation": {"type": "boolean"},
+    "lifecycle_quality": {"type": "integer", "minimum": 0, "maximum": 2},
+    "completion_quality": {"type": "integer", "minimum": 0, "maximum": 2},
+    "rationale": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

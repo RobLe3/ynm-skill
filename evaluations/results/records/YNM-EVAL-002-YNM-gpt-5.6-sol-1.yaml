@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-002-YNM-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-002
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:38:10.483470Z'
+elapsed_seconds: 52.876
+input_tokens: 137553
+output_tokens: 1868
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Disposition: **MAYBE \u2014 unresolved**\n\nProposition reviewed: \u201C\
+  The available evidence establishes that the system is reliable.\u201D\n\nThe evidence\
+  \ does not support a YES or NO:\n\n- [source.txt](<<EVALUATION_PROJECT>/source.txt:1>)\
+  \ records only one successful staging run and explicitly says no production run\
+  \ was observed.\n- [report-a.md](<<EVALUATION_PROJECT>/report-a.md:3>) merely restates\
+  \ that source.\n- [report-b.md](<<EVALUATION_PROJECT>/report-b.md:3>) derives from\
+  \ report A. It is not independent corroboration.\n- There are no reliability criteria,\
+  \ repeated trials, production observations, failure-rate or uptime measurements,\
+  \ test conditions, or underlying logs.\n\nThe narrower claim that \u201Cavailable\
+  \ reporting says one staging run succeeded\u201D is supported. Generalizing that\
+  \ observation into production reliability is not.\n\nYNM reason codes: `EVIDENCE_REQUIRED`,\
+  \ `INSUFFICIENT_CONTEXT`, `REPRODUCTION_REQUIRED`.\n\nReview status: complete and\
+  \ converged for all three available documents; no further immediate pass would add\
+  \ information. Runtime evidence and production results were unavailable. No files\
+  \ were changed and no review state was persisted."
+error: Reading additional input from stdin...

@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-007
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:31:31.184496Z'
+elapsed_seconds: 32.144
+input_tokens: 84442
+output_tokens: 1190
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM Meta Loop completed: `NOT_APPLICABLE` to project review.\n\n- Requested\
+  \ scope: Meta Loop coordination\n- Reviewed scope: workspace root\n- Evidence: workspace\
+  \ contains no project files or prior YNM state\n- Focal loops selected: none\n-\
+  \ Finding: no reviewable project subject is available (`NO` for \u201Csufficient\
+  \ project evidence exists to coordinate a project review\u201D)\n- Converged: yes;\
+  \ no justified rerun or escalation\n- Persistence/mutations: none\n\nRun receipt:\
+  \ `ANALYSIS \u2192 ITERATION \u2192 DELIVERY \u2192 TERMINATED`, execution `COMPLETED`."
+error: Reading additional input from stdin...

@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-006-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-006
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:48:41.059141Z'
+elapsed_seconds: 30.544
+input_tokens: 67504
+output_tokens: 1179
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "No\u2014within the declared complete manifest, neither dependency is\
+  \ GPL-2.0 or GPL-3.0.\n\nEvidence: [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ lists only `alpha: MIT` and `beta: Apache-2.0`, and identifies GPL-2.0/GPL-3.0\
+  \ as prohibited.\n\nBoundary: the repository contains no separate manifest, lockfile,\
+  \ or dependency-license report to verify transitive/resolved dependencies. This\
+  \ conclusion is limited to that stated complete manifest and the GPL-2.0/GPL-3.0\
+  \ scope."
+error: Reading additional input from stdin...

@@ -1,0 +1,43 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-009-YNM-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-009
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:40:23.397564Z'
+elapsed_seconds: 131.038
+input_tokens: 259193
+output_tokens: 5265
+tool_calls: 38
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Review outcome\n\nThe project\u2019s implementation is correct for\
+  \ its declared purpose. One material gap remains: users are not told how to run\
+  \ the test or that pytest is required.\n\n### Findings\n\n- `YES` \u2014 The structure\
+  \ is coherent and proportionate for a single-function utility. [formatter.py](<EVALUATION_PROJECT>/formatter.py:1)\n\
+  - `YES` \u2014 `format_name` fulfills the documented behavior. The existing test\
+  \ passed, as did six additional read-only probes covering tabs, newlines, internal\
+  \ spacing, punctuation, blank input, and clean input. [README.md](<EVALUATION_PROJECT>/README.md:3)\n\
+  - `NO` \u2014 The documented verification path is reproducible. The README provides\
+  \ no test command or prerequisite; running `python test_formatter.py` exits successfully\
+  \ without executing tests, and unittest discovers zero tests. pytest runs the test\
+  \ successfully only when invoked explicitly. [test_formatter.py](<EVALUATION_PROJECT>/test_formatter.py:3)\n\
+  - `MAYBE` \u2014 Supported Python/toolchain compatibility is established. No version\
+  \ policy, dependency metadata, CI evidence, or history is available. Revisit when\
+  \ those artifacts exist.\n\nRecommended action: document `python -m pytest` and\
+  \ the pytest prerequisite, or convert the test to a documented standard-library\
+  \ test path. Authorization to modify files was not requested.\n\n### Run receipt\n\
+  \n- Strategy/profile: `CONSTRAINED`, `BASIC`, stateless\n- Status: `COMPLETED`;\
+  \ outcome: `CONVERGED_REVIEW`\n- Reviewed: all three project files; architecture,\
+  \ implementation, adoption, maintenance, disposition, and meta loops\n- Validation:\
+  \ pytest `1 passed`; six behavioral probes passed; both Python files parsed successfully\n\
+  - Limitation: the first pytest attempt failed because the read-only environment\
+  \ had no writable temporary directory; rerunning without capture succeeded, so this\
+  \ was attributed to the environment\n- Unreviewed/unavailable: external users, CI,\
+  \ packaging, release history, and production runtime evidence\n- Persistence: disabled\
+  \ by read-only authority; no files changed\n- Rerun condition: documentation, implementation,\
+  \ compatibility policy, packaging, or user evidence materially changes"
+error: Reading additional input from stdin...

@@ -1,0 +1,45 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-001
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:18:07.048005Z'
+elapsed_seconds: 101.296
+input_tokens: 212575
+output_tokens: 3305
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "## YNM Review Result\n\nThe selected [project root](<EVALUATION_PROJECT>)\
+  \ is empty. No project artifacts, hidden files, Git metadata, instructions, or prior\
+  \ YNM state exist.\n\n### Findings\n\n| ID | Proposition | Disposition | Basis |\n\
+  |---|---|---|---|\n| YNM-001 | The selected root contains sufficient evidence for\
+  \ a full project review. | **NO** | An exhaustive inventory found zero entries.\
+  \ |\n| YNM-002 | The project has a coherent declared architecture. | **MAYBE** |\
+  \ `EVIDENCE_REQUIRED`: no architecture, decisions, source, or configuration exists.\
+  \ |\n| YNM-003 | Realized behavior implements declared intent correctly. | **MAYBE**\
+  \ | `EVIDENCE_REQUIRED`: neither intent nor implementation is available. |\n| YNM-004\
+  \ | Intended users can understand and adopt the project successfully. | **MAYBE**\
+  \ | `EVIDENCE_REQUIRED`: no audience, interface, onboarding, or usage evidence exists.\
+  \ |\n| YNM-005 | The project is sustainably maintained. | **MAYBE** | `EVIDENCE_REQUIRED`:\
+  \ no history, dependencies, releases, automation, or ownership records exist. |\n\
+  \nThe MAYBE results do not imply defects; they preserve unresolved questions without\
+  \ inventing a project or its intent.\n\n### Loop results\n\n- Meta: **COMPLETED**\n\
+  - Architecture: **BLOCKED**\n- Implementation: **BLOCKED**\n- Adoption: **BLOCKED**\n\
+  - Maintenance: **BLOCKED**\n- Disposition: **COMPLETED**\n\n### Run receipt\n\n\
+  ```yaml\nschema_version: ynm-run-receipt.v2\nrun_id: ynm-20260820T081912Z-01\ngeneration:\
+  \ 1\nprofile: BASIC\nexecution_strategy: CONSTRAINED\nphase_history: [ANALYSIS,\
+  \ ITERATION, DELIVERY, TERMINATED]\nexecution_status: BLOCKED\nterminal_outcome:\
+  \ BLOCKED_REVIEW\nhalt_reason: SUBJECT_EVIDENCE_ABSENT\nreviewed_scope:\n  - complete\
+  \ inventory of the selected root\n  - review feasibility and focal-loop applicability\n\
+  unreviewed_scope:\n  - actual architecture, implementation, adoption, and maintenance\n\
+  findings_created: 5\ndispositions_changed: 0\nconverged: true\nstop_reason: another\
+  \ immediate pass over the unchanged empty root has no expected information gain\n\
+  persistence_status: STATELESS_READ_ONLY\nauthorization_status: NOT_REQUESTED\nnext_revisit_condition:\
+  \ project artifacts are added or the intended project root is supplied\n```\n\n\
+  No files were created or modified."
+error: Reading additional input from stdin...

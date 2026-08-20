@@ -1,0 +1,38 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-007
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:23:14.102805Z'
+elapsed_seconds: 76.653
+input_tokens: 175585
+output_tokens: 2637
+tool_calls: 38
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Meta Loop \u2014 BLOCKED\n\nThe supplied project root is empty:\
+  \ zero files, zero subdirectories, no Git repository, no project instructions, and\
+  \ no prior YNM state.\n\n**Finding `YNM-META-001`**\n\n- Proposition: The supplied\
+  \ root contains enough project context to select and coordinate focal review loops.\n\
+  - Proposed disposition: **NO**\n- Basis: Direct inventory and Git probes contradict\
+  \ the proposition.\n- Status: Advisory and unreconciled; the Disposition Loop was\
+  \ outside the requested scope.\n- Authorization: `NOT_REQUESTED`\n\n**Coverage**\n\
+  \n- Reviewed: Complete available project surface and review environment.\n- Unreviewed:\
+  \ Architecture, implementation, adoption, maintenance, and disposition concerns\u2014\
+  none can be scoped responsibly without project evidence.\n- Meta Loop status: `BLOCKED`\n\
+  - Converged: `false`\n- Stop reason: `EMPTY_PROJECT_ROOT`\n- Persistence: Stateless;\
+  \ no files created.\n\n**Run receipt**\n\n```yaml\nschema_version: ynm-run-receipt.v2\n\
+  run_id: ynm-meta-20260820T082414Z\ngeneration: 1\nphase_history: [ANALYSIS, ITERATION,\
+  \ DELIVERY, TERMINATED]\nloops_requested: [META]\nloops_executed:\n  META: BLOCKED\n\
+  execution_strategy: CONSTRAINED\nexecution_status: BLOCKED\nterminal_outcome: BLOCKED_REVIEW\n\
+  reviewed_scope: complete available root inventory\nunreviewed_scope: project-level\
+  \ focal-loop coordination\nfindings_created: 1\ndispositions_changed: 0\nconverged:\
+  \ false\nhalt_reason: EMPTY_PROJECT_ROOT\nunresolved_dependencies:\n  - project\
+  \ artifacts or declared project intent\nnext_revisit_condition: a populated project\
+  \ root or project evidence becomes available\npersistence_status: NOT_AUTHORIZED\n\
+  ```\n\nContinuation requires supplying or selecting a populated project directory."
+error: Reading additional input from stdin...

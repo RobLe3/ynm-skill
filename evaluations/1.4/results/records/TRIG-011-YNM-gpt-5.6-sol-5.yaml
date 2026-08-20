@@ -1,0 +1,37 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-011
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:25:25.233223Z'
+elapsed_seconds: 20.295
+input_tokens: 30303
+output_tokens: 563
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a structured way to review a software project without pretending\
+  \ to know more than the evidence shows.\n\nThink of it as an evidence-driven inspector:\n\
+  \n1. **Turn the question into a precise claim**  \n   For example: \u201CIs this\
+  \ project ready for production?\u201D\n\n2. **Check relevant evidence**  \n   YNM\
+  \ examines code, tests, documentation, configuration, and other project artifacts\u2014\
+  but only what matters to that claim.\n\n3. **Give one of three answers**\n\n   -\
+  \ **YES** \u2014 the claim has enough affirmative evidence.\n   - **NO** \u2014\
+  \ the evidence contradicts the claim.\n   - **MAYBE** \u2014 the available evidence\
+  \ cannot settle it.\n\n4. **Increase effort only when worthwhile**  \n   It begins\
+  \ with inexpensive routing, performs a normal focused review in most cases, and\
+  \ escalates to specialist or assurance-level analysis only when the stakes or uncertainty\
+  \ justify it.\n\n5. **Report its boundaries**  \n   The result explains what was\
+  \ reviewed, what was not, conflicting evidence, limitations, and why the review\
+  \ stopped.\n\nA few important principles:\n\n- Missing evidence usually means **MAYBE**,\
+  \ not YES.\n- A specialist opinion is evidence, not automatically the final verdict.\n\
+  - More analysis does not create permission to edit or approve anything.\n- Reviews\
+  \ are read-only unless you explicitly authorize changes.\n- YNM stops when it has\
+  \ a defensible answer or when further work is unlikely to clarify matters.\n\nIn\
+  \ short: **YNM makes one bounded claim at a time, tests it against project evidence,\
+  \ preserves uncertainty honestly, and avoids unnecessary review work.**"
+error: Reading additional input from stdin...

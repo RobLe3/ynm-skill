@@ -1,0 +1,40 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-001-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-001
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:36:49.612156Z'
+elapsed_seconds: 86.86
+input_tokens: 189278
+output_tokens: 3055
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Material findings\n\n1. **High \u2014 UI bypasses the required persistence\
+  \ boundary.**  \n   [ARCHITECTURE.md](<EVALUATION_PROJECT>/ARCHITECTURE.md:3) requires\
+  \ all persistence through `AccountService`, but [ui.py](<EVALUATION_PROJECT>/ui.py:1)\
+  \ imports `save_account` directly from the database adapter and calls it at line\
+  \ 4. A stubbed runtime check confirmed `submit()` invokes that adapter directly.\
+  \ This defeats the declared architectural boundary and any controls intended to\
+  \ live there.  \n   **Disposition:** YES\u2014the violation is directly supported.\n\
+  \n2. **High \u2014 The supplied project cannot be imported or run.**  \n   Importing\
+  \ `ui` raises `ModuleNotFoundError: No module named 'database'`. The project contains\
+  \ no `database.py`, dependency manifest, or documented external provider. The syntax\
+  \ itself is valid.  \n   **Disposition:** YES within the supplied project. If `database`\
+  \ is environment-provided, that integration evidence was unavailable.\n\n3. **Medium\
+  \ \u2014 No automated tests protect the persistence boundary or submission behavior.**\
+  \  \n   The complete project inventory contains only `ARCHITECTURE.md` and `ui.py`.\
+  \ There are no tests that would detect the current architecture regression or validate\
+  \ error handling and return behavior.  \n   **Disposition:** YES for the bounded\
+  \ supplied file set.\n\nRecommended first correction: introduce/use `AccountService`,\
+  \ make `ui.py` depend on that abstraction, supply or declare the missing implementation\
+  \ dependencies, and add a boundary test that fails if UI code imports the database\
+  \ adapter.\n\nReview status: YNM-1 focused review completed; both supplied files\
+  \ were reviewed, no files were changed. Coverage excludes unavailable deployment\
+  \ configuration, external dependencies, history, and product requirements. The findings\
+  \ converged because the complete available project surface was examined."
+error: Reading additional input from stdin...

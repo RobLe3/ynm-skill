@@ -1,18 +1,21 @@
 final_assessment:
-  proposition: YNM 1.3.0 candidate adds explicit Analysis → Iteration → Delivery sequencing, deterministic package inclusion, and git-object-based release integrity while preserving core semantics.
-  disposition: "YES"
-  final_disposition: "YES"
-  disposition_reason: The candidate produces explicit, bounded delivery outcomes with managed uncertainty and historical cleanup without weakening safety boundaries.
-  maturity_blockers: []
+  proposition: Controlled identical review conditions establish that YNM 1.3.0 improves model-assisted project review without a safety, uncertainty-preservation, or activation regression.
+  disposition: "NO"
+  final_disposition: "NO"
+  disposition_reason: Primary aggregate precision improved, but a clean-project paired run converted explicitly unresolved evidence into unsupported certainty; trigger activation also produced material false negatives under the frozen observable-behavior rule.
+  maturity_blockers:
+    - YNM-EMP-001
+    - YNM-EMP-002
   remaining_maybe_findings:
     - YNM-VAL-001
   converged: true
   stability_pass: "YES"
   version_decision: 1.3.0
-  assessed_at: "2026-08-19T16:55:00Z"
-  evaluated_at: "2026-08-19T16:55:00Z"
+  assessed_at: "2026-08-20T08:56:02Z"
+  evaluated_at: "2026-08-20T08:56:02Z"
   assessment_id: YNM-LIFECYCLE-CANDIDATE-20260819-164900
-  assessment_revision: 1
+  assessment_revision: 3
+  change_reason: Frozen primary and replication trigger/A-B evaluations completed and established empirical release blockers without changing the runtime package.
   evidence:
     - state/releases/1.3.0/assessment.yaml
     - state/releases/1.3.0/findings.yaml
@@ -20,5 +23,11 @@ final_assessment:
     - state/releases/1.3.0/runs.yaml
     - state/releases/1.3.0/stability.yaml
     - state/releases/1.3.0/sanitization-report.yaml
+    - evaluations/rubric.yaml
+    - evaluations/scenarios.yaml
+    - evaluations/results/model-availability.yaml
+    - evaluations/results/trigger-summary.yaml
+    - evaluations/results/benchmark-summary.yaml
+    - evaluations/results/summary.md
   publication_readiness: "YES"
   publication_authorization: REQUIRES_HUMAN

@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-013-YNM_1_4_PORTABLE-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-013
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:49:38.163195Z'
+elapsed_seconds: 44.447
+input_tokens: 128558
+output_tokens: 1863
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Release readiness: **not ready for release**.\n\nEvidence reviewed: the\
+  \ complete visible workspace consists only of [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3),\
+  \ which states:\n\n- Build passes \u2014 **MAYBE**: asserted, but no build logs,\
+  \ source, tests, or CI configuration are available to verify it.\n- Security review\
+  \ \u2014 **MAYBE / missing**: explicitly absent; no security assurance can be made.\n\
+  - Publication authorization \u2014 **NO**: explicitly absent, so release/publishing\
+  \ is not authorized.\n\nEvidence boundaries: no Git repository/history, release\
+  \ version/tag, artifacts, dependency manifest, source code, test suite, CI results,\
+  \ security report, deployment evidence, or approval record exists in the accessible\
+  \ workspace. This was a read-only, bounded assurance review; no external systems\
+  \ were queried.\n\nRun receipt: YNM-3 assurance requested; execution status **PARTIAL**\
+  \ due to unavailable release evidence; disposition **NO** for release readiness;\
+  \ convergence **true for the bounded workspace**, not for broader product readiness.\n\
+  \nMinimum release gate: obtain explicit publication approval and a security-review\
+  \ record, then provide reproducible build/test and release-artifact evidence for\
+  \ reassessment."
+error: Reading additional input from stdin...

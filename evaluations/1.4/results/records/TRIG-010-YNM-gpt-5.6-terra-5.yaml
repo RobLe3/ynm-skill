@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-010-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-010
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:33:16.574832Z'
+elapsed_seconds: 21.254
+input_tokens: 79302
+output_tokens: 708
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'YNM loaded in portable, read-only mode.
+
+
+  Run receipt: the workspace contains no repository files and is not a Git repository,
+  so no project evidence was available to review. Status: **BLOCKED** pending a repository
+  path or uploaded project contents.'
+error: Reading additional input from stdin...

@@ -1,0 +1,35 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-011
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:27:30.052808Z'
+elapsed_seconds: 18.435
+input_tokens: 30242
+output_tokens: 524
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a structured way to review a project without jumping straight\
+  \ to fixes.\n\nIt works like this:\n\n1. Turn concerns into clear questions  \n\
+  \   For example: \u201CDoes this system recover safely after a database failure?\u201D\
+  \n\n2. Examine actual evidence  \n   YNM checks code, documentation, tests, project\
+  \ state, or other relevant artifacts\u2014not intuition alone.\n\n3. Give each question\
+  \ one disposition\n\n   - **YES** \u2014 the evidence supports it.\n   - **NO**\
+  \ \u2014 the evidence contradicts it.\n   - **MAYBE** \u2014 there isn\u2019t enough\
+  \ reliable evidence yet.\n\n4. Review through different lenses  \n   Depending on\
+  \ the project, YNM can examine architecture, implementation, adoption, maintenance,\
+  \ conflicting findings, and review coordination.\n\n5. Preserve uncertainty and\
+  \ boundaries  \n   It records what was reviewed, what wasn\u2019t, disagreements,\
+  \ limitations, and why the review stopped. A `MAYBE` is not forced into a yes or\
+  \ no.\n\n6. Keep review separate from action  \n   Finding a problem does not automatically\
+  \ authorize YNM to edit anything. Reviews are read-only by default; remediation\
+  \ requires explicit permission.\n\nEvery run follows a simple lifecycle:\n\n**Analyze\
+  \ \u2192 Review and iterate \u2192 Deliver findings \u2192 Stop**\n\nIn short, YNM\
+  \ is an evidence-based project reviewer that answers narrowly defined questions\
+  \ with **YES, NO, or MAYBE**, while making its scope and confidence visible."
+error: Reading additional input from stdin...

@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-001
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:30:36.972958Z'
+elapsed_seconds: 44.4
+input_tokens: 134549
+output_tokens: 1692
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "YNM review complete: the supplied project root contains no files or directories\
+  \ beyond itself.\n\n- Finding \u2014 **NO**: \u201CA reviewable project artifact\
+  \ set is present in the requested scope.\u201D  \n  Evidence: root inventory returned\
+  \ only `.`; no source, configuration, documentation, Git metadata, tests, or prior\
+  \ YNM state.\n\n- Meta loop: **COMPLETED**\n- Architecture, Implementation, Adoption,\
+  \ Maintenance, Disposition loops: **NOT_APPLICABLE** \u2014 no meaningful project\
+  \ propositions could be evaluated.\n- Authority: **NOT_REQUESTED**; review remained\
+  \ read-only.\n- Persistence: **stateless**; no files were created.\n\nRun receipt:\
+  \ `NOT_APPLICABLE_REVIEW`, converged for the bounded scope. To conduct a substantive\
+  \ review, provide or point me at the actual project directory/repository."
+error: Reading additional input from stdin...

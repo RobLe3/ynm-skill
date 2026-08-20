@@ -38,6 +38,8 @@ DEFAULT_CHECKS = [
     "public-sanitization",
     "runtime-boundary",
     "workflow-invariants",
+    "current-evidence-references",
+    "evaluation-artifacts",
 ]
 PREFLIGHT_CHECKS = [
     "schema",
@@ -52,6 +54,8 @@ PREFLIGHT_CHECKS = [
     "public-sanitization",
     "runtime-boundary",
     "workflow-invariants",
+    "current-evidence-references",
+    "evaluation-artifacts",
 ]
 CROSS_PLATFORM_CHECKS = [
     "schema",
@@ -85,6 +89,11 @@ PUBLIC_SANITIZATION_ALLOWLIST: dict[str, set[str]] = {
     "tests/test_validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
     "validation/validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION", "PRIVATE_ABSOLUTE_PATH"},
     "validation/validate_release_integrity.py": {"PRIVATE_ABSOLUTE_PATH"},
+    "VALIDATION.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "evaluations/README.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "evaluations/results/model-availability.yaml": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "scripts/run_evaluations.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "state/releases/1.3.0/review-plan.yaml": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
 }
 WORKFLOW_PATH = ROOT / ".github" / "workflows" / "ynm-ci.yml"
 ALLOWED_CAPABILITY_LABELS = {
@@ -896,7 +905,7 @@ def check_release() -> list[str]:
     release_assessment = load_yaml(release_dir / "final-assessment.yaml") if (release_dir / "final-assessment.yaml").exists() else None
     final_disposition = release_assessment.get("final_assessment", {}).get("disposition", "").strip() if isinstance(release_assessment, dict) else ""
     if final_disposition not in {"YES", "NO", "MAYBE"}:
-        errors.append("state/releases/1.3.0/final-assessment.yaml: missing or invalid final_disposition")
+        errors.append(f"state/releases/{version}/final-assessment.yaml: missing or invalid final_disposition")
 
     manifest = load_yaml(ROOT / "manifest.yaml")
     if manifest.get("version") != version:
@@ -951,7 +960,7 @@ def check_release() -> list[str]:
         assessment_block = release_assessment.get("assessment", {})
         reference_state = assessment_block.get("reference_state") or assessment_block.get("baseline_subject")
         if isinstance(reference_state, dict) and reference_state.get("version") != "1.2.0":
-            errors.append("state/releases/1.3.0/assessment.yaml: reference state must remain 1.2.0 baseline")
+            errors.append(f"state/releases/{version}/assessment.yaml: reference state must remain 1.2.0 baseline")
 
     package_component = manifest.get("package", {})
     package_entries = package_component.get("include") if isinstance(package_component, dict) else None
@@ -1514,7 +1523,7 @@ def check_version_consistency() -> list[str]:
 
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
     if f"## [{expected}]" not in changelog:
-        errors.append("CHANGELOG.md: missing current version heading for 1.3.0 unreleased section")
+        errors.append(f"CHANGELOG.md: missing current version heading for {expected} unreleased section")
 
     publication = load_yaml(ROOT / f"state/releases/{expected}/publication.yaml")
     if not isinstance(publication, dict):
@@ -1534,6 +1543,135 @@ def check_version_consistency() -> list[str]:
                 f"state/releases/{expected}/final-assessment.yaml version_decision mismatch: expected {expected}, found {decision}"
             )
 
+    return errors
+
+
+def check_current_evidence_references(root: Path = ROOT, version: str = CURRENT_VERSION) -> list[str]:
+    """Require path-like evidence in current findings to resolve inside the repository."""
+
+    findings_path = root / f"state/releases/{version}/findings.yaml"
+    if not findings_path.exists():
+        return [f"{findings_path}: current findings file missing"]
+    payload = load_yaml(findings_path)
+    findings = payload.get("findings", []) if isinstance(payload, dict) else []
+    errors: list[str] = []
+    canonical_root = root.resolve()
+    for finding in findings:
+        if not isinstance(finding, dict):
+            continue
+        finding_id = finding.get("id", "<unknown>")
+        for locator in finding.get("evidence", []):
+            if not isinstance(locator, str) or "/" not in locator:
+                continue
+            if re.match(r"^[a-z][a-z0-9+.-]*://", locator, re.IGNORECASE):
+                continue
+            candidate = (root / locator).resolve()
+            try:
+                candidate.relative_to(canonical_root)
+            except ValueError:
+                errors.append(f"{finding_id}: evidence path escapes repository: {locator}")
+                continue
+            if not candidate.exists():
+                errors.append(f"{finding_id}: evidence path does not exist: {locator}")
+    return errors
+
+
+def check_evaluation_artifacts(root: Path = ROOT) -> list[str]:
+    errors: list[str] = []
+    schema_root = root / "evaluations/schemas"
+    scenario_schema_path = schema_root / "evaluation-scenario.schema.json"
+    result_schema_path = schema_root / "evaluation-result.schema.json"
+    score_schema_path = schema_root / "evaluation-score.schema.json"
+    for path in (scenario_schema_path, result_schema_path, score_schema_path):
+        if not path.exists():
+            errors.append(f"{path.relative_to(root)}: evaluation schema missing")
+            continue
+        schema = load_json(path)
+        try:
+            Draft202012Validator.check_schema(schema)
+        except jsonschema_exceptions.SchemaError as exc:
+            errors.append(f"{path.relative_to(root)}: schema error: {exc.message}")
+    if errors:
+        return errors
+    scenarios = load_yaml(root / "evaluations/scenarios.yaml")
+    scenario_errors = sorted(Draft202012Validator(load_json(scenario_schema_path), format_checker=FormatChecker()).iter_errors(scenarios), key=lambda item: list(item.absolute_path))
+    for error in scenario_errors:
+        errors.append(f"evaluations/scenarios.yaml: {error.json_path}: {error.message}")
+    scenario_ids = [item.get("id") for item in scenarios.get("scenarios", []) if isinstance(item, dict)]
+    if len(scenario_ids) != len(set(scenario_ids)):
+        errors.append("evaluations/scenarios.yaml: duplicate scenario IDs")
+    holdout_path = root / "evaluations/1.4/holdout.yaml"
+    protocol_14_path = root / "evaluations/1.4/protocol.yaml"
+    if holdout_path.exists() and protocol_14_path.exists():
+        holdout = load_yaml(holdout_path)
+        holdout_errors = sorted(
+            Draft202012Validator(load_json(scenario_schema_path), format_checker=FormatChecker()).iter_errors(holdout),
+            key=lambda item: list(item.absolute_path),
+        )
+        for error in holdout_errors:
+            errors.append(f"evaluations/1.4/holdout.yaml: {error.json_path}: {error.message}")
+        holdout_rows = holdout.get("scenarios", []) if isinstance(holdout, dict) else []
+        holdout_ids = [item.get("id") for item in holdout_rows if isinstance(item, dict)]
+        protocol_14 = load_yaml(protocol_14_path)
+        expected_holdout = protocol_14.get("holdout_scenarios") if isinstance(protocol_14, dict) else None
+        if len(holdout_rows) != expected_holdout:
+            errors.append(
+                f"evaluations/1.4/holdout.yaml: scenario count differs from frozen protocol: "
+                f"protocol={expected_holdout}, actual={len(holdout_rows)}"
+            )
+        if len(holdout_ids) != len(set(holdout_ids)):
+            errors.append("evaluations/1.4/holdout.yaml: duplicate scenario IDs")
+        for item in holdout_rows:
+            fixture = root / str(item.get("fixture", "")) if isinstance(item, dict) else root
+            if not fixture.is_dir():
+                errors.append(f"evaluations/1.4/holdout.yaml: fixture missing: {fixture.relative_to(root)}")
+    protocol = load_yaml(root / "evaluations/protocol.yaml")
+    if protocol.get("revision") != 2:
+        errors.append("evaluations/protocol.yaml: revision must be 2 for the frozen empirical cycle")
+    if protocol.get("primary_executor") != "gpt-5.6-sol":
+        errors.append("evaluations/protocol.yaml: primary executor drift")
+    expected_candidates = ["gpt-5.4-mini-2026-03-17", "gpt-5.6-terra", "gpt-5.6-luna", "gpt-5.4"]
+    if protocol.get("replication_candidates") != expected_candidates:
+        errors.append("evaluations/protocol.yaml: replication candidate order drift")
+    findings = load_yaml(root / "state/releases/1.3.0/findings.yaml").get("findings", [])
+    finding_ids = [item.get("id") for item in findings if isinstance(item, dict)]
+    collisions = set(finding_ids) & set(scenario_ids)
+    allowed_historical_collisions = {"YNM-EVAL-001"}
+    unexpected = sorted(collisions - allowed_historical_collisions)
+    if unexpected:
+        errors.append(f"evaluation identifier collision across finding and scenario types: {', '.join(unexpected)}")
+    result_paths = sorted((root / "evaluations/results/records").glob("*.yaml")) if (root / "evaluations/results/records").exists() else []
+    result_records: list[dict] = []
+    for result_path in result_paths:
+        result = load_yaml(result_path)
+        result_records.append(result)
+        result_errors = sorted(Draft202012Validator(load_json(result_schema_path), format_checker=FormatChecker()).iter_errors(result), key=lambda item: list(item.absolute_path))
+        for error in result_errors:
+            errors.append(f"{result_path.relative_to(root)}: {error.json_path}: {error.message}")
+    for score_path in sorted((root / "evaluations/results/blinded/scores").glob("*.yaml")) if (root / "evaluations/results/blinded/scores").exists() else []:
+        score = load_yaml(score_path)
+        score_errors = sorted(Draft202012Validator(load_json(score_schema_path), format_checker=FormatChecker()).iter_errors(score), key=lambda item: list(item.absolute_path))
+        for error in score_errors:
+            errors.append(f"{score_path.relative_to(root)}: {error.json_path}: {error.message}")
+    benchmark_summary = root / "evaluations/results/benchmark-summary.yaml"
+    if benchmark_summary.exists():
+        availability = load_yaml(root / "evaluations/results/model-availability.yaml").get("models", [])
+        selected_count = 1 + int(any(item.get("status") == "AVAILABLE" and item.get("model") != "gpt-5.6-sol" for item in availability[1:]))
+        benchmark_records = [item for item in result_records if str(item.get("scenario_id", "")).startswith("YNM-EVAL-")]
+        trigger_records = [item for item in result_records if str(item.get("scenario_id", "")).startswith("TRIG-")]
+        expected_benchmarks = len(scenario_ids) * 2 * selected_count
+        trigger_cases = load_yaml(root / "tests/data/trigger-cases.yaml").get("cases", [])
+        expected_triggers = len(trigger_cases) * 5 * selected_count
+        if len(benchmark_records) != expected_benchmarks:
+            errors.append(f"evaluation results: expected {expected_benchmarks} benchmark records, found {len(benchmark_records)}")
+        if len(trigger_records) != expected_triggers:
+            errors.append(f"evaluation results: expected {expected_triggers} trigger records, found {len(trigger_records)}")
+        score_count = len(list((root / "evaluations/results/blinded/scores").glob("*.yaml")))
+        if score_count != expected_benchmarks:
+            errors.append(f"evaluation results: expected {expected_benchmarks} blinded scores, found {score_count}")
+        run_ids = [item.get("run_id") for item in result_records]
+        if len(run_ids) != len(set(run_ids)):
+            errors.append("evaluation results: duplicate run IDs")
     return errors
 
 
@@ -1561,6 +1699,7 @@ def run(requested_checks: Sequence[str] | None = None) -> list[str]:
             ("examples/data/bootstrap-receipt.yaml", "bootstrap-receipt.schema.json", None),
             ("examples/data/review-plan.yaml", "review-plan.schema.json", None),
             ("state/releases/1.3.0/assessment.yaml", "assessment.schema.json", "assessment"),
+            ("state/releases/1.3.0/bootstrap.yaml", "bootstrap-receipt.schema.json", None),
         ]
         for fixture in fixtures:
             errors.extend(check_fixture(*fixture))
@@ -1591,6 +1730,10 @@ def run(requested_checks: Sequence[str] | None = None) -> list[str]:
         errors.extend(check_workflow_invariants())
     if "project-integration-security" in normalized:
         errors.extend(check_project_integration_security())
+    if "current-evidence-references" in normalized:
+        errors.extend(check_current_evidence_references())
+    if "evaluation-artifacts" in normalized:
+        errors.extend(check_evaluation_artifacts())
 
     return errors
 

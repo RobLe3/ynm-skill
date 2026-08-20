@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-005
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:32:50.728489Z'
+elapsed_seconds: 30.953
+input_tokens: 96826
+output_tokens: 1090
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Maintenance Loop: NOT_APPLICABLE.\n\nNo project exists in the selected\
+  \ workspace: it contains no artifacts, configuration, manifests, documentation,\
+  \ repository history, or prior YNM state. Therefore no meaningful maintenance proposition\
+  \ can be evaluated.\n\nRun receipt:\n\n```yaml\nschema_version: ynm-run-receipt.v2\n\
+  execution_status: NOT_APPLICABLE\nterminal_outcome: NOT_APPLICABLE_REVIEW\nloops_requested:\
+  \ [Maintenance]\nloops_executed: [Maintenance]\nstage_reached: DELIVERY\nconverged:\
+  \ true\nhalt_reason: EMPTY_PROJECT_SCOPE\nreviewed_scope: workspace inventory\n\
+  unreviewed_scope: []\nfindings_created: []\nevidence_added:\n  - workspace directory\
+  \ is empty\npersistence_status: STATELESS_NOT_AUTHORIZED\ncontinuation_scope: Review\
+  \ after project artifacts or maintenance records are available.\nnext_revisit_condition:\
+  \ Project inventory, dependency, validation, release, or recurrence evidence changes.\n\
+  ```\n\nNo files were changed."
+error: Reading additional input from stdin...

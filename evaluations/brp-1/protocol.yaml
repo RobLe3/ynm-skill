@@ -1,0 +1,16 @@
+schema_version: ynm-brp-1-protocol.v1
+revision: 1
+frozen_at: '2026-08-20T12:21:19Z'
+runtime_commit_before_profile_changes: 43b4d792ada4c9015cb80fd022664204b005d483
+profile: YNM-BRP-1
+primary_model: gpt-5.6-sol
+replication_model: gpt-5.6-terra
+replication_is_release_gating: false
+adjudicator_model: gpt-5.6-sol
+adjudicator_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+fixture_count: 12
+repetitions: 1
+condition: YNM_BRP_1
+sandbox: read-only
+blinding_seed: ynm-brp-1-usability-revision-1
+runtime_changes_after_fixture_execution: forbidden

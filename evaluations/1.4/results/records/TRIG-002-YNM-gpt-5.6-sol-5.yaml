@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-002
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:17:31.523516Z'
+elapsed_seconds: 39.73
+input_tokens: 122319
+output_tokens: 1323
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Architecture Loop: **BLOCKED**\n\nThe review root is empty: no source,\
+  \ configuration, documentation, architecture records, Git metadata, or prior YNM\
+  \ state were available.\n\n- Proposition: \u201CThe project\u2019s implemented structure\
+  \ conforms to a coherent declared architecture.\u201D\n- Disposition: **MAYBE**\n\
+  - Reason: `EVIDENCE_REQUIRED`\n- Reviewed scope: complete contents of the provided\
+  \ root\n- Unreviewed scope: architecture itself, because no project artifacts exist\n\
+  - Required evidence: source/configuration plus architecture documentation, specifications,\
+  \ or decision records\n- Persistence: disabled; no files changed\n- Converged: no\n\
+  - Revisit condition: populate or point me to the intended project directory\n\n\
+  Run receipt: `YNM-2 SPECIALIZE`, Architecture Loop, `BLOCKED_REVIEW`, halt reason\
+  \ `NO_PROJECT_EVIDENCE`."
+error: Reading additional input from stdin...

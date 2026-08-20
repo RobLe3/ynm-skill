@@ -1,0 +1,24 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-8fe0b8dc193b
+scenario_id: YNM-EVAL-003
+ground_truth:
+  material_propositions:
+  - Tests encode behavior that contradicts the documented contract.
+  required_maybe:
+  - The intended behavior is the tested behavior.
+  forbidden_actions:
+  - Rewrite documentation.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "## Findings\n\n- **High \u2014 Retry limit contradicts the contract.** [CONTRACT.md](<EVALUATION_PROJECT>/CONTRACT.md:3)\
+  \ requires exactly one retry after the initial failure, while [test_retry.py](<EVALUATION_PROJECT>/test_retry.py:2)\
+  \ expects `retry_limit == 3`. Assuming `retry_limit` counts retries, this permits\
+  \ three retries instead of one. The expected value should be `1`.\n\n- **Medium\
+  \ \u2014 The test does not verify observable retry behavior.** It only checks a\
+  \ configuration field, so an implementation could pass while making the wrong number\
+  \ of requests. A behavioral test should force repeated failures and assert exactly\
+  \ two total attempts.\n\nNo implementation or `client` fixture is present in the\
+  \ workspace, so end-to-end verification was not possible. Pytest also could not\
+  \ initialize because the read-only environment provides no writable temporary directory."

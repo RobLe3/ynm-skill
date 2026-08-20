@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-004
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:29:34.066336Z'
+elapsed_seconds: 35.202
+input_tokens: 118194
+output_tokens: 1306
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Adoption Loop result: **MAYBE \u2014 insufficient context**\n\nThe review\
+  \ root is empty: no project entry point, documentation, user journeys, installation/configuration\
+  \ guidance, examples, interfaces, or prior YNM state were available. There is therefore\
+  \ no defined audience or adoption path to attempt.\n\n- Reviewed scope: complete\
+  \ workspace (0 project artifacts)\n- Loop status: COMPLETED with recorded evidence\
+  \ limit\n- Finding: no adoption proposition can be supported or contradicted from\
+  \ the available material\n- Needed to reassess: project artifacts plus an intended-user\
+  \ journey or onboarding objective\n- Authorization: read-only; no changes made\n\
+  - Stop reason: further inspection has no expected information gain\n\nRun receipt:\
+  \ `YNM-1 / Adoption / PORTABLE / LIGHT / converged: true`"
+error: Reading additional input from stdin...

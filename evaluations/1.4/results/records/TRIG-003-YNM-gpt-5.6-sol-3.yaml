@@ -1,0 +1,78 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-003-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-003
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:18:11.253615Z'
+elapsed_seconds: 45.229
+input_tokens: 147077
+output_tokens: 1761
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'The YNM Implementation Loop is `NOT_APPLICABLE`.
+
+
+  The review root is empty: a bounded filesystem search found zero files or directories.
+  There is no declared intent, implementation, procedure, configuration, or test behavior
+  to evaluate.
+
+
+  ```yaml
+
+  run_id: ynm-implementation-20260820T111846Z
+
+  schema_version: ynm-run-receipt.v2
+
+  generation: 1
+
+  execution_strategy: YNM-1 EVALUATE / LIGHT / PORTABLE / read-only
+
+  loops_requested: [Implementation]
+
+  loops_executed: [Implementation]
+
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+
+  stage_reached: DELIVERY
+
+  execution_status: NOT_APPLICABLE
+
+  terminal_outcome: NOT_APPLICABLE_REVIEW
+
+  halt_reason: NO_REALIZED_ARTIFACT
+
+  reviewed_scope: complete contents of the provided review root
+
+  unreviewed_scope: []
+
+  findings_created: 0
+
+  findings_updated: 0
+
+  dispositions_changed: 0
+
+  unresolved_dependencies: []
+
+  continuation_scope: implementation artifacts and their declared contracts, once
+  added
+
+  next_revisit_condition: project files or procedures become available
+
+  iteration_count: 1
+
+  converged: true
+
+  stop_reason: complete bounded search confirmed an empty scope
+
+  persistence_status: not requested; no project state written
+
+  ```
+
+
+  No implementation findings or cross-loop handoffs were produced.'
+error: Reading additional input from stdin...

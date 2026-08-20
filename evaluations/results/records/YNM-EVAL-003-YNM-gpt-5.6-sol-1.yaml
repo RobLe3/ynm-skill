@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-003-YNM-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-003
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:38:10.479447Z'
+elapsed_seconds: 76.206
+input_tokens: 175747
+output_tokens: 2863
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The available implementation evidence does not match the documented contract.\n\
+  \n- **NO \u2014 Retry-limit expectation conforms to the contract.** The contract\
+  \ requires exactly one retry after the initial failure ([CONTRACT.md](<EVALUATION_PROJECT>/CONTRACT.md:3)),\
+  \ but the test expects `client.retry_limit == 3` ([test_retry.py](<EVALUATION_PROJECT>/test_retry.py:2)).\
+  \ A conforming retry count would be `1`\u2014or two total attempts if the API measures\
+  \ attempts rather than retries.\n\n- **MAYBE \u2014 Actual client runtime behavior\
+  \ conforms.** No client implementation or fixture exists in the reviewed project.\
+  \ Running `pytest -q -s -p no:cacheprovider` produces `fixture 'client' not found`,\
+  \ so behavior cannot be exercised.\n\nRecommended correction: supply the client\
+  \ fixture/implementation, change the expected retry limit to one, and test that\
+  \ exactly two requests occur when the first fails.\n\nYNM receipt: Implementation\
+  \ review `COMPLETED`; full project surface reviewed; dispositions `NO` and `MAYBE`;\
+  \ no files changed; stateless/read-only; converged because further review requires\
+  \ new implementation evidence."
+error: Reading additional input from stdin...

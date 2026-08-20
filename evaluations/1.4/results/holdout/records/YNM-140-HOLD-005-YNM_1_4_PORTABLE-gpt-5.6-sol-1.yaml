@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-005-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-005
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:44:36.848159Z'
+elapsed_seconds: 54.519
+input_tokens: 140400
+output_tokens: 1710
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "The operationally supported timeout is **60 seconds**, while the specification\
+  \ declares **30 seconds**.\n\nEvidence: [PROJECT.md:3](<EVALUATION_PROJECT>/PROJECT.md:3)\
+  \ states that implementation and tests use 60 seconds, but the spec says 30 seconds.\n\
+  \nYNM disposition:\n\n- **60 seconds as implemented/tested:** YES, within the document\u2019\
+  s claims.\n- **30 seconds as specified:** YES, within the document\u2019s claims.\n\
+  - **One unambiguous authoritative timeout:** MAYBE \u2014 `CONFLICTING_EVIDENCE`.\n\
+  \nEvidence boundary: the repository contains only `PROJECT.md`; there are no actual\
+  \ specification, implementation, or test files to inspect or execute. Thus 60 seconds\
+  \ is the best operational answer, but it is not independently verified. Review was\
+  \ read-only; no files were changed."
+error: Reading additional input from stdin...

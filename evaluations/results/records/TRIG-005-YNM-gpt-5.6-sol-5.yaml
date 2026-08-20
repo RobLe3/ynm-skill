@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-005
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:22:10.396037Z'
+elapsed_seconds: 61.422
+input_tokens: 170154
+output_tokens: 2107
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Maintenance Loop result: **BLOCKED**. The project root is empty, so no
+  maintenance proposition can be responsibly evaluated.
+
+
+  - Dispositions: no `YES`, `NO`, or `MAYBE` findings created
+
+  - Evidence: directory inventory contained 0 entries
+
+  - Unreviewed: dependencies, validation health, configuration drift, release hygiene,
+  compatibility claims, ownership, and recurring failures
+
+  - Authority: read-only; no remediation requested or authorized
+
+  - Convergence: false
+
+  - Revisit condition: populate the project root or provide the correct path
+
+  - Persistence: stateless; no YNM state written
+
+
+  Run receipt: `ynm-maintenance-20260820T082257Z`, generation 1, `BLOCKED_REVIEW`,
+  stopped in Delivery because required project evidence was unavailable.'
+error: Reading additional input from stdin...

@@ -1,0 +1,25 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-006-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-006
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:19:54.002643Z'
+elapsed_seconds: 39.148
+input_tokens: 70246
+output_tokens: 1617
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Disposition Loop result: **BLOCKED**\n\n- Level: `YNM-0 ROUTE`, read-only\
+  \ `PORTABLE/LIGHT`\n- Requested scope: reconcile finding dispositions and lifecycle\
+  \ transitions\n- Evidence found: empty workspace; no findings, events, authority\
+  \ charter, prior state, or transition requests\n- Disposition: `MAYBE` \u2014 reconciliation\
+  \ cannot be evaluated without inputs\n- Conflicts/transitions: none submitted; none\
+  \ applied or rejected\n- Writes: none\n- Stop reason: no reviewable disposition\
+  \ state\n- Continuation: provide canonical findings, lifecycle events, or prior\
+  \ YNM state to rerun the loop"
+error: Reading additional input from stdin...

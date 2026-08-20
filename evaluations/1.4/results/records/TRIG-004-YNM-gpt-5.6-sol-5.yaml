@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-004
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:19:05.022045Z'
+elapsed_seconds: 48.98
+input_tokens: 131198
+output_tokens: 1930
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Adoption Loop\n\n**Disposition: NO \u2014 contradicted**\n\n**Proposition:**\
+  \ The supplied review root provides a discoverable path for an intended user to\
+  \ understand, acquire, configure, or operate the project.\n\nThe review root is\
+  \ completely empty and is not a Git repository. It contains no README, audience\
+  \ definition, installation instructions, package metadata, examples, executable\
+  \ interface, or prior YNM state. Therefore, no adoption journey can begin.\n\nFinding:\
+  \ `ADOPTION-001 \u2014 Missing project entry and onboarding path`\n\n- Type: access\
+  \ barrier\n- Scope: complete supplied review root\n- Evidence: exhaustive directory\
+  \ inspection at `2026-08-20T11:19:42Z`\n- Recommendation: provide the project artifacts\
+  \ and a minimal entry document identifying its purpose, intended users, prerequisites,\
+  \ installation, configuration, and first successful-use example\n- Revisit condition:\
+  \ project or onboarding content is added\n- Handoffs: none; no implementation or\
+  \ architecture artifact exists to assess\n\nActual product adoptability remains\
+  \ **MAYBE** because no product was supplied to test.\n\nRun receipt: `YNM-2 SPECIALIZE`,\
+  \ Adoption Loop only, LIGHT/PORTABLE, execution `COMPLETED`, converged `true`, no\
+  \ unreviewed repository content, no files changed or state persisted. Stop reason:\
+  \ further review cannot add information until project evidence is provided."
+error: Reading additional input from stdin...

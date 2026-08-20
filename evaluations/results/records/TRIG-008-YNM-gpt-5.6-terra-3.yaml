@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-008
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:34:15.948754Z'
+elapsed_seconds: 32.282
+input_tokens: 105690
+output_tokens: 1119
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Initialization is blocked by this workspace\u2019s read-only filesystem,\
+  \ so no persistent YNM state could be created.\n\nDiscovery found an empty project\
+  \ directory with no existing documentation, instructions, or YNM state. The intended\
+  \ minimal scaffold is:\n\n- `.ynm/README.md`, `project.yaml`, `config.yaml`\n- `.ynm/state/findings.yaml`,\
+  \ `events.jsonl`, and `receipts/`\n\nI also could not run the supplied integration\
+  \ helper because its optional PyYAML dependency is unavailable. No files were changed."
+error: Reading additional input from stdin...

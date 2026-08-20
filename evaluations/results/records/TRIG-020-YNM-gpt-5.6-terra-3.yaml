@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-020
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:37:42.171566Z'
+elapsed_seconds: 17.948
+input_tokens: 46785
+output_tokens: 539
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is loaded, but this workspace is empty, so there\u2019s no project\
+  \ evidence to review yet. Point me at a project or name a focus area (architecture,\
+  \ implementation, adoption, or maintenance) and I\u2019ll run the appropriate YNM\
+  \ loop read-only."
+error: Reading additional input from stdin...

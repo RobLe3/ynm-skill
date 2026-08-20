@@ -1,7 +1,7 @@
 name: ynm
 description: Project-agnostic iterative review with evidence-backed YES, NO, or MAYBE dispositions and mandatory delivery.
 license: Apache-2.0
-version: 1.3.0
+version: 1.4.0
 entrypoint:
   skill: SKILL.md
 
@@ -16,6 +16,7 @@ package:
     - contracts
     - loops
     - methodology
+    - scripts/adaptive_execution.py
     - schemas
     - scripts/project_integration.py
     - scripts/execution_lifecycle.py
@@ -34,6 +35,6 @@ compatibility:
   independent_third_party_implementation: NOT_VALIDATED
 
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
   repository: "https://github.com/RobLe3/ynm-skill"
   license: "Apache-2.0"

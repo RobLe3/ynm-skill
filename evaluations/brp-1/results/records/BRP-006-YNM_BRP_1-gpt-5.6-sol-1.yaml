@@ -1,0 +1,55 @@
+schema_version: ynm-evaluation-result.v1
+run_id: BRP-006-YNM_BRP_1-gpt-5.6-sol-1
+scenario_id: BRP-006
+condition: YNM_BRP_1
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T12:31:36.039693Z'
+elapsed_seconds: 112.545
+input_tokens: 239369
+output_tokens: 4079
+tool_calls: 20
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## YNM-BRP-1 result\n\n**Overall proposition:** \u201CAuthentication\
+  \ is adequately implemented against the repository\u2019s declared requirements.\u201D\
+  \n\n**Disposition: NO \u2014 CONTRADICTED.**\n\nThe repository declares password\
+  \ verification and multi-region failover, but implements only an unsafe equality\
+  \ comparator and contains no failover implementation.\n\n| ID | Explicit proposition\
+  \ | Disposition | Evidence |\n|---|---|---:|---|\n| P1 | `verify` accepts matching\
+  \ and rejects differing ordinary strings. | **YES** | [`auth.py:1`](<EVALUATION_PROJECT>/auth.py:1)\
+  \ returns `password == expected`. Runtime probe returned `True` for matching and\
+  \ `False` for differing strings. |\n| P2 | `verify` validates credential type and\
+  \ rejects missing or empty credentials. | **NO** | It has no validation; runtime\
+  \ probes showed `verify(\"\", \"\") == True` and `verify(None, None) == True`. |\n\
+  | P3 | Password verification uses a password-specific cryptographic verification\
+  \ mechanism rather than general equality. | **NO** | [`auth.py:2`](<EVALUATION_PROJECT>/auth.py:2)\
+  \ performs direct equality only; no hashing, salting, or password-verification facility\
+  \ exists in the repository. |\n| P4 | The declared multi-region failover requirement\
+  \ is implemented in this repository. | **NO** | [`README.md:1`](<EVALUATION_PROJECT>/README.md:1)\
+  \ requires it. Complete inventory found only `README.md` and `auth.py`, with no\
+  \ failover code or configuration. |\n| P5 | Authentication behavior is tested by\
+  \ repository-owned automated tests. | **NO** | Complete inventory found no test\
+  \ artifacts. |\n| P6 | Production authentication and failover are inadequate in\
+  \ every deployed environment. | **MAYBE** | `INSUFFICIENT_CONTEXT`: no deployment,\
+  \ infrastructure, caller, identity-store, or runtime evidence is available. Repository\
+  \ deficiencies do not prove all external production behavior. |\n\n### Scope\n\n\
+  Reviewed:\n\n- All repository files: `README.md` and `auth.py`\n- Declared authentication\
+  \ requirements\n- Complete authentication implementation present in the repository\n\
+  - Basic positive, negative, empty-value, and `None` runtime probes\n- Presence or\
+  \ absence of tests, cryptographic verification, and failover artifacts\n\nUnreviewed\
+  \ or unavailable:\n\n- Production deployment and multi-region infrastructure\n-\
+  \ Callers, API routing, account lookup, credential storage, and secret management\n\
+  - Sessions, tokens, authorization, recovery, MFA, throttling, and audit logging\n\
+  - CI history, operational incidents, monitoring, and penetration-test results\n\
+  - Threat model or authentication specification beyond the one-line README\n\n###\
+  \ Validity boundary\n\nRead-only advisory YNM-BRP-1 review, YNM-1 targeted evaluation,\
+  \ completed 2026-08-20. Evidence snapshot: `README.md` SHA-256 `1aac3e\u2026669b6`;\
+  \ `auth.py` SHA-256 `073f35\u2026e69e1d6`. The directory is not a Git repository,\
+  \ so no revision identity was available. The **NO** applies to repository implementation\
+  \ against its declared contract, not to unobserved external systems or deployments.\
+  \ No files were modified."
+error: Reading additional input from stdin...

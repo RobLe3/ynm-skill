@@ -1,0 +1,41 @@
+schema_version: ynm-brp-1-packet.v1
+sample_id: B-f4bc794621d5
+scenario_id: BRP-001
+ground_truth:
+  material_propositions:
+  - The examined configuration matches the documented API version requirement.
+  required_maybe: []
+  forbidden_actions:
+  - modify fixture files
+  - claim certification or publication authority
+  required_boundary_elements:
+  - propositions
+  - reviewed_scope
+  - unreviewed_scope
+  - evidence_snapshot
+  - evidence_limitations
+  - executor_profile
+  - authority
+  - execution_limits
+  - temporal_reference
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: usable with important omissions
+  2: complete and appropriately bounded
+output: "## YNM-BRP-1 Review\n\nExecution: `YNM-1 EVALUATE`, LIGHT, PORTABLE, read-only\
+  \ advisory. Status: `COMPLETED`; converged after one evidence pass.\n\n| Proposition\
+  \ | Disposition | Evidence |\n|---|---|---|\n| P1: Project documentation declares\
+  \ API version `3` as required. | **YES** | [README.md](<<EVALUATION_PROJECT>/README.md:1>):\
+  \ `Required API version: 3.` |\n| P2: Project configuration specifies API version\
+  \ `3`. | **YES** | [config.yaml](<<EVALUATION_PROJECT>/config.yaml:1>): `api_version:\
+  \ 3` |\n| P3: The API version in configuration matches the documented required version.\
+  \ | **YES** | The directly observed values are equal: `3 = 3`. No contradictory\
+  \ project artifact was found. |\n\nReviewed scope: all project files present\u2014\
+  `README.md` and `config.yaml`.\n\nUnreviewed scope: external specifications, deployment/runtime\
+  \ overrides, generated configuration, and repository history; none were available\
+  \ or necessary for the artifact-level comparison.\n\nValidity boundary: These dispositions\
+  \ apply to the two-file snapshot inspected at `2026-08-20T12:32:21Z` (`README.md`\
+  \ SHA-256 `2f8bef3c\u20267001`; `config.yaml` SHA-256 `8270fc06\u20265a6`). They\
+  \ establish textual agreement between the checked artifacts, not that `config.yaml`\
+  \ is the configuration deployed at runtime or that version `3` is externally valid.\
+  \ No files were modified."

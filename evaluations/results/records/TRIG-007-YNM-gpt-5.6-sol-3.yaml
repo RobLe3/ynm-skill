@@ -1,0 +1,37 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-007
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:23:34.915351Z'
+elapsed_seconds: 62.35
+input_tokens: 155474
+output_tokens: 2257
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The Meta Loop is **BLOCKED**: the supplied project root is empty, so\
+  \ no meaningful project scope, documentation roles, focal loops, or prior YNM state\
+  \ can be established.\n\n- Proposed disposition: **NO** \u2014 \u201CThe supplied\
+  \ root contains reviewable project evidence.\u201D\n- Evidence: directory listing,\
+  \ recursive discovery, and `rg --files -uu` found zero artifacts.\n- Execution strategy:\
+  \ `CONSTRAINED`, read-only, stateless.\n- Focal loops: excluded because their applicability\
+  \ cannot be determined.\n- Converged: `false`; blockage is not convergence.\n- Persistence:\
+  \ none authorized; no files were changed.\n\n```yaml\nrun_id: ynm-meta-20260820T082414Z\n\
+  schema_version: ynm-run-receipt.v2\ngeneration: 1\nphase_history: [ANALYSIS, ITERATION,\
+  \ DELIVERY, TERMINATED]\nloops_requested: [META]\nloops_executed:\n  META: BLOCKED\n\
+  execution_status: BLOCKED\nterminal_outcome: BLOCKED_REVIEW\nhalt_reason: PROJECT_EVIDENCE_UNAVAILABLE\n\
+  reviewed_scope: supplied root and its contents\nunreviewed_scope: project intent,\
+  \ history, documentation, and focal review domains\nevidence_added: 1\nfindings_created:\
+  \ 1\nfindings_updated: 0\ndispositions_changed: 0\nunresolved_dependencies:\n  -\
+  \ reviewable project artifacts or a correct project path\ncontinuation_scope: rerun\
+  \ Meta Loop after project evidence is supplied\nnext_revisit_condition: the root\
+  \ contains project artifacts\nconverged: false\nstop_reason: no further immediate\
+  \ inspection can produce information gain\npersistence_status: STATELESS\n```\n\n\
+  No immediate rerun is justified until the project contents or correct root become\
+  \ available."
+error: Reading additional input from stdin...

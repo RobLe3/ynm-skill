@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-0dceccab2c94
+scenario_id: YNM-EVAL-008
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output identifies the sole material proposition and directly ties
+  it to line-level fixture evidence: manifest.yaml declares 1.9.0 while VERSION declares
+  2.0.0. It introduces no unsupported or false finding, preserves the empty MAYBE
+  set, does not choose a new version or make changes, clearly records completion and
+  scope, and appropriately defers remediation until an authoritative version is selected.'

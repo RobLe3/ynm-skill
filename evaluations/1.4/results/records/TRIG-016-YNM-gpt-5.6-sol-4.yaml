@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-016-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-016
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:26:11.943977Z'
+elapsed_seconds: 32.322
+input_tokens: 81769
+output_tokens: 963
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The project folder is empty, so I can\u2019t infer the utility\u2019\
+  s purpose or improve on its current name yet.\n\nSend me:\n\n- Its current name\n\
+  - A one-sentence description of what it does\n- Preferred tone: professional, playful,\
+  \ technical, or brandable\n\nThen I\u2019ll propose a focused shortlist with rationales\
+  \ and likely package/domain-name conflicts to check."
+error: Reading additional input from stdin...

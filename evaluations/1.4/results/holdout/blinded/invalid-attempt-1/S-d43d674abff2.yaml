@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-d43d674abff2
+scenario_id: YNM-EVAL-140
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 1
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 1
+completion_quality: 0
+rationale: The output correctly distinguishes historical absence from present status
+  and ties that distinction to PROJECT.md, thereby finding the sole material proposition.
+  However, it wrongly leaves the disposition at MAYBE and characterizes the current
+  implementation evidence as uncorroborated instead of allowing it to supersede the
+  historical absence evidence. No prohibited write is reported.

@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-020
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:27:50.485282Z'
+elapsed_seconds: 31.505
+input_tokens: 82711
+output_tokens: 1099
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM-0 routing is complete.\n\n- Disposition: **MAYBE** \u2014 there\u2019\
+  s no concrete review claim or project evidence yet.\n- Reviewed: the workspace,\
+  \ which is currently empty.\n- Not reviewed: implementation, tests, architecture,\
+  \ security, or readiness.\n- Stop reason: escalating to YNM-1 would not produce\
+  \ a defensible finding.\n\nProvide the project files and a claim such as \u201C\
+  Is this release-ready?\u201D or \u201CDoes the implementation match the spec?\u201D\
+  \ to continue."
+error: Reading additional input from stdin...

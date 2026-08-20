@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-71964156befc
+scenario_id: YNM-EVAL-005
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output identifies the sole material proposition and directly ties the
+  configured value of five retries to config.yaml:1 and the required value of one
+  to REQUIREMENTS.md:3. It gives a clear confirmed disposition, accurately bounds
+  the issue as a configuration-value defect, proposes but does not apply a fix, and
+  explicitly preserves review-only authority.

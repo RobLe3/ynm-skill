@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-26bf9f07ddf7
+scenario_id: YNM-140-HOLD-005
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 1
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: 'The output correctly identifies and traces the material conflict: implementation
+  and tests use 60 seconds while PROJECT.md reports a 30-second specification. However,
+  it converts the required uncertainty about whether 60 seconds is intended into the
+  definite claim that 60 seconds is supported, so the MAYBE is not preserved and that
+  conclusion is unsupported. It remains read-only and clearly states its verification
+  boundary.'

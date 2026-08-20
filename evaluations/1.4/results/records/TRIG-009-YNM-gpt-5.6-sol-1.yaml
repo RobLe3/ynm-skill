@@ -1,0 +1,40 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-009-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-009
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:23:05.724628Z'
+elapsed_seconds: 111.094
+input_tokens: 313845
+output_tokens: 4627
+tool_calls: 20
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Initialization is blocked: the workspace is mounted read-only, so no
+  `.ynm/` files were created.
+
+
+  Planned configuration:
+
+
+  - Persistent `.ynm/` state
+
+  - Read-only default reviews
+
+  - `review.execution_strategy: STANDARD`
+
+  - Explicit authorization required for project mutations
+
+  - Bootstrap receipt recording unknown project context
+
+
+  The project is currently empty and has no integration conflicts. Re-run in a writable
+  workspace to complete initialization.'
+error: 'Reading additional input from stdin...
+
+  2026-08-20T11:24:48.815908Z ERROR codex_core::tools::router: error=patch rejected:
+  writing is blocked by read-only sandbox; rejected by user approval settings'

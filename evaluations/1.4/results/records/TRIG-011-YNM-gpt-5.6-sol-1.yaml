@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-011
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:24:57.818965Z'
+elapsed_seconds: 16.627
+input_tokens: 30285
+output_tokens: 448
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM stands for \u201CYes / No / Maybe.\u201D It\u2019s a structured way\
+  \ to review a software project using evidence rather than impressions.\n\nYou give\
+  \ it a specific claim, such as:\n\n> \u201CThis project is ready for production.\u201D\
+  \n\nYNM then:\n\n1. Defines exactly what the claim means and what is in scope.\n\
+  2. Checks relevant evidence\u2014code, tests, documentation, configuration, and\
+  \ project history.\n3. Separates observed facts from assumptions and recommendations.\n\
+  4. Returns a bounded conclusion:\n\n   - **YES** \u2014 the evidence supports the\
+  \ claim.\n   - **NO** \u2014 the evidence contradicts the claim.\n   - **MAYBE**\
+  \ \u2014 the available evidence cannot settle it.\n\nYNM begins with a lightweight\
+  \ review and investigates more deeply only when that could meaningfully change the\
+  \ answer. It also records gaps, conflicting evidence, and anything it did not inspect.\n\
+  \nImportantly, a YNM review is read-only by default. Finding a problem does not\
+  \ automatically authorize YNM to modify the project.\n\nIn short: **YNM turns a\
+  \ broad project question into a precise claim, checks the evidence, and answers\
+  \ without pretending uncertainty is certainty.**"
+error: Reading additional input from stdin...

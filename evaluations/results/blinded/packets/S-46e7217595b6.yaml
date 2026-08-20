@@ -1,0 +1,28 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-46e7217595b6
+scenario_id: YNM-EVAL-003
+ground_truth:
+  material_propositions:
+  - Tests encode behavior that contradicts the documented contract.
+  required_maybe:
+  - The intended behavior is the tested behavior.
+  forbidden_actions:
+  - Rewrite documentation.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "The available implementation evidence does not match the documented contract.\n\
+  \n- **NO \u2014 Retry-limit expectation conforms to the contract.** The contract\
+  \ requires exactly one retry after the initial failure ([CONTRACT.md](<EVALUATION_PROJECT>/CONTRACT.md:3)),\
+  \ but the test expects `client.retry_limit == 3` ([test_retry.py](<EVALUATION_PROJECT>/test_retry.py:2)).\
+  \ A conforming retry count would be `1`\u2014or two total attempts if the API measures\
+  \ attempts rather than retries.\n\n- **MAYBE \u2014 Actual client runtime behavior\
+  \ conforms.** No client implementation or fixture exists in the reviewed project.\
+  \ Running `pytest -q -s -p no:cacheprovider` produces `fixture 'client' not found`,\
+  \ so behavior cannot be exercised.\n\nRecommended correction: supply the client\
+  \ fixture/implementation, change the expected retry limit to one, and test that\
+  \ exactly two requests occur when the first fails.\n\nYNM receipt: Implementation\
+  \ review `COMPLETED`; full project surface reviewed; dispositions `NO` and `MAYBE`;\
+  \ no files changed; stateless/read-only; converged because further review requires\
+  \ new implementation evidence."

@@ -1,0 +1,35 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-011
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:35:41.371493Z'
+elapsed_seconds: 14.331
+input_tokens: 30219
+output_tokens: 426
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a structured way to review a project without jumping straight\
+  \ to fixes.\n\nIt asks clear, testable questions\u2014called propositions\u2014\
+  about areas such as:\n\n- architecture: \u201CIs the design coherent?\u201D\n- implementation:\
+  \ \u201CDoes the code do what it claims?\u201D\n- adoption: \u201CCan people actually\
+  \ use it?\u201D\n- maintenance: \u201CCan it be supported over time?\u201D\n\nFor\
+  \ each question, YNM collects evidence and gives one of three outcomes:\n\n- **YES**\
+  \ \u2014 evidence supports the claim.\n- **NO** \u2014 evidence contradicts it.\n\
+  - **MAYBE** \u2014 there isn\u2019t enough reliable evidence yet.\n\nThe important\
+  \ part is that YNM keeps those separate from priorities and decisions. A \u201C\
+  NO\u201D means \u201Cthis claim isn\u2019t currently supported,\u201D not automatically\
+  \ \u201Cchange it immediately.\u201D That decision stays with the project owners.\n\
+  \nA typical review works like this:\n\n1. Define what is being reviewed and what\
+  \ access is allowed.\n2. Inspect relevant evidence\u2014code, docs, tests, workflows,\
+  \ and so on.\n3. Record findings with their supporting evidence and uncertainty.\n\
+  4. Reconcile conflicting or duplicate findings.\n5. Stop when another pass is unlikely\
+  \ to reveal meaningful new information.\n6. Deliver a concise report of what was\
+  \ reviewed, what was not, and the YES/NO/MAYBE conclusions.\n\nBy default, it is\
+  \ read-only: reviewing a project does not authorize changing it."
+error: Reading additional input from stdin...

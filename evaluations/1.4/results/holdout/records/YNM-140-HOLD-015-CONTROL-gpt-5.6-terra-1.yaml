@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-015-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-140-HOLD-015
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:49:57.106282Z'
+elapsed_seconds: 16.037
+input_tokens: 43005
+output_tokens: 478
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "Evidence found in [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3):\n\n\
+  - \u201CThe session note says expiry is **15 minutes**.\u201D\n- \u201CPolicy says\
+  \ **10 minutes**.\u201D\n\nBoundary: this is the only available note and it reports\
+  \ a conflict; it does not identify the governing policy, implementation behavior,\
+  \ session type, enforcement point, or effective date. Therefore, 10 and 15 minutes\
+  \ are both documented claims\u2014not confirmation of the actual configured expiry."
+error: Reading additional input from stdin...

@@ -1,0 +1,63 @@
+schema_version: ynm-trigger-summary.v1
+observability: NOT_OBSERVED
+models:
+  gpt-5.6-sol:
+    planned: 100
+    completed: 100
+    correct_activations: 0
+    missed_activations: 0
+    correct_non_activations: 0
+    false_activations: 0
+    unobservable: 100
+    failed: 0
+    categories:
+      explicit:
+        correct: 0
+        incorrect: 0
+        unobservable: 5
+      specialist:
+        correct: 0
+        incorrect: 0
+        unobservable: 30
+      setup:
+        correct: 0
+        incorrect: 0
+        unobservable: 15
+      contextual:
+        correct: 0
+        incorrect: 0
+        unobservable: 5
+      negative:
+        correct: 0
+        incorrect: 0
+        unobservable: 45
+  gpt-5.6-terra:
+    planned: 100
+    completed: 100
+    correct_activations: 0
+    missed_activations: 0
+    correct_non_activations: 0
+    false_activations: 0
+    unobservable: 100
+    failed: 0
+    categories:
+      explicit:
+        correct: 0
+        incorrect: 0
+        unobservable: 5
+      specialist:
+        correct: 0
+        incorrect: 0
+        unobservable: 30
+      setup:
+        correct: 0
+        incorrect: 0
+        unobservable: 15
+      contextual:
+        correct: 0
+        incorrect: 0
+        unobservable: 5
+      negative:
+        correct: 0
+        incorrect: 0
+        unobservable: 45

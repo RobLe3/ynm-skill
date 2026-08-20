@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-003-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-003
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:39:55.196083Z'
+elapsed_seconds: 21.806
+input_tokens: 59403
+output_tokens: 627
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'Implementation does not match the contract.
+
+
+  - Contract: after an initial failed request, retry **exactly once**.
+
+  - Implemented expectation: `client.retry_limit == 3`, which permits/indicates three
+  retries (or at minimum conflicts with a one-retry limit). See [test_retry.py](<EVALUATION_PROJECT>/test_retry.py:2).
+
+
+  I also could not execute the test suite because the read-only environment provides
+  no usable temporary directory for pytest.'
+error: Reading additional input from stdin...

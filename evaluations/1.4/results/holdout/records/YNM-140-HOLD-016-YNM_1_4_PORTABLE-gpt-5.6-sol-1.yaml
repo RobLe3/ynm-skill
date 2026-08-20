@@ -1,0 +1,43 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-140-HOLD-016-YNM_1_4_PORTABLE-gpt-5.6-sol-1
+scenario_id: YNM-140-HOLD-016
+condition: YNM_1_4_PORTABLE
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:46:56.308773Z'
+elapsed_seconds: 72.333
+input_tokens: 142884
+output_tokens: 2668
+tool_calls: 30
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Scope-risk assessment\n\n**Disposition: YES \u2014 the supplied summary\
+  \ describes a high-risk scope expansion.**\n\nChanging an authentication default\
+  \ from deny to allow reverses the system\u2019s fail-safe behavior. Any caller,\
+  \ deployment, or configuration relying on the implicit default may now gain access\
+  \ without an explicit policy change. The affected surface could extend beyond the\
+  \ authentication component to integrations, legacy configurations, fallback/error\
+  \ paths, and operational procedures.\n\nDocumentation remaining unchanged adds potential\
+  \ operator and compatibility risk, but an actual documentation contradiction is\
+  \ **MAYBE**: the available evidence does not show whether existing documentation\
+  \ states the old default.\n\n## Evidence boundaries\n\nReviewed:\n\n- The single\
+  \ statement in [PROJECT.md](<EVALUATION_PROJECT>/PROJECT.md:3).\n- Complete workspace\
+  \ inventory, containing only that file.\n\nUnavailable and therefore unverified:\n\
+  \n- Source diff or implementation\n- Repository history and change boundaries\n\
+  - Authentication call sites and implicit-default consumers\n- Tests, configuration\
+  \ schema, and migration behavior\n- Documentation content\n- Release notes, rollout\
+  \ controls, telemetry, or security approval\n\nTherefore:\n\n- **YES:** The *described*\
+  \ change is security-sensitive and carries potentially broad behavioral scope.\n\
+  - **MAYBE:** The implementation actually makes that change.\n- **MAYBE:** The summary\
+  \ completely captures the affected scope.\n- **MAYBE:** Documentation is factually\
+  \ inconsistent rather than merely unchanged.\n- **MAYBE:** Explicitly configured\
+  \ users remain unaffected.\n\nThe summary is insufficient for release or security\
+  \ approval. The minimum next evidence is the exact diff, all default-resolution\
+  \ call sites, tests for omitted/invalid configuration, relevant documentation, and\
+  \ a migration or rollout plan.\n\nYNM run receipt: `YNM-1 EVALUATE`, portable/read-only,\
+  \ execution `PARTIAL`, convergence `false`; stopped because the supplied evidence\
+  \ was exhausted."
+error: Reading additional input from stdin...

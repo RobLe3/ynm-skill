@@ -1,0 +1,45 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-004
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:20:40.578952Z'
+elapsed_seconds: 89.817
+input_tokens: 140340
+output_tokens: 3091
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Adoption Loop result: `COMPLETED`\n\n**Advisory disposition: `NO`**\n\
+  \n**Proposition:** Within the supplied project root, a prospective user can identify\
+  \ the project\u2019s purpose and follow a path to first successful use.\n\nThe complete\
+  \ available surface was inspected. The project root contains **zero files or directories**\
+  \ and has no repository history. Therefore, it provides no audience definition,\
+  \ overview, access/install instructions, configuration guidance, examples, migration/removal\
+  \ guidance, or verifiable user journey.\n\n### Finding `ADOPT-001`\n\n- **Type:**\
+  \ Access barrier / comprehension gap\n- **Evidence:** Filesystem inventory returned\
+  \ zero entries and 0 KB at `2026-08-20T08:21:36Z`.\n- **Interpretation:** A user\
+  \ cannot discover what the project is or begin using it from the supplied artifacts.\n\
+  - **Disposition:** `NO` \u2014 directly contradicted within the reviewed scope.\n\
+  - **Recommendation:** Define the intended audience and first-success outcome, then\
+  \ provide the smallest onboarding artifact explaining purpose, prerequisites, access/setup,\
+  \ one working example, and removal or rollback where applicable.\n- **Authorization:**\
+  \ Recommendation only; no changes were requested or made.\n\n### Coverage and limitations\n\
+  \n- **Reviewed:** Entire supplied project root.\n- **Unavailable:** Product intent,\
+  \ intended users, source/artifacts, runtime behavior, support feedback, external\
+  \ documentation, and prior YNM state.\n- **Unreviewed:** Any materials outside the\
+  \ supplied root.\n- **Handoff:** Project ownership must supply or define the missing\
+  \ intent and adoption surface. No implementation or architecture defect can responsibly\
+  \ be inferred yet.\n\n### Run receipt\n\n- **Run:** `ynm-adoption-20260820T082136Z`\n\
+  - **Strategy:** `CONSTRAINED`\n- **Phases:** `ANALYSIS \u2192 ITERATION \u2192 DELIVERY\
+  \ \u2192 TERMINATED`\n- **Execution status:** `COMPLETED`\n- **Terminal outcome:**\
+  \ `CONVERGED_REVIEW`\n- **Converged:** Yes, for the available scope\n- **Stop reason:**\
+  \ Full available surface reviewed; repetition without new artifacts has no expected\
+  \ information gain\n- **Persistence:** Stateless; no project files or YNM state\
+  \ written\n- **Revisit condition:** Project artifacts, user-facing documentation,\
+  \ intended-audience information, or observed user attempts become available"
+error: Reading additional input from stdin...

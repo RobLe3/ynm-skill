@@ -1,0 +1,34 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-007
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:20:54.906709Z'
+elapsed_seconds: 63.045
+input_tokens: 155290
+output_tokens: 2426
+tool_calls: 36
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Meta Loop\n\n**Disposition: NO**\n\nProposition: \u201CThe declared\
+  \ project root contains sufficient project evidence to assign focal review loops.\u201D\
+  \n\nThe review root is empty, contains no Git repository, no project instructions,\
+  \ no documentation, and no prior `.ynm` state. The complete bounded directory search\
+  \ contradicts the proposition.\n\n- Meta Loop status: `COMPLETED`\n- Project state:\
+  \ `EMPTY_NON_REPOSITORY`\n- Strategy: `YNM-1 / LIGHT / PORTABLE / READ_ONLY`\n-\
+  \ Focal loops assigned: none\n- Converged: yes\n- Stop reason: no project artifacts\
+  \ or dependencies exist to support useful specialist review\n- Persistence: disabled;\
+  \ no files changed\n- Revisit condition: rerun after project artifacts are placed\
+  \ in the review root\n\n### Run receipt\n\n```yaml\nschema_version: ynm-run-receipt.v2\n\
+  run_id: ynm-meta-20260820T112144Z\ngeneration: 1\nproject_state: EMPTY_NON_REPOSITORY\n\
+  execution_strategy: YNM-1_LIGHT_PORTABLE\nloops_requested: [meta]\nloops_executed:\
+  \ [meta]\nphase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nexecution_status:\
+  \ COMPLETED\nterminal_outcome: CONVERGED_REVIEW\nreviewed_scope: declared review\
+  \ root and coordination prerequisites\nunreviewed_scope: []\nfindings_created: 1\n\
+  dispositions_changed: 0\nunresolved_dependencies: []\nconverged: true\nstop_reason:\
+  \ NO_REVIEWABLE_PROJECT_EVIDENCE\npersistence_status: STATELESS_NO_WRITES\n```"
+error: Reading additional input from stdin...

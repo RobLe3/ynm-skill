@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-8883f33f9ec8
+scenario_id: YNM-140-HOLD-010
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: The output makes no material review findings, consistent with the empty
+  ground truth, and introduces no unjustified MAYBE. It clearly ties the translation
+  to the supplied PROJECT.md sentence and explicitly states that no files were modified,
+  respecting the read-only authority boundary. The response is complete and appropriately
+  bounded for the task.

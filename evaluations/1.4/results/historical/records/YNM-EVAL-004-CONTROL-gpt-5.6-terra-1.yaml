@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-004-CONTROL-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-004
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:39:57.887107Z'
+elapsed_seconds: 17.759
+input_tokens: 57715
+output_tokens: 540
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: 'Not operationally ready based on available evidence.
+
+
+  The repository contains only [RUNBOOK.md](<EVALUATION_PROJECT>/RUNBOOK.md:1), which
+  documents a recovery command and record-count verification. It explicitly states
+  that recovery has **not** been exercised in a production-like environment.
+
+
+  No evidence is available for deployment procedures, ownership/on-call, monitoring/alerting,
+  backups, incident response, security controls, configuration management, testing,
+  or release automation.'
+error: Reading additional input from stdin...

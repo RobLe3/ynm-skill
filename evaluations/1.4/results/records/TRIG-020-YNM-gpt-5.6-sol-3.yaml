@@ -1,0 +1,22 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-020
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:27:58.847859Z'
+elapsed_seconds: 21.593
+input_tokens: 47244
+output_tokens: 718
+tool_calls: 4
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is loaded in read-only mode.\n\nRun receipt: `YNM-0 ROUTE` only.\
+  \ No review proposition was specified, so no repository evaluation or escalation\
+  \ was justified. Current disposition: `MAYBE`\u2014we need a concrete claim such\
+  \ as \u201CIs this release-ready?\u201D or \u201CDoes implementation match the spec?\u201D\
+  \ to proceed to YNM-1."
+error: Reading additional input from stdin...

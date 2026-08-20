@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-019-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-019
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.148.0
+started_at: '2026-08-20T11:27:30.700342Z'
+elapsed_seconds: 53.163
+input_tokens: 143797
+output_tokens: 1851
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Delete nothing from the current workspace\u2014it is completely empty.\n\
+  \nCaveat: there is no `.git` directory, so I cannot review tracked files, ignored\
+  \ artifacts, or Git history for leaked secrets. If a repository was meant to be\
+  \ mounted here, provide/open the correct directory and I can review it.\n\nYNM result:\
+  \ `PARTIAL`; current-directory scan completed, publication-readiness remains `MAYBE`\
+  \ because the repository contents and history are unavailable."
+error: Reading additional input from stdin...
