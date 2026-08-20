@@ -1,0 +1,151 @@
+findings:
+- id: YNM-140-EPI-001
+  title: Affirmative evidence discipline
+  proposition: YNM requires affirmative support and sufficient bounded coverage before
+    assigning YES.
+  source_loop: Implementation
+  scope: disposition semantics
+  observation: The 1.3 clean-project evaluation exposed unjustified affirmative certainty.
+  evidence:
+  - evaluations/results/benchmark-summary.yaml
+  - contracts/disposition.md
+  interpretation: This is release-blocking and requires deterministic and empirical
+    regression evidence.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Complete the frozen clean-project and holdout evaluation.
+  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
+    supplies the required evidence.
+- id: YNM-140-EFF-001
+  title: Adaptive execution effectiveness
+  proposition: YNM 1.4 preserves or improves controlled review quality without epistemic
+    or authority regression.
+  source_loop: Adoption
+  scope: frozen effectiveness evaluation
+  observation: No 1.4 empirical execution has occurred.
+  evidence:
+  - evaluations/1.4/protocol.yaml
+  interpretation: Effectiveness remains unresolved until blinded holdout scoring completes.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Execute and score the frozen holdout.
+  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
+    supplies the required evidence.
+- id: YNM-140-COST-001
+  title: Execution efficiency
+  proposition: YNM 1.4 meets the frozen cost ratios without omitting evidence required
+    for correctness.
+  source_loop: Maintenance
+  scope: execution cost
+  observation: No 1.4 cost measurements exist.
+  evidence:
+  - evaluations/1.4/protocol.yaml
+  interpretation: Cost remains unresolved.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Complete primary cost comparison.
+  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
+    supplies the required evidence.
+- id: YNM-140-ACT-001
+  title: Lightweight activation
+  proposition: Natural project-review requests reliably enter YNM-0 while negative
+    cases remain inactive.
+  source_loop: Adoption
+  scope: activation
+  observation: YNM 1.3 behavioral activation recall was materially below target.
+  evidence:
+  - evaluations/results/trigger-summary.yaml
+  - evaluations/1.4/protocol.yaml
+  interpretation: Activation remains unresolved.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  status: OPEN
+  maturity_impact: RELEASE_BLOCKING
+  revisit_conditions: Execute frozen trigger evaluation.
+  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
+    supplies the required evidence.
+- id: YNM-140-ACC-001
+  title: Optional acceleration effectiveness
+  proposition: ACCELERATED mode preserves dispositions and provenance while reducing
+    a material resource dimension with safe PORTABLE fallback.
+  source_loop: Implementation
+  scope: optional acceleration
+  observation: Runtime capabilities have not yet been frozen or evaluated.
+  evidence:
+  - evaluations/1.4/protocol.yaml
+  interpretation: Optional acceleration remains unresolved and is not a semantic dependency.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  status: OPEN
+  maturity_impact: NON_BLOCKING
+  revisit_conditions: Run capability smoke tests and ablation where available.
+  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
+    supplies the required evidence.
+- id: YNM-140-REP-001
+  title: Cross-model replication
+  proposition: YNM 1.4 effectiveness and safety reproduce across the frozen primary
+    and replication models.
+  source_loop: Adoption
+  scope: replication
+  observation: No 1.4 replication execution has occurred.
+  evidence:
+  - evaluations/1.4/protocol.yaml
+  interpretation: Replication remains unresolved.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  status: OPEN
+  maturity_impact: NON_BLOCKING
+  revisit_conditions: Execute the final path on the frozen replication model.
+  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
+    supplies the required evidence.
+- id: YNM-VAL-001
+  title: Independent implementation validation remains pending
+  proposition: An independent third-party implementation can produce compatible YNM
+    findings, receipts, and lifecycle evidence.
+  source_loop: Adoption
+  scope: independent validation
+  observation: Maintainer-operated 1.4 work is not independent interoperability evidence.
+  evidence:
+  - VALIDATION.md
+  interpretation: Independent validation remains pending.
+  proposed_disposition: 'MAYBE'
+  disposition: 'MAYBE'
+  created_at: '2026-08-20T00:00:00Z'
+  updated_at: '2026-08-20T00:00:00Z'
+  history:
+  - YNM-1.4-E001
+  status: OPEN
+  maturity_impact: NON_BLOCKING
+  revisit_conditions: Independent third-party interoperable record exchange.
+  disposition_reason: The proposition remains unresolved until the frozen 1.4 evaluation
+    supplies the required evidence.

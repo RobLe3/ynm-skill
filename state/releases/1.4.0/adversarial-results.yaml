@@ -1,0 +1,26 @@
+assessment: YNM-LIFECYCLE-PUBLICATION-2026-08-19
+scenario_count: 80
+result: PASS
+added_scenarios:
+  lifecycle:
+  - one-pass convergence reaches Delivery without another iteration
+  - material evidence permits another iteration
+  - zero information gain stops repetition
+  - safety bound delivers without false convergence
+  - capability exhaustion reports partial coverage
+  - material scope change creates scoped reanalysis
+  - pre-loop blocking still reaches Delivery
+  - MAYBE survives Delivery
+  - Delivery does not grant mutation authority
+  - stateless Delivery preserves continuation context
+  - iteration does not restart unless scoped reanalysis changes assumptions
+  publication:
+  - local-only README paths fail
+  - identifying real-project disclosure fails
+  - missing manifest target fails
+  - provenance-dependent runtime fails
+  - broken remote links prevent verification
+  - missing public invocation creates an Adoption defect
+  - publication does not resolve YNM-VAL-001
+  release:
+  - release integrity and candidate timestamp correction scenario

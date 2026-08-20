@@ -1,0 +1,5 @@
+events:
+- event_id: YNM-1.4-E001
+  event_type: ASSESSMENT_FROZEN
+  timestamp: '2026-08-20T00:00:00Z'
+  summary: Frozen YNM 1.4 adaptive execution targets and evidence boundaries before runtime changes.

@@ -1,0 +1,12 @@
+baseline_subject:
+  version: "1.2.0"
+  tag: "v1.2.0"
+  commit: "0ba563437857c4e25caaf371d0b49805038d9e80"
+  tree: "1febb28fa27f6010edadda49922661a2139aaf2e"
+captured_at: "2026-08-19T16:49:00Z"
+files:
+  state/releases/1.2.0/assessment.yaml: 2ef56379048d86e3f19ba019846764f6b8616c2c6b047e502202c6f1638926d7
+  state/releases/1.2.0/baseline-hashes.yaml: 1857dab3b2b313c58311cc79fbac64cdb98a49d9543e7d18bcd8935151298ae9
+  state/releases/1.2.0/final-assessment.yaml: aa2f8537c299219b78a399b04451cc1d560c5ea6934dba4a12628b76f1d2600d
+  state/releases/1.2.0/findings.yaml: b5b183d07ce15fa853bd96f76dba351d17915ac66fc28b793a2d3dabd3968300
+  state/releases/1.2.0/sanitization-report.yaml: 8f049eed33991e265e6f298c69a55b46df85a2babe195de7f7c9a6f168113f46

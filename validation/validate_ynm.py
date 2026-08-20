@@ -905,7 +905,7 @@ def check_release() -> list[str]:
     release_assessment = load_yaml(release_dir / "final-assessment.yaml") if (release_dir / "final-assessment.yaml").exists() else None
     final_disposition = release_assessment.get("final_assessment", {}).get("disposition", "").strip() if isinstance(release_assessment, dict) else ""
     if final_disposition not in {"YES", "NO", "MAYBE"}:
-        errors.append("state/releases/1.3.0/final-assessment.yaml: missing or invalid final_disposition")
+        errors.append(f"state/releases/{version}/final-assessment.yaml: missing or invalid final_disposition")
 
     manifest = load_yaml(ROOT / "manifest.yaml")
     if manifest.get("version") != version:
@@ -960,7 +960,7 @@ def check_release() -> list[str]:
         assessment_block = release_assessment.get("assessment", {})
         reference_state = assessment_block.get("reference_state") or assessment_block.get("baseline_subject")
         if isinstance(reference_state, dict) and reference_state.get("version") != "1.2.0":
-            errors.append("state/releases/1.3.0/assessment.yaml: reference state must remain 1.2.0 baseline")
+            errors.append(f"state/releases/{version}/assessment.yaml: reference state must remain 1.2.0 baseline")
 
     package_component = manifest.get("package", {})
     package_entries = package_component.get("include") if isinstance(package_component, dict) else None
@@ -1523,7 +1523,7 @@ def check_version_consistency() -> list[str]:
 
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
     if f"## [{expected}]" not in changelog:
-        errors.append("CHANGELOG.md: missing current version heading for 1.3.0 unreleased section")
+        errors.append(f"CHANGELOG.md: missing current version heading for {expected} unreleased section")
 
     publication = load_yaml(ROOT / f"state/releases/{expected}/publication.yaml")
     if not isinstance(publication, dict):

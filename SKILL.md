@@ -4,7 +4,7 @@ description: Review a project through independent architecture, implementation, 
 license: Apache-2.0
 compatibility: Core review is text-only. Optional Python helper scripts require Python 3.10+ and PyYAML 6.x.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
   repository: "https://github.com/RobLe3/ynm-skill"
 ---
 

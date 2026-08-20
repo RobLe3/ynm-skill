@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.0] - Unreleased
+
+### Added
+
+- Adaptive YNM-0 through YNM-3 execution with evidence-bounded escalation.
+- Provider-neutral optional acceleration capabilities and portable fallback behavior.
+- A frozen 1.4 effectiveness, activation, cost, and acceleration assessment cycle.
+
+### Changed
+
+- YES now requires affirmative support within an explicit and sufficiently covered scope.
+- Specialist, adversarial, retrieval, and repeated evidence work are demand-driven.
+
 All notable YNM changes are recorded here. Historical release and maturity evidence remains available through immutable Git history and release tags.
 
 ## [1.3.0] - Unreleased

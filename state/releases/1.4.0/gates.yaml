@@ -1,0 +1,43 @@
+gates:
+  - name: 1.3.0 candidate public sanitization
+    disposition: "YES"
+    evidence:
+      - state/releases/1.4.0/sanitization-report.yaml
+      - validation/validate_ynm.py
+  - name: 1.3.0 candidate lifecycle and boundary stability
+    disposition: "YES"
+    evidence:
+      - state/releases/1.4.0/stability.yaml
+      - tests/test_validate_ynm.py
+      - tests/test_release_and_package.py
+  - name: 1.3.0 historical baseline reference via immutable git objects
+    disposition: "YES"
+    evidence:
+      - state/releases/1.4.0/baseline-hashes.yaml
+      - docs/errata/1.2.0-publication.md
+  - name: 1.3.0 release-candidate readiness
+    disposition: "NO"
+    evidence:
+      - state/releases/1.4.0/final-assessment.yaml
+      - state/releases/1.4.0/review-plan.yaml
+      - state/releases/1.4.0/runs.yaml
+  - name: 1.3.0 primary empirical review effectiveness
+    disposition: "NO"
+    evidence:
+      - evaluations/rubric.yaml
+      - evaluations/scenarios.yaml
+      - evaluations/results/model-availability.yaml
+      - state/releases/1.4.0/findings.yaml
+      - evaluations/results/benchmark-summary.yaml
+  - name: 1.3.0 trigger selectivity
+    disposition: "NO"
+    evidence:
+      - evaluations/results/activation-observability.yaml
+      - evaluations/results/trigger-summary.yaml
+      - state/releases/1.4.0/findings.yaml
+  - name: 1.3.0 cross-model replication
+    disposition: "NO"
+    evidence:
+      - evaluations/results/model-availability.yaml
+      - evaluations/results/benchmark-summary.yaml
+      - state/releases/1.4.0/findings.yaml
