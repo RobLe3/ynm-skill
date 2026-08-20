@@ -1,0 +1,51 @@
+schema_version: ynm-1.4-capability-discovery.v1
+observed_at: '2026-08-20T00:00:00Z'
+mode_default: PORTABLE
+capabilities:
+  ruflo:
+    status: AVAILABLE
+    evidence: MCP bridge health and Ruflo capability tools responded.
+  ruvector:
+    status: AVAILABLE
+    evidence: Engine and HNSW vector backend reported available; AST and diff smoke calls returned structured results.
+  agentdb:
+    status: NOT_USED
+    evidence: Health reported available, but learning was enabled and mutation guard disabled; controlled evaluation requires isolated ephemeral state.
+  semantic_memory:
+    status: FAILED_SMOKE_TEST
+    evidence: Search responded but did not return a plausible project-scoped known item; it cannot be trusted for material evaluation in this state.
+  exact_memory:
+    status: NOT_USED
+    evidence: No isolated ephemeral namespace was established.
+  hnsw_search:
+    status: NOT_USED
+    evidence: Backend availability alone is insufficient without scoped retrieval validation.
+  routing_hooks:
+    status: UNAVAILABLE
+    evidence: AgentDB semantic router reported disabled.
+  ast_analysis:
+    status: AVAILABLE
+    evidence: AST smoke analysis returned symbols and complexity for scripts/adaptive_execution.py.
+  diff_analysis:
+    status: AVAILABLE
+    evidence: Diff smoke analysis returned a structured bounded response.
+  coverage_analysis:
+    status: AVAILABLE
+    evidence: Coverage routing responded and correctly reported that no coverage report was present.
+  graph_analysis:
+    status: NOT_USED
+    evidence: Graph-related controllers exist but no isolated project graph was initialized.
+  local_inference:
+    status: FAILED_SMOKE_TEST
+    evidence: LM Studio endpoint returned HTTP 401 because no bearer token was configured.
+  cost_telemetry:
+    status: UNAVAILABLE
+    evidence: No validated per-run accelerator cost feed was discovered.
+  witness_or_integrity_tools:
+    status: NOT_USED
+    evidence: No material use justified for the current implementation phase.
+policy:
+  installation_performed: false
+  configuration_changed: false
+  persistent_memory_written: false
+  fallback: PORTABLE

@@ -16,6 +16,7 @@ package:
     - contracts
     - loops
     - methodology
+    - scripts/adaptive_execution.py
     - schemas
     - scripts/project_integration.py
     - scripts/execution_lifecycle.py
