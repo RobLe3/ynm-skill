@@ -14,6 +14,7 @@
 - YES now requires affirmative support within an explicit and sufficiently covered scope.
 - Specialist, adversarial, retrieval, and repeated evidence work are demand-driven.
 - Defined YNM as bounded evidential decision support rather than a universal verifier, certification system, or model-independent effectiveness claim.
+- Concluded the 1.4 and YNM-BRP-1 research cycles without satisfying their frozen release or bounded-usability acceptance contracts. Development is paused with the unreleased candidate and all favorable and adverse evidence retained for future research.
 
 All notable YNM changes are recorded here. Historical release and maturity evidence remains available through immutable Git history and release tags.
 

@@ -12,6 +12,18 @@ entries, capability claims, and changelog entries.
 
 Reports should include the YNM version, executor or runtime capabilities relevant to the issue, project type, invocation, focal loop, expected and observed behavior, available evidence, and whether persistence was enabled. Redact project content that is not necessary to reproduce the problem.
 
+## Research contributions
+
+YNM is a paused research project. Useful future contributions include independent implementations or evaluations, new executor-profile evidence, mechanically enforced execution kernels, reliable activation telemetry, project-scoped retrieval, measured cost reduction, real-world case studies, and stronger evaluation methods.
+
+Do not submit benchmark-only prompt tuning, remove adverse evidence, expand methodology without a demonstrated unresolved proposition, or add loops merely for completeness. A behavioral proposal must answer:
+
+1. Which existing unresolved finding does this address?
+2. What new information would success provide?
+3. How will it be tested without treating known fixtures as fresh independent evidence?
+
+Begin a new behavioral cycle with an observed limitation, a new proposition, expected information gain, and a frozen assessment. Preserve historical thresholds, model-selection rules, findings, and provenance.
+
 ## Common commands
 
 ```text

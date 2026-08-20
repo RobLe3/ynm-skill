@@ -8,9 +8,9 @@ YNM uses Semantic Versioning for its public contracts and operational behavior.
 
 ## Current candidate
 
-`1.3.0` is a backwards-compatible release-candidate set of hardening and packaging work. It adds explicit iteration-stop reasons, stricter project-integration security boundaries, release-integrity evidence, and package-construction determinism.
+`1.4.0` is the current unreleased research candidate. It contains adaptive execution, stronger evidence-sufficiency rules, validity boundaries, optional acceleration interfaces, and the frozen 1.4 and YNM-BRP-1 evaluation evidence.
 
-The existing core semantics, run-receipt contract shape, and focal-loop ownership model are preserved.
+Development is paused after the bounded-usability evaluation. The candidate is not recommended for release under its frozen acceptance contracts. `v1.2.0` remains the latest published tag.
 
 ## Historical baseline
 

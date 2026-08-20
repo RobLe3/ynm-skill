@@ -4,6 +4,35 @@ YNM is a structured project review methodology for cases where “looks good” 
 
 YNM is useful when teams need a reliable handoff between review, recommendation, and action, especially under changing scope, partial evidence, and multiple stakeholders.
 
+## Project status
+
+**PAUSED RESEARCH PROJECT — current unreleased candidate 1.4.0**
+
+| Item | State |
+| --- | --- |
+| Version | 1.4.0 candidate |
+| 1.4.0 release | None |
+| Release recommendation | Do not release the current candidate |
+| Research cycle | Concluded |
+| Development state | Paused after the YNM-BRP-1 evaluation |
+| Current profile | YNM-BRP-1, experimental |
+
+YNM has completed several design and empirical evaluation cycles. Controlled evaluations found useful evidence traceability, scope handling, authority containment, and review-quality improvements under some tested conditions. They also found executor-dependent behavior, remaining uncertainty-preservation errors, substantial execution overhead, unverified activation behavior, and no measured acceleration or independent interoperability evidence.
+
+The repository is retained as an auditable research checkpoint. Development may resume if new executors, execution mechanisms, scoped retrieval, independent implementations, real-world evidence, or evaluation methods provide credible expected information gain. The historical `v1.2.0` tag remains the latest published release; neither 1.3.0 nor 1.4.0 was released.
+
+## What the research established
+
+The experiments provide bounded evidence that YNM can add useful structure to model-assisted project review. Observed strengths included explicit propositions, traceable evidence and source ancestry, visible reviewed and unreviewed scope, meaningful `YES` / `NO` / `MAYBE` records, and separation of review from mutation and publication authority. Several earlier false-certainty and authority-boundary regressions were also corrected.
+
+On the frozen `YNM-BRP-1` primary-executor evaluation, YNM achieved material usefulness recall of `1.0000`, precision of `0.9167`, evidence traceability of `1.9167 / 2`, and conclusion inspectability of `2.0000 / 2`. It produced no authority violations, inappropriate certification claims, or escaped containment failures. These figures apply only to the tested synthetic profile and `gpt-5.6-sol`; they are not general model-performance claims.
+
+## What the research did not establish
+
+YNM has not demonstrated universal improvement over ordinary model-assisted review, equal effectiveness across models or runtimes, zero false findings, perfect uncertainty preservation, exhaustive issue discovery, universal software correctness, independent interoperability, reliable automatic activation, or lower execution cost. Ruflo/RuVector acceleration was not measured because the tested environment did not provide the required isolated capability.
+
+The 1.4 evaluation showed primary-model quality improvements alongside high execution cost and unsafe or non-inferior replication failures. The later bounded-usability evaluation retained strong usefulness, traceability, inspectability, and authority containment, but failed one frozen required-`MAYBE` criterion. These results remain part of the evidence rather than being revised after evaluation.
+
 ## What YNM gives you
 
 YNM gives practical, review-oriented behavior instead of generic quality rhetoric:
@@ -78,7 +107,7 @@ YNM complements, rather than replaces, tests, linters, domain verification, and 
 
 ## When to use YNM
 
-Use YNM when you need structured, auditable review for:
+Use the current candidate experimentally, with a human retaining consequential authority, when you need structured and auditable support for:
 
 - architecture vs implementation alignment
 - release-readiness or audit-oriented reviews
@@ -88,6 +117,9 @@ Use YNM when you need structured, auditable review for:
 - explicit scope definition and rerun justification
 - controlled agentic workflows where write authority must remain explicit
 - adoption and maintenance reviews that differ from technical correctness
+- comparative research into model-assisted review
+
+For consequential work, YNM complements rather than replaces tests, domain expertise, formal verification where applicable, security review, operational evidence, and human release authority. The current candidate is not an autonomous production release gate.
 
 ## When not to use YNM
 
@@ -99,6 +131,11 @@ YNM is not the right tool for:
 - general summaries or explanations
 - isolated formatting or wording requests
 - quick informal opinions where project-level context is unnecessary
+- reviews where the additional process cost is not justified
+- sole evidence for security, safety, legal, or production certification
+- sole authority for a production release or consequential action
+- cases where the executor or runtime has not been evaluated adequately for the consequence involved
+- cases where a simpler review already provides adequate information and auditability
 
 ## Analysis, Iteration, and Delivery
 
@@ -264,11 +301,22 @@ YNM is not:
 - a replacement for tests, linters, domain checks, or product requirements
 - a guarantee to eliminate uncertainty
 - independent security, safety, production, or compliance certification
+- a guarantee of lower cost than ordinary review
+- a guarantee of equal behavior across executors
 - autonomous authority to act on its findings
 - independent interoperability proof
 - tied to one provider, model, or runtime
 
 Provider-neutral means the contracts do not require a specific provider, model, or runtime. It is a design property, not a claim that all executors have demonstrated equal effectiveness.
+
+## Research and validation
+
+- [Current research status](https://github.com/RobLe3/ynm-skill/blob/main/docs/RESEARCH_STATUS.md)
+- [Validation evidence](https://github.com/RobLe3/ynm-skill/blob/main/VALIDATION.md)
+- [Epistemic boundaries](methodology/epistemic-boundaries.md)
+- [Release policy](https://github.com/RobLe3/ynm-skill/blob/main/RELEASING.md)
+- [Changelog](https://github.com/RobLe3/ynm-skill/blob/main/CHANGELOG.md)
+- [Evaluation evidence index](https://github.com/RobLe3/ynm-skill/blob/main/evaluations/README.md)
 
 ## Extend YNM
 
@@ -277,7 +325,9 @@ Use [Extension Model](methodology/extension-model.md) for additional loops. Exte
 ## Validation status and limits
 
 **Current version:** `1.4.0`
-**Candidate status:** release candidate
+**Project state:** paused research project
+
+**Candidate status:** 1.4.0, unreleased and not recommended for release
 
 - [Candidate release evidence](https://github.com/RobLe3/ynm-skill/tree/main/state/releases/1.4.0) is maintained in the source repository, not in the installed package.
 - Deterministic local tests: **PASS**.
@@ -326,4 +376,4 @@ Useful external evidence includes: alternate runtimes/models, manual execution, 
 
 YNM is licensed under the [Apache License 2.0](LICENSE). Source-repository contributors should read [CONTRIBUTING.md](https://github.com/RobLe3/ynm-skill/blob/main/CONTRIBUTING.md). Security reports should follow [SECURITY.md](https://github.com/RobLe3/ynm-skill/blob/main/SECURITY.md).
 
-Historical development notes were not removed from Git history and remain discoverable through tags, while current HEAD stays focused on the active public methodology and candidate evidence.
+Historical development notes remain available through Git history and tags. Current HEAD preserves the implemented methodology, reproducible validation, and mixed empirical evidence as a paused research checkpoint.

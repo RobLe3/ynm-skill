@@ -1,6 +1,27 @@
 # Validation
 
-Current candidate: **YNM 1.4.0 (unreleased candidate; empirical release gate failed)**
+Current candidate: **YNM 1.4.0 (unreleased paused research candidate; do not release)**
+
+## Executive status
+
+| Area | Current evidence |
+| --- | --- |
+| Repository integrity | **PASS** — deterministic repository validation |
+| Package integrity | **PASS** — deterministic content and runtime-boundary checks |
+| Agent Skills structural conformance | **PASS** — pinned reference validator |
+| Security and authority boundaries | **PASS** in deterministic checks; zero BRP-1 authority violations |
+| Primary-executor review usefulness | Strong positive but bounded evidence |
+| General effectiveness | **NOT ESTABLISHED**; frozen 1.4 disposition `NO` |
+| Cross-model replication | `NO` under the frozen 1.4 criteria |
+| Uncertainty preservation | Improved but not fully reliable; BRP-1 disposition `NO` |
+| Execution cost | High; frozen cost disposition `NO` |
+| Activation behavior | `MAYBE`; insufficient telemetry |
+| Acceleration effectiveness | `MAYBE`; not measured safely |
+| Independent interoperability | `MAYBE`; no independent implementation evidence |
+| Current release recommendation | **DO NOT RELEASE** |
+| Research state | **PAUSED** after the 1.4 and BRP-1 cycles |
+
+See the [research checkpoint](docs/RESEARCH_STATUS.md) for the evidence map and restart conditions. Passing one validation category does not imply passing another.
 
 ## Deterministic validation status
 

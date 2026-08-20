@@ -9,6 +9,40 @@ from validation import validate_ynm as validator
 
 
 class RepositoryValidationTests(unittest.TestCase):
+    def test_paused_research_status_is_consistent(self):
+        root = Path(__file__).resolve().parents[1]
+        documents = {
+            name: (root / name).read_text(encoding="utf-8")
+            for name in ("README.md", "VALIDATION.md", "VERSIONING.md", "docs/RESEARCH_STATUS.md")
+        }
+        for name, text in documents.items():
+            self.assertIn("1.4.0", text, name)
+        self.assertIn("PAUSED RESEARCH PROJECT", documents["README.md"])
+        self.assertIn("PAUSED RESEARCH PROJECT", documents["docs/RESEARCH_STATUS.md"])
+        self.assertIn("DO NOT RELEASE", documents["VALIDATION.md"])
+        self.assertIn("UNRELEASED", documents["docs/RESEARCH_STATUS.md"])
+        self.assertNotIn("1.4.0 is released", "\n".join(documents.values()).lower())
+
+    def test_research_checkpoint_preserves_empirical_dispositions(self):
+        root = Path(__file__).resolve().parents[1]
+        findings = yaml.safe_load((root / "state/releases/1.4.0/findings.yaml").read_text(encoding="utf-8"))["findings"]
+        actual = {item["id"]: item["disposition"] for item in findings}
+        expected = {
+            "YNM-140-BRP-001": "NO",
+            "YNM-140-BND-001": "NO",
+            "YNM-140-SCOPE-001": "YES",
+            "YNM-140-UNC-001": "NO",
+            "YNM-140-AUTH-001": "YES",
+            "YNM-140-EPI-001": "NO",
+            "YNM-140-EFF-001": "NO",
+            "YNM-140-COST-001": "NO",
+            "YNM-140-ACT-001": "MAYBE",
+            "YNM-140-ACC-001": "MAYBE",
+            "YNM-140-REP-001": "NO",
+            "YNM-VAL-001": "MAYBE",
+        }
+        self.assertEqual({key: actual[key] for key in expected}, expected)
+
     def test_current_path_like_evidence_must_resolve(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
