@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-001-YNM-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-001
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:40:55.529400Z'
+elapsed_seconds: 40.769
+input_tokens: 153690
+output_tokens: 1463
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Material issues\n\n1. **Critical \u2014 architecture boundary is violated.**\
+  \  \n   `ARCHITECTURE.md` requires all persistence to go through `AccountService`,\
+  \ but [`ui.py`](<EVALUATION_PROJECT>/ui.py:1) imports and calls `save_account` from\
+  \ the database adapter directly. This bypasses the required service layer and will\
+  \ make validation, authorization, and persistence policy harder to enforce consistently.\n\
+  \n2. **High \u2014 the UI module cannot import in the reviewed project.**  \n  \
+  \ Importing `ui` fails with `ModuleNotFoundError: No module named 'database'`; no\
+  \ `database` module exists in the project inventory. Consequently, `submit()` is\
+  \ unusable as delivered.\n\nReview completed read-only across the entire two-file\
+  \ project. No test suite, dependency manifest, or version-control history was present\
+  \ to validate intended packaging or behavior further."
+error: Reading additional input from stdin...

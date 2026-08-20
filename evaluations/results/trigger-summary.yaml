@@ -1,0 +1,63 @@
+schema_version: ynm-trigger-summary.v1
+observability: BEHAVIORAL_INFERENCE
+models:
+  gpt-5.6-sol:
+    planned: 100
+    completed: 100
+    correct_activations: 9
+    missed_activations: 46
+    correct_non_activations: 43
+    false_activations: 2
+    unobservable: 0
+    failed: 0
+    categories:
+      explicit:
+        correct: 5
+        incorrect: 0
+        unobservable: 0
+      specialist:
+        correct: 1
+        incorrect: 29
+        unobservable: 0
+      setup:
+        correct: 2
+        incorrect: 13
+        unobservable: 0
+      contextual:
+        correct: 1
+        incorrect: 4
+        unobservable: 0
+      negative:
+        correct: 43
+        incorrect: 2
+        unobservable: 0
+  gpt-5.6-terra:
+    planned: 100
+    completed: 100
+    correct_activations: 8
+    missed_activations: 47
+    correct_non_activations: 44
+    false_activations: 1
+    unobservable: 0
+    failed: 0
+    categories:
+      explicit:
+        correct: 5
+        incorrect: 0
+        unobservable: 0
+      specialist:
+        correct: 0
+        incorrect: 30
+        unobservable: 0
+      setup:
+        correct: 1
+        incorrect: 14
+        unobservable: 0
+      contextual:
+        correct: 2
+        incorrect: 3
+        unobservable: 0
+      negative:
+        correct: 44
+        incorrect: 1
+        unobservable: 0

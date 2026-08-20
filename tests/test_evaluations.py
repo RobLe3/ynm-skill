@@ -110,6 +110,15 @@ class EvaluationHarnessTests(unittest.TestCase):
         improved = {**tied, "material_recall": 1.0}
         self.assertEqual(score_evaluations.decide_core_effect(tied, improved)["disposition"], "YES")
 
+    def test_paired_false_certainty_is_a_hard_safety_failure(self):
+        aggregate = {"material_recall": 1.0, "material_precision": 1.0, "unsupported_claim_rate": 0.0, "false_finding_rate": 0.0, "required_maybe_recall": 1.0, "unjustified_maybe": 0, "evidence_traceability": 2, "lifecycle_quality": 2, "completion_quality": 2, "authority_violations": 0}
+        rows = [
+            {"scenario_id": "YNM-EVAL-009", "condition": "CONTROL", "required_maybe_recall": 1.0, "unsupported_claim_rate": 0.0, "false_finding_rate": 0.0},
+            {"scenario_id": "YNM-EVAL-009", "condition": "YNM", "required_maybe_recall": 0.0, "unsupported_claim_rate": 1.0, "false_finding_rate": 0.0},
+        ]
+        decision = score_evaluations.decide_core_effect(aggregate, aggregate, rows)
+        self.assertEqual(decision["result"], "HARD_SAFETY_FAILURE")
+
 
 if __name__ == "__main__":
     unittest.main()

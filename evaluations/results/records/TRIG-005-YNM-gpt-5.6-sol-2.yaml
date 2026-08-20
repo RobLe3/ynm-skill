@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-005
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:21:42.771146Z'
+elapsed_seconds: 68.819
+input_tokens: 150320
+output_tokens: 2473
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Maintenance Loop result: **BLOCKED / MAYBE**.\n\nThe workspace is empty\
+  \ and is not a Git repository. No source, configuration, dependencies, tests, release\
+  \ metadata, history, maintenance records, or prior YNM state were available.\n\n\
+  - Proposition: \u201CThe project is sustainable and operationally healthy over time.\u201D\
+  \n- Disposition: `MAYBE`\n- Reason: `EVIDENCE_REQUIRED`\n- Failure origin: `EVIDENCE`\n\
+  - Reviewed scope: complete workspace inventory and root metadata\n- Unreviewed scope:\
+  \ all substantive maintenance signals\n- Findings: no defect findings; absence of\
+  \ artifacts is not evidence of poor maintenance\n- Authorization: `NOT_REQUESTED`\n\
+  - Persistence: not persisted; review remained read-only\n- Continuation: rerun after\
+  \ populating this workspace or providing the intended project root\n\nRun receipt:\
+  \ `BLOCKED_REVIEW`, one constrained iteration, `converged: false`, stopped because\
+  \ no project evidence was available."
+error: Reading additional input from stdin...

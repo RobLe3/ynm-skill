@@ -21,6 +21,7 @@ All notable YNM changes are recorded here. Historical release and maturity evide
 - Clarified public candidate status and publication readiness versus publication authority.
 - Tightened near-miss trigger expectations for isolated code review, cleanup advice, and weak contextual references.
 - Marked empirical two-model effectiveness evaluation as blocked rather than inferring results from internal consistency tests.
+- Recorded the completed frozen empirical cycle: primary aggregate quality improved modestly, but a clean-project false-certainty regression and material trigger false negatives keep 1.3.0 from release readiness.
 
 ### Preserved
 

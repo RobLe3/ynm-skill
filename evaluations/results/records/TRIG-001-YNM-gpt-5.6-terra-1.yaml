@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-001
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:30:25.737276Z'
+elapsed_seconds: 43.858
+input_tokens: 108592
+output_tokens: 1692
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "YNM review completed: this workspace has no reviewable project content.\n\
+  \n- Evidence: the root directory is empty, with no source files, docs, configuration,\
+  \ tests, Git metadata, or prior YNM state.\n- Architecture, Implementation, Adoption,\
+  \ and Maintenance loops: `NOT_APPLICABLE` \u2014 there is no project artifact for\
+  \ a meaningful proposition.\n- Disposition loop: `COMPLETED` \u2014 no findings\
+  \ or transitions to reconcile.\n- Meta loop: `COMPLETED`.\n\nRun receipt:\n\n```yaml\n\
+  schema_version: ynm-run-receipt.v2\nexecution_strategy: CONSTRAINED\nexecution_status:\
+  \ COMPLETED\nterminal_outcome: NOT_APPLICABLE_REVIEW\nconverged: true\nstop_reason:\
+  \ no_reviewable_project_artifacts\nreviewed_scope: workspace root inventory\nunreviewed_scope:\
+  \ none discovered\nfindings_created: 0\npersistence_status: STATELESS\nauthorization_status:\
+  \ NOT_REQUESTED\n```\n\nTo perform a substantive YNM review, point me at or add\
+  \ the project files to this workspace."
+error: Reading additional input from stdin...

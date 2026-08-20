@@ -1615,8 +1615,11 @@ def check_evaluation_artifacts(root: Path = ROOT) -> list[str]:
     unexpected = sorted(collisions - allowed_historical_collisions)
     if unexpected:
         errors.append(f"evaluation identifier collision across finding and scenario types: {', '.join(unexpected)}")
-    for result_path in sorted((root / "evaluations/results/records").glob("*.yaml")) if (root / "evaluations/results/records").exists() else []:
+    result_paths = sorted((root / "evaluations/results/records").glob("*.yaml")) if (root / "evaluations/results/records").exists() else []
+    result_records: list[dict] = []
+    for result_path in result_paths:
         result = load_yaml(result_path)
+        result_records.append(result)
         result_errors = sorted(Draft202012Validator(load_json(result_schema_path), format_checker=FormatChecker()).iter_errors(result), key=lambda item: list(item.absolute_path))
         for error in result_errors:
             errors.append(f"{result_path.relative_to(root)}: {error.json_path}: {error.message}")
@@ -1625,6 +1628,25 @@ def check_evaluation_artifacts(root: Path = ROOT) -> list[str]:
         score_errors = sorted(Draft202012Validator(load_json(score_schema_path), format_checker=FormatChecker()).iter_errors(score), key=lambda item: list(item.absolute_path))
         for error in score_errors:
             errors.append(f"{score_path.relative_to(root)}: {error.json_path}: {error.message}")
+    benchmark_summary = root / "evaluations/results/benchmark-summary.yaml"
+    if benchmark_summary.exists():
+        availability = load_yaml(root / "evaluations/results/model-availability.yaml").get("models", [])
+        selected_count = 1 + int(any(item.get("status") == "AVAILABLE" and item.get("model") != "gpt-5.6-sol" for item in availability[1:]))
+        benchmark_records = [item for item in result_records if str(item.get("scenario_id", "")).startswith("YNM-EVAL-")]
+        trigger_records = [item for item in result_records if str(item.get("scenario_id", "")).startswith("TRIG-")]
+        expected_benchmarks = len(scenario_ids) * 2 * selected_count
+        trigger_cases = load_yaml(root / "tests/data/trigger-cases.yaml").get("cases", [])
+        expected_triggers = len(trigger_cases) * 5 * selected_count
+        if len(benchmark_records) != expected_benchmarks:
+            errors.append(f"evaluation results: expected {expected_benchmarks} benchmark records, found {len(benchmark_records)}")
+        if len(trigger_records) != expected_triggers:
+            errors.append(f"evaluation results: expected {expected_triggers} trigger records, found {len(trigger_records)}")
+        score_count = len(list((root / "evaluations/results/blinded/scores").glob("*.yaml")))
+        if score_count != expected_benchmarks:
+            errors.append(f"evaluation results: expected {expected_benchmarks} blinded scores, found {score_count}")
+        run_ids = [item.get("run_id") for item in result_records]
+        if len(run_ids) != len(set(run_ids)):
+            errors.append("evaluation results: duplicate run IDs")
     return errors
 
 

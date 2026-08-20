@@ -1,0 +1,36 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-011
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:35:36.053881Z'
+elapsed_seconds: 15.967
+input_tokens: 30232
+output_tokens: 481
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "YNM is a structured way to review a project without jumping straight\
+  \ to changes.\n\nIt works by turning each important question into a simple claim,\
+  \ then assigning one of three outcomes:\n\n- **YES** \u2014 evidence supports the\
+  \ claim.\n- **NO** \u2014 evidence contradicts it.\n- **MAYBE** \u2014 there isn\u2019\
+  t enough reliable evidence yet.\n\nFor example: \u201CThe project has clear deployment\
+  \ instructions.\u201D  \nYNM checks the available docs and setup, then labels that\
+  \ specific claim YES, NO, or MAYBE\u2014with evidence.\n\nA typical YNM review goes\
+  \ like this:\n\n1. **Understand the scope** \u2014 what project, question, and permissions\
+  \ are involved?\n2. **Inspect evidence** \u2014 code, docs, tests, usage signals,\
+  \ maintenance practices, etc.\n3. **Review from different angles** \u2014 architecture,\
+  \ implementation, adoption, and maintainability when relevant.\n4. **Record findings**\
+  \ \u2014 each tied to a clear proposition and evidence, rather than vague impressions.\n\
+  5. **Reconcile and stop responsibly** \u2014 resolve overlaps or conflicts, identify\
+  \ what remains uncertain, and avoid repeating reviews that will not add new information.\n\
+  6. **Deliver a clear result** \u2014 what was reviewed, what is supported, contradicted,\
+  \ or unknown, plus limitations and next steps.\n\nThe key idea: YNM separates **observation**\
+  \ (\u201Cthe test fails\u201D), **interpretation** (\u201Cthis may break deployments\u201D\
+  ), and **authority** (\u201Cshould we change it?\u201D). A NO finding doesn\u2019\
+  t automatically authorize a fix; it simply makes the situation clear."
+error: Reading additional input from stdin...

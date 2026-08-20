@@ -1,0 +1,40 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-010-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-010
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:26:51.654315Z'
+elapsed_seconds: 41.405
+input_tokens: 84260
+output_tokens: 1506
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'YNM loaded in read-only mode.
+
+
+  Run receipt:
+
+
+  - Phase: `TERMINATED`
+
+  - Status: `COMPLETED` for loading; repository discovery `BLOCKED`
+
+  - Workspace: `<EVALUATION_PROJECT>`
+
+  - Repository state: directory is empty and has no `.git` metadata
+
+  - Persistent YNM state: none created
+
+  - Findings/review loops: not run
+
+  - Stop reason: no project contents are available to load or review
+
+
+  Place or clone the repository into this workspace, then request `YNM: Review this
+  project` for a full review.'
+error: Reading additional input from stdin...

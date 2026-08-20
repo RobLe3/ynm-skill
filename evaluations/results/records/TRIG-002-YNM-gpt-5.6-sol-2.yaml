@@ -1,0 +1,38 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-002
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:19:13.882290Z'
+elapsed_seconds: 52.542
+input_tokens: 126474
+output_tokens: 1948
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Architecture Loop result\n\n**Disposition: MAYBE \u2014 unresolved**\
+  \  \n**Execution status: BLOCKED**  \n**Converged: No**\n\n**Proposition:** The\
+  \ project\u2019s intended structure is internally coherent and consistent with its\
+  \ declared architecture.\n\nThe selected project root is empty and is not a Git\
+  \ repository. No source, configuration, specifications, architecture records, dependency\
+  \ manifests, decision records, diagrams, or prior YNM state were available. Absence\
+  \ of those artifacts is not evidence of architectural failure, so neither YES nor\
+  \ NO is supportable.\n\n### Finding `YNM-ARCH-001`\n\n- Observation: The root contains\
+  \ only the directory entry `.`; `git rev-parse` reports that it is not a Git repository.\n\
+  - Interpretation: Architectural intent, boundaries, dependencies, interfaces, and\
+  \ conformance cannot be evaluated.\n- Disposition: **MAYBE**\n- Reason: `EVIDENCE_REQUIRED`\
+  \ / `INSUFFICIENT_CONTEXT`\n- Failure origin: `EVIDENCE`\n- Handoffs: None; other\
+  \ YNM loops were outside the requested scope.\n\n### Review receipt\n\n- Strategy:\
+  \ `CONSTRAINED`, read-only\n- Requested scope: Architecture Loop for the supplied\
+  \ project root\n- Reviewed scope: Project inventory and availability of architectural\
+  \ evidence\n- Unreviewed scope: All substantive architectural propositions\n- Iterations:\
+  \ 1\n- Stop reason: No architecture-bearing project evidence\n- Terminal outcome:\
+  \ `BLOCKED_REVIEW`\n- Persistence: Stateless; no project or YNM files were created\n\
+  - Authorization: `NOT_REQUESTED`\n- Revisit condition: Populate or point to the\
+  \ intended project root, ideally including source/configuration plus architecture\
+  \ documentation or decision records."
+error: Reading additional input from stdin...

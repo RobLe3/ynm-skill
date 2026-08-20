@@ -1,0 +1,47 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-003-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-003
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:19:48.344499Z'
+elapsed_seconds: 59.208
+input_tokens: 126304
+output_tokens: 2226
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Implementation Loop\n\n**Result: `NOT_APPLICABLE`**\n\nThe [project\
+  \ workspace](<EVALUATION_PROJECT>) is empty, contains no hidden project artifacts,\
+  \ and is not a Git repository. Therefore, there is no realized behavior, procedure,\
+  \ contract, configuration, or test surface for the Implementation Loop to evaluate.\n\
+  \n- Findings: none\n- Dispositions: none\u2014`NOT_APPLICABLE` is an execution status,\
+  \ not a `NO`\n- Changes made: none\n- Authorization: `NOT_REQUESTED`\n- Limitation:\
+  \ declared intent and implementation evidence are unavailable\n- Revisit condition:\
+  \ source code, executable procedures, tests, specifications, or configuration are\
+  \ added\n\n```yaml\nreview_plan:\n  objective: Evaluate realized behavior against\
+  \ declared intent and contracts\n  requested_scope: Entire workspace\n  effective_scope:\
+  \ Determine Implementation Loop applicability\n  strategy: CONSTRAINED\n  loop:\
+  \ implementation\n  authority: read-only\n  persistence_mode: stateless\n  assessments:\
+  \ []\n  iteration_policy:\n    max_immediate_iterations: 1\n\nloop_result:\n  loop:\
+  \ implementation\n  execution_status: NOT_APPLICABLE\n  evidence_summary:\n    -\
+  \ Complete directory inventory found zero project artifacts\n    - Git probe confirmed\
+  \ the workspace is not a repository\n  limitations:\n    - No implementation or\
+  \ declared contract exists to inspect\n\nrun_receipt:\n  schema_version: ynm-run-receipt.v2\n\
+  \  run_id: ynm-implementation-20260820T082027Z\n  generation: 1\n  project_state:\
+  \ empty_workspace\n  execution_context: read-only filesystem inspection\n  execution_strategy:\
+  \ CONSTRAINED\n  loops_requested: [implementation]\n  loops_executed: [implementation]\n\
+  \  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\n  stage_reached:\
+  \ TERMINATED\n  execution_status: NOT_APPLICABLE\n  terminal_outcome: NOT_APPLICABLE_REVIEW\n\
+  \  halt_reason: NO_REALIZED_ARTIFACT_OR_PROCEDURE\n  reviewed_scope: Workspace inventory\
+  \ and applicability\n  unreviewed_scope: No available implementation behavior\n\
+  \  evidence_added: 2\n  findings_created: 0\n  findings_updated: 0\n  dispositions_changed:\
+  \ 0\n  unresolved_dependencies: []\n  iteration_count: 1\n  converged: true\n  stop_reason:\
+  \ Another immediate pass has no expected information gain\n  continuation_scope:\
+  \ Review future realized artifacts against their contracts\n  next_revisit_condition:\
+  \ Implementation or contract evidence is added\n  persistence_status: NOT_PERSISTED\n\
+  ```"
+error: Reading additional input from stdin...

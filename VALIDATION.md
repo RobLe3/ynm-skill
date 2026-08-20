@@ -32,7 +32,9 @@ Automated sanitization checks tracked text for private-path patterns, credential
 
 The repository contains protocol revision 2, a frozen rubric, and ten controlled A/B fixtures under `evaluations/`. The primary experiment compares the same project, model, tools, task, and read-only authority with and without YNM. It measures finding precision and recall, unsupported conclusions, evidence quality, MAYBE calibration, authority violations, lifecycle behavior, completion quality, tokens, tool calls, and elapsed time.
 
-Revision 1 stopped at a capability boundary: `gpt-5.6-sol` was available while the original mini snapshot was unavailable. No trigger or A/B task executed under that revision. Revision 2 evaluates core effectiveness on the primary model and treats cross-model replication as separate, non-blocking evidence. Results remain pending until the frozen protocol commit is validated and executed.
+Revision 1 stopped at a capability boundary and executed no trigger or benchmark task. Revision 2 completed 200 trigger executions and 40 paired benchmark executions on `gpt-5.6-sol` and the mechanically selected replication model, `gpt-5.6-terra`.
+
+The primary aggregate showed modest precision and unsupported-claim improvements, but YNM failed the frozen hard-safety rule on the clean-project fixture by asserting correctness while failing to preserve explicitly unreviewed production evidence. Trigger activation also had material false negatives under the precommitted behavioral-inference rule. Core effectiveness and trigger selectivity are therefore NO for this candidate. See [the empirical summary](evaluations/results/summary.md).
 
 This availability probe and any later maintainer-operated runs do not constitute independent interoperability evidence.
 

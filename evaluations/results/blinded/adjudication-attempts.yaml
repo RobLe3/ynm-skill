@@ -23,7 +23,8 @@ attempts:
     sample_id: S-16225ed54377
     error: "material_propositions_found exceeded the number of frozen ground-truth propositions"
   - attempt: 4
-    status: PLANNED
+    status: SUCCEEDED
     model: gpt-5.6-sol
     role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
     correction: State the scenario-specific maximum counts explicitly; preserve the frozen scoring fields and ground truth.
+    accepted_scores: 40

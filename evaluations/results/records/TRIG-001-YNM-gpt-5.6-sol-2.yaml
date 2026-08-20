@@ -1,0 +1,47 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-001-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-001
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:18:07.047932Z'
+elapsed_seconds: 109.389
+input_tokens: 215903
+output_tokens: 4857
+tool_calls: 60
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "# YNM review result: BLOCKED\n\nThe supplied [project root](<EVALUATION_PROJECT>)\
+  \ is empty. It contains zero files or directories, no Git metadata, no `AGENTS.md`,\
+  \ and no prior YNM state. Consequently, project quality cannot be responsibly assessed.\n\
+  \n## Findings\n\n| ID | Proposition | Disposition |\n|---|---|---|\n| YNM-META-001\
+  \ | The supplied root contains at least one reviewable project artifact. | **NO**\
+  \ \u2014 contradicted by directory enumeration |\n| YNM-ARCH-001 | The project\u2019\
+  s intended structure is coherent with its declared architecture. | **MAYBE** \u2014\
+  \ `EVIDENCE_REQUIRED` |\n| YNM-IMPL-001 | Realized behavior implements the project\u2019\
+  s intent and contracts. | **MAYBE** \u2014 `EVIDENCE_REQUIRED` |\n| YNM-ADOPT-001\
+  \ | Intended users can understand and adopt the project successfully. | **MAYBE**\
+  \ \u2014 `EVIDENCE_REQUIRED` |\n| YNM-MAINT-001 | The project is sustainable and\
+  \ operationally maintainable. | **MAYBE** \u2014 `EVIDENCE_REQUIRED` |\n\nMissing\
+  \ evidence is not treated as evidence that the project is defective. The assessment\
+  \ criteria required declared intent and loop-specific artifacts; their absence therefore\
+  \ produces `MAYBE`, not `NO`, for the quality propositions.\n\n## Loop results\n\
+  \n- Meta: `COMPLETED`\n- Architecture: `BLOCKED`\n- Implementation: `BLOCKED`\n\
+  - Adoption: `BLOCKED`\n- Maintenance: `BLOCKED`\n- Disposition: `COMPLETED`\n- Conflicts:\
+  \ none\n- Failure origin: `EVIDENCE`\n- Authorization: `NOT_REQUESTED`; no files\
+  \ were changed\n\n## Run receipt\n\n```yaml\nschema_version: ynm-run-receipt.v2\n\
+  run_id: YNM-20260820-081928Z\ngeneration: 1\nexecution_strategy: CONSTRAINED\nprofile:\
+  \ BASIC_STATELESS\nphase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\n\
+  execution_status: BLOCKED\nterminal_outcome: BLOCKED_REVIEW\nhalt_reason: PROJECT_EVIDENCE_ABSENT\n\
+  reviewed_scope: root inventory and evidence availability\nunreviewed_scope: architecture,\
+  \ implementation, tests, adoption, runtime, maintenance, history, and releases\n\
+  findings_created: 5\ndispositions_changed: 0\nconverged: false\nstop_reason: another\
+  \ immediate pass over the unchanged empty root has no expected information gain\n\
+  persistence_status: NOT_PERSISTED_READ_ONLY\nnext_revisit_condition: project artifacts\
+  \ become available in the supplied root\n```\n\nA complete review requires supplying\
+  \ or mounting the intended project contents, or identifying the correct project\
+  \ directory."
+error: Reading additional input from stdin...

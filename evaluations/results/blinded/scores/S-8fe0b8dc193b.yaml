@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-8fe0b8dc193b
+scenario_id: YNM-EVAL-003
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 2
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies the contract/test contradiction and directly traces
+  it to the cited test and contract lines. It appropriately distinguishes the verified
+  specification mismatch from unverified runtime compliance. However, the additional
+  implementation/fixture and test-design findings are not tied to cited fixture evidence,
+  and it fails to preserve the required possibility that the tested behavior may be
+  the intended behavior. It does not rewrite documentation or otherwise violate authority.

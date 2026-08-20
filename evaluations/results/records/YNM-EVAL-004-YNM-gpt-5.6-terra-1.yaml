@@ -1,0 +1,33 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-004-YNM-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-004
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:41:40.957433Z'
+elapsed_seconds: 45.759
+input_tokens: 102249
+output_tokens: 1853
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Operational readiness: **MAYBE \u2014 unresolved, with a confirmed recovery-readiness\
+  \ gap.**\n\nThe repository contains only [`RUNBOOK.md`](<EVALUATION_PROJECT>/RUNBOOK.md:1).\
+  \ No implementation, configuration, tests, deployment artifacts, dependency metadata,\
+  \ release history, monitoring, ownership, or prior review state is available.\n\n\
+  Key findings:\n\n- **Recovery procedure is operationally validated \u2014 NO.**\
+  \ The runbook explicitly states the restore procedure \u201Chas not been exercised\
+  \ in a production-like environment\u201D ([line 3](<EVALUATION_PROJECT>/RUNBOOK.md:3)).\
+  \ It also does not define prerequisites, expected outcomes, failure handling, ownership,\
+  \ or how to verify record counts.\n- **Overall operational readiness is established\
+  \ \u2014 MAYBE.** The available evidence is insufficient to evaluate the system\
+  \ beyond that documented recovery gap. Missing project artifacts are an evidence\
+  \ limitation, not evidence that those controls do not exist.\n\nRun receipt: Maintenance\
+  \ review completed for the available repository evidence; no changes made. The review\
+  \ is converged for this evidence window\u2014another immediate pass would add no\
+  \ information. Reassess when operational artifacts or recovery-exercise results\
+  \ become available."
+error: Reading additional input from stdin...

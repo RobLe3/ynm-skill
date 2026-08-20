@@ -121,3 +121,51 @@ runs:
     persistence_attempted: true
     persistence_outcome: SUCCEEDED
     continuation_scope: empirical evaluation execution
+- schema_version: ynm-run-receipt.v2
+  run_id: YNM-1.3-EMPIRICAL-REVISION-2
+  generation: 3
+  project_state: YNM-1.3.0-CANDIDATE
+  execution_context: YNM-1.3-EXECUTION
+  execution_strategy: EXTENDED
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]
+  review_plan_revision: 4
+  iteration_count: 2
+  loops_requested: [Adoption, Disposition, Meta]
+  loops_executed: [Adoption, Disposition, Meta]
+  stage_reached: EMPIRICAL_DELIVERY
+  execution_status: COMPLETED
+  terminal_outcome: CONVERGED_REVIEW
+  converged: true
+  halt_reason: Frozen empirical evidence reached a release-blocking NO disposition; tuning against the consumed fixtures is prohibited.
+  stop_reason: MATURITY_BLOCKER
+  reviewed_scope:
+  - 200 frozen trigger executions across primary and replication models
+  - 40 paired CONTROL/YNM benchmark executions
+  - blinded semantic scoring of all benchmark outputs
+  - token, elapsed-time, tool-call, and filesystem mutation evidence
+  unreviewed_scope:
+  - independent implementation interoperability
+  - real-project effectiveness beyond the synthetic fixture set
+  evidence_added: 245
+  findings_created: [YNM-EMP-001, YNM-EMP-002, YNM-EMP-003]
+  findings_updated: [YNM-EVAL-001, YNM-VAL-001]
+  dispositions_changed: [YNM-EMP-001, YNM-EMP-002, YNM-EMP-003]
+  unresolved_findings: [YNM-VAL-001]
+  unresolved_dependencies: [independent implementation and fresh post-correction evaluation fixtures]
+  material_changes:
+  - repository-only empirical protocol, execution records, blinded scores, and summaries
+  - no installed runtime package change
+  findings_reopened: []
+  findings_resolved: [YNM-EMP-001, YNM-EMP-002, YNM-EMP-003]
+  required_human_decisions:
+  - decide whether to create a later runtime candidate addressing the observed defects
+  next_revisit_condition: A later candidate with precommitted fresh fixtures and no reuse of these consumed fixtures as independent evidence.
+  persistence_status: PERSISTENT
+  continuation_scope: [later candidate, fresh empirical evaluation, independent implementation]
+  delivery:
+    human_artifact: evaluations/results/summary.md
+    machine_state: evaluations/results
+    authorization_status: AUTHORIZED
+    persistence_attempted: true
+    persistence_outcome: SUCCEEDED
+    continuation_scope: later candidate only; no 1.3.0 release

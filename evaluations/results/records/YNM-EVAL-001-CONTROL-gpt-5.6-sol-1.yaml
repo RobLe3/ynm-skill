@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-001-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-001
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:38:10.480035Z'
+elapsed_seconds: 38.725
+input_tokens: 73967
+output_tokens: 1273
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Material issues\n\n1. **Critical \u2014 project cannot be imported\
+  \ or run.**  \n   [ui.py:1](<EVALUATION_PROJECT>/ui.py:1) imports `database`, but\
+  \ no such module or declared dependency exists. `python -B -c 'import ui'` fails\
+  \ with `ModuleNotFoundError: No module named 'database'`.\n\n2. **High \u2014 UI\
+  \ bypasses the required service boundary.**  \n   [ui.py:1](<EVALUATION_PROJECT>/ui.py:1)\
+  \ imports and calls `save_account` directly, contradicting [ARCHITECTURE.md:3](<EVALUATION_PROJECT>/ARCHITECTURE.md:3),\
+  \ which requires all persistence through `AccountService`. This bypasses any validation,\
+  \ authorization, transaction handling, or other policy intended for that layer.\n\
+  \nNo test suite or project metadata is present. Syntax parsing succeeds, but the\
+  \ import smoke test fails. No files were changed."
+error: Reading additional input from stdin...

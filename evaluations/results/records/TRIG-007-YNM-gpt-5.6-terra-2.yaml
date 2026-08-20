@@ -1,0 +1,35 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-007
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:33:33.528091Z'
+elapsed_seconds: 42.421
+input_tokens: 108138
+output_tokens: 1809
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Meta Loop \u2014 NOT_APPLICABLE\n\nThe workspace is empty: no\
+  \ project files, documentation, guidance, Git repository, or prior YNM state were\
+  \ found. There is no reviewable project scope to coordinate.\n\n- Proposed disposition:\
+  \ **NO** \u2014 \u201CThe requested root contains evidence sufficient for Meta Loop\
+  \ orchestration.\u201D\n- Evidence: empty root inventory; no Git worktree; no YNM\
+  \ or project-guidance artifacts.\n- Focal loops: none applicable; no specialist\
+  \ review was run.\n- Persistence: stateless/read-only; no files changed.\n- Convergence:\
+  \ yes\u2014an immediate rerun has no expected information gain unless project content\
+  \ or prior YNM state is added.\n\nRun receipt:\n\n```yaml\nschema_version: ynm-run-receipt.v2\n\
+  run_id: ynm-meta-2026-08-20-empty-root\nphase_history: [ANALYSIS, ITERATION, DELIVERY,\
+  \ TERMINATED]\nloops_requested: [Meta]\nloops_executed: [Meta]\nexecution_status:\
+  \ NOT_APPLICABLE\nterminal_outcome: NOT_APPLICABLE_REVIEW\nhalt_reason: NO_REVIEWABLE_PROJECT_SCOPE\n\
+  reviewed_scope: workspace root inventory\nunreviewed_scope: any project content\
+  \ not present in this workspace\nevidence_added: 3\nfindings_created: 1\nfindings_updated:\
+  \ 0\ndispositions_changed: 0\niteration_count: 0\nconverged: true\npersistence_status:\
+  \ STATELESS_READ_ONLY\nnext_revisit_condition: project artifacts, instructions,\
+  \ or prior YNM state become available\n```\n\nAdd or point me to the project content,\
+  \ and I can rerun the Meta Loop against it."
+error: Reading additional input from stdin...

@@ -1,0 +1,23 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-46e7217595b6
+scenario_id: YNM-EVAL-003
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output identifies the contract/test contradiction and directly traces
+  it to CONTRACT.md and test_retry.py, so the single material proposition is found
+  and supported. It does not preserve the required uncertainty that the tested behavior
+  may be the intended behavior; instead, it recommends changing the test to match
+  the documentation. Its separate MAYBE about unavailable runtime behavior is evidence-bounded
+  and therefore not unjustified. No documentation was rewritten and the review remained
+  read-only. Lifecycle reporting is clear, but completion quality is partial because
+  the recommendation assumes the documented contract should prevail without resolving
+  or preserving the required intent ambiguity.

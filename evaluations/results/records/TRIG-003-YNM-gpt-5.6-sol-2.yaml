@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-003-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-003
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:19:56.437618Z'
+elapsed_seconds: 44.042
+input_tokens: 150918
+output_tokens: 1399
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "The YNM Implementation Loop is `NOT_APPLICABLE`: the project root is\
+  \ empty, with no realized artifacts, specifications, tests, configuration, Git history,\
+  \ or prior YNM state to evaluate.\n\n- Requested scope: Implementation Loop\n- Reviewed\
+  \ scope: complete project-root inventory\n- Findings: none; no defensible proposition\
+  \ exists for `YES`, `NO`, or `MAYBE`\n- Unreviewed scope: none discovered\n- Authorization:\
+  \ review only; no writes performed\n- Converged: yes\u2014another immediate pass\
+  \ has no expected information gain\n- Revisit condition: add an implementation artifact,\
+  \ procedure, contract, or test evidence\n\nRun receipt: `NOT_APPLICABLE_REVIEW`,\
+  \ execution status `NOT_APPLICABLE`, lifecycle `ANALYSIS \u2192 DELIVERY \u2192\
+  \ TERMINATED`, persistence `STATELESS`."
+error: Reading additional input from stdin...

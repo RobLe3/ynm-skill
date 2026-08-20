@@ -99,6 +99,12 @@ def invoke(model: str, prompt: str, cwd: Path, *, with_skill: bool, timeout_seco
         and isinstance(event.get("item"), dict)
         and event["item"].get("type") == "agent_message"
     ]
+    normalized_messages = []
+    path_forms = {str(cwd), str(cwd.resolve())}
+    for message in messages:
+        for path_form in sorted(path_forms, key=len, reverse=True):
+            message = message.replace(path_form, "<EVALUATION_PROJECT>")
+        normalized_messages.append(message)
     usage = next((event.get("usage", {}) for event in reversed(events) if event.get("type") == "turn.completed"), {})
     error = next((event.get("message", "") for event in events if event.get("type") == "error"), "")
     skill_event = any("skill" in str(event.get("type", "")).lower() for event in events)
@@ -116,7 +122,7 @@ def invoke(model: str, prompt: str, cwd: Path, *, with_skill: bool, timeout_seco
         "output_tokens": usage.get("output_tokens", 0),
         "tool_calls": tool_calls,
         "filesystem_changed": before_inventory != after_inventory,
-        "raw_output": messages[-1] if messages else "",
+        "raw_output": normalized_messages[-1] if normalized_messages else "",
         "raw_events": result.stdout,
         "stderr": result.stderr,
         "error": error,

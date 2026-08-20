@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-019-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-019
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:29:51.993833Z'
+elapsed_seconds: 37.952
+input_tokens: 100709
+output_tokens: 1202
+tool_calls: 34
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "No files should be deleted from the provided directory: it is completely\
+  \ empty and is not a Git repository.\n\nYNM result:\n\n- **NO** \u2014 there are\
+  \ no deletion candidates in the reviewed directory.\n- **MAYBE** \u2014 publication\
+  \ readiness cannot be assessed because the intended repository contents and Git\
+  \ metadata are unavailable.\n- Review status: **BLOCKED**\n- Persistence: none;\
+  \ read-only review.\n- Next step: open or attach the actual repository, then rerun\
+  \ the audit."
+error: Reading additional input from stdin...

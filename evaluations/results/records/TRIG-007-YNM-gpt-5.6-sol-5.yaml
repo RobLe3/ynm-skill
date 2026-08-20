@@ -1,0 +1,44 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-007
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:24:08.568031Z'
+elapsed_seconds: 83.056
+input_tokens: 151377
+output_tokens: 3214
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Meta Loop result\n\n**Disposition: NO**\n\nProposition: \u201C\
+  The supplied project root contains enough discoverable project evidence to define\
+  \ focal review scopes.\u201D\n\nThe root is empty, contains no project instructions\
+  \ or prior YNM state, and is not a Git repository. No specialist conclusions can\
+  \ responsibly be inferred.\n\n### Loop result\n\n- **Meta Loop:** `COMPLETED`\n\
+  - **Strategy:** `CONSTRAINED`, read-only, stateless\n- **Reviewed:** project discovery,\
+  \ capability/scope fit, authority, loop selection, persistence, convergence\n- **Excluded:**\
+  \ Architecture, Implementation, Adoption, Maintenance, and Disposition loops\u2014\
+  outside the requested Meta-only scope and unsupported by project evidence\n- **Limitation:**\
+  \ no artifacts, history, documentation, intent, or runtime evidence\n- **Converged:**\
+  \ `true`; another immediate pass over unchanged evidence has no expected information\
+  \ gain\n- **Revisit condition:** populate this root, provide the correct project\
+  \ path, or supply project evidence/objectives\n- **Files changed:** none\n\n###\
+  \ Run receipt\n\n```yaml\nschema_version: ynm-run-receipt.v2\nrun_id: ynm-meta-20260820T082502Z\n\
+  generation: 1\nproject_state: empty_directory\nexecution_context: read_only_local_inspection\n\
+  execution_strategy: CONSTRAINED\nloops_requested: [META]\nloops_executed: [META]\n\
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nstage_reached: TERMINATED\n\
+  execution_status: COMPLETED\nterminal_outcome: CONVERGED_REVIEW\nhalt_reason: NO_FURTHER_INFORMATION_GAIN\n\
+  reviewed_scope: meta-coordination of supplied project root\nunreviewed_scope: all\
+  \ focal project analysis\nevidence_added: 3\nfindings_created: 1\nfindings_updated:\
+  \ 0\ndispositions_changed: 0\nunresolved_dependencies:\n  - reviewable project artifacts\n\
+  continuation_scope: focal-loop selection after project evidence becomes available\n\
+  next_revisit_condition: project content, path, objective, or evidence changes\n\
+  persistence_status: STATELESS_NOT_PERSISTED\nreview_plan_revision: 1\niteration_count:\
+  \ 1\nconverged: true\nrequired_human_decisions:\n  - provide or identify the intended\
+  \ project if further review is wanted\ndelivery: Meta coordination completed without\
+  \ specialist judgment\n```"
+error: Reading additional input from stdin...

@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-011
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:27:33.059738Z'
+elapsed_seconds: 21.359
+input_tokens: 30477
+output_tokens: 609
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM stands for the three answers it gives to a clear claim:\n\n- **YES**\
+  \ \u2014 the evidence supports it.\n- **NO** \u2014 the evidence contradicts it.\n\
+  - **MAYBE** \u2014 there isn\u2019t enough reliable evidence yet.\n\nFor example,\
+  \ instead of vaguely asking, \u201CIs this project secure?\u201D, YNM examines specific\
+  \ claims such as:\n\n> \u201CAuthentication tokens expire and cannot be reused afterward.\u201D\
+  \n\nIt then follows a simple cycle:\n\n1. **Analyze** \u2014 Understand the project,\
+  \ the question, the available evidence, and what YNM is authorized to do.\n2. **Review**\
+  \ \u2014 Inspect relevant areas through focused \u201Cloops,\u201D such as architecture,\
+  \ implementation, adoption, or maintenance.\n3. **Reconcile** \u2014 Combine duplicate\
+  \ or conflicting findings without hiding disagreement or old conclusions.\n4. **Deliver**\
+  \ \u2014 Report the YES, NO, and MAYBE findings, including evidence, gaps, limitations,\
+  \ and suggested follow-ups.\n5. **Stop when useful review is exhausted** \u2014\
+  \ Another pass happens only if new evidence or a different approach is likely to\
+  \ improve the answer.\n\nA few important guardrails:\n\n- YNM is **read-only by\
+  \ default**. Finding a problem does not grant permission to fix it.\n- Every answer\
+  \ applies to **one explicit proposition**, not the whole project.\n- **MAYBE preserves\
+  \ uncertainty**; it is not a softened YES or NO.\n- Specialist conclusions remain\
+  \ advisory unless they were explicitly given decision authority.\n- Reviews can\
+  \ optionally retain history, allowing later runs to identify what genuinely changed\
+  \ without erasing earlier findings.\n\nIn short, YNM is a disciplined project reviewer:\
+  \ it turns broad concerns into testable claims, checks the evidence, answers YES/NO/MAYBE,\
+  \ and clearly separates what is known from what remains uncertain."
+error: Reading additional input from stdin...

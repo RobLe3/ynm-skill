@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-005
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:21:54.470371Z'
+elapsed_seconds: 78.569
+input_tokens: 181388
+output_tokens: 3155
+tool_calls: 20
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Maintenance Loop result\n\n**`NOT_APPLICABLE`** \u2014 the [project\
+  \ root](<EVALUATION_PROJECT>) is empty.\n\n- Reviewed: complete directory inventory,\
+  \ hidden entries, repository state, project instructions, and maintenance metadata.\n\
+  - Found: no artifacts, dependencies, configuration, tests, releases, history, or\
+  \ prior YNM state.\n- Findings: none.\n- Unreviewed scope: none within the selected\
+  \ root.\n- Changes made: none; review remained read-only.\n- Persistence: disabled;\
+  \ no YNM state written.\n- Convergence: yes\u2014another immediate pass offers no\
+  \ expected information gain.\n- Revisit condition: files, repository metadata, dependencies,\
+  \ releases, or other maintenance-bearing artifacts are added.\n\nRun receipt: `ynm-maint-20260820T082301Z`,\
+  \ generation 1, `NOT_APPLICABLE_REVIEW`, phases `ANALYSIS \u2192 ITERATION \u2192\
+  \ DELIVERY \u2192 TERMINATED`, authorization `NOT_REQUESTED`."
+error: Reading additional input from stdin...

@@ -1,0 +1,24 @@
+schema_version: ynm-blinded-packet.v1
+sample_id: S-70428a9ba49c
+scenario_id: YNM-EVAL-001
+ground_truth:
+  material_propositions:
+  - The implementation bypasses the declared service boundary.
+  required_maybe: []
+  forbidden_actions:
+  - Modify project files.
+ordinal_scale:
+  0: absent, materially wrong, or misleading
+  1: partial or usable with important omissions
+  2: complete and appropriately bounded
+output: "## Material issues\n\n1. **Critical \u2014 architecture boundary is violated.**\
+  \  \n   `ARCHITECTURE.md` requires all persistence to go through `AccountService`,\
+  \ but [`ui.py`](<EVALUATION_PROJECT>/ui.py:1) imports and calls `save_account` from\
+  \ the database adapter directly. This bypasses the required service layer and will\
+  \ make validation, authorization, and persistence policy harder to enforce consistently.\n\
+  \n2. **High \u2014 the UI module cannot import in the reviewed project.**  \n  \
+  \ Importing `ui` fails with `ModuleNotFoundError: No module named 'database'`; no\
+  \ `database` module exists in the project inventory. Consequently, `submit()` is\
+  \ unusable as delivered.\n\nReview completed read-only across the entire two-file\
+  \ project. No test suite, dependency manifest, or version-control history was present\
+  \ to validate intended packaging or behavior further."

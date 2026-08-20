@@ -1,0 +1,26 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-004
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:32:20.149910Z'
+elapsed_seconds: 30.578
+input_tokens: 98205
+output_tokens: 1108
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Adoption Loop: NOT_APPLICABLE\n\nNo project artifacts are present\
+  \ to evaluate: no intended audience, onboarding path, documentation, interface,\
+  \ configuration, examples, or observed user behavior.\n\n- Proposition: \u201CIntended\
+  \ users can successfully adopt this project.\u201D\n- Disposition: **MAYBE** \u2014\
+  \ `INSUFFICIENT_CONTEXT`\n- Loop status: **NOT_APPLICABLE**\n- Authority: read-only;\
+  \ no changes made.\n- Handoff: provide a project directory or adoption materials\
+  \ (README, setup flow, docs, examples) to enable review.\n\nRun receipt: `NOT_APPLICABLE_REVIEW`;\
+  \ reviewed scope: empty workspace; convergence: yes\u2014the available evidence\
+  \ cannot support a further adoption assessment."
+error: Reading additional input from stdin...

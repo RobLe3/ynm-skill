@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-004
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:21:06.863550Z'
+elapsed_seconds: 47.607
+input_tokens: 126209
+output_tokens: 1942
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Adoption Loop result\n\n**Disposition: NO** for this proposition:\n\
+  \n> An intended user can identify the project\u2019s purpose and a supported first-use\
+  \ path from the supplied workspace.\n\nThe project root is completely empty: 0 files\
+  \ and 0 subdirectories. There is no README, audience definition, installation guidance,\
+  \ configuration, example, interface, or onboarding path.\n\nA broader proposition\u2014\
+  whether users can successfully acquire, configure, and operate the project\u2014\
+  is **MAYBE (`EVIDENCE_REQUIRED`)**, because no implementation or user journey exists\
+  \ to test.\n\n### Run receipt\n\n- Execution status: `COMPLETED`\n- Strategy: `CONSTRAINED`,\
+  \ read-only\n- Reviewed scope: Entire supplied project root\n- Unreviewed scope:\
+  \ Runtime adoption and real-user validation\n- Findings: 1 `NO`, 1 `MAYBE`\n- Handoffs:\
+  \ None possible without project artifacts\n- Persistence: Stateless; no files changed\n\
+  - Converged: Yes for the currently available evidence\n- Stop reason: Complete evidence\
+  \ surface reviewed; another immediate pass would add no information\n- Revisit condition:\
+  \ Add project materials defining its purpose, intended users, and first-use journey"
+error: Reading additional input from stdin...

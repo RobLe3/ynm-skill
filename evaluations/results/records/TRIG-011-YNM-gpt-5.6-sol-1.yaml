@@ -1,0 +1,36 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-011
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:27:03.264924Z'
+elapsed_seconds: 17.402
+input_tokens: 30281
+output_tokens: 569
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a structured way to review a project without jumping straight\
+  \ to fixes.\n\nIt works like this:\n\n1. **Ask precise questions.**  \n   YNM turns\
+  \ broad concerns into testable statements, such as: \u201CThe system handles failed\
+  \ payments safely.\u201D\n\n2. **Inspect evidence.**  \n   It examines relevant\
+  \ code, documentation, tests, usage signals, and project history.\n\n3. **Review\
+  \ from several angles.**  \n   Separate \u201Cloops\u201D consider architecture,\
+  \ implementation, adoption, maintenance, conflicting findings, and overall coordination.\n\
+  \n4. **Give each statement a disposition.**\n\n   - **YES** \u2014 the evidence\
+  \ supports it.\n   - **NO** \u2014 the evidence contradicts it.\n   - **MAYBE**\
+  \ \u2014 there is not enough reliable evidence yet.\n\n5. **Preserve uncertainty\
+  \ and disagreements.**  \n   YNM records what was reviewed, what was not, why conclusions\
+  \ were reached, and where reviewers or evidence conflict.\n\n6. **Stop when another\
+  \ pass is unlikely to teach anything new.**  \n   Every run follows **Analysis \u2192\
+  \ Iteration \u2192 Delivery**, ending with findings, coverage, limitations, and\
+  \ suggested next steps.\n\nBy default, YNM is **read-only**. A finding\u2014even\
+  \ a **NO**\u2014is not permission to edit anything. Changes happen only when the\
+  \ user explicitly authorizes remediation.\n\nIn short: **YNM asks focused questions,\
+  \ checks the evidence through multiple perspectives, answers YES/NO/MAYBE, and clearly\
+  \ reports what remains uncertain.**"
+error: Reading additional input from stdin...

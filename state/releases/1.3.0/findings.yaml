@@ -151,10 +151,10 @@ findings:
   disposition: 'MAYBE'
   disposition_reason: The required second model is unavailable; no comparative effectiveness result exists.
   created_at: '2026-08-20T07:40:37Z'
-  updated_at: '2026-08-20T07:40:37Z'
+  updated_at: '2026-08-20T08:03:23Z'
   history:
   - YNM-1.3-E011
-  status: OPEN
+  status: SUPERSEDED
   maturity_impact: RELEASE_BLOCKING
   revisit_conditions: Run the frozen trigger and A/B suites when both precommitted model identifiers are available, or create an explicit assessment revision before substituting a model.
 - id: YNM-EMP-001
@@ -162,16 +162,16 @@ findings:
   proposition: Under controlled model, project, prompt, toolset, and read-only authority, making YNM available produces review quality that is measurably better than, or at minimum safely non-inferior to, the same executor without YNM.
   source_loop: Adoption
   scope: controlled primary-model empirical effectiveness
-  observation: Protocol revision 2 is frozen before empirical execution on gpt-5.6-sol.
-  evidence: [evaluations/protocol.yaml, evaluations/rubric.yaml, evaluations/scenarios.yaml]
-  interpretation: Core effectiveness can be evaluated independently of second-model entitlement.
-  proposed_disposition: 'MAYBE'
-  disposition: 'MAYBE'
-  disposition_reason: No revision 2 benchmark output has yet been observed.
+  observation: The primary paired benchmark completed all ten CONTROL/YNM scenarios. Aggregate precision improved and unsupported claims decreased, but YNM asserted correctness on the clean fixture while failing to preserve its explicitly unreviewed production proposition.
+  evidence: [evaluations/protocol.yaml, evaluations/results/benchmark-summary.yaml, evaluations/results/summary.md]
+  interpretation: The clean-project paired regression meets the frozen false-certainty hard-safety criterion, so aggregate improvements cannot compensate for it.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: YNM-EVAL-009 converted explicitly unresolved evidence into a less-calibrated unsupported conclusion.
   created_at: '2026-08-20T08:03:23Z'
-  updated_at: '2026-08-20T08:03:23Z'
-  history: [YNM-1.3-E012]
-  status: OPEN
+  updated_at: '2026-08-20T08:56:02Z'
+  history: [YNM-1.3-E012, YNM-1.3-E014]
+  status: RESOLVED
   maturity_impact: RELEASE_BLOCKING
   revisit_conditions: Execute and blindly score the frozen primary CONTROL/YNM benchmark.
 - id: YNM-EMP-002
@@ -179,16 +179,16 @@ findings:
   proposition: YNM activates reliably for intended YNM review requests and remains inactive for the frozen negative and near-miss cases.
   source_loop: Adoption
   scope: frozen trigger suite
-  observation: Activation observability will be established with a non-benchmark smoke request before the frozen trigger suite is consumed.
-  evidence: [evaluations/protocol.yaml, tests/data/trigger-cases.yaml]
-  interpretation: Telemetry limitations must remain MAYBE rather than guessed activation outcomes.
-  proposed_disposition: 'MAYBE'
-  disposition: 'MAYBE'
-  disposition_reason: Trigger execution has not started.
+  observation: Behavioral inference was frozen after a separate smoke request. Primary activation recall was 9/55 with 43/45 correct non-activations; replication activation recall was 8/55 with 44/45 correct non-activations.
+  evidence: [evaluations/results/activation-observability.yaml, evaluations/results/trigger-summary.yaml, tests/data/trigger-cases.yaml]
+  interpretation: Negative selectivity was strong, but intended specialist, setup, and contextual activation was not reliably observable under the frozen rule.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: Material false-negative activation behavior occurred across both evaluated models.
   created_at: '2026-08-20T08:03:23Z'
-  updated_at: '2026-08-20T08:03:23Z'
-  history: [YNM-1.3-E012]
-  status: OPEN
+  updated_at: '2026-08-20T08:56:02Z'
+  history: [YNM-1.3-E012, YNM-1.3-E014]
+  status: RESOLVED
   maturity_impact: RELEASE_BLOCKING
   revisit_conditions: Establish activation observability and execute the frozen trigger suite.
 - id: YNM-EMP-003
@@ -196,15 +196,15 @@ findings:
   proposition: The observed YNM effect reproduces on a second materially different model or capability tier.
   source_loop: Adoption
   scope: frozen replication model order
-  observation: Replication selection depends only on current availability in the frozen candidate order.
-  evidence: [evaluations/protocol.yaml, evaluations/rubric.yaml]
-  interpretation: External model entitlement is a capability boundary and does not determine primary effectiveness.
-  proposed_disposition: 'MAYBE'
-  disposition: 'MAYBE'
-  disposition_reason: No replication executor has yet been selected under revision 2.
+  observation: gpt-5.6-terra was the first available replication candidate and completed all trigger and benchmark executions. It improved several dimensions but increased false findings on a paired authority-boundary scenario.
+  evidence: [evaluations/results/model-availability.yaml, evaluations/results/benchmark-summary.yaml, evaluations/results/summary.md]
+  interpretation: The effect did not reproduce under the frozen safety and non-inferiority rules.
+  proposed_disposition: 'NO'
+  disposition: 'NO'
+  disposition_reason: Replication increased false material findings relative to paired control.
   created_at: '2026-08-20T08:03:23Z'
-  updated_at: '2026-08-20T08:03:23Z'
-  history: [YNM-1.3-E012]
-  status: OPEN
+  updated_at: '2026-08-20T08:56:02Z'
+  history: [YNM-1.3-E012, YNM-1.3-E014]
+  status: RESOLVED
   maturity_impact: NON_BLOCKING
   revisit_conditions: Probe the frozen candidate order and execute replication if one candidate is available.

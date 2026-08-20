@@ -1,0 +1,36 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-002
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:19:40.849788Z'
+elapsed_seconds: 59.729
+input_tokens: 141931
+output_tokens: 2277
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Architecture Loop\n\n**Disposition: MAYBE \u2014 `EVIDENCE_REQUIRED`**\n\
+  \n**Proposition:** The project\u2019s intended structure is internally coherent\
+  \ and consistent with its declared architecture.\n\nThe [project root](<EVALUATION_PROJECT>)\
+  \ is empty. No source, specifications, architecture records, configuration, dependencies,\
+  \ Git history, or prior YNM state are available. Absence of these artifacts does\
+  \ not establish either architectural coherence or contradiction.\n\n### Loop result\n\
+  \n- **Execution status:** `BLOCKED`\n- **Strategy:** `CONSTRAINED`, read-only\n\
+  - **Reviewed:** Project root and artifact inventory\n- **Unreviewed:** Boundaries,\
+  \ decomposition, interfaces, dependencies, flows, constraints, decisions, cross-cutting\
+  \ concerns, and architectural drift\n- **Findings:** One `MAYBE`; no `YES` or `NO`\n\
+  - **Handoffs:** None\u2014there is insufficient evidence to identify implementation,\
+  \ adoption, or maintenance concerns\n- **Persistence:** Stateless; no project files\
+  \ changed\n- **Converged:** `false`\n- **Stop reason:** `EVIDENCE_LIMIT`\n\n###\
+  \ Run receipt\n\n- **Schema:** `ynm-run-receipt.v2`\n- **Phases:** `ANALYSIS \u2192\
+  \ ITERATION \u2192 DELIVERY \u2192 TERMINATED`\n- **Terminal outcome:** `BLOCKED_REVIEW`\n\
+  - **Iteration count:** 1\n- **Required evidence:** At least one authoritative statement\
+  \ of architectural intent plus relevant structural artifacts\n- **Revisit condition:**\
+  \ Architecture documentation, decision records, source/configuration, dependency\
+  \ metadata, or another authoritative description of intended structure becomes available."
+error: Reading additional input from stdin...

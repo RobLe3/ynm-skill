@@ -1,0 +1,18 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-015-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-015
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:28:17.639258Z'
+elapsed_seconds: 6.43
+input_tokens: 14100
+output_tokens: 12
+tool_calls: 0
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM es un marco de revisi\xF3n."
+error: Reading additional input from stdin...

@@ -1,0 +1,25 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-003-YNM-gpt-5.6-terra-1
+scenario_id: YNM-EVAL-003
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:41:21.702122Z'
+elapsed_seconds: 34.971
+input_tokens: 92516
+output_tokens: 1363
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Result: NO \u2014 contract is not implemented\n\nThe repository contains\
+  \ no retry/client implementation\u2014only the contract and a test. The test also\
+  \ contradicts the contract: it expects `client.retry_limit == 3`, while \u201Cretry\
+  \ exactly once\u201D requires one retry after the initial failure.\n\n- Contract:\
+  \ [CONTRACT.md](<EVALUATION_PROJECT>/CONTRACT.md:3)\n- Contradictory test: [test_retry.py](<EVALUATION_PROJECT>/test_retry.py:2)\n\
+  \nReview scope was complete (both project files). I could not execute pytest because\
+  \ the read-only environment has no usable temporary directory; this does not affect\
+  \ the source-level mismatch."
+error: Reading additional input from stdin...

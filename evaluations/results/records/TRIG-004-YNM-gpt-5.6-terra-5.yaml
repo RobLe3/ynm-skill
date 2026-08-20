@@ -1,0 +1,28 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-terra-5
+scenario_id: TRIG-004
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:32:26.994373Z'
+elapsed_seconds: 31.348
+input_tokens: 98011
+output_tokens: 1068
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Adoption Loop result: **BLOCKED**\n\nThe workspace is empty\u2014there\
+  \ are no project files, documentation, configuration, examples, entry points, repository\
+  \ history, or prior YNM state to review.\n\nFinding: **MAYBE** \u2014 \u201CIntended\
+  \ users can understand and adopt this project successfully.\u201D  \nReason: `INSUFFICIENT_CONTEXT`.\
+  \ No intended audience or user journey is available.\n\nRun receipt:\n\n- Requested/reviewed\
+  \ scope: project adoption\n- Evidence: empty workspace observation\n- Unreviewed\
+  \ scope: onboarding, access, configuration, examples, user-facing behavior, accessibility,\
+  \ migration, and validation\n- Persistence: none (read-only)\n- Converged: no\n\
+  - Halt reason: no project artifacts or adoption evidence available\n- Continuation:\
+  \ provide the project materials, especially README/onboarding docs, install or access\
+  \ steps, configuration examples, and target-user definition."
+error: Reading additional input from stdin...

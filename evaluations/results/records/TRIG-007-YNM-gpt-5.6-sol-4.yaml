@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-007
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:23:49.863861Z'
+elapsed_seconds: 69.186
+input_tokens: 186490
+output_tokens: 2661
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "The Meta Loop converged. The declared [project root](<EVALUATION_PROJECT>)\
+  \ is empty, so no responsible focal-loop plan can be derived.\n\n### Material finding\n\
+  \n- **Proposition:** The declared project root contains sufficient evidence to select\
+  \ and coordinate meaningful YNM focal reviews.\n- **Disposition:** `NO`\n- **Evidence:**\
+  \ Complete directory enumeration found 0 entries; the directory occupies 0 B. No\
+  \ project instructions, artifacts, Git metadata, documentation, or prior YNM state\
+  \ exist.\n- **Interpretation:** The available evidence directly contradicts the\
+  \ proposition within the observed root. It does not prove that no project exists\
+  \ elsewhere.\n- **Revisit condition:** Add project materials or provide the intended\
+  \ project path and rerun the Meta Loop.\n\n### Run receipt\n\n```yaml\nschema_version:\
+  \ ynm-run-receipt.v2\nrun_id: ynm-meta-20260820T102437+0200\ngeneration: 1\nphase_history:\
+  \ [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nreview_profile: BASIC\nexecution_strategy:\
+  \ CONSTRAINED\nloops_requested: [META]\nloops_executed:\n  META: COMPLETED\nexecution_status:\
+  \ COMPLETED\nterminal_outcome: CONVERGED_REVIEW\nconverged: true\niteration_count:\
+  \ 1\nhalt_reason: NO_MEANINGFUL_FOCAL_SCOPE\nreviewed_scope: declared project root\
+  \ and its immediate review context\nunreviewed_scope: any project located outside\
+  \ the declared root\nfindings_created: 1\ndispositions_changed: 0\nauthorization_status:\
+  \ NOT_REQUESTED\npersistence_status: STATELESS_NO_WRITES\nstop_reason: further immediate\
+  \ inspection has no expected information gain\nnext_revisit_condition: project artifacts\
+  \ or a corrected project root become available\n```\n\nNo files were created or\
+  \ modified. Stateless execution means this run has no persistent longitudinal YNM\
+  \ history."
+error: Reading additional input from stdin...

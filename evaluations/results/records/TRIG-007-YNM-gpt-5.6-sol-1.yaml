@@ -1,0 +1,44 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-sol-1
+scenario_id: TRIG-007
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:23:13.038917Z'
+elapsed_seconds: 75.368
+input_tokens: 128808
+output_tokens: 3072
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "# YNM Meta Loop\n\n**Result:** `BLOCKED`  \n**Terminal outcome:** `BLOCKED_REVIEW`\
+  \  \n**Converged:** `false`\n\nThe selected [project root](<EVALUATION_PROJECT>)\
+  \ is empty, is not a Git repository, and contains no prior YNM state. Consequently,\
+  \ the Meta Loop cannot responsibly identify or assign meaningful Architecture, Implementation,\
+  \ Adoption, or Maintenance review scopes.\n\n### Finding `YNM-META-001`\n\n- **Proposition:**\
+  \ The selected project root contains sufficient evidence to coordinate applicable\
+  \ focal reviews.\n- **Disposition:** `MAYBE`\n- **Reason:** `EVIDENCE_REQUIRED`\n\
+  - **Evidence:** Empty directory inventory; failed Git-root discovery; absent `.ynm`\
+  \ state.\n- **Interpretation:** This does not establish that the project lacks quality\
+  \ or structure\u2014only that no project evidence is available at this location.\n\
+  - **Revisit condition:** Populate this root with project artifacts or provide the\
+  \ correct project directory.\n\n### Run receipt\n\n```yaml\nschema_version: ynm-run-receipt.v2\n\
+  run_id: ynm-meta-20260820-102405\ngeneration: 1\nproject_state: empty-directory;\
+  \ non-git; no-prior-ynm-state\nexecution_strategy: CONSTRAINED\nreview_profile:\
+  \ BASIC\nloops_requested: [Meta]\nloops_executed:\n  Meta: BLOCKED\nstage_reached:\
+  \ DELIVERY\nexecution_status: BLOCKED\nterminal_outcome: BLOCKED_REVIEW\nhalt_reason:\
+  \ REQUIRED_PROJECT_EVIDENCE_UNAVAILABLE\nphase_history: [ANALYSIS, ITERATION, DELIVERY,\
+  \ TERMINATED]\nreviewed_scope: project discovery, capability fit, authority, loop\
+  \ selection\nunreviewed_scope: all substantive project behavior and focal-loop propositions\n\
+  evidence_added: 3\nfindings_created: 1\nfindings_updated: 0\ndispositions_changed:\
+  \ 0\nunresolved_findings: [YNM-META-001]\nunresolved_dependencies: [reviewable project\
+  \ artifacts]\nrequired_human_decisions: [confirm or provide the intended project\
+  \ root]\ncontinuation_scope: rerun Meta Loop against a populated project root\n\
+  next_revisit_condition: project evidence becomes available\niteration_count: 1\n\
+  converged: false\nstop_reason: immediate repetition against the same empty root\
+  \ has no expected information gain\npersistence_status: STATELESS_READ_ONLY\n```\n\
+  \nNo files or YNM state were modified."
+error: Reading additional input from stdin...

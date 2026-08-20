@@ -1,0 +1,32 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-011-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-011
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:35:44.190740Z'
+elapsed_seconds: 15.94
+input_tokens: 30284
+output_tokens: 431
+tool_calls: 2
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is a disciplined way to review a project without jumping straight\
+  \ to fixes.\n\nIt works like this:\n\n1. Pick a clear claim to evaluate\u2014for\
+  \ example, \u201Cthe app\u2019s authentication is secure.\u201D\n2. Gather evidence:\
+  \ code, tests, docs, usage data, or other relevant material.\n3. Give that claim\
+  \ one of three outcomes:\n   - **YES** \u2014 the evidence supports it.\n   - **NO**\
+  \ \u2014 the evidence contradicts it.\n   - **MAYBE** \u2014 there isn\u2019t enough\
+  \ reliable evidence yet.\n4. Keep the evidence and uncertainty attached to the conclusion,\
+  \ so someone can see *why* it was reached.\n5. Review through focused lenses where\
+  \ useful, such as architecture, implementation, adoption, maintenance, and how findings\
+  \ should be handled.\n6. Stop when another immediate pass is unlikely to add useful\
+  \ information, then report what was reviewed, what wasn\u2019t, and any next steps\
+  \ needing a human decision.\n\nThe important distinction: a **NO** means \u201C\
+  this claim is not currently supported\u201D\u2014not automatically \u201Cgo change\
+  \ it.\u201D YNM separates reviewing, recommending, and making changes, so evidence\
+  \ doesn\u2019t quietly become permission."
+error: Reading additional input from stdin...

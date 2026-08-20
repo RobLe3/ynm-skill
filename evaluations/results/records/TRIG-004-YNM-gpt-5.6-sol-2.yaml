@@ -1,0 +1,40 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-2
+scenario_id: TRIG-004
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:20:47.552615Z'
+elapsed_seconds: 63.871
+input_tokens: 149891
+output_tokens: 2483
+tool_calls: 12
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Adoption Loop result: MAYBE\n\n**Proposition:** Intended users can\
+  \ understand, acquire, configure, operate, and adopt this project successfully.\n\
+  \n**Disposition:** `MAYBE \u2014 EVIDENCE_REQUIRED`  \n**Execution status:** `COMPLETED`\
+  \  \n**Converged:** Yes; another immediate pass would inspect the same empty evidence\
+  \ set.\n\nThe complete review root contained zero entries, was not a Git repository,\
+  \ and provided no declared audience, project purpose, entrypoint, installation instructions,\
+  \ examples, interfaces, or observed user journeys. This does not support `NO`: under\
+  \ YNM, missing evidence is not evidence of failed adoption.\n\n### Finding `YNM-ADOPT-001`\n\
+  \n- **Observation:** No project artifacts or prior YNM state exist in the review\
+  \ root.\n- **Interpretation:** A representative adoption journey cannot be defined\
+  \ or attempted.\n- **Disposition:** `MAYBE`\n- **Needed evidence:** Intended audience\
+  \ and purpose, followed by at least one critical-path journey covering access, setup,\
+  \ configuration where applicable, first successful use, and expected outcome.\n\
+  - **Revisit condition:** User-facing artifacts or validation evidence are added\
+  \ or supplied.\n- **Handoffs:** None; no implementation defect, structural cause,\
+  \ or stale material was observable.\n- **Authorization:** `NOT_REQUESTED`; no files\
+  \ were changed.\n\n### Run receipt\n\n- **Run:** `ynm-adoption-20260820T082135Z`\n\
+  - **Strategy:** `CONSTRAINED`, read-only\n- **Reviewed scope:** Entire supplied\
+  \ project root\n- **Unreviewed scope:** External or absent documentation, releases,\
+  \ runtime behavior, support history, and user feedback\n- **Terminal outcome:**\
+  \ `CONVERGED_REVIEW`\n- **Stop reason:** Complete available evidence inspected;\
+  \ further review requires new evidence\n- **Persistence:** Stateless\u2014no YNM\
+  \ state was written"
+error: Reading additional input from stdin...

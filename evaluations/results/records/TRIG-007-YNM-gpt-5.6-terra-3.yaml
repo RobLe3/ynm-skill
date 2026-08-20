@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-terra-3
+scenario_id: TRIG-007
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:33:38.237747Z'
+elapsed_seconds: 42.823
+input_tokens: 135374
+output_tokens: 1629
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Meta Loop completed and converged.\n\n- Finding \u2014 **NO**: the workspace\
+  \ contains no project artifacts or YNM state to coordinate a focal review. Evidence:\
+  \ the root directory is empty; no Git repository, documentation, source, configuration,\
+  \ or hidden project files were present.\n- Effective scope: workspace discovery,\
+  \ capability/scope fit, loop selection, and termination controls.\n- Focal loops:\
+  \ none applicable; without a reviewable subject, Architecture, Implementation, Adoption,\
+  \ Maintenance, and Disposition have no meaningful propositions.\n- Execution: `COMPLETED`;\
+  \ terminal outcome: `CONVERGED_REVIEW`; persistence: stateless/read-only; no changes\
+  \ made.\n\nRun receipt: `ynm-run-receipt.v2`, phase history `ANALYSIS \u2192 ITERATION\
+  \ \u2192 DELIVERY`, iteration count `0`, reviewed scope `workspace root`, unreviewed\
+  \ scope `any project material not provided`, stop reason `no reviewable project\
+  \ evidence; no justified rerun`.\n\nTo continue, provide or mount the project directory\
+  \ (or add its artifacts here), then request the relevant YNM loop or a full review."
+error: Reading additional input from stdin...

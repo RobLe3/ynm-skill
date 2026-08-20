@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-003-YNM-gpt-5.6-terra-2
+scenario_id: TRIG-003
+condition: YNM
+repetition: 2
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:31:47.950692Z'
+elapsed_seconds: 29.066
+input_tokens: 97963
+output_tokens: 936
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Implementation Loop completed: `NOT_APPLICABLE`.\n\nThe workspace is\
+  \ empty\u2014no project artifacts, specifications, procedures, tests, or prior YNM\
+  \ state were available to evaluate realized behavior against declared intent. No\
+  \ implementation proposition could be formed responsibly.\n\nRun receipt:\n\n- Requested\
+  \ scope: Implementation Loop\n- Reviewed scope: workspace inventory\n- Unreviewed\
+  \ scope: any project content not provided\n- Findings: none\n- Evidence: empty workspace;\
+  \ no Git repository\n- Persistence: not requested; no files changed\n- Converged:\
+  \ yes, for the available scope\n- Stop reason: no realized artifact or contract\
+  \ exists to assess\n\nProvide the project files or a defined implementation/contract\
+  \ to continue with an evidence-backed implementation review."
+error: Reading additional input from stdin...

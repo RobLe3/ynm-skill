@@ -1,0 +1,37 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-009-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-009
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:25:46.134493Z'
+elapsed_seconds: 65.52
+input_tokens: 203983
+output_tokens: 2466
+tool_calls: 16
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'YNM initialization is blocked; no files were changed.
+
+
+  - Bootstrap: `YNM-BOOT-F606EB6CF4A3`
+
+  - Profile: `STANDARD`
+
+  - Target state: `.ynm/`
+
+  - Authorization: granted
+
+  - Project state: empty; no conflicting artifacts
+
+  - Blockers: workspace is read-only, and the helper requires unavailable PyYAML
+
+  - Persistence status: `NOT_ATTEMPTED`
+
+
+  Planned scaffold: `.ynm/{README.md,project.yaml,config.yaml,state/findings.yaml,state/events.jsonl,state/receipts/}`.
+  Re-run in a writable workspace with PyYAML installed to complete initialization.'
+error: Reading additional input from stdin...

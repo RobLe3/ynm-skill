@@ -1,0 +1,56 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-010-YNM-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-010
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:40:29.132736Z'
+elapsed_seconds: 112.562
+input_tokens: 146341
+output_tokens: 4755
+tool_calls: 26
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Read-only YNM review completed. The project contains five files; no files\
+  \ were changed.\n\n## Architecture \u2014 YES\n\n**Proposition ARCH-001:** The supplied\
+  \ source follows the declared CLI \u2192 service \u2192 storage dependency direction.\n\
+  \nThe CLI imports the service, and only the service imports storage, matching [ARCHITECTURE.md](<<EVALUATION_PROJECT>/ARCHITECTURE.md:3>),\
+  \ [cli.py](<<EVALUATION_PROJECT>/cli.py:1>), and [service.py](<<EVALUATION_PROJECT>/service.py:1>).\n\
+  \nThis supports dependency-direction conformance only. It does not establish architectural\
+  \ completeness because the storage module is absent.\n\nLoop status: `COMPLETED`.\n\
+  \n## Implementation \u2014 NO / MAYBE\n\n**IMP-001 \u2014 NO:** The supplied application\
+  \ flow is executable.\n\nBoth Python files parse successfully, but importing and\
+  \ invoking the CLI fails with:\n\n```text\nModuleNotFoundError: No module named\
+  \ 'storage'\n```\n\nThe missing realization is required by [service.py](<<EVALUATION_PROJECT>/service.py:1>).\n\
+  \n**IMP-002 \u2014 MAYBE (`EVIDENCE_REQUIRED`):** Deployment rejects dependencies\
+  \ with known critical vulnerabilities.\n\nThe requirement is declared in [POLICY.md](<<EVALUATION_PROJECT>/POLICY.md:3>),\
+  \ but there is no dependency manifest, deployment configuration, validation implementation,\
+  \ test, or deployment record in scope. This absence does not prove that an external\
+  \ deployment fails to enforce the policy.\n\nLoop status: `COMPLETED`.\n\n## Adoption\
+  \ \u2014 NO\n\n**ADP-001 \u2014 NO:** A new user can begin through the documented\
+  \ quickstart.\n\n[README.md](<<EVALUATION_PROJECT>/README.md:3>) directs users to\
+  \ run `python quickstart.py`, but that file does not exist. The documented command\
+  \ fails immediately.\n\n**ADP-002 \u2014 NO:** Users can validate the public dependency-policy\
+  \ claim from the supplied project.\n\nThe README claims the policy is checked during\
+  \ deployment while explicitly excluding the supporting records. No alternative verification\
+  \ path is documented.\n\nLoop status: `COMPLETED`.\n\n## Maintenance \u2014 NO\n\
+  \n**MNT-001 \u2014 NO:** User-facing documentation remains aligned with maintained\
+  \ artifacts.\n\nThe sole onboarding command names a nonexistent file, and the runtime\
+  \ source depends on an absent module. This is direct documentation/artifact drift.\n\
+  \n**MNT-002 \u2014 NO:** The supplied project contains a maintainable, auditable\
+  \ trail for its dependency policy.\n\nThe repository has neither dependency metadata\
+  \ nor an observable enforcement or validation mechanism. This contradicts the bounded\
+  \ proposition about evidence maintained *within this project*, while the actual\
+  \ external deployment behavior remains unresolved under IMP-002.\n\nLoop status:\
+  \ `COMPLETED`.\n\n## Run receipt\n\n- Profile: `BASIC`, stateless, read-only\n-\
+  \ Strategy: `CONSTRAINED`, separate analytical passes\n- Reviewed: all five supplied\
+  \ files and both documented commands/import paths\n- Unreviewed: external deployment\
+  \ systems, deployment records, user feedback, and project history\n- Overall status:\
+  \ `COMPLETED`\n- Terminal outcome: `CONVERGED_REVIEW`\n- Persistence: disabled;\
+  \ no YNM or project state written\n- Authorization: `NOT_REQUESTED`\n- Revisit condition:\
+  \ add `quickstart.py`, the storage implementation, or deployment/dependency-validation\
+  \ evidence."
+error: Reading additional input from stdin...

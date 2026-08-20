@@ -1,0 +1,38 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-004-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-004
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:20:54.883025Z'
+elapsed_seconds: 47.888
+input_tokens: 120579
+output_tokens: 1763
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## Adoption Loop: BLOCKED\n\n**Disposition: MAYBE \u2014 `INSUFFICIENT_CONTEXT`**\n\
+  \n**Proposition:** Intended users can understand, acquire, configure, operate, and\
+  \ adopt this project successfully.\n\nThe project root is empty. It contains no\
+  \ source files, documentation, repository metadata, user definitions, installation\
+  \ instructions, examples, interfaces, or prior YNM state. Therefore, no adoption\
+  \ journey can be identified or attempted. Absence of artifacts does not establish\
+  \ adoption failure.\n\n### Finding `YNM-ADOPT-001`\n\n- Observation: File inventory\
+  \ returned no project artifacts; the directory is not a Git repository.\n- Interpretation:\
+  \ Intended users, expected outcomes, and adoption paths are unknown.\n- Disposition:\
+  \ **MAYBE**\n- Needed evidence: a populated project root containing at least a project\
+  \ description, intended audience, and one supported setup or usage path.\n- Handoffs:\
+  \ None yet; there is insufficient evidence to attribute issues to Architecture,\
+  \ Implementation, or Maintenance.\n\n### Run receipt\n\n- Strategy: `CONSTRAINED`,\
+  \ read-only\n- Loop requested/executed: Adoption / Adoption\n- Execution status:\
+  \ `BLOCKED`\n- Terminal outcome: `BLOCKED_REVIEW`\n- Reviewed scope: Workspace inventory\
+  \ and availability of adoption evidence\n- Unreviewed scope: All user journeys,\
+  \ onboarding, configuration, operation, integration, migration, accessibility, and\
+  \ expectation validation\n- Converged: `false`\n- Stop reason: `EVIDENCE_UNAVAILABLE`\n\
+  - Persistence: Not persisted; project writes were neither authorized nor available\n\
+  - Revisit condition: Rerun after project artifacts or an explicit user journey are\
+  \ supplied"
+error: Reading additional input from stdin...

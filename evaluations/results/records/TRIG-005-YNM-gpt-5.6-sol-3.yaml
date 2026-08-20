@@ -1,0 +1,31 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-005-YNM-gpt-5.6-sol-3
+scenario_id: TRIG-005
+condition: YNM
+repetition: 3
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:21:51.424065Z'
+elapsed_seconds: 73.653
+input_tokens: 180729
+output_tokens: 2679
+tool_calls: 14
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "## YNM Maintenance Loop\n\n**Disposition:** No findings created  \n**Execution\
+  \ status:** `NOT_APPLICABLE`  \n**Terminal outcome:** `NOT_APPLICABLE_REVIEW`\n\n\
+  The project root is empty: it contains no source, documentation, configuration,\
+  \ dependencies, manifests, validation setup, release history, Git metadata, or prior\
+  \ YNM state. Therefore, there is no meaningful maintenance proposition to evaluate.\
+  \ Absence of artifacts was not treated as evidence of poor maintenance.\n\n- Requested\
+  \ scope: Maintenance Loop for the current project\n- Reviewed scope: Complete project\
+  \ inventory and repository-state check\n- Unreviewed scope: None available\n- Strategy:\
+  \ `CONSTRAINED`, read-only\n- Findings: 0\n- Handoffs: None\n- Authorization: `NOT_REQUESTED`\n\
+  - Persistence: Not performed; read-only stateless review\n- Converged: Yes\u2014\
+  another immediate pass has no expected information gain\n- Revisit condition: Project\
+  \ artifacts, history, dependencies, validation, or release evidence are added\n\n\
+  **Run receipt:** `ANALYSIS \u2192 ITERATION \u2192 DELIVERY \u2192 TERMINATED`;\
+  \ one iteration completed at `2026-08-20T08:22:48Z`."
+error: Reading additional input from stdin...

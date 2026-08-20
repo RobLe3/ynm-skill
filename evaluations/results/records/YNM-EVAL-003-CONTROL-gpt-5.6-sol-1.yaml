@@ -1,0 +1,30 @@
+schema_version: ynm-evaluation-result.v1
+run_id: YNM-EVAL-003-CONTROL-gpt-5.6-sol-1
+scenario_id: YNM-EVAL-003
+condition: CONTROL
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:38:10.480055Z'
+elapsed_seconds: 43.825
+input_tokens: 92476
+output_tokens: 1335
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_APPLICABLE
+raw_output: "## Findings\n\n- **High \u2014 Retry expectation contradicts the contract.**\
+  \ [test_retry.py:2](<EVALUATION_PROJECT>/test_retry.py:2) expects `retry_limit ==\
+  \ 3`, but [CONTRACT.md:3](<EVALUATION_PROJECT>/CONTRACT.md:3) requires exactly one\
+  \ retry. The expected value should be 1 if the limit counts retries, or 2 if it\
+  \ counts total attempts\u2014never 3.\n\n- **High \u2014 Runtime behavior cannot\
+  \ currently be verified.** No client implementation or `client` fixture exists in\
+  \ the repository. The sole test fails during setup with `fixture 'client' not found`.\n\
+  \n- **Medium \u2014 The test does not validate the documented behavior.** Checking\
+  \ a configuration property cannot prove that one failed request produces exactly\
+  \ one retry. A behavioral test should simulate repeated failures and assert exactly\
+  \ two total calls.\n\nConclusion: the available executable specification does not\
+  \ match the documented contract, and the actual implementation is absent, so runtime\
+  \ compliance cannot be established."
+error: Reading additional input from stdin...

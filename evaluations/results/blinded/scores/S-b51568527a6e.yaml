@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-b51568527a6e
+scenario_id: YNM-EVAL-009
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 0
+supported_material_findings: 0
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 1
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: The output cites specific source and test evidence, reports the blocked
+  pytest run accurately, records scope and convergence, and remains read-only. However,
+  it concludes that the implementation/current behavior is correct rather than preserving
+  the required uncertainty about unreviewed production behavior. Its sole MAYBE concerns
+  a directly evidenced test-coverage gap and is therefore unjustified as uncertainty.

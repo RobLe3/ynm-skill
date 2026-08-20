@@ -1,0 +1,25 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-020-YNM-gpt-5.6-sol-5
+scenario_id: TRIG-020
+condition: YNM
+repetition: 5
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:30:24.115365Z'
+elapsed_seconds: 63.705
+input_tokens: 149616
+output_tokens: 2292
+tool_calls: 38
+filesystem_changed: false
+activation_evidence: BEHAVIORAL_INFERENCE
+raw_output: "YNM review completed read-only.\n\n**Disposition: NO** \u2014 the current\
+  \ project root does not contain sufficient evidence for a project review. It has\
+  \ zero artifacts: no source, documentation, configuration, tests, Git metadata,\
+  \ or prior YNM state.\n\n- Meta Loop: `COMPLETED`\n- Architecture, Implementation,\
+  \ Adoption, Maintenance: `NOT_APPLICABLE`\n- Disposition Loop: `COMPLETED`\n- Outcome:\
+  \ `CONVERGED_REVIEW`\n- Persistence: stateless; no files created or changed\n\n\
+  This NO concerns reviewability, not project quality. Revisit once the project contains\
+  \ artifacts or its intended purpose is supplied."
+error: Reading additional input from stdin...

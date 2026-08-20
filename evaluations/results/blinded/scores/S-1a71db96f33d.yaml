@@ -1,0 +1,24 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-1a71db96f33d
+scenario_id: YNM-EVAL-010
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 2
+supported_material_findings: 2
+unsupported_material_findings: 3
+false_findings: 2
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 1
+rationale: "The output correctly identifies the stale quick-start command and the\
+  \ absence of repository evidence for current dependency-policy enforcement, with\
+  \ direct file citations. Its repository-bounded wording preserves the possibility\
+  \ that enforcement occurs during deployment. It misses\u2014and materially contradicts\u2014\
+  the proposition that the implementation follows the declared module boundary, instead\
+  \ asserting a missing storage boundary and startup failure. Several additional broad\
+  \ findings, including undefined contract, unusable setup guidance, and absent tests,\
+  \ are not adequately tied to specific fixture evidence. The review is read-only,\
+  \ clearly separated by lifecycle area, and prioritized, but the central false architectural\
+  \ diagnosis prevents complete-quality credit."

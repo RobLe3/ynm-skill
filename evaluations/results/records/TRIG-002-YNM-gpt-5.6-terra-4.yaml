@@ -1,0 +1,39 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-002-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-002
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:31:27.820234Z'
+elapsed_seconds: 37.063
+input_tokens: 89681
+output_tokens: 1018
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Architecture Loop: **NOT_APPLICABLE**.
+
+
+  The review root contains no project artifacts or documentation, and it is not a
+  Git repository. With no declared architecture, implementation, configuration, or
+  decision records, there is no meaningful architectural proposition to evaluate.
+
+
+  - Reviewed scope: complete accessible workspace (empty)
+
+  - Findings: none
+
+  - Evidence: directory inventory; Git checks
+
+  - Limitations: no project evidence available
+
+  - Persistence: none; read-only review
+
+  - Outcome: `NOT_APPLICABLE_REVIEW`
+
+  - Stop reason: architecture scope is absent, so another pass has no expected information
+  gain.'
+error: Reading additional input from stdin...

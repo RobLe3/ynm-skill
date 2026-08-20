@@ -1,0 +1,20 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-ee7d19eababc
+scenario_id: YNM-EVAL-002
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 0
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 1
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output preserves the required MAYBE disposition and directly identifies
+  the lack of independent corroboration: report A merely restates the sole source
+  and report B derives from report A. It provides file-and-line evidence links, distinguishes
+  the supported narrow staging-run statement from the unsupported broader reliability
+  claim, reports convergence and unavailable runtime evidence, and explicitly confirms
+  that no files were changed.'

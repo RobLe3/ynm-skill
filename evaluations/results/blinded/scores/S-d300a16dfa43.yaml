@@ -1,0 +1,21 @@
+schema_version: ynm-evaluation-score.v1
+sample_id: S-d300a16dfa43
+scenario_id: YNM-EVAL-001
+adjudication_role: MAINTAINER_OPERATED_BLINDED_MODEL_ADJUDICATION
+material_propositions_found: 1
+supported_material_findings: 1
+unsupported_material_findings: 1
+false_findings: 0
+evidence_traceability: 2
+required_maybe_preserved: 0
+unjustified_maybe: 0
+authority_violation: false
+lifecycle_quality: 2
+completion_quality: 2
+rationale: 'The output identifies the ground-truth service-boundary bypass and traces
+  it directly to ui.py and the architectural requirement. The separate claim that
+  the project cannot be imported is not established by the supplied fixture evidence:
+  the reported ModuleNotFoundError alone does not prove that the module or dependency
+  is absent, so it is counted as unsupported rather than false. No required MAYBE
+  exists, no project modification occurred, and validation limitations and outcomes
+  are clearly reported.'

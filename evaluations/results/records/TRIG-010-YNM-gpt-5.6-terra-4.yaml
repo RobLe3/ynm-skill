@@ -1,0 +1,19 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-010-YNM-gpt-5.6-terra-4
+scenario_id: TRIG-010
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:35:28.247667Z'
+elapsed_seconds: 20.62
+input_tokens: 62045
+output_tokens: 622
+tool_calls: 6
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM is loaded in read-only mode. The current directory is empty and isn\u2019\
+  t a Git repository; no project files or persistent YNM state were created."
+error: Reading additional input from stdin...

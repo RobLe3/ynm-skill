@@ -1,0 +1,162 @@
+seed: ynm-1.3.0-empirical-revision-2
+samples:
+  S-0d685e152f25:
+    run_id: YNM-EVAL-010-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-0dceccab2c94:
+    run_id: YNM-EVAL-008-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-13c729768ce0:
+    run_id: YNM-EVAL-006-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-15ba7e4a18bc:
+    run_id: YNM-EVAL-005-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-16225ed54377:
+    run_id: YNM-EVAL-009-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-1a71db96f33d:
+    run_id: YNM-EVAL-010-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-218a5016d6d3:
+    run_id: YNM-EVAL-006-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-2f4f652cd03d:
+    run_id: YNM-EVAL-010-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-31701bdf64a6:
+    run_id: YNM-EVAL-004-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-3353a893aa96:
+    run_id: YNM-EVAL-003-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-353ea9935192:
+    run_id: YNM-EVAL-005-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-3979a0fb9d68:
+    run_id: YNM-EVAL-007-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-3f217aba13db:
+    run_id: YNM-EVAL-010-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-41599dedaba5:
+    run_id: YNM-EVAL-004-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-464cf30d54df:
+    run_id: YNM-EVAL-007-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-46e7217595b6:
+    run_id: YNM-EVAL-003-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-47f40645ba19:
+    run_id: YNM-EVAL-002-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-6aabb3756897:
+    run_id: YNM-EVAL-001-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-70428a9ba49c:
+    run_id: YNM-EVAL-001-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-8b105158a50e:
+    run_id: YNM-EVAL-001-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-8b5d1d1f90f4:
+    run_id: YNM-EVAL-002-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-8c72c3066bc2:
+    run_id: YNM-EVAL-007-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-8e66fb28e04f:
+    run_id: YNM-EVAL-006-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-8fcc4b203c10:
+    run_id: YNM-EVAL-009-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-8fe0b8dc193b:
+    run_id: YNM-EVAL-003-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-a1c9f5a41646:
+    run_id: YNM-EVAL-008-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-ad25aafcae55:
+    run_id: YNM-EVAL-002-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-b3c208e9644e:
+    run_id: YNM-EVAL-007-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-b51568527a6e:
+    run_id: YNM-EVAL-009-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-b8c51c147ed0:
+    run_id: YNM-EVAL-008-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-c1357383ba23:
+    run_id: YNM-EVAL-005-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra
+  S-cb7cda725888:
+    run_id: YNM-EVAL-003-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-cc88a76844a5:
+    run_id: YNM-EVAL-004-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-d0929091bfbe:
+    run_id: YNM-EVAL-008-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-d300a16dfa43:
+    run_id: YNM-EVAL-001-CONTROL-gpt-5.6-sol-1
+    condition: CONTROL
+    model: gpt-5.6-sol
+  S-dd9ec2060427:
+    run_id: YNM-EVAL-006-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-e7589eadcf41:
+    run_id: YNM-EVAL-005-YNM-gpt-5.6-terra-1
+    condition: YNM
+    model: gpt-5.6-terra
+  S-ee7d19eababc:
+    run_id: YNM-EVAL-002-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-f547914b89b6:
+    run_id: YNM-EVAL-009-YNM-gpt-5.6-sol-1
+    condition: YNM
+    model: gpt-5.6-sol
+  S-f5831df21051:
+    run_id: YNM-EVAL-004-CONTROL-gpt-5.6-terra-1
+    condition: CONTROL
+    model: gpt-5.6-terra

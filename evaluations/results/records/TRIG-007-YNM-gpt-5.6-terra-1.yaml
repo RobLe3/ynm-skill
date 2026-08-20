@@ -1,0 +1,29 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-007-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-007
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:33:29.721210Z'
+elapsed_seconds: 44.916
+input_tokens: 114257
+output_tokens: 1431
+tool_calls: 10
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "Meta Loop completed in read-only, stateless mode.\n\n- Reviewed scope:\
+  \ workspace root\n- Evidence: empty directory; no Git repository, project files,\
+  \ documentation, instructions, or prior YNM state\n- Applicable focal loops: none\u2014\
+  there is no project subject from which to derive a meaningful proposition\n- Findings:\
+  \ none\n- Persistence: not authorized; no files changed\n\nRun Receipt:\n\n```yaml\n\
+  schema_version: ynm-run-receipt.v2\nloops_requested: [Meta]\nloops_executed: [Meta]\n\
+  execution_status: COMPLETED\nterminal_outcome: CONVERGED_REVIEW\nconverged: true\n\
+  phase_history: [ANALYSIS, ITERATION, DELIVERY, TERMINATED]\nreviewed_scope: \"workspace\
+  \ root (empty)\"\nunreviewed_scope: \"any project artifacts not supplied\"\nhalt_reason:\
+  \ \"No project evidence exists in the selected workspace; no justified immediate\
+  \ rerun.\"\ncontinuation_scope: \"Provide or initialize project artifacts, then\
+  \ rerun discovery.\"\npersistence_status: \"STATELESS_READ_ONLY\"\n```"
+error: Reading additional input from stdin...

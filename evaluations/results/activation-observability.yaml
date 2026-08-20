@@ -1,0 +1,18 @@
+schema_version: ynm-activation-observability.v1
+model: gpt-5.6-sol
+checked_at: '2026-08-20T08:13:13.983170Z'
+mode: BEHAVIORAL_INFERENCE
+inference_rule: Explicit YNM-use statement, or YES/NO/MAYBE plus reviewed/unreviewed
+  scope plus Delivery.
+raw_output: "## Brief YNM review\n\n**Method used:** YNM\u2019s proposition-centered\
+  \ `ANALYSIS \u2192 ITERATION \u2192 DELIVERY` lifecycle, using typed evidence and\
+  \ explicit YES/NO/MAYBE dispositions.\n\n- **Proposition:** \u201CThe working directory\
+  \ is empty.\u201D\n- **Disposition:** **YES \u2014 SUPPORTED**\n- **Evidence:**\
+  \ Read-only enumeration at `2026-08-20T08:14:22Z` found `0` entries and `0` regular\
+  \ files, including hidden paths.\n- **Interpretation:** No project artifacts or\
+  \ prior YNM state exist. This supports emptiness, but says nothing about project\
+  \ quality.\n\n**Loop results:** Meta and Disposition completed. Architecture, Implementation,\
+  \ Adoption, and Maintenance were `NOT_APPLICABLE` because no reviewable subject\
+  \ exists.\n\n**Run receipt:** `CONVERGED_REVIEW`; no further immediate pass has\
+  \ expected information gain unless files are added. Stateless read-only execution;\
+  \ no files were created or modified."

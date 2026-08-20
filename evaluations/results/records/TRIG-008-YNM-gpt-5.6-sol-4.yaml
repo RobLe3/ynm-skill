@@ -1,0 +1,27 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-sol-4
+scenario_id: TRIG-008
+condition: YNM
+repetition: 4
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-sol
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:24:37.265550Z'
+elapsed_seconds: 76.262
+input_tokens: 211560
+output_tokens: 3139
+tool_calls: 20
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: "YNM initialization is blocked by the workspace\u2019s enforced read-only\
+  \ policy. No files were created or modified.\n\nPlanned minimal persistent scaffold:\n\
+  \n- `.ynm/README.md`\n- `.ynm/project.yaml`\n- `.ynm/config.yaml`\n- `.ynm/state/findings.yaml`\n\
+  - `.ynm/state/events.jsonl`\n- `.ynm/state/receipts/`\n\nNo `AGENTS.md` addition\
+  \ was warranted because the project is empty and no project conventions exist.\n\
+  \nRun receipt:\n\n- ID: `YNM-BOOT-F606EB6CF4A`\n- Status: `BLOCKED`\n- Write authorization:\
+  \ `AUTHORIZED`\n- Persistence: `STATELESS`\n- Writes attempted: `false`\n- Stop\
+  \ reason: filesystem capability is read-only\n- Secondary limitation: PyYAML 6.x\
+  \ is unavailable for the supplied integration helper\n\nRe-run the same request\
+  \ in a writable workspace, ideally with PyYAML installed, to complete initialization."
+error: Reading additional input from stdin...

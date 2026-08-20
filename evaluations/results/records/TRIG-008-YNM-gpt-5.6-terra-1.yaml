@@ -1,0 +1,38 @@
+schema_version: ynm-evaluation-result.v1
+run_id: TRIG-008-YNM-gpt-5.6-terra-1
+scenario_id: TRIG-008
+condition: YNM
+repetition: 1
+status: EXECUTED
+provider: OpenAI
+model: gpt-5.6-terra
+client: codex-cli 0.147.0
+started_at: '2026-08-20T08:33:57.371625Z'
+elapsed_seconds: 41.505
+input_tokens: 98151
+output_tokens: 1538
+tool_calls: 8
+filesystem_changed: false
+activation_evidence: NOT_OBSERVED
+raw_output: 'Initialization is blocked by this read-only workspace.
+
+
+  Bootstrap receipt:
+
+
+  - Status: `BLOCKED`
+
+  - Project: empty directory; no Git repo, docs, `AGENTS.md`, or existing YNM state
+  found
+
+  - Planned canonical state: `.ynm/`
+
+  - Created/updated: none
+
+  - Blockers: filesystem writes are prohibited; the YNM integration helper also lacks
+  its PyYAML dependency
+
+
+  With a writable workspace, the minimal persistent scaffold would be `.ynm/README.md`,
+  `project.yaml`, `config.yaml`, and `state/{findings.yaml,events.jsonl,receipts/...}`.'
+error: Reading additional input from stdin...
