@@ -247,3 +247,22 @@ class PackageBuildTests(unittest.TestCase):
             source.write_text("[escape](../outside.md)\n", encoding="utf-8")
             errors = _check_markdown_links_for_root(source, expected_root=expected_root)
             self.assertTrue(any("escapes expected root" in item for item in errors), errors)
+
+    @unittest.skipIf(os.name == "nt", "directory symlinks require additional Windows privileges")
+    def test_markdown_link_root_is_canonicalized_before_containment_check(self):
+        from validation.validate_ynm import _check_markdown_links_for_root
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "package"
+            package.mkdir()
+            (package / "target.md").write_text("target\n", encoding="utf-8")
+            (package / "README.md").write_text("[target](target.md)\n", encoding="utf-8")
+            alias = base / "package-alias"
+            alias.symlink_to(package, target_is_directory=True)
+
+            errors = _check_markdown_links_for_root(
+                alias / "README.md",
+                expected_root=alias,
+            )
+            self.assertEqual(errors, [])

@@ -188,10 +188,13 @@ def _check_markdown_links_for_root(
     forbidden_prefixes: set[str] | None = None,
 ) -> list[str]:
     errors: list[str] = []
+    canonical_root = expected_root.resolve()
+
     def display(candidate: Path) -> str:
-        for base in (expected_root, ROOT):
+        canonical_candidate = candidate.resolve()
+        for base in (canonical_root, ROOT.resolve()):
             try:
-                return candidate.relative_to(base).as_posix()
+                return canonical_candidate.relative_to(base).as_posix()
             except ValueError:
                 continue
         return candidate.name
@@ -224,7 +227,7 @@ def _check_markdown_links_for_root(
             errors.append(f"{display(path)}: broken link target '{raw_target}'")
             continue
         try:
-            resolved.relative_to(expected_root)
+            resolved.relative_to(canonical_root)
         except ValueError as exc:
             errors.append(
                 f"{display(path)}: link target '{raw_target}' escapes expected root "
@@ -232,7 +235,7 @@ def _check_markdown_links_for_root(
             )
             continue
         if forbidden_prefixes:
-            rel = resolved.relative_to(expected_root)
+            rel = resolved.relative_to(canonical_root)
             if rel.parts and rel.parts[0] in forbidden_prefixes:
                 errors.append(
                     f"{display(path)}: runtime depends on non-runtime artifact '{raw_target}'"

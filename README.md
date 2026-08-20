@@ -256,7 +256,7 @@ Use [Extension Model](methodology/extension-model.md) for additional loops. Exte
 **Current version:** `1.3.0`
 **Candidate status:** release candidate
 
-- [Candidate release evidence](https://github.com/RobLe3/ynm-skill/tree/codex/ynm-1.3.0-hardening-20260819-164550/state/releases/1.3.0) is maintained in the source repository, not in the installed package.
+- [Candidate release evidence](https://github.com/RobLe3/ynm-skill/tree/main/state/releases/1.3.0) is maintained in the source repository, not in the installed package.
 - Deterministic local tests: **PASS**.
 - Workflow includes schema, lifecycle, security-boundary, package, and release-integrity validations.
 - Historical 1.0.0 through 1.2.0 maturity evidence is integrity-checked.
@@ -293,7 +293,7 @@ If you are only using the method and runtime package, these helper dependencies 
 1. Read `SKILL.md`.
 2. Inspect `contracts/` and `methodology/`.
 3. Run the local validation and tests.
-4. Review findings and candidate evidence in the [source repository](https://github.com/RobLe3/ynm-skill/tree/codex/ynm-1.3.0-hardening-20260819-164550/state/releases/1.3.0).
+4. Review findings and candidate evidence in the [source repository](https://github.com/RobLe3/ynm-skill/tree/main/state/releases/1.3.0).
 5. Run a bounded review or independent implementation.
 6. Report incompatible or ambiguous behavior with evidence.
 
