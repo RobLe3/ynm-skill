@@ -1,6 +1,6 @@
 # Validation
 
-Current publication: **YNM 1.4.0 Research Release (experimental pre-release; development paused)**
+Current publication: **YNM 1.4.0 Research / Experimental Release (development paused)**
 
 ## Executive status
 
@@ -18,14 +18,14 @@ Current publication: **YNM 1.4.0 Research Release (experimental pre-release; dev
 | Activation behavior | `MAYBE`; insufficient telemetry |
 | Acceleration effectiveness | `MAYBE`; not measured safely |
 | Independent interoperability | `MAYBE`; no independent implementation evidence |
-| Publication class | **Research / Experimental Pre-release** |
+| Publication class | **Research / Experimental Release** |
 | Research state | **PAUSED** after the 1.4 and BRP-1 cycles |
 
 See the [research checkpoint](docs/RESEARCH_STATUS.md) for the evidence map and restart conditions. Passing one validation category does not imply passing another.
 
 ## Publication interpretation
 
-YNM 1.4.0 is published as a Research/Experimental Pre-release. Repository and package validation pass, and useful bounded behavior was demonstrated under tested conditions. General empirical effectiveness is not established, cross-model non-inferiority failed under the frozen 1.4 criteria, execution efficiency failed, and independent interoperability remains `MAYBE`.
+YNM 1.4.0 is published as the current Research / Experimental release. Repository and package validation pass, and useful bounded behavior was demonstrated under tested conditions. General empirical effectiveness is not established, cross-model non-inferiority failed under the frozen 1.4 criteria, execution efficiency failed, and independent interoperability remains `MAYBE`.
 
 Publication uses the narrower claim that YNM is usable as bounded, evidence-backed advisory review with disclosed limitations. It does not reclassify any historical empirical `NO` or `MAYBE` disposition.
 

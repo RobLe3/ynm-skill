@@ -10,7 +10,7 @@
 
 **Publication state:** PUBLISHED RESEARCH RELEASE
 
-**Release class:** EXPERIMENTAL / RESEARCH PRE-RELEASE
+**Release class:** RESEARCH / EXPERIMENTAL
 
 **Current profile:** YNM-BRP-1, experimental
 
@@ -18,7 +18,7 @@ YNM 1.4.0 is published as an auditable research checkpoint. It contains an imple
 
 ## Publication interpretation
 
-`v1.4.0` makes the evaluated implementation publicly obtainable as a bounded Research/Experimental Pre-release. Publication does not mean that the frozen 1.4 or BRP-1 contracts passed. It means that the implemented method, reproducible evidence, demonstrated strengths, and measured limitations are useful enough to publish under an explicitly narrower claim. `v1.2.0` remains the previous stable release.
+`v1.4.0` is the current Research / Experimental release of the evaluated implementation. Publication does not mean that the frozen 1.4 or BRP-1 contracts passed. It means that the implemented method, reproducible evidence, demonstrated strengths, and measured limitations are useful enough to publish under an explicitly narrower claim. `v1.2.0` remains available as the previous release.
 
 ## Purpose
 

@@ -25,7 +25,7 @@
 
 ### Release classification
 
-- Prepared 1.4.0 as a **Research / Experimental Pre-release**. This classification publishes a bounded, reproducible research artifact and does not reclassify historical `NO` or `MAYBE` evidence.
+- Published 1.4.0 as a **Research / Experimental Release**. This classification makes the bounded, reproducible research artifact the current public release and does not reclassify historical `NO` or `MAYBE` evidence.
 
 All notable YNM changes are recorded here. Historical release and maturity evidence remains available through immutable Git history and release tags.
 

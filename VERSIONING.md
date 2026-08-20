@@ -12,7 +12,7 @@ YNM uses Semantic Versioning for its public contracts and operational behavior.
 
 A **Stable Release** represents the conventional publication channel. A **Research Release** makes a reproducible experimental implementation available with its measured strengths and limitations. A **Development Candidate** is not yet published. Research Release status is not production certification or evidence of universal effectiveness.
 
-Active development is paused after the bounded-usability evaluation. `v1.4.0` is the latest research release; `v1.2.0` remains the previous stable release.
+Active development is paused after the bounded-usability evaluation. `v1.4.0` is the latest release; `v1.2.0` is the previous release.
 
 ## Historical baseline
 

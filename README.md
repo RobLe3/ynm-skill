@@ -15,10 +15,10 @@ YNM separates what is known, what is contradicted, what remains unresolved, what
 | Item | State |
 | --- | --- |
 | Current version | 1.4.0 |
-| Release class | Research / Experimental pre-release |
+| Release class | Research / Experimental |
 | Development state | Paused |
-| Latest research release | [`v1.4.0`](https://github.com/RobLe3/ynm-skill/releases/tag/v1.4.0) |
-| Previous stable release | [`v1.2.0`](https://github.com/RobLe3/ynm-skill/releases/tag/v1.2.0) |
+| Latest release | [`v1.4.0`](https://github.com/RobLe3/ynm-skill/releases/tag/v1.4.0) |
+| Previous release | [`v1.2.0`](https://github.com/RobLe3/ynm-skill/releases/tag/v1.2.0) |
 | License | Apache-2.0 |
 
 ![YNM bounded review workflow](https://raw.githubusercontent.com/RobLe3/ynm-skill/main/docs/assets/ynm-overview.svg)
@@ -189,7 +189,7 @@ Provider-neutral means that YNM contracts do not require a specific provider, mo
 
 ## Installation and verification
 
-YNM 1.4.0 is a Research Pre-release. For a reproducible source checkout:
+YNM 1.4.0 is the current Research / Experimental release. For a reproducible source checkout:
 
 ```text
 git clone https://github.com/RobLe3/ynm-skill.git

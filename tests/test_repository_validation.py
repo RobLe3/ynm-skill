@@ -19,9 +19,9 @@ class RepositoryValidationTests(unittest.TestCase):
             self.assertIn("1.4.0", text, name)
         self.assertIn("Research Release", documents["README.md"])
         self.assertIn("PAUSED RESEARCH PROJECT", documents["docs/RESEARCH_STATUS.md"])
-        self.assertIn("Research / Experimental Pre-release", documents["VALIDATION.md"])
+        self.assertIn("Research / Experimental Release", documents["VALIDATION.md"])
         self.assertIn("PUBLISHED RESEARCH RELEASE", documents["docs/RESEARCH_STATUS.md"])
-        self.assertIn("previous stable release", documents["VERSIONING.md"])
+        self.assertIn("previous release", documents["VERSIONING.md"])
 
     def test_research_checkpoint_preserves_empirical_dispositions(self):
         root = Path(__file__).resolve().parents[1]

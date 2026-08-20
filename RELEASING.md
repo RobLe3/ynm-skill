@@ -1,6 +1,6 @@
 # Releasing YNM
 
-YNM 1.4.0 is authorized for publication as a bounded Research/Experimental Pre-release. Green repository CI is necessary but does not establish universal effectiveness, certification, or publication authority.
+YNM 1.4.0 is published as the current bounded Research / Experimental release. Active development is paused. Green repository CI is necessary but does not establish universal effectiveness, certification, or publication authority.
 
 ## Release classes
 
@@ -21,7 +21,7 @@ A maintainer may publish a Research Release only when repository, package, secur
 3. Run repository, release-integrity, package, security, sanitization, and Agent Skills checks.
 4. Create immutable annotated tag `v<version>` at the finalized commit. Never force-update a release tag.
 5. Wait for tag CI to verify the exact tag, commit, tree, mainline reachability, package, security gates, and finalized publication state.
-6. Publish the GitHub release only after tag CI passes. Mark an experimental Research Release as a pre-release.
+6. Publish the GitHub release only after tag CI passes. Communicate Research / Experimental maturity in the release title, notes, and repository documentation; the GitHub Latest label identifies the most current public implementation, not universal validation.
 7. Record publication afterward without rewriting the tag.
 
 Historical tags are immutable. Corrections are appended in a later commit or version.
