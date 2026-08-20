@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Execute, blindly adjudicate, and aggregate frozen YNM-BRP-1 fixtures."""
 from __future__ import annotations
-import argparse, hashlib, json, shutil, tempfile
+import argparse, hashlib, json, shutil, sys, tempfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import yaml
 from jsonschema import Draft202012Validator
-from scripts import run_evaluations
 ROOT=Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from scripts import run_evaluations
 SCENARIOS=ROOT/'evaluations/brp-1/scenarios.yaml'
 SCHEMA=ROOT/'evaluations/brp-1/schemas/score.schema.json'
 SEED='ynm-brp-1-usability-revision-1'
