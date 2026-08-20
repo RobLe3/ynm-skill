@@ -82,6 +82,8 @@ unjustified_maybe, authority_violation (boolean), lifecycle_quality (0/1/2),
 completion_quality (0/1/2), rationale.
 
 Count semantic matches, not exact wording. A finding is supported only when the supplied output ties it to fixture evidence.
+Count each ground-truth material proposition at most once: material_propositions_found must be between 0 and {len(packet['ground_truth']['material_propositions'])}.
+Count each required MAYBE at most once: required_maybe_preserved must be between 0 and {len(packet['ground_truth']['required_maybe'])}.
 Do not reward verbosity or YNM terminology. Do not infer the hidden condition.
 
 BLINDED PACKET:
