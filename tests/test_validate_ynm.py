@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT))
 from validation.validate_ynm import (
     _public_sanitization_report_path,
     TEXT_PATTERNS,
+    check_adversarial_scenarios,
     _is_allowed_violation,
     _run_patterns,
     _tracked_text_files,
@@ -56,9 +57,11 @@ class YNMValidationTests(unittest.TestCase):
     def test_yaml_dispositions_are_quoted(self):
         self.assertEqual(check_yaml_disposition_quoting(), [])
 
-    def test_adversarial_scenario_count(self):
+    def test_adversarial_scenarios_are_valid(self):
         lines = (ROOT / "methodology/adversarial-validation.md").read_text().splitlines()
-        self.assertEqual(len([line for line in lines if line.startswith("| ")]) - 1, 80 - 1)
+        rows = [line for line in lines if line.strip().startswith("|") and "|" in line]
+        self.assertGreaterEqual(len(rows), 3)
+        self.assertEqual(check_adversarial_scenarios(), [])
 
     def test_schema_references_resolve(self):
         self.assertEqual(check_schema_references(), [])

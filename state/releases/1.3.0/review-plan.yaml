@@ -34,7 +34,7 @@ review_plan:
   - no release publish
   - no main-branch merge
   - no mutation of historical tags
-  persistence_mode: STATELESS
+  persistence_mode: PERSISTENT
   assessments:
   - YNM-1.3-ADAPT-001
   iteration_policy:

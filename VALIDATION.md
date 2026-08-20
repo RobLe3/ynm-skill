@@ -17,9 +17,11 @@ Current candidate: **YNM 1.3.0 (release candidate)**
 ## What these results mean
 
 Validation confirms that current 1.3.0 candidate files, schemas, lifecycle invariants, and package metadata are internally consistent.
-The package checks confirm runtime-conformant files for `dist/ynm` from the manifest, including a stable package build output.
+The package checks confirm runtime-conformant files for `dist/ynm` from the manifest, including deterministic file inventory and content. They do not claim deterministic filesystem metadata or archive bytes.
 
 Agent Skills reference validation is a format conformance check; it does not prove independent implementation compatibility.
+
+Automated sanitization checks tracked text for private-path patterns, credential-like assignments, private/internal repository markers, and provider-specific assumptions in normative core files. These checks are heuristic. Broader review for personal data, proprietary material, and licensing suitability remains a manual publication responsibility.
 
 ## Known limits
 

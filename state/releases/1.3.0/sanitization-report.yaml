@@ -1,13 +1,12 @@
 schema_version: ynm-public-sanitization.v1
 scope: ALL_TRACKED_TEXT
-files_scanned: 107
+files_scanned: 108
 files_excluded_as_binary: 0
 excluded_paths: []
 checks:
 - id: PRIVATE_ABSOLUTE_PATH
 - id: CREDENTIAL_PATTERN
 - id: PRIVATE_REPOSITORY_REFERENCE
-- id: PERSONAL_DATA_PATTERN
 - id: PROVIDER_SPECIFIC_CORE_ASSUMPTION
 result: PASS
 findings: []

@@ -7,7 +7,7 @@ import argparse
 import hashlib
 import re
 import subprocess
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -37,6 +37,7 @@ def _read_version(root: Path) -> str:
 class IntegrityCheck:
     errors: list[str]
     warnings: list[str]
+    info: list[str] = field(default_factory=list)
 
 
 def parse_rfc3339_timestamp(raw: str) -> datetime:
@@ -162,6 +163,9 @@ def validate_release_integrity(
     root: Path | None = None,
     future_tolerance_seconds: int = 300,
     require_publication_commit_tree: bool = False,
+    require_tagged_subject: bool = False,
+    tag_ref: str | None = None,
+    main_ref: str = "origin/main",
 ) -> IntegrityCheck:
     root = root or ROOT
     checks = IntegrityCheck(errors=[], warnings=[])
@@ -378,6 +382,24 @@ def validate_release_integrity(
             if gate.get("disposition") not in {"YES", "NO", "MAYBE"}:
                 checks.errors.append(f"gates.yaml gate {gate.get('name', index)} has invalid disposition")
 
+    review_plan_path = release_dir / "review-plan.yaml"
+    runs_path = release_dir / "runs.yaml"
+    if review_plan_path.exists() and runs_path.exists():
+        plan_doc = _load_yaml(review_plan_path)
+        runs_doc = _load_yaml(runs_path)
+        mode = (plan_doc.get("review_plan") or {}).get("persistence_mode")
+        runs = runs_doc.get("runs", []) if isinstance(runs_doc, dict) else []
+        successful_persistent = any(
+            isinstance(item, dict)
+            and item.get("persistence_status") == "PERSISTENT"
+            and isinstance(item.get("delivery"), dict)
+            and item["delivery"].get("persistence_attempted") is True
+            and item["delivery"].get("persistence_outcome") == "SUCCEEDED"
+            for item in runs
+        )
+        if mode == "STATELESS" and successful_persistent:
+            checks.errors.append("review-plan.yaml is STATELESS but runs.yaml records successful persistent state")
+
     corrections_dir = release_dir / "corrections"
     if corrections_dir.exists():
         for path in sorted(corrections_dir.glob("*.yaml")):
@@ -389,6 +411,46 @@ def validate_release_integrity(
             if disposition not in {"YES", "NO", "MAYBE"}:
                 checks.errors.append(f"correction {path.relative_to(root)} has invalid disposition")
 
+    if require_tagged_subject:
+        expected_tag = f"v{version}"
+        selected_tag = tag_ref or expected_tag
+        if selected_tag != expected_tag:
+            checks.errors.append(f"tag ref {selected_tag} does not match expected {expected_tag}")
+        tag_commit = _git_resolve_commit(root, selected_tag)
+        if not tag_commit:
+            checks.errors.append(f"tag {selected_tag} does not resolve to a commit")
+        else:
+            tree_result = _run_git(["rev-parse", f"{tag_commit}^{{tree}}"], root)
+            if tree_result.returncode != 0:
+                checks.errors.append(f"unable to resolve tree for tag {selected_tag}")
+            ancestry = _run_git(["merge-base", "--is-ancestor", tag_commit, main_ref], root)
+            if ancestry.returncode == 1:
+                checks.errors.append(f"tagged commit {tag_commit} is not reachable from {main_ref}")
+            elif ancestry.returncode not in (0, 1):
+                checks.errors.append(f"unable to verify tagged commit reachability from {main_ref}")
+            if tree_result.returncode == 0:
+                checks.info.append(
+                    f"tagged subject: tag={selected_tag} commit={tag_commit} tree={tree_result.stdout.strip()}"
+                )
+
+        publication_path = release_dir / "publication.yaml"
+        if not publication_path.exists():
+            checks.errors.append("publication.yaml missing for tagged-subject validation")
+        else:
+            publication_doc = _load_yaml(publication_path)
+            publication = publication_doc.get("publication", {})
+            if not isinstance(publication, dict):
+                checks.errors.append("publication.yaml: publication object malformed")
+            else:
+                if str(publication.get("version", "")) != version:
+                    checks.errors.append("publication.yaml version does not match tagged release")
+                if publication.get("publication_readiness") != "YES":
+                    checks.errors.append("publication.yaml is not ready for publication")
+                if publication.get("status") != "READY_FOR_TAG":
+                    checks.errors.append("publication.yaml status must be READY_FOR_TAG before tagging")
+                if publication.get("publication_authorization") != "AUTHORIZED_BY_HUMAN":
+                    checks.errors.append("publication.yaml requires explicit human publication authorization")
+
     return checks
 
 
@@ -397,12 +459,18 @@ def run(
     root: Path | None = None,
     future_tolerance_seconds: int = 300,
     require_publication_commit_tree: bool = False,
+    require_tagged_subject: bool = False,
+    tag_ref: str | None = None,
+    main_ref: str = "origin/main",
 ) -> list[str]:
     result = validate_release_integrity(
         version,
         root=root,
         future_tolerance_seconds=future_tolerance_seconds,
         require_publication_commit_tree=require_publication_commit_tree,
+        require_tagged_subject=require_tagged_subject,
+        tag_ref=tag_ref,
+        main_ref=main_ref,
     )
     messages: list[str] = []
     messages.extend(f"{issue}" for issue in result.errors)
@@ -421,6 +489,9 @@ def main() -> int:
         action="store_true",
         help="require publication tag to resolve a commit tree",
     )
+    parser.add_argument("--require-tagged-subject", action="store_true", help="require a human-finalized tag subject")
+    parser.add_argument("--tag-ref", default=None, help="tag ref to validate (defaults to v<release>)")
+    parser.add_argument("--main-ref", default="origin/main", help="mainline ref that must contain the tagged commit")
     args = parser.parse_args()
 
     release = args.release or _read_version(Path(args.root))
@@ -429,6 +500,9 @@ def main() -> int:
         root=Path(args.root),
         future_tolerance_seconds=args.tolerance,
         require_publication_commit_tree=args.require_publication_tree,
+        require_tagged_subject=args.require_tagged_subject,
+        tag_ref=args.tag_ref,
+        main_ref=args.main_ref,
     )
 
     if messages:

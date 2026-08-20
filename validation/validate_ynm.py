@@ -3,9 +3,6 @@
 
 from __future__ import annotations
 
-import argparse
-import hashlib
-from datetime import datetime, timezone
 import re
 import subprocess
 import sys
@@ -13,6 +10,9 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+import argparse
+import hashlib
+from datetime import datetime, timezone
 
 import yaml
 import jsonschema
@@ -27,6 +27,8 @@ CURRENT_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 DEFAULT_CHECKS = [
     "schema",
     "links",
+    "package-links",
+    "adversarial-scenarios",
     "normative-invariants",
     "state",
     "yaml-disposition-quoting",
@@ -37,7 +39,21 @@ DEFAULT_CHECKS = [
     "runtime-boundary",
     "workflow-invariants",
 ]
-SECURITY_BOUNDARY_CHECKS = ["baseline-integrity", "public-sanitization", "runtime-boundary"]
+SECURITY_BOUNDARY_CHECKS = [
+    "repository-security-boundary",
+    "project-integration-security",
+]
+REPOSITORY_SECURITY_BOUNDARY_CHECKS = ["baseline-integrity", "public-sanitization", "runtime-boundary"]
+PROJECT_INTEGRATION_SECURITY_CHECKS = ["project-integration-security"]
+REPOSITORY_LINK_CHECK_FORBIDDEN_PREFIXES = {
+    "state",
+    "tests",
+    "validation",
+    "dist",
+    ".tmp",
+    ".venv",
+    ".github",
+}
 
 AGENTS_MARKER_START = "<!-- YNM:BEGIN -->"
 AGENTS_MARKER_END = "<!-- YNM:END -->"
@@ -69,13 +85,201 @@ TEXT_PATTERNS: dict[str, list[str]] = {
     "PRIVATE_REPOSITORY_REFERENCE": [
         r"(?i)(?:https?://)?(?:www\.)?(?:github\.com|gitlab\.com|bitbucket\.org)\S*(?:private|internal|corp|secret)[^\s]*",
     ],
-    "PERSONAL_DATA_PATTERN": [
-        r"(?i)\b(?:john\.|jane\.)\S+",
-    ],
     "PROVIDER_SPECIFIC_CORE_ASSUMPTION": [
         r"\b(?:gpt-5\.3-codex-spark|Claude|Gemini|Qwen|Llama|Spark)\b",
     ],
 }
+
+
+_INLINE_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+_REFERENCE_USAGE_RE = re.compile(r"\[[^\]]+\]\[([^\]]+)\]")
+_REFERENCE_DEF_RE = re.compile(r"^\s*\[([^\]]+)\]:\s*(\S+)", re.MULTILINE)
+
+
+def _parse_markdown_links(text: str) -> list[tuple[str, str]]:
+    """Return ``(link_text, target)`` pairs from inline and reference-style links."""
+
+    links: list[tuple[str, str]] = []
+    for match in _INLINE_LINK_RE.finditer(text):
+        links.append((match.group(0), match.group(1).strip()))
+
+    refs: dict[str, str] = {}
+    for match in _REFERENCE_DEF_RE.finditer(text):
+        refs[match.group(1).strip().lower()] = match.group(2).strip()
+
+    for match in _REFERENCE_USAGE_RE.finditer(text):
+        target_label = match.group(1).strip().lower()
+        if target_label in refs:
+            links.append((match.group(0), refs[target_label]))
+    return links
+
+
+def _is_control_or_empty(path: str) -> bool:
+    return not path or "\x00" in path or any(ord(ch) < 0x20 for ch in path if ch not in "\t\n\r")
+
+
+def _contains_windows_drive(path: str) -> bool:
+    return bool(re.match(r"^[A-Za-z]:[\\/]", path))
+
+
+def _contains_unc(path: str) -> bool:
+    return path.startswith("\\\\") or path.startswith("//")
+
+
+def _extract_pyproject_version(root: Path) -> str:
+    pyproject = (root / "pyproject.toml").read_text(encoding="utf-8")
+    match = re.search(r'(?m)^version\s*=\s*"(?P<version>\d+\.\d+\.\d+)"', pyproject)
+    if not match:
+        return ""
+    return match.group("version")
+
+
+def _resolve_markdown_link_target(
+    source_path: Path,
+    raw_target: str,
+    *,
+    expected_root: Path,
+) -> Path:
+    if _is_control_or_empty(raw_target):
+        raise ValueError("empty markdown link target")
+    target = raw_target.split("#", 1)[0].strip()
+    if not target or target.startswith("#"):
+        raise ValueError("anchor-only target")
+    if target.startswith("mailto:") or target.startswith("http://") or target.startswith("https://"):
+        raise ValueError("external target")
+    if _contains_windows_drive(target) or _contains_unc(target):
+        raise ValueError(f"disallowed absolute or UNC target: {target}")
+    if target.startswith("/"):
+        raise ValueError(f"absolute filesystem target: {target}")
+
+    candidate = (source_path.parent / target).resolve()
+    if _is_control_or_empty(str(candidate)):
+        raise ValueError("target resolved to invalid path")
+    return candidate
+
+
+def _check_markdown_links_for_root(
+    path: Path,
+    *,
+    expected_root: Path,
+    forbidden_prefixes: set[str] | None = None,
+) -> list[str]:
+    errors: list[str] = []
+    def display(candidate: Path) -> str:
+        for base in (expected_root, ROOT):
+            try:
+                return candidate.relative_to(base).as_posix()
+            except ValueError:
+                continue
+        return candidate.name
+
+    if not path.exists():
+        return [f"{path}: link source file missing"]
+
+    try:
+        text = path.read_text(encoding="utf-8")
+    except Exception as exc:
+        return [f"{path}: cannot read markdown file: {exc}"]
+
+    forbidden_prefixes = set(forbidden_prefixes or set())
+    for _, raw_target in _parse_markdown_links(text):
+        if raw_target.startswith(("http://", "https://", "mailto:", "#")):
+            continue
+        target_part = raw_target.split("#", 1)[0]
+        if not target_part:
+            continue
+        try:
+            resolved = _resolve_markdown_link_target(path, raw_target, expected_root=expected_root)
+        except ValueError as exc:
+            if str(exc).endswith("anchor-only target") or str(exc).startswith("external target"):
+                continue
+            errors.append(
+                f"{display(path)}: link target '{raw_target}' invalid ({exc})"
+            )
+            continue
+        if not resolved.exists():
+            errors.append(f"{display(path)}: broken link target '{raw_target}'")
+            continue
+        try:
+            resolved.relative_to(expected_root)
+        except ValueError as exc:
+            errors.append(
+                f"{display(path)}: link target '{raw_target}' escapes expected root "
+                f"(resolved={resolved})"
+            )
+            continue
+        if forbidden_prefixes:
+            rel = resolved.relative_to(expected_root)
+            if rel.parts and rel.parts[0] in forbidden_prefixes:
+                errors.append(
+                    f"{display(path)}: runtime depends on non-runtime artifact '{raw_target}'"
+                )
+    return errors
+
+
+def _parse_markdown_table_rows(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    rows: list[dict[str, str]] = []
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if not lines:
+        return rows
+
+    header_found = False
+    separator_seen = False
+    for line in lines:
+        stripped = line.strip()
+        if not stripped.startswith("|") or stripped.count("|") < 2:
+            continue
+
+        columns = [col.strip() for col in stripped.strip("|").split("|")]
+        if len(columns) < 3:
+            continue
+
+        if not header_found:
+            if columns[0].lower() in {"scenario id", "scenario_id", "id"}:
+                header_found = True
+            continue
+
+        if not separator_seen:
+            if all(set(col.strip()) <= {"-", ":"} for col in columns):
+                separator_seen = True
+            continue
+
+        if all(not col.strip() for col in columns[:3]):
+            continue
+        rows.append({"id": columns[0].strip(), "scenario": columns[1].strip(), "behavior": columns[2].strip()})
+    return rows
+
+
+def check_adversarial_scenarios() -> list[str]:
+    path = ROOT / "methodology" / "adversarial-validation.md"
+    rows = _parse_markdown_table_rows(path)
+    if not rows:
+        return ["adversarial scenario table missing or malformed"]
+
+    errors: list[str] = []
+    ids: set[str] = set()
+    for index, row in enumerate(rows, start=1):
+        scenario_id = row.get("id", "").strip()
+        scenario = row.get("scenario", "").strip()
+        behavior = row.get("behavior", "").strip()
+
+        if not scenario_id:
+            errors.append(f"adversarial scenario row {index} missing Scenario ID")
+        if not scenario:
+            errors.append(f"adversarial scenario {scenario_id or index} missing required scenario text")
+        if not behavior:
+            errors.append(f"adversarial scenario {scenario_id or index} missing required behavior text")
+
+        if scenario_id:
+            if scenario_id in ids:
+                errors.append(f"duplicate adversarial Scenario ID: {scenario_id}")
+            ids.add(scenario_id)
+
+    if not errors:
+        return []
+    return errors
 
 
 def parse_rfc3339_timestamp(raw: str) -> datetime:
@@ -220,7 +424,6 @@ def generate_sanitization_report(root: Path = ROOT) -> tuple[dict[str, Any], lis
         {"id": "PRIVATE_ABSOLUTE_PATH"},
         {"id": "CREDENTIAL_PATTERN"},
         {"id": "PRIVATE_REPOSITORY_REFERENCE"},
-        {"id": "PERSONAL_DATA_PATTERN"},
         {"id": "PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
     ]
 
@@ -488,27 +691,14 @@ def check_fixture(path: str, schema: str, unwrap: str | None = None) -> list[str
 
 def check_links() -> list[str]:
     errors: list[str] = []
-    excluded_prefixes = {"dist", "dist-cli", ".tmp", ".venv"}
+    excluded_prefixes = {"dist", "dist-cli", ".tmp", ".venv", ".github", ".devcontainer"}
     for path in ROOT.rglob("*.md"):
         relative = path.relative_to(ROOT).as_posix()
         if not relative:
             continue
         if relative.split("/", maxsplit=1)[0] in excluded_prefixes:
             continue
-
-        for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
-            if target.startswith(("http://", "https://", "mailto:", "#")):
-                continue
-            # Relative path or fragment-only local anchor.
-            target_path = target.split("#", 1)[0]
-            if not target_path:
-                continue
-            if target_path.startswith("."):
-                normalized = (path.parent / target_path).resolve()
-            else:
-                normalized = (path.parent / target_path).resolve()
-            if not normalized.exists():
-                errors.append(f"{path.relative_to(ROOT)}: broken link {target}")
+        errors.extend(_check_markdown_links_for_root(path, expected_root=ROOT, forbidden_prefixes=None))
     return errors
 
 
@@ -760,6 +950,38 @@ def check_release() -> list[str]:
             errors.append(f"manifest.yaml: invalid capability label for {name}: {label}")
 
     return errors
+
+
+def load_yaml_frontmatter(path: Path) -> dict[str, Any] | None:
+    """Load YAML frontmatter from markdown-like files.
+
+    Non-Markdown files are not expected here, so return None if the file does not
+    contain a parseable frontmatter block.
+    """
+
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except Exception:
+        return None
+
+    if not raw.lstrip().startswith("---"):
+        return None
+
+    # locate the second frontmatter marker. Use direct search to avoid relying
+    # on third-party helpers and to preserve deterministic behavior.
+    terminator = raw.find("\n---", 3)
+    if terminator == -1:
+        return None
+
+    block = raw[3:terminator]
+    if not block.strip():
+        return None
+
+    try:
+        data = yaml.safe_load(block)
+    except Exception:
+        return None
+    return data if isinstance(data, dict) else None
 
 
 def check_baseline_integrity() -> list[str]:
@@ -1121,57 +1343,153 @@ def check_workflow_invariants() -> list[str]:
             missing_needs = sorted(set(["validate", "package", "security"]) - set(needs))
             if missing_needs:
                 errors.append(f"workflow invariant: release-integrity-tag job missing needs {missing_needs}")
+        workflow_text = WORKFLOW_PATH.read_text(encoding="utf-8")
+        if "--require-tagged-subject" not in workflow_text or '--tag-ref "$GITHUB_REF_NAME"' not in workflow_text:
+            errors.append("workflow invariant: tag job must validate the exact tagged subject")
+        if re.search(r"\b(?:gh release create|softprops/action-gh-release|actions/create-release)\b", workflow_text):
+            errors.append("workflow invariant: validation workflow must not publish a release")
 
     return errors
 
 
 def check_runtime_boundary() -> list[str]:
     errors: list[str] = []
-    normative = [ROOT / "SKILL.md", *(ROOT / "contracts").glob("*.md"), *(ROOT / "loops").glob("*.md"), *(ROOT / "methodology").glob("*.md")]
-    forbidden_prefixes = {
-        "state",
-        "tests",
-        "validation",
-        "AGENTS.md",
-        "manifest.yaml",
-    }
-
+    normative = [
+        ROOT / "SKILL.md",
+        ROOT / "README.md",
+        *(ROOT / "contracts").glob("*.md"),
+        *(ROOT / "loops").glob("*.md"),
+        *(ROOT / "methodology").glob("*.md"),
+        ROOT / "schemas" / "run-receipt.schema.json",
+        ROOT / "schemas" / "finding.schema.json",
+    ]
     for path in normative:
-        for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
-            if target.startswith(("http://", "https://", "mailto:", "#")):
-                continue
-            target_path = target.split("#", 1)[0]
-            if not target_path:
-                continue
-            resolved = (path.parent / target_path).resolve()
-            try:
-                relative = resolved.relative_to(ROOT)
-            except ValueError:
-                continue
-            if relative.parts and relative.parts[0] in forbidden_prefixes:
-                errors.append(f"{path.relative_to(ROOT)}: runtime depends on non-runtime artifact {target}")
-
+        if not path.exists():
+            continue
+        errors.extend(
+            _check_markdown_links_for_root(
+                path,
+                expected_root=ROOT,
+                forbidden_prefixes=REPOSITORY_LINK_CHECK_FORBIDDEN_PREFIXES | {"manifest.yaml", "AGENTS.md"},
+            )
+        )
     return errors
+
+
+def check_package_links() -> list[str]:
+    errors: list[str] = []
+    package_path = ROOT / "dist" / "ynm"
+    if not package_path.exists():
+        return errors
+
+    package_yaml = package_path / "package-manifest.yaml"
+    if not package_yaml.exists():
+        errors.append("package-manifest.yaml missing from dist/ynm")
+        return errors
+
+    for path in package_path.rglob("*.md"):
+        errors.extend(
+            _check_markdown_links_for_root(
+                path,
+                expected_root=package_path,
+                forbidden_prefixes=set(),
+            )
+        )
+    return errors
+
+
+def check_project_integration_security() -> list[str]:
+    """Run focused project-integration boundary tests.
+
+    Security-boundary mode must cover repository checks and project-integration
+    controls separately so failures are attributable to the right domain.
+    """
+
+    tests = [
+        "tests.test_validate_ynm.YNMValidationTests.test_discovery_and_unapproved_initialize_are_read_only",
+        "tests.test_validate_ynm.YNMValidationTests.test_bootstrap_is_idempotent",
+        "tests.test_validate_ynm.YNMValidationTests.test_agents_integration_preserves_human_content",
+        "tests.test_validate_ynm.YNMValidationTests.test_malformed_agents_markers_block_all_writes",
+        "tests.test_validate_ynm.YNMValidationTests.test_discovery_classification_requires_confirmation",
+    ]
+
+    command = [sys.executable, "-m", "unittest", *tests]
+    result = subprocess.run(
+        command,
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        return [f"project integration security tests failed: {result.stdout} {result.stderr}".strip()]
+    return []
 
 
 def check_version_consistency() -> list[str]:
     expected = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
-    manifest = load_yaml(ROOT / "manifest.yaml").get("version")
-    if manifest != expected:
-        return [f"manifest version mismatch: {expected} != {manifest}"]
+    errors: list[str] = []
+
+    manifest = load_yaml(ROOT / "manifest.yaml")
+    if manifest.get("version") != expected:
+        errors.append(f"manifest.yaml: version field mismatch: expected {expected}, found {manifest.get('version')}")
+    manifest_metadata_version = manifest.get("metadata", {}).get("version") if isinstance(manifest.get("metadata"), dict) else None
+    if manifest_metadata_version != expected:
+        errors.append(
+            f"manifest.yaml: metadata.version mismatch: expected {expected}, found {manifest_metadata_version}"
+        )
+
+    skill = load_yaml_frontmatter(ROOT / "SKILL.md")
+    if not isinstance(skill, dict):
+        errors.append("SKILL.md: frontmatter is not parseable metadata")
+    else:
+        skill_version = skill.get("metadata", {}).get("version")
+        if skill_version != expected:
+            errors.append(f"SKILL.md metadata.version mismatch: expected {expected}, found {skill_version}")
+        if not isinstance(skill.get("compatibility"), str) or not skill.get("compatibility", "").strip():
+            errors.append("SKILL.md: top-level Agent Skills compatibility field missing")
+        if isinstance(skill.get("metadata"), dict) and "compatibility" in skill["metadata"]:
+            errors.append("SKILL.md: compatibility must be top-level, not nested under metadata")
+
+    pyproject_version = _extract_pyproject_version(ROOT)
+    if not pyproject_version:
+        errors.append("pyproject.toml: project version missing")
+    elif pyproject_version != expected:
+        errors.append(f"pyproject.toml: version mismatch: expected {expected}, found {pyproject_version}")
 
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
     if f"## [{expected}]" not in changelog:
-        return ["changelog missing current version heading"]
+        errors.append("CHANGELOG.md: missing current version heading for 1.3.0 unreleased section")
 
-    return []
+    publication = load_yaml(ROOT / f"state/releases/{expected}/publication.yaml")
+    if not isinstance(publication, dict):
+        errors.append(f"state/releases/{expected}/publication.yaml missing or malformed")
+    else:
+        publication_version = str(publication.get("publication", {}).get("version", "")).strip() if isinstance(publication.get("publication"), dict) else str(publication.get("version", "")).strip()
+        if publication_version and publication_version != expected:
+            errors.append(f"state/releases/{expected}/publication.yaml version mismatch: expected {expected}, found {publication_version}")
+
+    final_assessment = load_yaml(ROOT / f"state/releases/{expected}/final-assessment.yaml")
+    if not isinstance(final_assessment, dict):
+        errors.append(f"state/releases/{expected}/final-assessment.yaml missing or malformed")
+    else:
+        decision = final_assessment.get("final_assessment", {}).get("version_decision", "")
+        if decision and str(decision) != expected:
+            errors.append(
+                f"state/releases/{expected}/final-assessment.yaml version_decision mismatch: expected {expected}, found {decision}"
+            )
+
+    return errors
 
 
 def run(requested_checks: Sequence[str] | None = None) -> list[str]:
     errors: list[str] = []
 
     checks = list(requested_checks) if requested_checks else DEFAULT_CHECKS
-    normalized: list[str] = sorted(set(checks))
+    expanded: set[str] = set(checks)
+    if "repository-security-boundary" in expanded:
+        expanded.update(REPOSITORY_SECURITY_BOUNDARY_CHECKS)
+    normalized: list[str] = sorted(expanded)
 
     if "schema" in normalized:
         errors.extend(check_schema_files())
@@ -1204,6 +1522,10 @@ def run(requested_checks: Sequence[str] | None = None) -> list[str]:
         errors.extend(check_release())
     if "version-consistency" in normalized:
         errors.extend(check_version_consistency())
+    if "adversarial-scenarios" in normalized:
+        errors.extend(check_adversarial_scenarios())
+    if "package-links" in normalized:
+        errors.extend(check_package_links())
     if "baseline-integrity" in normalized:
         errors.extend(check_baseline_integrity())
     if "public-sanitization" in normalized:
@@ -1212,11 +1534,8 @@ def run(requested_checks: Sequence[str] | None = None) -> list[str]:
         errors.extend(check_runtime_boundary())
     if "workflow-invariants" in normalized:
         errors.extend(check_workflow_invariants())
-
-    if "release" in normalized or "version-consistency" in normalized:
-        scenarios = [line for line in (ROOT / "methodology/adversarial-validation.md").read_text(encoding="utf-8").splitlines() if line.startswith("| ")]
-        if len(scenarios) != 80:
-            errors.append(f"adversarial scenario count: expected 80, found {len(scenarios)}")
+    if "project-integration-security" in normalized:
+        errors.extend(check_project_integration_security())
 
     return errors
 

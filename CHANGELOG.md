@@ -1,6 +1,6 @@
 # Changelog
 
-All notable YNM changes are recorded here. Historical maturity evidence remains in its original assessment artifacts.
+All notable YNM changes are recorded here. Historical release and maturity evidence remains available through immutable Git history and release tags.
 
 ## [1.3.0] - Unreleased
 
@@ -12,7 +12,10 @@ All notable YNM changes are recorded here. Historical maturity evidence remains 
 - Security-boundary hardening for project integration, including path normalization, symlink checks, ownership parsing, and rollback reporting.
 - Deterministic packaging workflow, manifest-driven packaging tests, and release-integrity checks.
 - Release-candidate correction record for unresolved 1.2 publication timestamp causality.
-- Removed historical development and self-review artifacts from current HEAD; historical evidence remains available via Git history and immutable tags.
+
+### Changed
+
+- Clarified public candidate status and publication readiness versus publication authority.
 
 ### Preserved
 
@@ -21,7 +24,7 @@ All notable YNM changes are recorded here. Historical maturity evidence remains 
 
 ### Removed
 
-- Clarified public candidate status and publication readiness versus publication authority.
+- Historical development and self-review artifacts from current HEAD; historical evidence remains available via Git history and immutable tags.
 
 ### [1.2.0] - 2026-08-19
 

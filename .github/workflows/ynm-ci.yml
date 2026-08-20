@@ -154,7 +154,13 @@ jobs:
       - name: Run trigger/metadata checks
         run: python -m unittest discover -s tests -v
       - name: Run security-boundary checks
-        run: python validation/validate_ynm.py --check security-boundary
+        run: |
+          python validation/validate_ynm.py --check security-boundary
+          python -m unittest \
+            tests.test_release_and_package.PackageBuildTests.test_manifest_include_rejects_platform_independent_escapes \
+            tests.test_release_and_package.PackageBuildTests.test_manifest_rejects_external_symlink_file_and_directory \
+            tests.test_release_and_package.PackageBuildTests.test_packaged_tree_excludes_development_and_historical_sections \
+            -v
       - name: Ensure sanitization report exists for candidate
         run: |
           test -f state/releases/$(cat VERSION)/sanitization-report.yaml
@@ -189,4 +195,7 @@ jobs:
           test "$REF_VERSION" = "$EXPECTED_VERSION"
           git fetch origin main --tags
           git merge-base --is-ancestor "$GITHUB_SHA" origin/main
-          python validation/validate_release_integrity.py --release "$REF_VERSION" --require-publication-tree
+          python validation/validate_release_integrity.py \
+            --release "$REF_VERSION" \
+            --require-tagged-subject \
+            --tag-ref "$GITHUB_REF_NAME"

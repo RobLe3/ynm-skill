@@ -177,7 +177,7 @@ See [Project Integration](methodology/project-integration.md).
 
 3. Use source checkout for inspection and development, or install as an Agent Skill for runtime execution.
 
-4. Validation starts with:
+4. In a source checkout, repository validation starts with:
 
    ```text
    python validation/validate_ynm.py
@@ -205,14 +205,14 @@ For agent-capable runtimes, the containing directory must be named `ynm`:
 git clone https://github.com/RobLe3/ynm-skill.git /path/to/skills/ynm
 ```
 
-Or install from the built package:
+Or, from a source checkout, build the installed package:
 
 ```text
 python scripts/build_skill_package.py --output-dir dist --overwrite
 ls dist/ynm
 ```
 
-Validate package format and metadata:
+The following commands apply to a source checkout, not to the installed runtime package. They validate package format and metadata:
 
 ```text
 python scripts/build_skill_package.py --output-dir dist --overwrite
@@ -256,7 +256,7 @@ Use [Extension Model](methodology/extension-model.md) for additional loops. Exte
 **Current version:** `1.3.0`
 **Candidate status:** release candidate
 
-- Candidate release evidence is in `state/releases/1.3.0`.
+- [Candidate release evidence](https://github.com/RobLe3/ynm-skill/tree/codex/ynm-1.3.0-hardening-20260819-164550/state/releases/1.3.0) is maintained in the source repository, not in the installed package.
 - Deterministic local tests: **PASS**.
 - Workflow includes schema, lifecycle, security-boundary, package, and release-integrity validations.
 - Historical 1.0.0 through 1.2.0 maturity evidence is integrity-checked.
@@ -273,11 +273,18 @@ YNM can be used without a Python runtime for manual interpretation:
 
 - Core methodology: read and follow `SKILL.md`, contracts, and methodology.
 
-Optional helpers are available when you want local validation:
+Optional runtime helpers are available for project integration and lifecycle automation:
 
 - Python >= 3.10
 - `PyYAML >= 6,<7`
-- Validation dependencies listed in `pyproject.toml`
+
+Install their dependency only when you intend to run those helpers:
+
+```text
+python -m pip install "PyYAML>=6,<7"
+```
+
+Repository validation and development use the broader dependency set declared in `pyproject.toml` in a source checkout.
 
 If you are only using the method and runtime package, these helper dependencies are optional.
 
@@ -286,7 +293,7 @@ If you are only using the method and runtime package, these helper dependencies 
 1. Read `SKILL.md`.
 2. Inspect `contracts/` and `methodology/`.
 3. Run the local validation and tests.
-4. Review findings and candidate evidence under `state/releases/1.3.0`.
+4. Review findings and candidate evidence in the [source repository](https://github.com/RobLe3/ynm-skill/tree/codex/ynm-1.3.0-hardening-20260819-164550/state/releases/1.3.0).
 5. Run a bounded review or independent implementation.
 6. Report incompatible or ambiguous behavior with evidence.
 
@@ -294,6 +301,6 @@ Useful external evidence includes: alternate runtimes/models, manual execution, 
 
 ## License, contributing, and security
 
-YNM is licensed under the [Apache License 2.0](LICENSE). See [CONTRIBUTING.md](CONTRIBUTING.md) for semantic and sanitization requirements and [SECURITY.md](SECURITY.md) for private reporting of ownership-boundary, mutation, secret-exposure, or validation issues.
+YNM is licensed under the [Apache License 2.0](LICENSE). Source-repository contributors should read [CONTRIBUTING.md](https://github.com/RobLe3/ynm-skill/blob/main/CONTRIBUTING.md). Security reports should follow [SECURITY.md](https://github.com/RobLe3/ynm-skill/blob/main/SECURITY.md).
 
 Historical development notes were not removed from Git history and remain discoverable through tags, while current HEAD stays focused on the active public methodology and candidate evidence.
