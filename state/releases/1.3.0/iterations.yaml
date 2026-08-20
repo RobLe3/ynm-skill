@@ -37,3 +37,18 @@ iterations:
   findings_resolved:
   - YNM-PKG-001
   expected_next_gain: none unless independent evaluator reports incompatibility
+- iteration: 5
+  reason: Self-bootstrap and empirical evaluation precommitment
+  evidence_delta: A real self-review exposed stale evidence paths; a frozen trigger and ten-task A/B rubric was added.
+  findings_opened:
+  - YNM-MAINT-001
+  - YNM-EVAL-001
+  findings_resolved:
+  - YNM-MAINT-001
+  expected_next_gain: Two-model trigger and A/B execution evidence
+- iteration: 6
+  reason: Model availability boundary
+  evidence_delta: GPT-5.6 Sol was available, but the precommitted GPT-5.4 mini snapshot was rejected by the authenticated client.
+  findings_opened: []
+  findings_resolved: []
+  expected_next_gain: none until the required second model becomes available or the assessment is explicitly revised

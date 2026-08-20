@@ -28,6 +28,14 @@ Automated sanitization checks tracked text for private-path patterns, credential
 - `YNM-VAL-001` remains **MAYBE**: no independent third-party implementation report has yet demonstrated compatible YNM record exchange.
 - Independent interoperability across additional runtimes remains pending.
 
+## Empirical evaluation status
+
+The repository now contains a frozen rubric and ten controlled A/B fixtures under `evaluations/`. The planned evaluation compares the same project, model, tools, task, and read-only authority with and without YNM. It measures finding precision and recall, unsupported conclusions, evidence quality, MAYBE calibration, authority violations, lifecycle behavior, completion quality, tokens, and elapsed time.
+
+Execution is currently **BLOCKED** for the precommitted two-model comparison. `gpt-5.6-sol` was available through Codex CLI 0.147.0, while `gpt-5.4-mini-2026-03-17` was unavailable through the authenticated ChatGPT-backed Codex client. No trigger or A/B result is therefore reported as executed. See `evaluations/results/model-availability.yaml`.
+
+This availability probe and any later maintainer-operated runs do not constitute independent interoperability evidence.
+
 ## Validation evidence snapshot
 
 - `python validation/validate_ynm.py`
@@ -36,3 +44,4 @@ Automated sanitization checks tracked text for private-path patterns, credential
 - `python scripts/build_skill_package.py --output-dir dist --overwrite`
 - `skills-ref validate dist/ynm`
 - `skills-ref read-properties dist/ynm`
+- `python scripts/run_evaluations.py --probe`

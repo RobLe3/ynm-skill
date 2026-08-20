@@ -16,8 +16,15 @@ gates:
       - state/releases/1.3.0/baseline-hashes.yaml
       - docs/errata/1.2.0-publication.md
   - name: 1.3.0 release-candidate readiness
-    disposition: "YES"
+    disposition: "MAYBE"
     evidence:
       - state/releases/1.3.0/final-assessment.yaml
       - state/releases/1.3.0/review-plan.yaml
       - state/releases/1.3.0/runs.yaml
+  - name: 1.3.0 empirical review effectiveness
+    disposition: "MAYBE"
+    evidence:
+      - evaluations/rubric.yaml
+      - evaluations/scenarios.yaml
+      - evaluations/results/model-availability.yaml
+      - state/releases/1.3.0/findings.yaml

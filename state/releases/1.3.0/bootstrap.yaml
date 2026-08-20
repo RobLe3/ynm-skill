@@ -1,0 +1,24 @@
+schema_version: ynm-bootstrap-receipt.v1
+bootstrap_id: YNM-SELF-BOOTSTRAP-20260820
+project: ynm-skill
+mode: INITIALIZE
+execution_status: COMPLETED
+discovered_artifacts:
+  - AGENTS.md
+  - README.md
+  - VALIDATION.md
+  - state/releases/1.3.0
+reused_artifacts:
+  - AGENTS.md
+  - state/releases/1.3.0
+created_artifacts:
+  - state/releases/1.3.0/bootstrap.yaml
+updated_artifacts:
+  - state/releases/1.3.0/review-plan.yaml
+untouched_conflicting_artifacts: []
+ynm_state_location: state/releases/1.3.0
+persistence_mode: PERSISTENT
+mutation_authorization: AUTHORIZED
+unresolved_questions:
+  - Independent implementation interoperability remains unavailable.
+created_at: '2026-08-20T07:40:02Z'

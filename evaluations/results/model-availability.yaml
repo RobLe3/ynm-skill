@@ -1,0 +1,17 @@
+models:
+- provider: OpenAI
+  model: gpt-5.6-sol
+  role: evaluated_executor
+  status: AVAILABLE
+  checked_at: '2026-08-20T07:40:31.238841Z'
+  client: codex-cli 0.147.0
+  error: Reading additional input from stdin...
+- provider: OpenAI
+  model: gpt-5.4-mini-2026-03-17
+  role: evaluated_executor
+  status: UNAVAILABLE
+  checked_at: '2026-08-20T07:40:37.357731Z'
+  client: codex-cli 0.147.0
+  error: '{"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The
+    ''gpt-5.4-mini-2026-03-17'' model is not supported when using Codex with a ChatGPT
+    account."}}'

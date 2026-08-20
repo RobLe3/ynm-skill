@@ -38,6 +38,8 @@ DEFAULT_CHECKS = [
     "public-sanitization",
     "runtime-boundary",
     "workflow-invariants",
+    "current-evidence-references",
+    "evaluation-artifacts",
 ]
 PREFLIGHT_CHECKS = [
     "schema",
@@ -52,6 +54,8 @@ PREFLIGHT_CHECKS = [
     "public-sanitization",
     "runtime-boundary",
     "workflow-invariants",
+    "current-evidence-references",
+    "evaluation-artifacts",
 ]
 CROSS_PLATFORM_CHECKS = [
     "schema",
@@ -85,6 +89,11 @@ PUBLIC_SANITIZATION_ALLOWLIST: dict[str, set[str]] = {
     "tests/test_validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
     "validation/validate_ynm.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION", "PRIVATE_ABSOLUTE_PATH"},
     "validation/validate_release_integrity.py": {"PRIVATE_ABSOLUTE_PATH"},
+    "VALIDATION.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "evaluations/README.md": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "evaluations/results/model-availability.yaml": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "scripts/run_evaluations.py": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
+    "state/releases/1.3.0/review-plan.yaml": {"PROVIDER_SPECIFIC_CORE_ASSUMPTION"},
 }
 WORKFLOW_PATH = ROOT / ".github" / "workflows" / "ynm-ci.yml"
 ALLOWED_CAPABILITY_LABELS = {
@@ -1537,6 +1546,67 @@ def check_version_consistency() -> list[str]:
     return errors
 
 
+def check_current_evidence_references(root: Path = ROOT, version: str = CURRENT_VERSION) -> list[str]:
+    """Require path-like evidence in current findings to resolve inside the repository."""
+
+    findings_path = root / f"state/releases/{version}/findings.yaml"
+    if not findings_path.exists():
+        return [f"{findings_path}: current findings file missing"]
+    payload = load_yaml(findings_path)
+    findings = payload.get("findings", []) if isinstance(payload, dict) else []
+    errors: list[str] = []
+    canonical_root = root.resolve()
+    for finding in findings:
+        if not isinstance(finding, dict):
+            continue
+        finding_id = finding.get("id", "<unknown>")
+        for locator in finding.get("evidence", []):
+            if not isinstance(locator, str) or "/" not in locator:
+                continue
+            if re.match(r"^[a-z][a-z0-9+.-]*://", locator, re.IGNORECASE):
+                continue
+            candidate = (root / locator).resolve()
+            try:
+                candidate.relative_to(canonical_root)
+            except ValueError:
+                errors.append(f"{finding_id}: evidence path escapes repository: {locator}")
+                continue
+            if not candidate.exists():
+                errors.append(f"{finding_id}: evidence path does not exist: {locator}")
+    return errors
+
+
+def check_evaluation_artifacts(root: Path = ROOT) -> list[str]:
+    errors: list[str] = []
+    schema_root = root / "evaluations/schemas"
+    scenario_schema_path = schema_root / "evaluation-scenario.schema.json"
+    result_schema_path = schema_root / "evaluation-result.schema.json"
+    for path in (scenario_schema_path, result_schema_path):
+        if not path.exists():
+            errors.append(f"{path.relative_to(root)}: evaluation schema missing")
+            continue
+        schema = load_json(path)
+        try:
+            Draft202012Validator.check_schema(schema)
+        except jsonschema_exceptions.SchemaError as exc:
+            errors.append(f"{path.relative_to(root)}: schema error: {exc.message}")
+    if errors:
+        return errors
+    scenarios = load_yaml(root / "evaluations/scenarios.yaml")
+    scenario_errors = sorted(Draft202012Validator(load_json(scenario_schema_path), format_checker=FormatChecker()).iter_errors(scenarios), key=lambda item: list(item.absolute_path))
+    for error in scenario_errors:
+        errors.append(f"evaluations/scenarios.yaml: {error.json_path}: {error.message}")
+    scenario_ids = [item.get("id") for item in scenarios.get("scenarios", []) if isinstance(item, dict)]
+    if len(scenario_ids) != len(set(scenario_ids)):
+        errors.append("evaluations/scenarios.yaml: duplicate scenario IDs")
+    for result_path in sorted((root / "evaluations/results/records").glob("*.yaml")) if (root / "evaluations/results/records").exists() else []:
+        result = load_yaml(result_path)
+        result_errors = sorted(Draft202012Validator(load_json(result_schema_path), format_checker=FormatChecker()).iter_errors(result), key=lambda item: list(item.absolute_path))
+        for error in result_errors:
+            errors.append(f"{result_path.relative_to(root)}: {error.json_path}: {error.message}")
+    return errors
+
+
 def run(requested_checks: Sequence[str] | None = None) -> list[str]:
     errors: list[str] = []
 
@@ -1561,6 +1631,7 @@ def run(requested_checks: Sequence[str] | None = None) -> list[str]:
             ("examples/data/bootstrap-receipt.yaml", "bootstrap-receipt.schema.json", None),
             ("examples/data/review-plan.yaml", "review-plan.schema.json", None),
             ("state/releases/1.3.0/assessment.yaml", "assessment.schema.json", "assessment"),
+            ("state/releases/1.3.0/bootstrap.yaml", "bootstrap-receipt.schema.json", None),
         ]
         for fixture in fixtures:
             errors.extend(check_fixture(*fixture))
@@ -1591,6 +1662,10 @@ def run(requested_checks: Sequence[str] | None = None) -> list[str]:
         errors.extend(check_workflow_invariants())
     if "project-integration-security" in normalized:
         errors.extend(check_project_integration_security())
+    if "current-evidence-references" in normalized:
+        errors.extend(check_current_evidence_references())
+    if "evaluation-artifacts" in normalized:
+        errors.extend(check_evaluation_artifacts())
 
     return errors
 

@@ -19,3 +19,4 @@ state/*.tmp
 *.log
 .venv/
 *.egg-info/
+evaluations/results/raw/

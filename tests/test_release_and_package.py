@@ -176,6 +176,8 @@ class PackageBuildTests(unittest.TestCase):
             ]
             for item in forbidden_paths:
                 self.assertFalse(item.exists(), f"forbidden item present in package: {item.relative_to(package)}")
+            self.assertFalse((package / "evaluations").exists())
+            self.assertFalse((package / "scripts/run_evaluations.py").exists())
 
     def test_cli_build_runs(self):
         result = subprocess.run(

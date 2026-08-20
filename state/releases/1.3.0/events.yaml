@@ -38,3 +38,38 @@ events:
   phase: DELIVERY
   result: release integrity checks executed; historical timestamp anomaly was isolated
     in correction record
+- event_id: YNM-1.3-E007
+  type: EVIDENCE_CONTRIBUTION
+  finding_ids:
+  - YNM-LIFE-001
+  phase: ANALYSIS
+  at: '2026-08-20T07:40:02Z'
+  result: Replaced a stale path-like evidence locator with the existing run-receipt schema; the prior locator remains recoverable from Git history.
+- event_id: YNM-1.3-E008
+  type: EVIDENCE_CONTRIBUTION
+  finding_ids:
+  - YNM-LIFE-002
+  phase: ANALYSIS
+  at: '2026-08-20T07:40:02Z'
+  result: Replaced a stale run-receipt fixture locator with the maintained example fixture; the prior locator remains recoverable from Git history.
+- event_id: YNM-1.3-E009
+  type: NEW_FINDING
+  finding_ids:
+  - YNM-MAINT-001
+  phase: ANALYSIS
+  at: '2026-08-20T07:40:02Z'
+  result: Self-review identified stale path-like evidence that existing validation did not detect.
+- event_id: YNM-1.3-E010
+  type: RESOLUTION
+  finding_ids:
+  - YNM-MAINT-001
+  phase: ITERATION
+  at: '2026-08-20T07:40:02Z'
+  result: Corrected both current evidence locators and added deterministic path validation.
+- event_id: YNM-1.3-E011
+  type: NEW_FINDING
+  finding_ids:
+  - YNM-EVAL-001
+  phase: DELIVERY
+  at: '2026-08-20T07:40:37Z'
+  result: Two-model execution stopped before trigger or A/B runs because the precommitted GPT-5.4 mini snapshot was unavailable.

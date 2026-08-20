@@ -12,10 +12,14 @@ All notable YNM changes are recorded here. Historical release and maturity evide
 - Security-boundary hardening for project integration, including path normalization, symlink checks, ownership parsing, and rollback reporting.
 - Deterministic packaging workflow, manifest-driven packaging tests, and release-integrity checks.
 - Release-candidate correction record for unresolved 1.2 publication timestamp causality.
+- Frozen trigger and ten-task A/B evaluation fixtures for measuring review effectiveness without changing the runtime package.
+- Current-candidate evidence-locator validation and a project-native self-bootstrap receipt.
 
 ### Changed
 
 - Clarified public candidate status and publication readiness versus publication authority.
+- Tightened near-miss trigger expectations for isolated code review, cleanup advice, and weak contextual references.
+- Marked empirical two-model effectiveness evaluation as blocked rather than inferring results from internal consistency tests.
 
 ### Preserved
 

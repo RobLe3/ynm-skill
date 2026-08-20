@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ynm:schemas:evaluation-result.schema.json",
+  "type": "object",
+  "required": ["schema_version", "run_id", "scenario_id", "condition", "status", "provider", "model", "client", "started_at", "elapsed_seconds", "raw_output"],
+  "properties": {
+    "schema_version": {"const": "ynm-evaluation-result.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "scenario_id": {"type": "string", "pattern": "^(?:TRIG|YNM-EVAL)-[0-9]{3}$"},
+    "condition": {"enum": ["CONTROL", "YNM"]},
+    "repetition": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["EXECUTED", "NOT_EXECUTED", "UNAVAILABLE", "FAILED"]},
+    "provider": {"type": "string", "minLength": 1},
+    "model": {"type": "string", "minLength": 1},
+    "client": {"type": "string", "minLength": 1},
+    "started_at": {"type": "string", "format": "date-time"},
+    "elapsed_seconds": {"type": "number", "minimum": 0},
+    "input_tokens": {"type": "integer", "minimum": 0},
+    "output_tokens": {"type": "integer", "minimum": 0},
+    "activation_evidence": {"enum": ["RUNTIME_EVENT", "BEHAVIORAL_INFERENCE", "NOT_OBSERVED", "NOT_APPLICABLE"]},
+    "raw_output": {"type": "string"},
+    "error": {"type": "string"}
+  },
+  "additionalProperties": false
+}

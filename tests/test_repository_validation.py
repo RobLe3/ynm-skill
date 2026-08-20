@@ -9,6 +9,21 @@ from validation import validate_ynm as validator
 
 
 class RepositoryValidationTests(unittest.TestCase):
+    def test_current_path_like_evidence_must_resolve(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            target = root / "state/releases/1.3.0/findings.yaml"
+            target.parent.mkdir(parents=True)
+            target.write_text(
+                yaml.safe_dump({"findings": [{"id": "F-1", "evidence": ["contracts/missing.md", "urn:evidence:external"]}]}),
+                encoding="utf-8",
+            )
+            errors = validator.check_current_evidence_references(root, "1.3.0")
+            self.assertEqual(errors, ["F-1: evidence path does not exist: contracts/missing.md"])
+
+    def test_evaluation_scenarios_and_schemas_are_valid(self):
+        self.assertEqual(validator.check_evaluation_artifacts(), [])
+
     def test_sanitization_count_drift_is_actionable_and_read_only(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

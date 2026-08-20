@@ -1,18 +1,21 @@
 final_assessment:
-  proposition: YNM 1.3.0 candidate adds explicit Analysis → Iteration → Delivery sequencing, deterministic package inclusion, and git-object-based release integrity while preserving core semantics.
-  disposition: "YES"
-  final_disposition: "YES"
-  disposition_reason: The candidate produces explicit, bounded delivery outcomes with managed uncertainty and historical cleanup without weakening safety boundaries.
-  maturity_blockers: []
+  proposition: Available internal and comparative evidence establishes that YNM 1.3.0 improves model-assisted project review without weakening core semantics.
+  disposition: "MAYBE"
+  final_disposition: "MAYBE"
+  disposition_reason: Internal candidate quality remains supported, but the newly frozen empirical effectiveness assessment is blocked before execution because its second model is unavailable.
+  maturity_blockers:
+    - YNM-EVAL-001
   remaining_maybe_findings:
+    - YNM-EVAL-001
     - YNM-VAL-001
-  converged: true
+  converged: false
   stability_pass: "YES"
   version_decision: 1.3.0
-  assessed_at: "2026-08-19T16:55:00Z"
-  evaluated_at: "2026-08-19T16:55:00Z"
+  assessed_at: "2026-08-20T07:40:37Z"
+  evaluated_at: "2026-08-20T07:40:37Z"
   assessment_id: YNM-LIFECYCLE-CANDIDATE-20260819-164900
-  assessment_revision: 1
+  assessment_revision: 2
+  change_reason: Empirical effectiveness became a pre-release assessment requirement; the selected two-model execution is currently blocked.
   evidence:
     - state/releases/1.3.0/assessment.yaml
     - state/releases/1.3.0/findings.yaml
@@ -20,5 +23,8 @@ final_assessment:
     - state/releases/1.3.0/runs.yaml
     - state/releases/1.3.0/stability.yaml
     - state/releases/1.3.0/sanitization-report.yaml
+    - evaluations/rubric.yaml
+    - evaluations/scenarios.yaml
+    - evaluations/results/model-availability.yaml
   publication_readiness: "YES"
   publication_authorization: REQUIRES_HUMAN
