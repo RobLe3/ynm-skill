@@ -6,15 +6,18 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import yaml
 from jsonschema import Draft202012Validator
 
-from scripts import run_evaluations
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts import run_evaluations
 SEED = "ynm-1.3.0-empirical-revision-2"
 
 
