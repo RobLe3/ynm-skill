@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -65,7 +66,7 @@ def isolated_home(*, with_skill: bool) -> tempfile.TemporaryDirectory[str]:
     return holder
 
 
-def invoke(model: str, prompt: str, cwd: Path, *, with_skill: bool) -> dict:
+def invoke(model: str, prompt: str, cwd: Path, *, with_skill: bool, timeout_seconds: int = 300) -> dict:
     started_at = utc_now()
     started = time.monotonic()
     holder = isolated_home(with_skill=with_skill)
@@ -77,7 +78,10 @@ def invoke(model: str, prompt: str, cwd: Path, *, with_skill: bool) -> dict:
     ]
     before_inventory = filesystem_inventory(cwd)
     try:
-        result = subprocess.run(command, cwd=cwd, env=env, stdin=subprocess.DEVNULL, capture_output=True, text=True)
+        try:
+            result = subprocess.run(command, cwd=cwd, env=env, stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=timeout_seconds)
+        except subprocess.TimeoutExpired as exc:
+            result = subprocess.CompletedProcess(command, 124, stdout=exc.stdout or "", stderr=f"invocation timed out after {timeout_seconds} seconds")
     finally:
         holder.cleanup()
     events = []
@@ -216,33 +220,38 @@ def write_result(output_root: Path, scenario_id: str, condition: str, repetition
     target.write_text(yaml.safe_dump(record, sort_keys=False), encoding="utf-8")
 
 
-def run_trigger_suite(models: list[str], repetitions: int, output_root: Path, observability_mode: str) -> None:
+def run_trigger_suite(models: list[str], repetitions: int, output_root: Path, observability_mode: str, workers: int = 6) -> None:
     cases = yaml.safe_load((ROOT / "tests/data/trigger-cases.yaml").read_text(encoding="utf-8"))["cases"]
     with tempfile.TemporaryDirectory(prefix="ynm-trigger-project-") as tmp:
         cwd = Path(tmp)
-        for model in models:
-            for case in cases:
-                for repetition in range(1, repetitions + 1):
-                    result = invoke(model, case["prompt"], cwd, with_skill=True)
-                    if result["activation_evidence"] != "RUNTIME_EVENT":
-                        inferred = behavioral_activation(result["raw_output"])
-                        result["activation_evidence"] = (
-                            "BEHAVIORAL_INFERENCE" if observability_mode == "BEHAVIORAL_INFERENCE" and inferred else "NOT_OBSERVED"
-                        )
-                    write_result(output_root, case["id"], "YNM", repetition, model, result)
+        jobs = [(model, case, repetition) for model in models for case in cases for repetition in range(1, repetitions + 1)]
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = {pool.submit(invoke, model, case["prompt"], cwd, with_skill=True): (model, case, repetition) for model, case, repetition in jobs}
+            for future in as_completed(futures):
+                model, case, repetition = futures[future]
+                result = future.result()
+                if result["activation_evidence"] != "RUNTIME_EVENT":
+                    inferred = behavioral_activation(result["raw_output"])
+                    result["activation_evidence"] = "BEHAVIORAL_INFERENCE" if observability_mode == "BEHAVIORAL_INFERENCE" and inferred else "NOT_OBSERVED"
+                write_result(output_root, case["id"], "YNM", repetition, model, result)
 
 
-def run_benchmark(models: list[str], output_root: Path) -> None:
+def run_benchmark(models: list[str], output_root: Path, workers: int = 6) -> None:
     scenarios = yaml.safe_load((ROOT / "evaluations/scenarios.yaml").read_text(encoding="utf-8"))["scenarios"]
-    for model in models:
-        for scenario in scenarios:
-            fixture = ROOT / scenario["fixture"]
-            for condition, with_skill in (("CONTROL", False), ("YNM", True)):
-                with tempfile.TemporaryDirectory(prefix="ynm-benchmark-project-") as tmp:
-                    isolated_fixture = Path(tmp) / "project"
-                    shutil.copytree(fixture, isolated_fixture)
-                    result = invoke(model, scenario["prompt"], isolated_fixture, with_skill=with_skill)
-                    write_result(output_root, scenario["id"], condition, 1, model, result)
+    jobs = [(model, scenario, condition, with_skill) for model in models for scenario in scenarios for condition, with_skill in (("CONTROL", False), ("YNM", True))]
+    def execute(job: tuple) -> tuple:
+        model, scenario, condition, with_skill = job
+        fixture = ROOT / scenario["fixture"]
+        with tempfile.TemporaryDirectory(prefix="ynm-benchmark-project-") as tmp:
+            isolated_fixture = Path(tmp) / "project"
+            shutil.copytree(fixture, isolated_fixture)
+            result = invoke(model, scenario["prompt"], isolated_fixture, with_skill=with_skill)
+            return model, scenario, condition, result
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = [pool.submit(execute, job) for job in jobs]
+        for future in as_completed(futures):
+            model, scenario, condition, result = future.result()
+            write_result(output_root, scenario["id"], condition, 1, model, result)
 
 
 def main() -> int:
@@ -253,6 +262,7 @@ def main() -> int:
     parser.add_argument("--smoke-observability", action="store_true")
     parser.add_argument("--model", action="append", dest="models")
     parser.add_argument("--repetitions", type=int, default=5)
+    parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "evaluations/results")
     args = parser.parse_args()
     models = args.models or list(DEFAULT_MODELS)
@@ -270,9 +280,9 @@ def main() -> int:
     if args.smoke_observability and not args.run_triggers and not args.run_benchmark:
         return 0
     if args.run_triggers:
-        run_trigger_suite(models, args.repetitions, args.output_dir, observability_mode)
+        run_trigger_suite(models, args.repetitions, args.output_dir, observability_mode, args.workers)
     if args.run_benchmark:
-        run_benchmark(models, args.output_dir)
+        run_benchmark(models, args.output_dir, args.workers)
     if not args.run_triggers and not args.run_benchmark and not args.smoke_observability:
         parser.error("select --probe, --smoke-observability, --run-triggers, or --run-benchmark")
     return 0

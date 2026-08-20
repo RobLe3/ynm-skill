@@ -17,6 +17,8 @@ reasoning_effort: medium
 sandbox: read-only
 trigger_repetitions: 5
 benchmark_repetitions: 1
+max_parallel_workers: 6
+invocation_timeout_seconds: 300
 conditions: [CONTROL, YNM]
 activation_observability:
   priority: [RUNTIME_EVENT, BEHAVIORAL_INFERENCE, NOT_OBSERVED]

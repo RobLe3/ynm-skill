@@ -76,6 +76,11 @@ class EvaluationHarnessTests(unittest.TestCase):
             path.write_text(yaml.safe_dump(payload), encoding="utf-8")
             self.assertEqual(run_evaluations.selected_models(path), ["gpt-5.6-sol"])
 
+    def test_protocol_bounds_parallelism_and_invocation_time(self):
+        protocol = yaml.safe_load((run_evaluations.ROOT / "evaluations/protocol.yaml").read_text(encoding="utf-8"))
+        self.assertEqual(protocol["max_parallel_workers"], 6)
+        self.assertEqual(protocol["invocation_timeout_seconds"], 300)
+
     def test_behavioral_activation_rule_is_conservative(self):
         self.assertTrue(run_evaluations.behavioral_activation("Using YNM for this review."))
         self.assertTrue(run_evaluations.behavioral_activation("YES NO MAYBE\nReviewed scope\nUnreviewed scope\nDelivery"))
